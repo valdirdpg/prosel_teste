@@ -1,0 +1,21 @@
+.required > label{
+    cursor: help;
+}
+.required > label::after{
+    content: " *";
+    color: #a94442;
+}
+
+div[class*="col-"] .form-horizontal .form-group{
+    margin-right: inherit;
+    margin-left: inherit;
+}
+
+.form-group{
+    margin-bottom: 10px;
+}
+
+.help-block {
+    margin-bottom: 0px;
+    font-size: small;
+}

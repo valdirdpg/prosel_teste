@@ -1,0 +1,58 @@
+{% extends "admin/base.html" %}
+{% load i18n staticfiles %}
+
+{% block extrahead %}
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' type='text/css'>
+<link rel="stylesheet" href="{% static 'css/bootstrap-3.3.6.min.css' %}">
+<link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+<link rel="stylesheet" href="{% static 'ps/css/fotorama.css' %}">
+<link rel="stylesheet" href="{% static 'css/main.css' %}">
+<link rel="stylesheet" href="{% static 'css/main_admin.css' %}">
+<link rel="stylesheet" href="{% static 'css/forms_admin.css' %}">
+<link rel="stylesheet" href="{% static 'css/menu_responsivo.css' %}">
+<link rel="stylesheet" href="{% static 'css/temas.css' %}">
+<link rel="icon" href="{% static 'img/favicon.ico' %}">
+<script src="{% static 'js/jquery-1.11.3.min.js' %}"></script>
+<script src="{% static 'js/jquery.mask.min.js' %}"></script>
+<script src="{% static 'js/scripts.js' %}"></script>
+<script src="{% static 'js/bootstrap-3.3.6.min.js' %}"></script>
+<script>
+$(function () {
+    var collapse = $('.menu-title[data-toggle="collapse"]');
+    for (var i = 0; i < collapse.length; i++) {
+        $(collapse[i]).html($(collapse[i]).html() + '<span class="fa collapse-caret"></span>');
+    }
+    var c = $('.menu-item[data-toggle="collapse"]');
+    for (var i = 0; i < c.length; i++) {
+        var tag_i = document.createElement("i");
+        tag_i.className = "fa fa-fw";
+        c[i].firstChild.appendChild(tag_i);
+    }
+
+    /* Modifica o scroll do changelist quando houver menu dropdown na listagem */
+    $('#changelist').on('show.bs.dropdown',
+                        '#changelist-form .results',
+                        function () {$(this).css("overflow", "visible");}
+                        ).on('hide.bs.dropdown',
+                             '#changelist-form .results',
+                             function () { $(this).css("overflow", "auto"); });
+})
+</script>
+
+
+<style>
+.autocomplete-light-widget {
+  z-index:10;
+}
+</style>
+
+    <link rel="stylesheet" type="text/css" href="{% static 'ps/css/style_admin.css' %}" />
+{% endblock %}
+
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block branding %}
+{% endblock %}
+
+{% block nav-global %}{% endblock %}

@@ -1,0 +1,15 @@
+{% extends "admin/change_list.html" %}
+{% load base_tags %}
+
+{% block object-tools-items %}
+    {% user_in_groups request.user 'Administradores Sistêmicos de Cursos' as administrador_sistemico %}
+    {% if administrador_sistemico %}
+    <li>
+        <form class="input_admin" method="post" action="{% url 'importar_docentes' %}">
+            {% csrf_token %}
+            <input type="submit" value="Importar Docentes"></input>
+        </form>
+    </li>
+    {% endif %}
+    {{ block.super }}
+{% endblock %}

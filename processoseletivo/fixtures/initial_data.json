@@ -1,0 +1,62 @@
+[
+  {
+    "model": "processoseletivo.tipoanalise",
+    "pk": 1,
+    "fields": {
+      "nome": "DOCUMENTA\u00c7\u00c3O B\u00c1SICA",
+      "setor_responsavel": "Geral",
+      "descricao": "Foto; T\u00edtulo de Eleitor; RG; CPF; Reservista (sexo masculino); Quita\u00e7\u00e3o Eleitoral; Certid\u00e3o de Nascimento ou Casamento; Certificado e Hist\u00f3rico de Ensino Fundamental p/ os cursos Integrados; Certificado e Hist\u00f3rico do Ensino M\u00e9dio regular ou cert. do ENEM p/ os cursos Subsequentes e Superiores.",
+      "modalidade": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ]
+    }
+  },
+  {
+    "model": "processoseletivo.tipoanalise",
+    "pk": 2,
+    "fields": {
+      "nome": "AVALIA\u00c7\u00c3O EGRESSO DE ESCOLA P\u00daBLICA",
+      "setor_responsavel": "CCA",
+      "descricao": "<b>CERTIFICADO E HIST\u00d3RICO ESCOLAR \u2013 Cursos Superiores:</b> Os estudantes devem ter <i><u>cursado integralmente o ensino m\u00e9dio em escola p\u00fablica</u></i>, em cursos regulares ou no \u00e2mbito da modalidade de Educa\u00e7\u00e3o de Jovens e Adultos (EJA); ou tenham certificado obtido por meio do Exame Nacional do Ensino M\u00e9dio (ENEM); ou Exame Nacional para Certifica\u00e7\u00e3o de Compet\u00eancias de Jovens e Adultos (ENCCEJA) ou de exames de certifica\u00e7\u00e3o de compet\u00eancia ou de avalia\u00e7\u00e3o de jovens e adultos realizados pelos sistemas estaduais de ensino; <br/><b>Cursos T\u00e9cnicos:</b> Os estudantes devem ter <i><u>cursado integralmente o ensino fundamental em escola p\u00fablica</u></i>, em cursos regulares ou no \u00e2mbito da modalidade EJA; ou ENCCEJA ou exames de certifica\u00e7\u00e3o de compet\u00eancia ou de avalia\u00e7\u00e3o de jovens e adultos realizados pelos sistemas estaduais de ensino.",
+      "modalidade": [
+        2,
+        3,
+        4,
+        5,
+        7
+      ]
+    }
+  },
+  {
+    "model": "processoseletivo.tipoanalise",
+    "pk": 3,
+    "fields": {
+      "nome": "AVALIA\u00c7\u00c3O SOCIOECON\u00d4MICA",
+      "setor_responsavel": "CAEST",
+      "descricao": "<b>SE ASSALARIADO:</b> c\u00f3pia dos contracheques, ou c\u00f3pia da Carteira de Trabalho (CTPS) atualizada, ou do recibo de sal\u00e1rio completo, ou do holerite, todos referentes aos tr\u00eas meses anteriores \u00e0 data de inscri\u00e7\u00e3o para a respectiva sele\u00e7\u00e3o; ou c\u00f3pia da Declara\u00e7\u00e3o de IRPF (Imposto de Renda Pessoa F\u00edsica) acompanhada do recibo de entrega \u00e0 Receita Federal do Brasil e da respectiva notifica\u00e7\u00e3o de restitui\u00e7\u00e3o, quando houver; ou da CTPS (Carteira de Trabalho e Previd\u00eancia Social) registrada e atualizada ou carn\u00ea do INSS com recolhimento em dia, no caso de empregada dom\u00e9stica; ou extrato atualizado da conta vinculada do trabalhador no FGTS, ou extratos banc\u00e1rios dos tr\u00eas meses anteriores \u00e0 inscri\u00e7\u00e3o no SiSU. <br/><b>SE DESEMPREGADO:</b> c\u00f3pia da Carteira de Trabalho com a identifica\u00e7\u00e3o da baixa do \u00faltimo emprego e com a pr\u00f3xima p\u00e1gina de contrato em branco. <br/><b>SEM COMPROVA\u00c7\u00c3O DOCUMENTAL FORMAL DE RENDIMENTO:</b> apresentar preenchida a declara\u00e7\u00e3o de renda fam\u00edlia com assinatura de duas testemunhas. <br/><b>ASSENTADOS DA REFORMA AGR\u00c1RIA</b> <i>(Espec\u00edfico Campus Sousa)</i>: apresentar declara\u00e7\u00e3o em papel timbrado da associa\u00e7\u00e3o do assentamento ao qual pertence, contendo, pelo menos, a denomina\u00e7\u00e3o, o CNPJ, o endere\u00e7o e o telefone desta, e informando se o candidato \u00e9 assentado, filho de assentado ou agregado \u00e0 fam\u00edlia assentada; ou comprovante de assentado da reforma agr\u00e1ria emitido pelo Instituto Nacional de Coloniza\u00e7\u00e3o e Reforma Agr\u00e1ria (INCRA).",
+      "modalidade": [
+        2,
+        3,
+        5
+      ]
+    }
+  },
+  {
+    "model": "processoseletivo.tipoanalise",
+    "pk": 4,
+    "fields": {
+      "nome": "AVALIA\u00c7\u00c3O M\u00c9DICA",
+      "setor_responsavel": "GM",
+      "descricao": "<b>LAUDO M\u00c9DICO COMPROBAT\u00d3RIO:</b> A defici\u00eancia mencionada no laudo m\u00e9dico apresentado dever\u00e1 estar abrigada pelos termos do Decreto Federal n\u00famero 3.298, de 20 de dezembro de 1999, ou da S\u00famula n\u00famero 45 da Advocacia-Geral da Uni\u00e3o (portador de vis\u00e3o monocular).",
+      "modalidade": [
+        6
+      ]
+    }
+  }
+]

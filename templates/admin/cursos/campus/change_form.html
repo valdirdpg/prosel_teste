@@ -1,0 +1,6 @@
+{% extends "admin/change_form.html" %}
+
+{% block object-tools-items %}
+    <li><a href="{% url 'permissoes_campus' object_id %}" class="link_span">Gerenciar permissoes</a></li>
+    {{block.super}}
+{% endblock %}

@@ -1,0 +1,93 @@
+{% extends "base/baseboot.html" %}
+{% load staticfiles bootstrap_pagination base_tags %}
+
+{% block extrahead %}
+{% endblock %}
+
+{% block breadcrumb %}
+    <li><a href="/">Início</a></li>
+    <li><i class="fa fa-angle-right text-muted" aria-hidden="true"></i></li>
+    <li class="active">Busca</li>
+{% endblock %}
+
+{% block main %}
+    <div class="content">
+    <div class="container">
+    <div class="row">
+    <div class="col-xs-12">
+        <h2 class="titulo verde-escuro">Busca</h2>
+    </div>
+    <div class="col-xs-12">
+    <label for="q">Busca no portal</label>
+        <form role="form" class="form" method="get" id="search_cursos">
+
+            <div class="col-xs-10 col-sm-8 col-sm-offset-2 form-group">
+
+                <input class="form-control" id="q" name="q" type="text" placeholder="Buscar no portal" value="{{ q }}">
+            </div>
+            <div class="col-xs-2 col-sm-2">
+                <button class="btn btn-primary" type="submit">Buscar</button>
+            </div>
+        </form>
+    </div>
+    <div class="col-xs-12">
+
+        {% if resultados %}
+            <h3>{{ resultados.paginator.count }} Resultado{% if resultados|length > 1 %}s{% endif %} da busca por
+                <strong>{{ q }}</strong></h3>
+            <p class="text-muted">Mostrando de {{ resultados.start_index }} a {{ resultados.end_index }}
+                num total de {{ resultados.paginator.count }} resultados</p>
+        {% else %}
+            <div class="alert alert-info" role="alert">
+                Nenhum resultado encontrado na busca por "{{ q }}"
+            </div>
+        {% endif %}
+        {% for resultado in resultados %}
+            <div>
+                <a href="{{ resultado.get_absolute_url }}"><strong>{{ resultado.titulo|highlight:q }}</strong></a> <span
+                    class="text-muted"> [{{ resultado.class_name }}]</span>
+                {% if resultado.resumo %}
+                    <br>
+                    <span>{{ resultado.resumo|safe|truncatechars_html:183|highlight:q }}</span>
+                {% endif %}
+                {% if resultado.criado_por %}
+                    <br>
+                    <span class="text-muted">
+                    <small>por
+                        <a href="{% url 'busca' %}?q={{ resultado.criado_por.get_full_name|default:resultado.criado_por }}">
+                            {{ resultado.criado_por.get_full_name|default:resultado.criado_por|default:"-"|highlight:q }}</a>
+                    </small>
+                </span>
+                {% endif %}
+                <br>
+                <span class="text-muted"><small>publicado em {{ resultado.criado_em|date:"d/m/Y" }} - última modificação em
+                    {{ resultado.atualizado_em|date:"d/m/Y H\hi" }}</small>
+                </span>
+                {% if resultado.assuntos %}
+                    <br>
+                    <span class="text-muted">
+                    <small>Assunto(s):
+                        {% for tag in resultado.assuntos.all %}
+                            <a href="{% url 'busca' %}?q={{ tag }}">{{ tag|highlight:q }}</a>{% if forloop.last %}.{% else %}, {% endif %}
+                        {% empty %}
+                            -
+                        {% endfor %}
+                    </small>
+                </span>
+                {% endif %}
+            </div>
+            <br>
+            <br>
+        {% endfor %}
+    </div>
+    {% if paginado %}
+        <div class="col-xs-12">
+            <div class="paginas">
+                {% bootstrap_paginate resultados range=5 show_prev_next="true" show_first_last="true" first_label="Início" last_label="Fim" %}
+            </div>
+        </div>
+    {% endif %}
+    </div>
+    </div>
+    </div>
+{% endblock %}

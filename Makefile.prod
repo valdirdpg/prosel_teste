@@ -1,0 +1,23 @@
+image: check-env check-file
+	cp build/Dockerfile .
+	docker build -t ifpb/portal:${PORTAL_VERSION} .
+	docker tag ifpb/portal:${PORTAL_VERSION} docker.ifpb.edu.br:5000/ifpb/portal:${PORTAL_VERSION}
+	docker tag ifpb/portal:${PORTAL_VERSION} docker.ifpb.edu.br:5000/ifpb/portal:latest
+	docker push docker.ifpb.edu.br:5000/ifpb/portal:latest
+	rm Dockerfile
+
+worker: check-env check-file
+	cp build/Dockerfile.worker Dockerfile
+	docker build -t ifpb/portal-worker:${PORTAL_VERSION} .
+	docker tag ifpb/portal_worker:${PORTAL_VERSION} docker.ifpb.edu.br:5000/ifpb/portal_worker:${PORTAL_VERSION}
+	docker tag ifpb/portal_worker:${PORTAL_VERSION} docker.ifpb.edu.br:5000/ifpb/portal_worker:latest
+	docker push docker.ifpb.edu.br:5000/ifpb/portal_worker:latest
+	rm Dockerfile
+
+check-env:
+ifndef PORTAL_VERSION
+    	$(error PORTAL_VERSION is undefined)
+endif
+
+check-file:
+	ret=$$(grep valor build/rancher/web-variables.env > /dev/null); test $$? -ne 0

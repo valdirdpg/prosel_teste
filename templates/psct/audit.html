@@ -1,0 +1,69 @@
+{% extends "base/baseboot.html" %}
+{% load psct_tags %}
+
+
+
+{% block breadcrumb %}
+    {% if breadcrumb %}
+        {{ block.super }}
+    {% else %}
+        <li><a href="/">Início</a></li>
+        <li><i class="fa fa-angle-right text-muted"></i></li>
+        <li><a href="{% url 'admin:reversion_revision_changelist' %}">Auditoria</a></li>
+        <li><i class="fa fa-angle-right text-muted"></i></li>
+        <li class="active">Dados do registro</li>
+    {% endif %}
+{% endblock %}
+
+
+{% block conteudo %}
+    <h2 class="titulo verde-escuro">Auditoria</h2>
+
+    <h3 class="verde-escuro">Dados da alteração</h3>
+    <div class="table-responsive">
+        <table class="table table-striped table-condensed">
+            <tbody>
+            <tr>
+                <td class="col-xs-6 col-sm-4 col-md-3"><b>Autor:</b></td>
+                <td>{{ revision.user.get_full_name }} ({{ revision.user.username }})</td>
+            </tr>
+            <tr>
+                <td><b>Data:</b></td>
+                <td>{{ revision.date_created }}</td>
+            </tr>
+
+            </tbody>
+        </table>
+    </div>
+
+    <h3 class="verde-escuro">Entidades modificadas</h3>
+
+
+    {% for version in revision.version_set.all %}
+        <h4>{{ version.content_type }} - {{ version }}</h4>
+        <div class="table-responsive">
+            <table class="table table-striped table-condensed">
+                <thead>
+                    <tr>
+                        <th>Diferença</th>
+                        <th>Antes</th>
+                        <th>Depois</th>
+
+
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        {% get_old_version version as old %}
+                        <td>{% diff_data version old %}</td>
+                        <td>{% data_prettified old %}</td>
+                        <td>{% data_prettified version %}</td>
+
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    {% endfor %}
+
+{% endblock %}

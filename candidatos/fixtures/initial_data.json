@@ -1,0 +1,756 @@
+[
+  {
+    "model": "candidatos.idioma",
+    "pk": 1,
+    "fields": {
+      "descricao": "Portugu\u00eas",
+      "uso_caracterizacao": false
+    }
+  },
+  {
+    "model": "candidatos.idioma",
+    "pk": 2,
+    "fields": {
+      "descricao": "Ingl\u00eas",
+      "uso_caracterizacao": false
+    }
+  },
+  {
+    "model": "candidatos.idioma",
+    "pk": 3,
+    "fields": {
+      "descricao": "Espanhol",
+      "uso_caracterizacao": false
+    }
+  },
+  {
+    "model": "candidatos.idioma",
+    "pk": 4,
+    "fields": {
+      "descricao": "Franc\u00eas",
+      "uso_caracterizacao": false
+    }
+  },
+  {
+    "model": "candidatos.idioma",
+    "pk": 5,
+    "fields": {
+      "descricao": "Outros",
+      "uso_caracterizacao": false
+    }
+  },
+  {
+    "model": "candidatos.beneficiogovernofederal",
+    "pk": 1,
+    "fields": {
+      "descricao": "Bolsa Fam\u00edlia"
+    }
+  },
+  {
+    "model": "candidatos.beneficiogovernofederal",
+    "pk": 2,
+    "fields": {
+      "descricao": "Outro"
+    }
+  },
+  {
+    "model": "candidatos.necessidadeespecial",
+    "pk": 1,
+    "fields": {
+      "descricao": "F\u00edsica"
+    }
+  },
+  {
+    "model": "candidatos.necessidadeespecial",
+    "pk": 2,
+    "fields": {
+      "descricao": "Mental"
+    }
+  },
+  {
+    "model": "candidatos.necessidadeespecial",
+    "pk": 3,
+    "fields": {
+      "descricao": "Visual"
+    }
+  },
+  {
+    "model": "candidatos.necessidadeespecial",
+    "pk": 4,
+    "fields": {
+      "descricao": "Auditiva"
+    }
+  },
+  {
+    "model": "candidatos.necessidadeespecial",
+    "pk": 5,
+    "fields": {
+      "descricao": "Outra"
+    }
+  },
+  {
+    "model": "candidatos.razaoafastamentoeducacional",
+    "pk": 1,
+    "fields": {
+      "descricao": "Desconhecido"
+    }
+  },
+  {
+    "model": "candidatos.tipoemprego",
+    "pk": 1,
+    "fields": {
+      "descricao": "Desconhecido"
+    }
+  },
+  {
+    "fields": {
+      "descricao": "Parda"
+    },
+    "model": "candidatos.raca",
+    "pk": 1
+  },
+  {
+    "fields": {
+      "descricao": "Preta"
+    },
+    "model": "candidatos.raca",
+    "pk": 2
+  },
+  {
+    "fields": {
+      "descricao": "Branca"
+    },
+    "model": "candidatos.raca",
+    "pk": 3
+  },
+  {
+    "fields": {
+      "descricao": "Ind\u00edgena"
+    },
+    "model": "candidatos.raca",
+    "pk": 4
+  },
+  {
+    "fields": {
+      "descricao": "Amarela"
+    },
+    "model": "candidatos.raca",
+    "pk": 5
+  },
+  {
+    "fields": {
+      "descricao": "N\u00e3o declarado"
+    },
+    "model": "candidatos.raca",
+    "pk": 7
+  },
+  {
+    "fields": {
+      "descricao": "Solteiro(a)"
+    },
+    "model": "candidatos.estadocivil",
+    "pk": 6
+  },
+  {
+    "fields": {
+      "descricao": "Casado(a)"
+    },
+    "model": "candidatos.estadocivil",
+    "pk": 7
+  },
+  {
+    "fields": {
+      "descricao": "Uni\u00e3o Est\u00e1vel"
+    },
+    "model": "candidatos.estadocivil",
+    "pk": 8
+  },
+  {
+    "fields": {
+      "descricao": "Divorciado(a)"
+    },
+    "model": "candidatos.estadocivil",
+    "pk": 9
+  },
+  {
+    "fields": {
+      "descricao": "Vi\u00favo(a)"
+    },
+    "model": "candidatos.estadocivil",
+    "pk": 10
+  },
+  {
+    "fields": {
+      "descricao": "N\u00e3o declarado"
+    },
+    "model": "candidatos.estadocivil",
+    "pk": 11
+  },
+  {
+    "fields": {
+      "descricao": "Plano de sa\u00fade particular"
+    },
+    "model": "candidatos.tiposervicosaude",
+    "pk": 1
+  },
+  {
+    "fields": {
+      "descricao": "Plano de sa\u00fade da empresa"
+    },
+    "model": "candidatos.tiposervicosaude",
+    "pk": 2
+  },
+  {
+    "fields": {
+      "descricao": "Sistema \u00danico de Sa\u00fade - SUS"
+    },
+    "model": "candidatos.tiposervicosaude",
+    "pk": 3
+  },
+  {
+    "fields": {
+      "descricao": "Consultas/Exames particulares"
+    },
+    "model": "candidatos.tiposervicosaude",
+    "pk": 4
+  },
+  {
+    "fields": {
+      "descricao": "Somente em escola p\u00fablica"
+    },
+    "model": "candidatos.tipoescola",
+    "pk": 1
+  },
+  {
+    "fields": {
+      "descricao": "A maior parte em escola p\u00fablica"
+    },
+    "model": "candidatos.tipoescola",
+    "pk": 2
+  },
+  {
+    "fields": {
+      "descricao": "Somente em escola particular"
+    },
+    "model": "candidatos.tipoescola",
+    "pk": 3
+  },
+  {
+    "fields": {
+      "descricao": "A maior parte em escola particular"
+    },
+    "model": "candidatos.tipoescola",
+    "pk": 4
+  },
+  {
+    "fields": {
+      "descricao": "Somente em escola ind\u00edgena"
+    },
+    "model": "candidatos.tipoescola",
+    "pk": 5
+  },
+  {
+    "fields": {
+      "descricao": "A maior parte em escola ind\u00edgena"
+    },
+    "model": "candidatos.tipoescola",
+    "pk": 6
+  },
+  {
+    "fields": {
+      "descricao": "Somente em escola situada em comunidade quilombola"
+    },
+    "model": "candidatos.tipoescola",
+    "pk": 7
+  },
+  {
+    "fields": {
+      "descricao": "A maior parte em escola em comunidade quilombola"
+    },
+    "model": "candidatos.tipoescola",
+    "pk": 8
+  },
+  {
+    "fields": {
+      "descricao": "Outro tipo de escola"
+    },
+    "model": "candidatos.tipoescola",
+    "pk": 9
+  },
+  {
+    "fields": {
+      "descricao": "Trabalha com v\u00ednculo empregat\u00edcio"
+    },
+    "model": "candidatos.situacaotrabalho",
+    "pk": 6
+  },
+  {
+    "fields": {
+      "descricao": "Aut\u00f4nomo"
+    },
+    "model": "candidatos.situacaotrabalho",
+    "pk": 7
+  },
+  {
+    "fields": {
+      "descricao": "N\u00e3o est\u00e1 trabalhando"
+    },
+    "model": "candidatos.situacaotrabalho",
+    "pk": 8
+  },
+  {
+    "fields": {
+      "descricao": "Nunca trabalhou"
+    },
+    "model": "candidatos.situacaotrabalho",
+    "pk": 9
+  },
+  {
+    "fields": {
+      "descricao": "Aposentado"
+    },
+    "model": "candidatos.situacaotrabalho",
+    "pk": 10
+  },
+  {
+    "fields": {
+      "descricao": "Servi\u00e7o p\u00fablico"
+    },
+    "model": "candidatos.situacaotrabalho",
+    "pk": 12
+  },
+  {
+    "fields": {
+      "descricao": "Est\u00e1gio ou bolsa"
+    },
+    "model": "candidatos.situacaotrabalho",
+    "pk": 13
+  },
+  {
+    "fields": {
+      "descricao": "Trabalhador rural/Agricultor"
+    },
+    "model": "candidatos.situacaotrabalho",
+    "pk": 14
+  },
+  {
+    "fields": {
+      "descricao": "Pescador"
+    },
+    "model": "candidatos.situacaotrabalho",
+    "pk": 15
+  },
+  {
+    "fields": {
+      "descricao": "Benefici\u00e1rio ou Pensionista do INSS"
+    },
+    "model": "candidatos.situacaotrabalho",
+    "pk": 16
+  },
+  {
+    "fields": {
+      "descricao": "Empresa privada"
+    },
+    "model": "candidatos.situacaotrabalho",
+    "pk": 17
+  },
+  {
+    "fields": {
+      "descricao": "N\u00e3o informado"
+    },
+    "model": "candidatos.situacaotrabalho",
+    "pk": 18
+  },
+  {
+    "fields": {
+      "descricao": "Bicicleta"
+    },
+    "model": "candidatos.meiotransporte",
+    "pk": 9
+  },
+  {
+    "fields": {
+      "descricao": "Moto"
+    },
+    "model": "candidatos.meiotransporte",
+    "pk": 10
+  },
+  {
+    "fields": {
+      "descricao": "Motot\u00e1xi"
+    },
+    "model": "candidatos.meiotransporte",
+    "pk": 11
+  },
+  {
+    "fields": {
+      "descricao": "Autom\u00f3vel"
+    },
+    "model": "candidatos.meiotransporte",
+    "pk": 12
+  },
+  {
+    "fields": {
+      "descricao": "Transporte coletivo"
+    },
+    "model": "candidatos.meiotransporte",
+    "pk": 13
+  },
+  {
+    "fields": {
+      "descricao": "Transporte cedido por prefeitura"
+    },
+    "model": "candidatos.meiotransporte",
+    "pk": 14
+  },
+  {
+    "fields": {
+      "descricao": "A p\u00e9"
+    },
+    "model": "candidatos.meiotransporte",
+    "pk": 15
+  },
+  {
+    "fields": {
+      "descricao": "Outro"
+    },
+    "model": "candidatos.meiotransporte",
+    "pk": 16
+  },
+  {
+    "fields": {
+      "descricao": "Transporte locado"
+    },
+    "model": "candidatos.meiotransporte",
+    "pk": 17
+  },
+  {
+    "fields": {
+      "descricao": "Pai"
+    },
+    "model": "candidatos.contribuinterendafamiliar",
+    "pk": 10
+  },
+  {
+    "fields": {
+      "descricao": "M\u00e3e"
+    },
+    "model": "candidatos.contribuinterendafamiliar",
+    "pk": 11
+  },
+  {
+    "fields": {
+      "descricao": "O pr\u00f3prio aluno"
+    },
+    "model": "candidatos.contribuinterendafamiliar",
+    "pk": 12
+  },
+  {
+    "fields": {
+      "descricao": "C\u00f4njuge"
+    },
+    "model": "candidatos.contribuinterendafamiliar",
+    "pk": 13
+  },
+  {
+    "fields": {
+      "descricao": "Av\u00f4(\u00f3)"
+    },
+    "model": "candidatos.contribuinterendafamiliar",
+    "pk": 14
+  },
+  {
+    "fields": {
+      "descricao": "Tio(a)"
+    },
+    "model": "candidatos.contribuinterendafamiliar",
+    "pk": 15
+  },
+  {
+    "fields": {
+      "descricao": "Irm\u00e3o(\u00e3)"
+    },
+    "model": "candidatos.contribuinterendafamiliar",
+    "pk": 16
+  },
+  {
+    "fields": {
+      "descricao": "Parentes"
+    },
+    "model": "candidatos.contribuinterendafamiliar",
+    "pk": 17
+  },
+  {
+    "fields": {
+      "descricao": "Outros"
+    },
+    "model": "candidatos.contribuinterendafamiliar",
+    "pk": 18
+  },
+  {
+    "fields": {
+      "descricao": "N\u00e3o informado"
+    },
+    "model": "candidatos.contribuinterendafamiliar",
+    "pk": 19
+  },
+  {
+    "fields": {
+      "descricao": "N\u00e3o estudou"
+    },
+    "model": "candidatos.nivelescolaridade",
+    "pk": 12
+  },
+  {
+    "fields": {
+      "descricao": "Alfabetizado"
+    },
+    "model": "candidatos.nivelescolaridade",
+    "pk": 13
+  },
+  {
+    "fields": {
+      "descricao": "Ensino fundamental completo"
+    },
+    "model": "candidatos.nivelescolaridade",
+    "pk": 14
+  },
+  {
+    "fields": {
+      "descricao": "Ensino fundamental incompleto"
+    },
+    "model": "candidatos.nivelescolaridade",
+    "pk": 15
+  },
+  {
+    "fields": {
+      "descricao": "Ensino m\u00e9dio completo"
+    },
+    "model": "candidatos.nivelescolaridade",
+    "pk": 16
+  },
+  {
+    "fields": {
+      "descricao": "Ensino m\u00e9dio incompleto"
+    },
+    "model": "candidatos.nivelescolaridade",
+    "pk": 17
+  },
+  {
+    "fields": {
+      "descricao": "Ensino superior completo"
+    },
+    "model": "candidatos.nivelescolaridade",
+    "pk": 18
+  },
+  {
+    "fields": {
+      "descricao": "Ensino superior incompleto"
+    },
+    "model": "candidatos.nivelescolaridade",
+    "pk": 19
+  },
+  {
+    "fields": {
+      "descricao": "P\u00f3s gradua\u00e7\u00e3o completo"
+    },
+    "model": "candidatos.nivelescolaridade",
+    "pk": 20
+  },
+  {
+    "fields": {
+      "descricao": "P\u00f3s gradua\u00e7\u00e3o incompleto"
+    },
+    "model": "candidatos.nivelescolaridade",
+    "pk": 21
+  },
+  {
+    "fields": {
+      "descricao": "N\u00e3o conhece"
+    },
+    "model": "candidatos.nivelescolaridade",
+    "pk": 22
+  },
+  {
+    "fields": {
+      "descricao": "Pr\u00f3prio"
+    },
+    "model": "candidatos.tipoimovelresidencial",
+    "pk": 6
+  },
+  {
+    "fields": {
+      "descricao": "Financiado"
+    },
+    "model": "candidatos.tipoimovelresidencial",
+    "pk": 7
+  },
+  {
+    "fields": {
+      "descricao": "Alugado"
+    },
+    "model": "candidatos.tipoimovelresidencial",
+    "pk": 8
+  },
+  {
+    "fields": {
+      "descricao": "Cedido ou Emprestado"
+    },
+    "model": "candidatos.tipoimovelresidencial",
+    "pk": 9
+  },
+  {
+    "fields": {
+      "descricao": "N\u00e3o informado"
+    },
+    "model": "candidatos.tipoimovelresidencial",
+    "pk": 10
+  },
+  {
+    "fields": {
+      "descricao": "Pensionato ou Alojamento"
+    },
+    "model": "candidatos.tipoimovelresidencial",
+    "pk": 11
+  },
+  {
+    "fields": {
+      "descricao": "Outro"
+    },
+    "model": "candidatos.tipoimovelresidencial",
+    "pk": 12
+  },
+  {
+    "fields": {
+      "descricao": "Urbana"
+    },
+    "model": "candidatos.tipoarearesidencial",
+    "pk": 5
+  },
+  {
+    "fields": {
+      "descricao": "Rural"
+    },
+    "model": "candidatos.tipoarearesidencial",
+    "pk": 6
+  },
+  {
+    "fields": {
+      "descricao": "Comunidade Ind\u00edgena"
+    },
+    "model": "candidatos.tipoarearesidencial",
+    "pk": 7
+  },
+  {
+    "fields": {
+      "descricao": "Comunidade Quilombola"
+    },
+    "model": "candidatos.tipoarearesidencial",
+    "pk": 8
+  },
+  {
+    "fields": {
+      "descricao": "N\u00e3o informado"
+    },
+    "model": "candidatos.tipoarearesidencial",
+    "pk": 9
+  },
+  {
+    "fields": {
+      "descricao": "Diariamente"
+    },
+    "model": "candidatos.tipoacessointernet",
+    "pk": 1
+  },
+  {
+    "fields": {
+      "descricao": "A cada dois dias"
+    },
+    "model": "candidatos.tipoacessointernet",
+    "pk": 2
+  },
+  {
+    "fields": {
+      "descricao": "Semanalmente"
+    },
+    "model": "candidatos.tipoacessointernet",
+    "pk": 3
+  },
+  {
+    "fields": {
+      "descricao": "Quinzenalmente"
+    },
+    "model": "candidatos.tipoacessointernet",
+    "pk": 4
+  },
+  {
+    "fields": {
+      "descricao": "Mensalmente"
+    },
+    "model": "candidatos.tipoacessointernet",
+    "pk": 5
+  },
+  {
+    "fields": {
+      "descricao": "N\u00e3o acesso"
+    },
+    "model": "candidatos.tipoacessointernet",
+    "pk": 6
+  },
+  {
+    "fields": {
+      "descricao": "Pais"
+    },
+    "model": "candidatos.companhiadomiciliar",
+    "pk": 7
+  },
+  {
+    "fields": {
+      "descricao": "Parente(s) ou amigo(s)"
+    },
+    "model": "candidatos.companhiadomiciliar",
+    "pk": 8
+  },
+  {
+    "fields": {
+      "descricao": "N\u00e3o informado"
+    },
+    "model": "candidatos.companhiadomiciliar",
+    "pk": 9
+  },
+  {
+    "fields": {
+      "descricao": "C\u00f4njuge"
+    },
+    "model": "candidatos.companhiadomiciliar",
+    "pk": 10
+  },
+  {
+    "fields": {
+      "descricao": "Sozinho(a)"
+    },
+    "model": "candidatos.companhiadomiciliar",
+    "pk": 11
+  },
+  {
+    "fields": {
+      "descricao": "Outros"
+    },
+    "model": "candidatos.companhiadomiciliar",
+    "pk": 12
+  },
+  {
+    "fields": {
+      "descricao": "Pai"
+    },
+    "model": "candidatos.companhiadomiciliar",
+    "pk": 13
+  },
+  {
+    "fields": {
+      "descricao": "M\u00e3e"
+    },
+    "model": "candidatos.companhiadomiciliar",
+    "pk": 14
+  }
+]

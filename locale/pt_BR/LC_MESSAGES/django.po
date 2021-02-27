@@ -1,0 +1,315 @@
+# This file is distributed under the same license as the "Portal do Estudante" package.
+#
+# Translators:
+# Ivan Medeiros Jr <ivan.medeiros@ifpb.edu.br>, 2019.
+msgid ""
+msgstr ""
+"Project-Id-Version: Portal do Estudante\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-12-10 17:54-0300\n"
+"PO-Revision-Date: 2019-12-10 18:01-0300\n"
+"Last-Translator: Ivan Medeiros Jr <ivan.medeiros@ifpb.edu.br>\n"
+"Language-Team: CDGS-DGTI-IFPB\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: base/utils.py:63
+msgid "Datas de início ou fim não foram informadas."
+msgstr ""
+
+#: base/utils.py:74 base/utils.py:377
+msgid "Inválido."
+msgstr ""
+
+#: base/utils.py:75 base/utils.py:378
+msgid "Deve conter apenas números."
+msgstr ""
+
+#: base/utils.py:76
+msgid "Deve possuir exatamente 11 números."
+msgstr ""
+
+#: base/utils.py:336 base/utils.py:352
+msgid "Data de nascimento não foi informada."
+msgstr ""
+
+#: base/utils.py:379
+msgid "Deve possuir exatamente 12 números."
+msgstr ""
+
+#: psct/validators.py:50
+#, python-format
+msgid ""
+"Extensão '%(extension)s' não permitida. São permitidas as extensões: "
+"'%(allowed_extensions)s.'"
+msgstr ""
+
+#: psct/validators.py:51
+#, python-format
+msgid ""
+"Tipo de arquivo '%(mimetype)s' não é válido. Os tipos permitidos são: "
+"%(allowed_mimetypes)s."
+msgstr ""
+
+#: psct/validators.py:52
+#, python-format
+msgid ""
+"Arquivo com %(size)s é muito pequeno. O tamanho mínimo permitido é "
+"%(allowed_size)s."
+msgstr ""
+
+#: psct/validators.py:53
+#, python-format
+msgid ""
+"Arquivo com %(size)s é muito grande. O tamanho máximo permitido é "
+"%(allowed_size)s."
+msgstr ""
+
+#: registration/forms.py:14
+msgid "Email address"
+msgstr "Endereço de e-mail"
+
+#: templates/admin/base.html:154 templates/base/baseboot.html:197
+msgid "Welcome,"
+msgstr ""
+
+#: templates/admin/base.html:161
+msgid "Documentation"
+msgstr ""
+
+#: templates/admin/base.html:181
+msgid "Log out"
+msgstr ""
+
+#: templates/admin/base.html:232 templates/admin/delete_confirmation.html:15
+#: templates/admin/delete_selected_confirmation.html:14
+#: templates/admin/login.html:13
+#: templates/admin/processoseletivo/chamada/delete_confirmation.html:15
+#: templates/admin/processoseletivo/chamada/delete_selected_confirmation.html:14
+#: templates/registration/password_reset_form.html:5
+msgid "Home"
+msgstr ""
+
+#: templates/admin/change_form.html:15 templates/admin/index.html:33
+msgid "Add"
+msgstr ""
+
+#: templates/admin/delete_confirmation.html:20
+#: templates/admin/processoseletivo/chamada/delete_confirmation.html:20
+msgid "Delete"
+msgstr ""
+
+#: templates/admin/delete_confirmation.html:26
+#, python-format
+msgid ""
+"Deleting the %(object_name)s '%(escaped_object)s' would result\n"
+"            in deleting related objects, but your account doesn't have "
+"permission to delete the following types of\n"
+"            objects:"
+msgstr ""
+
+#: templates/admin/delete_confirmation.html:35
+#, python-format
+msgid ""
+"Deleting the %(object_name)s '%(escaped_object)s' would\n"
+"            require deleting the following protected related objects:"
+msgstr ""
+
+#: templates/admin/delete_confirmation.html:43
+#, python-format
+msgid ""
+"Are you sure you want to delete the %(object_name)s \"\n"
+"            %(escaped_object)s\"? All of the following related items will be "
+"deleted:"
+msgstr ""
+
+#: templates/admin/delete_confirmation.html:46
+#: templates/admin/delete_selected_confirmation.html:39
+msgid "Objects"
+msgstr ""
+
+#: templates/admin/delete_confirmation.html:53
+#: templates/admin/delete_selected_confirmation.html:50
+#: templates/admin/processoseletivo/chamada/delete_confirmation.html:103
+#: templates/admin/processoseletivo/chamada/delete_selected_confirmation.html:85
+msgid "Yes, I'm sure"
+msgstr ""
+
+#: templates/admin/delete_confirmation.html:54
+#: templates/admin/delete_selected_confirmation.html:51
+#: templates/admin/processoseletivo/chamada/delete_confirmation.html:105
+#: templates/admin/processoseletivo/chamada/delete_selected_confirmation.html:87
+msgid "No, take me back"
+msgstr ""
+
+#: templates/admin/delete_selected_confirmation.html:17
+#: templates/admin/processoseletivo/chamada/delete_selected_confirmation.html:17
+msgid "Delete multiple objects"
+msgstr ""
+
+#: templates/admin/delete_selected_confirmation.html:23
+#: templates/admin/processoseletivo/chamada/delete_selected_confirmation.html:23
+#, python-format
+msgid ""
+"Deleting the selected %(objects_name)s would result in deleting related "
+"objects, but your account doesn't have permission to delete the following "
+"types of objects:"
+msgstr ""
+
+#: templates/admin/delete_selected_confirmation.html:30
+#: templates/admin/processoseletivo/chamada/delete_selected_confirmation.html:30
+#, python-format
+msgid ""
+"Deleting the selected %(objects_name)s would require deleting the following "
+"protected related objects:"
+msgstr ""
+
+#: templates/admin/delete_selected_confirmation.html:37
+#: templates/admin/processoseletivo/chamada/delete_selected_confirmation.html:37
+#, python-format
+msgid ""
+"Are you sure you want to delete the selected %(objects_name)s? All of the "
+"following objects and their related items will be deleted:"
+msgstr ""
+
+#: templates/admin/index.html:13
+#, python-format
+msgid "Models in the %(name)s application"
+msgstr ""
+
+#: templates/admin/index.html:28 templates/psct/tabular.html:30
+msgid "Change"
+msgstr ""
+
+#: templates/admin/index.html:44
+msgid "You don't have permission to edit anything."
+msgstr ""
+
+#: templates/admin/login.html:30
+msgid "Please correct the error below."
+msgstr ""
+
+#: templates/admin/login.html:30
+msgid "Please correct the errors below."
+msgstr ""
+
+#: templates/admin/login.html:48
+#, python-format
+msgid ""
+"You are authenticated as %(username)s, but are not authorized to access this "
+"page. Would you like to login to a different account?"
+msgstr ""
+
+#: templates/admin/login.html:74
+#: templates/registration/password_reset_complete.html:16
+msgid "Log in"
+msgstr ""
+
+#: templates/admin/processoseletivo/chamada/change_list.html:9
+msgid "Filter"
+msgstr ""
+
+#: templates/admin/processoseletivo/chamada/delete_confirmation.html:30
+#, python-format
+msgid ""
+"Deleting the %(object_name)s '%(escaped_object)s'\n"
+"                        would result\n"
+"                        in deleting related objects, but your account "
+"doesn't have permission to delete the following\n"
+"                        types of\n"
+"                        objects:"
+msgstr ""
+
+#: templates/admin/processoseletivo/chamada/delete_confirmation.html:41
+#, python-format
+msgid ""
+"Deleting the %(object_name)s '%(escaped_object)s'\n"
+"                        would\n"
+"                        require deleting the following protected related "
+"objects:"
+msgstr ""
+
+#: templates/admin/processoseletivo/chamada/delete_confirmation.html:50
+#, python-format
+msgid ""
+"Are you sure you want to delete the %(object_name)s\n"
+"                        \"\n"
+"                        %(escaped_object)s\"? All of the following related "
+"items will be\n"
+"                        deleted:"
+msgstr ""
+
+#: templates/admin/processoseletivo/etapa/change_form.html:53
+#: templates/psct/tabular.html:32
+msgid "View on site"
+msgstr ""
+
+#: templates/psct/tabular.html:17
+msgid "Delete?"
+msgstr ""
+
+#: templates/psct/tabular.html:83
+#, python-format
+msgid "Add another %(verbose_name)s"
+msgstr ""
+
+#: templates/psct/tabular.html:84
+msgid "Remove"
+msgstr ""
+
+#: templates/registration/password_reset_complete.html:6
+#: templates/registration/password_reset_done.html:6
+#: templates/registration/password_reset_form.html:7
+msgid "Password reset"
+msgstr ""
+
+#: templates/registration/password_reset_complete.html:13
+msgid "Your password has been set. You may go ahead and log in now."
+msgstr ""
+
+#: templates/registration/password_reset_confirm.html:7
+msgid "Password reset confirmation"
+msgstr ""
+
+#: templates/registration/password_reset_confirm.html:15
+msgid ""
+"Please enter your new password twice so we can verify you typed it in "
+"correctly."
+msgstr ""
+
+#: templates/registration/password_reset_confirm.html:21
+msgid "Change my password"
+msgstr ""
+
+#: templates/registration/password_reset_confirm.html:29
+msgid ""
+"The password reset link was invalid, possibly because it has already been "
+"used.  Please request a new password reset."
+msgstr ""
+
+#: templates/registration/password_reset_done.html:11
+msgid ""
+"We've emailed you instructions for setting your password, if an account "
+"exists with the email you entered. You should receive them shortly."
+msgstr ""
+
+#: templates/registration/password_reset_done.html:12
+msgid ""
+"If you don't receive an email, please make sure you've entered the address "
+"you registered with, and check your spam folder."
+msgstr ""
+
+#: templates/registration/password_reset_form.html:14
+msgid ""
+"Forgotten your password? Enter your email address below, and we'll email "
+"instructions for setting a new one."
+msgstr ""
+"Esqueceu a senha? Forneça o seu endereço de e-mail abaixo e te enviaremos "
+"instruções para definir uma nova."
+
+#: templates/registration/password_reset_form.html:22
+msgid "Reset my password"
+msgstr ""

@@ -1,0 +1,22 @@
+{% extends "psct/base.html" %}
+
+{% block extrahead %}
+    {{ block.super }}
+{% endblock %}
+
+{% block conteudo %}
+    <h2 class="titulo verde-escuro">{{ titulo }}</h2>
+    <form method="post" action="" class="form-horizontal" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="row form-group">
+            <div class="col-xs-12">
+                <span class="help-block text-justify">
+                    Todos os campos sinalizados com * devem ser obrigatoriamente preenchidos.
+                </span>
+            </div>
+        </div>
+        {% include 'psct/base/generic_form.html' %}
+        <input type="submit" value="{{ nome_botao }}" class="btn btn-primary pull-right">
+    </form>
+    <a class="btn btn-warning pull-left" href="{{ back_url }}">Voltar</a>
+{% endblock %}

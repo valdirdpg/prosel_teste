@@ -1,0 +1,204 @@
+{% extends "admin/change_form.html" %}
+{% load admin_static i18n admin_modify admin_urls processoseletivo_tags %}
+
+{% block extrastyle %}
+    {{ block.super }}
+    <script src="{% static 'js/jquery-1.11.3.min.js' %}"></script>'
+
+
+    <style type="text/css">
+        table tr th span {
+            color: #444;
+            font-weight: bold;
+            margin: 0;
+            padding: 6px 10px;
+            display: block;
+            text-align: center;
+        }
+    </style>
+
+    <script type="text/javascript" charset="utf-8">
+        function getCookie(name) {
+            var cookieValue = null;
+            if (document.cookie && document.cookie != '') {
+                var cookies = document.cookie.split(';');
+                for (var i = 0; i < cookies.length; i++) {
+                    var cookie = jQuery.trim(cookies[i]);
+                    // Does this cookie string begin with the name we want?
+                    if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+        var csrftoken = getCookie('csrftoken');
+        function confirmar_interesse(checkbox) {
+            var http = new XMLHttpRequest();
+
+            if (checkbox.checked){
+                http.open("POST", "/processoseletivo/candidato/confirmar_interesse" + checkbox.value, true);
+            }else{
+                http.open("POST", "/processoseletivo/candidato/cancelar_interesse" + checkbox.value, true);
+            }
+
+            http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            http.onreadystatechange = function () {
+                if (http.readyState == 4 && http.status != 200) {
+                    alert("Erro na comunicação com o servidor");
+                    checkbox.checked = checkbox.checked != true;
+                }
+                if (http.readyState == 4 && http.status == 200) {
+                    var data = JSON.parse(http.responseText);
+                    if (!data["ok"]) {
+                        alert(data["error"]);
+                         checkbox.checked = checkbox.checked != true;
+                    }
+                }
+            }
+            http.send("csrfmiddlewaretoken=" + csrftoken)
+        }
+    </script>
+{% endblock %}
+
+{% block object-tools-items %}
+    {% if not original.etapa.encerrada %}
+        {% if not original.etapa.is_resultado %}
+            <li>
+                <form class="input_admin" method="post" action="{% url 'adicionar_candidatos' object_id %}">
+                    {% csrf_token %}
+                    <input type="submit" value="Adicionar candidatos à chamada"></input>
+                </form>
+            </li>
+        {% endif %}
+        <li><a href="{% url 'gerar_forms_analise_documento' object_id %}" class="link_span">Gerar Formulários de Análise</a></li>
+    {% endif %}
+    {{ block.super }}
+{% endblock %}
+
+
+{% block content %}
+    <div>
+    {{ block.super }}
+    </div>
+    <div style="clear: left">
+        <table cellspacing="0" width="100%">
+            <thead>
+            <tr>
+                <th><span>#</span></th>
+                <th><span style="text-align: left">Nome</span></th>
+                <th><span>Classif.</span></th>
+                <th><span>Nota</span></th>
+                <th><span>Confirm. de Interesse</span></th>
+                <th><span>Análise de Documentos</span></th>
+                <th><span>Recurso</span></th>
+                <th><span>Situação</span></th>
+                <th><span>Matriculado</span></th>
+
+            </tr>
+            </thead>
+
+
+            <tbody>
+            {% for inscricao in original.inscricoes.all %}
+                <tr class="{% cycle 'row1' 'row2' %}" align="center">
+                    <td>{{ forloop.counter }}</td>
+                    {% if DEBUG %}
+                        <td align="left">
+                            <a href="{% url 'admin:candidatos_candidato_change' inscricao.candidato.pessoa.pk %}">
+                                {{ inscricao.candidato }} (CPF: {{ inscricao.candidato.pessoa.cpf }})
+                            </a>
+                        </td>
+                    {%  else %}
+                        <td align="left">
+                            {{ inscricao.candidato }} (CPF: {{ inscricao.candidato.pessoa.cpf }})
+                        </td>
+                    {% endif %}
+                    <td>{{ inscricao.desempenho.classificacao }}</td>
+                    <td>{{ inscricao.desempenho.nota_geral }}</td>
+                    <td>
+                        {% confirmou_interesse_em_chamada inscricao original.etapa as confirmado %}
+                        {% if not original.etapa.encerrada %}
+                        {% if not confirmado %}
+                            <input type="checkbox" name="matriculado"
+                                   value="/{{ inscricao.candidato.id }}/{{ original.modalidade.id }}/{{ original.etapa.id }}/"
+                                   onclick="confirmar_interesse(this)">
+                        {% else %}
+                            <input type="checkbox" name="matriculado"
+                                   value="/{{ inscricao.candidato.id }}/{{ original.modalidade.id }}/{{ original.etapa.id }}/"
+                                   onclick="confirmar_interesse(this)" checked>
+                        {% endif %}
+                        {% else %}
+                            {% if not confirmado %}
+                                <span class="status status-nao">Não</span>
+                            {% else %}
+                                <span class="status status-sim">Sim</span>
+                            {% endif %}
+                        {% endif %}
+                    </td>
+                    <td>
+                    {% if original.etapa.analise_documentacao_gerenciada %}
+                      {% status_documentacao inscricao as st_documentacao %}
+                      {% if st_documentacao == True %}
+                        <span class="status status-deferido">Deferido</span>
+                      {% elif st_documentacao == False %}
+                        <span class="status status-indeferido">Indeferido</span>
+                      {% elif st_documentacao %}
+                        <span class="status status-pendente">{{ st_documentacao }}</span>
+                      {% else %}
+                        -
+                      {% endif %}
+                    {% else %}
+                        -
+                    {% endif %}
+                    </td>
+                    <td>
+                      {% status_recurso inscricao as st_recurso %}
+                      {% if st_recurso == 'DEFERIDO' %}
+                        <span class="status status-deferido">Deferido</span>
+                      {% elif st_recurso == 'INDEFERIDO' %}
+                        <span class="status status-indeferido">Indeferido</span>
+                      {% elif st_recurso %}
+                        <span class="status status-pendente">{{ st_recurso }}</span>
+                      {% else %}
+                        -
+                      {% endif %}
+                    </td>
+                    <td>
+                    {% if original.etapa.analise_documentacao_gerenciada %}
+                      {% if st_documentacao == True or st_recurso == 'DEFERIDO' %}
+                        <span class="status status-deferido">Apto</span>
+                      {% elif st_documentacao == False %}
+                        <span class="status status-indeferido">Inapto</span>
+                      {% elif st_documentacao %}
+                        <span class="status status-pendente">{{ st_documentacao }}</span>
+                      {% else %}
+                        <span class="status status-indeferido">Não compareceu</span>
+                      {% endif %}
+                    {% elif inscricao.confirmacaointeresse %}
+                        <span class="status status-deferido">Apto</span>
+                    {% else %}
+                        -
+                    {% endif %}
+                    </td>
+                    <td>
+                        {% matriculado_em_chamada inscricao original.etapa as matriculado %}
+                        {% get_situacao_matricula_outra_chamada inscricao original.etapa as situacao_matricula_outra %}
+                        {% if original.etapa.encerrada and matriculado %}
+                            <span class="status status-sim">Sim</span>
+                        {% elif situacao_matricula_outra != None %}
+                            <span class="status status-sim">{{ situacao_matricula_outra }}</span>
+                        {% elif original.etapa.encerrada %}
+                            <span class="status status-nao">Não</span>
+                        {% else %}
+                          -
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+{% endblock %}

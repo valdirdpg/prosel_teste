@@ -1,0 +1,22 @@
+{% extends "base/baseboot.html" %}
+
+{% block breadcrumb %}
+    <li><a href="/">Início</a></li>
+    <li><i class="fa fa-angle-right text-muted"></i></li>
+    <li><a href="{% url 'admin:index' %}">Administração do Site</a></li>
+    <li><i class="fa fa-angle-right text-muted"></i></li>
+    <li><a href="{% url 'admin:psct_email_changelist' %}">Emails</a></li>
+    <li><i class="fa fa-angle-right text-muted"></i></li>
+    <li><a href="{% url 'admin:psct_email_change' email.pk %}">Email - {{ email }}</a></li>
+    <li><i class="fa fa-angle-right text-muted"></i></li>
+    <li class="active">Enviar</li>
+{% endblock %}
+
+{% block conteudo %}
+    <h2 class="titulo verde-escuro">Envio de Email aos Candidatos</h2>
+    <form method="post" action="">
+        {% csrf_token %}
+        {% include 'psct/base/_form_with_fieldset.html' %}
+        <input type="submit" value="{% block nome_botao_submit %}Confirmar{% endblock %}" class="btn btn-primary pull-right">
+    </form>
+{% endblock %}

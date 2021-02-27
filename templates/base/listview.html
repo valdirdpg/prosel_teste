@@ -1,0 +1,161 @@
+{% extends "psct/base.html" %}
+{% load bootstrap_pagination base_tags %}
+
+{% block extrahead %}
+    {{ block.super }}
+    {{ form.media }}
+    <script type="text/javascript">
+        var go_from_select = function(opt) { window.location = window.location.pathname + opt };
+        function updateQueryStringParameter(uri, key, value) {
+            var re = new RegExp("([?&])" + key + "=.*?(&|$)", "i");
+            var separator = uri.indexOf('?') !== -1 ? "&" : "?";
+            if (uri.match(re)) {
+                if (value != '') {
+                    return uri.replace(re, '$1' + key + "=" + value + '$2');
+                }
+                return uri.replace(re, '$1' + '$2');
+            }
+            else {
+                return uri + separator + key + "=" + value;
+            }
+        }
+        $(document).ready(function () {
+            $("#pesquisar").click(function () {
+                $("input, select").each(function () {
+                    if ($(this).val() == '') {
+                        $(this).remove();
+                    }
+                });
+                $("#form_pesquisar").submit();
+            });
+
+
+            $('.filter-form').change(function () {
+                var url = "";
+                if (window.location.search == ""){
+                    url = "?" + this.name + "=" + this.options[this.selectedIndex].value;
+                }else{
+                    url = updateQueryStringParameter(window.location.search, this.name, this.options[this.selectedIndex].value);
+                }
+                go_from_select(url);
+            });
+
+            $(".results_on_deck").bind('added', function () {
+                var value = $(this).parent().children('input[type="hidden"]').val();
+                var name = $(this).parent().children('input[type="hidden"]').attr('name');
+                var url = updateQueryStringParameter(window.location.search, name, value);
+                go_from_select(url);
+            });
+            $(".results_on_deck").bind('killed', function () {
+                var name = $(this).parent().children('input[type="hidden"]').attr('name');
+                var url = updateQueryStringParameter(window.location.search, name, '');
+                go_from_select(url);
+            });
+        });
+    </script>
+{% endblock %}
+
+
+{% block conteudo %}
+    <h2 class="titulo verde-escuro">{{ titulo }}</h2>
+
+
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="pull-right">
+                {% block button-area %}
+                    {% for menu in view.get_button_area %}
+                        {{ menu.render }}
+                    {% endfor %}
+                    {% if form %}
+                    <a href="" onclick="$('#icone-filtros').toggleClass('fa-plus fa-minus');return false;" id="open-filtros"
+                       class="btn btn-default btn-sm"
+                       data-parent="#accordion" data-toggle="collapse" data-target="#collapsefiltros"><i id="icone-filtros" class="fa {% if not view.should_display_form %} fa-plus {% else %} fa-minus {% endif %}fa-fw"></i> Busca avançada</a>
+                    {% endif %}
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+
+    <p></p>
+    {% if form %}
+        <div class="col-xs-12 well panel-collapse collapse {% if view.should_display_form %}in{% endif %}" id="collapsefiltros">
+            <form id="form_pesquisar" method="get" action="">
+                {% include 'psct/base/generic_form.html' %}
+                {% if view.has_search_fields %}
+                    <input id="pesquisar" type="submit" value="Pesquisar" class="btn btn-primary pull-right">
+                {% endif %}
+            </form>
+        </div>
+    {% endif %}
+
+    {% if view.has_tabs %}
+        <div class="row">
+        <div class="col-xs-12">
+            <ul id="tabs" class="nav nav-tabs">
+            {% for tab_name, tab_label in view.get_tab_names %}
+                    {% get_active_tab_tag request.GET.tab tab_name forloop.counter0 as is_active %}
+                    <li {% if is_active %}class="active"{% endif %}>
+                        <a
+                           href="{% if not is_active %}{% get_tab_url request tab_name %}{% else %}#tabs{% endif %}">{{ tab_label }}</a>
+                    </li>
+            {% endfor %}
+            </ul>
+        </div>
+        </div>
+    {% endif %}
+    {% if object_list %}
+        <div class="row">
+        <div class="col-xs-12">
+            <div>
+                <table class="table table-striped table-condensed">
+                    {% if view.list_display %}
+                        <thead>
+                            <tr>
+                                {% if view.get_show_numbers %}
+                                    <th>{{ view.get_number_label }}</th>
+                                {% endif %}
+                                {% for column in view.get_columns %}
+                                    <th>{{ column.name }}</th>
+                                {% endfor %}
+                            </tr>
+                        </thead>
+                    {% endif %}
+
+                    <tbody>
+                    {% for object in object_list %}
+                        <tr>
+                            {% if view.get_show_numbers %}
+                                <td><b>{% apply_show_number view forloop.counter request.GET.page %}</b></td>
+                            {% endif %}
+                            {% get_object_columns view object as columns %}
+                            {% for column in columns %}
+                                <td>
+                                    {{ column }}
+                                </td>
+                            {% endfor %}
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        </div>
+
+        <div class="row">
+        <div class="col-xs-12">
+            <span class="status status-info">{{ paginator.count }} item(s).</span>
+            <div class="paginas">
+                {% bootstrap_paginate page_obj range=10 show_prev_next="true" show_first_last="true" first_label="Início" last_label="Fim" %}
+            </div>
+        </div>
+        </div>
+    {% else %}
+        <div class="row">
+        <p></p>
+        <div class="col-xs-12">
+            <p><span class="status status-info">Sem resultados.</span></p>
+        </div>
+        </div>
+    {% endif %}
+{% endblock %}

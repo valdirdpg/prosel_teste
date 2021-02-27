@@ -1,0 +1,58 @@
+{% extends "psct/base.html" %}
+{% load form_utils recaptcha2 staticfiles %}
+
+{% block extrahead %}
+    {{ block.super }}
+    {% recaptcha_init %}
+    {{ form.media }}
+{% endblock %}
+
+{% block breadcrumb %}
+
+    <li><a href="/">Início</a></li>
+    <li><i class="fa fa-angle-right text-muted"></i></li>
+    <script src="{% static 'js/jquery.mask.min.js' %}"></script>
+    <script src="{% static 'js/scripts.js' %}"></script>
+    <li class="active">Novo Cadastro</li>
+{% endblock %}
+
+{% block conteudo %}
+    <h2 class="titulo verde-escuro">{% block titulo_cadastro %}Novo Cadastro{% endblock %}</h2>
+    <form method="post" action="" class="form-horizontal">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-xs-12">
+                <span class="help-block text-justify">
+                    {% block descricao_formulario %}Para efetuar o cadastro, é necessário que você informe
+                    os seus dados básicos de identificação, endereço e contato, além de informar uma senha que
+                    será utilizada para o acompanhamento da sua inscrição neste processo seletivo e em outros
+                    processos seletivos futuros.{% endblock %}
+                </span></div>
+            <div class="col-xs-12">
+                <span class="help-block text-justify">
+                    Todos os campos sinalizados com * devem ser obrigatoriamente preenchidos.
+                </span></div>
+        </div>
+        {% include "psct/base/_form_with_fieldset.html" %}
+        <div id="field_{{ form.declara_veracidade.name }}" class="row form-group field-{{ form.declara_veracidade.name }}
+            {% if not form.declara_veracidade|optional %}required{% endif %}
+            {% if form.declara_veracidade.errors %}has-error{% endif %} has-feedback">
+
+                {% for error in form.declara_veracidade.errors %}
+                <div class="col-xs-12"><span class="help-block">{{ error }}</span></div>
+                {% endfor %}
+
+                <label for="{{ form.declara_veracidade.auto_id }}" class="col-xs-12 control-label" style="text-align: justify"
+                    {% if not form.declara_veracidade|optional %}title="Campo obrigatório"{% endif %}>
+                    {{ form.declara_veracidade }}
+                    {{ form.declara_veracidade.label }}
+                </label>
+                {% if form.declara_veracidade.help_text %}
+                <div class="col-xs-12"><span class="help-block small">{{ form.declara_veracidade.help_text|safe }}</span></div>
+                {% endif %}
+        </div>
+
+        <input type="submit" value="{% block nome_botao_submit %}Cadastrar{% endblock %}" class="btn btn-primary pull-right">
+    </form>
+{% endblock %}
+

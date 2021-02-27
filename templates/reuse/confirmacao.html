@@ -1,0 +1,11 @@
+{% extends "reuse/display_form.html" %}
+
+{% block pre_form %}
+    {% if extra_message %}
+        <p><b>{{ extra_message }}</b></p>
+    {% endif %}
+{% endblock %}
+
+{% block pos_form %}
+    <a class="btn btn-warning pull-left" href="{{ back_url }}">Voltar</a>
+{% endblock %}

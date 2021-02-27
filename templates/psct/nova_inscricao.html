@@ -1,0 +1,17 @@
+{% extends "base/index.html" %}
+{% load staticfiles %}
+
+{% block breadcrumb %}
+    <li><a href="/">Início</a></li>
+    <li><i class="fa fa-angle-right text-muted"></i></li>
+    <li class="active">Dados Socioeconômicos de {{request.user.candidato}}</li>
+{% endblock %}
+
+{% block conteudo %}
+    <h2 class="titulo verde-escuro">Nova Inscrição</h2>
+    <form method="post" action="">
+        {% csrf_token %}
+        {{ form.as_ul }}
+        <input type="submit" value="Continuar" class="btn btn-primary pull-right">
+    </form>
+{% endblock %}

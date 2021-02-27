@@ -1,0 +1,1454 @@
+[
+  {
+    "model": "cursos.ies",
+    "pk": 1,
+    "fields": {
+      "codigo": 1,
+      "uf": "PB",
+      "nome": "Instituto Federal de Educa\u00e7\u00e3o, Ci\u00eancia e Tecnologia da Para\u00edba",
+      "sigla": "IFPB",
+      "ci": "4"
+    }
+  },
+  {
+    "model": "cursos.cidade",
+    "pk": 1,
+    "fields": {
+      "nome": "Araruna",
+      "uf": "PB"
+    }
+  },
+  {
+    "model": "cursos.cidade",
+    "pk": 2,
+    "fields": {
+      "nome": "Jo\u00e3o Pessoa",
+      "uf": "PB"
+    }
+  },
+  {
+    "model": "cursos.cidade",
+    "pk": 3,
+    "fields": {
+      "nome": "Picu\u00ed",
+      "uf": "PB"
+    }
+  },
+  {
+    "model": "cursos.cidade",
+    "pk": 4,
+    "fields": {
+      "nome": "Sousa",
+      "uf": "PB"
+    }
+  },
+  {
+    "model": "cursos.cidade",
+    "pk": 6,
+    "fields": {
+      "nome": "Mari",
+      "uf": "PB"
+    }
+  },
+  {
+    "model": "cursos.cidade",
+    "pk": 7,
+    "fields": {
+      "nome": "Itaporanga",
+      "uf": "PB"
+    }
+  },
+  {
+    "model": "cursos.cidade",
+    "pk": 8,
+    "fields": {
+      "nome": "Campina Grande",
+      "uf": "PB"
+    }
+  },
+  {
+    "model": "cursos.cidade",
+    "pk": 9,
+    "fields": {
+      "nome": "Cabedelo",
+      "uf": "PB"
+    }
+  },
+  {
+    "model": "cursos.cidade",
+    "pk": 10,
+    "fields": {
+      "nome": "Itabaiana",
+      "uf": "PB"
+    }
+  },
+  {
+    "model": "cursos.cidade",
+    "pk": 11,
+    "fields": {
+      "nome": "Cajazeiras",
+      "uf": "PB"
+    }
+  },
+  {
+    "model": "cursos.cidade",
+    "pk": 12,
+    "fields": {
+      "nome": "Monteiro",
+      "uf": "PB"
+    }
+  },
+  {
+    "model": "cursos.cidade",
+    "pk": 13,
+    "fields": {
+      "nome": "Princesa Isabel",
+      "uf": "PB"
+    }
+  },
+  {
+    "model": "cursos.cidade",
+    "pk": 14,
+    "fields": {
+      "nome": "Patos",
+      "uf": "PB"
+    }
+  },
+  {
+    "model": "cursos.cidade",
+    "pk": 15,
+    "fields": {
+      "nome": "Catol\u00e9 do Rocha",
+      "uf": "PB"
+    }
+  },
+  {
+    "model": "cursos.cidade",
+    "pk": 16,
+    "fields": {
+      "nome": "Areia",
+      "uf": "PB"
+    }
+  },
+  {
+    "model": "cursos.cidade",
+    "pk": 17,
+    "fields": {
+      "nome": "Alagoa Grande",
+      "uf": "PB"
+    }
+  },
+  {
+    "model": "cursos.cidade",
+    "pk": 18,
+    "fields": {
+      "nome": "Esperan\u00e7a",
+      "uf": "PB"
+    }
+  },
+  {
+    "model": "cursos.cidade",
+    "pk": 19,
+    "fields": {
+      "nome": "Pedras de Fogo",
+      "uf": "PB"
+    }
+  },
+  {
+    "model": "cursos.cidade",
+    "pk": 21,
+    "fields": {
+      "nome": "Santa Rita",
+      "uf": "PB"
+    }
+  },
+  {
+    "model": "cursos.cidade",
+    "pk": 22,
+    "fields": {
+      "nome": "Soledade",
+      "uf": "PB"
+    }
+  },
+  {
+    "model": "cursos.cidade",
+    "pk": 24,
+    "fields": {
+      "nome": "Guarabira",
+      "uf": "PB"
+    }
+  },
+  {
+    "model": "cursos.cidade",
+    "pk": 25,
+    "fields": {
+      "nome": "Santa Luzia",
+      "uf": "PB"
+    }
+  },
+  {
+    "model": "cursos.tipoatoregulatorio",
+    "pk": 1,
+    "fields": {
+      "nome": "Portaria"
+    }
+  },
+  {
+    "model": "cursos.tipoatoregulatorio",
+    "pk": 2,
+    "fields": {
+      "nome": "Resolu\u00e7\u00e3o"
+    }
+  },
+  {
+    "model": "cursos.tipodocumento",
+    "pk": 1,
+    "fields": {
+      "nome": "Matriz Curricular"
+    }
+  },
+  {
+    "model": "cursos.tipodocumento",
+    "pk": 2,
+    "fields": {
+      "nome": "Plano de Disciplinas"
+    }
+  },
+  {
+    "model": "cursos.tipodocumento",
+    "pk": 3,
+    "fields": {
+      "nome": "Infraestrutura"
+    }
+  },
+  {
+    "model": "cursos.tipodocumento",
+    "pk": 4,
+    "fields": {
+      "nome": "Colegiado"
+    }
+  },
+  {
+    "model": "cursos.tipodocumento",
+    "pk": 5,
+    "fields": {
+      "nome": "NDE"
+    }
+  },
+  {
+    "model": "cursos.tipodocumento",
+    "pk": 6,
+    "fields": {
+      "nome": "Publica\u00e7\u00f5es"
+    }
+  },
+  {
+    "model": "cursos.tipodocumento",
+    "pk": 7,
+    "fields": {
+      "nome": "Projetos"
+    }
+  },
+  {
+    "model": "cursos.tipodocumento",
+    "pk": 8,
+    "fields": {
+      "nome": "Programas"
+    }
+  },
+  {
+    "model": "processoseletivo.processoseletivo",
+    "pk": 1,
+    "fields": {
+      "nome": "Sistema de Seleção Unificada",
+      "sigla": "SISU",
+      "descricao": "O Sisu é o sistema informatizado do Ministério da Educação por meio do qual instituições públicas de ensino superior oferecem vagas a candidatos participantes do Enem."
+    }
+  },
+  {
+    "model": "processoseletivo.processoseletivo",
+    "pk": 2,
+    "fields": {
+      "nome": "Processo Seletivo Especial",
+      "sigla": "PSE",
+      "descricao": "Processo Seletivo Especial para ingresso nos Cursos Superiores Presenciais do IFPB"
+    }
+  },
+  {
+    "model": "processoseletivo.processoseletivo",
+    "pk": 3,
+    "fields": {
+      "nome": "Processo Seletivo para os Cursos Técnicos Presenciais",
+      "sigla": "PSCT",
+      "descricao": "Processo seletivo para cursos técnicos presenciais nas modalidades Integrado e Subsequente"
+    }
+  },
+  {
+    "model": "processoseletivo.processoseletivo",
+    "pk": 4,
+    "fields": {
+      "nome": "Sistema de Seleção Unificada da Educação Profissional e Tecnológica",
+      "sigla": "SISUTec",
+      "descricao": "O Sistema de Seleção Unificada da Educação Profissional e Tecnológica (Sisutec) é o sistema informatizado, gerenciado pelo Ministério da Educação (MEC), no qual instituições públicas e privadas de ensino superior e de educação profissional e tecnológica oferecem vagas gratuitas em cursos técnicos na forma subsequente para candidatos participantes do Exame Nacional do Ensino Médio (Enem)."
+    }
+  },
+  {
+    "model": "cursos.campus",
+    "pk": 1,
+    "fields": {
+      "nome": "Jo\u00e3o Pessoa",
+      "sigla": "JP",
+      "ies": 1,
+      "cidade": 2
+    }
+  },
+  {
+    "model": "cursos.campus",
+    "pk": 2,
+    "fields": {
+      "nome": "Picu\u00ed",
+      "sigla": "PC",
+      "ies": 1,
+      "cidade": 3
+    }
+  },
+  {
+    "model": "cursos.campus",
+    "pk": 3,
+    "fields": {
+      "nome": "Sousa",
+      "sigla": "SS",
+      "ies": 1,
+      "cidade": 4
+    }
+  },
+  {
+    "model": "cursos.campus",
+    "pk": 4,
+    "fields": {
+      "nome": "Cabedelo",
+      "sigla": "CB",
+      "ies": 1,
+      "cidade": 9
+    }
+  },
+  {
+    "model": "cursos.campus",
+    "pk": 5,
+    "fields": {
+      "nome": "Centro de Refer\u00eancia em Pesca e Navega\u00e7\u00e3o Mar\u00edtima",
+      "sigla": "CRPNM",
+      "ies": 1,
+      "cidade": 9
+    }
+  },
+  {
+    "model": "cursos.campus",
+    "pk": 6,
+    "fields": {
+      "nome": "Itaporanga",
+      "sigla": "IP",
+      "ies": 1,
+      "cidade": 7
+    }
+  },
+  {
+    "model": "cursos.campus",
+    "pk": 7,
+    "fields": {
+      "nome": "Itabaiana",
+      "sigla": "IB",
+      "ies": 1,
+      "cidade": 10
+    }
+  },
+  {
+    "model": "cursos.campus",
+    "pk": 8,
+    "fields": {
+      "nome": "Catol\u00e9 do Rocha",
+      "sigla": "CR",
+      "ies": 1,
+      "cidade": 15
+    }
+  },
+  {
+    "model": "cursos.campus",
+    "pk": 9,
+    "fields": {
+      "nome": "Princesa Isabel",
+      "sigla": "PR",
+      "ies": 1,
+      "cidade": 13
+    }
+  },
+  {
+    "model": "cursos.campus",
+    "pk": 10,
+    "fields": {
+      "nome": "Monteiro",
+      "sigla": "MT",
+      "ies": 1,
+      "cidade": 12
+    }
+  },
+  {
+    "model": "cursos.campus",
+    "pk": 11,
+    "fields": {
+      "nome": "Campina Grande",
+      "sigla": "CG",
+      "ies": 1,
+      "cidade": 8
+    }
+  },
+  {
+    "model": "cursos.campus",
+    "pk": 12,
+    "fields": {
+      "nome": "Esperan\u00e7a",
+      "sigla": "ES",
+      "ies": 1,
+      "cidade": 18
+    }
+  },
+  {
+    "model": "cursos.campus",
+    "pk": 13,
+    "fields": {
+      "nome": "Pedras de Fogo",
+      "sigla": "PF",
+      "ies": 1,
+      "cidade": 19
+    }
+  },
+  {
+    "model": "cursos.campus",
+    "pk": 15,
+    "fields": {
+      "nome": "Mangabeira",
+      "sigla": "MG",
+      "ies": 1,
+      "cidade": 2
+    }
+  },
+  {
+    "model": "cursos.campus",
+    "pk": 16,
+    "fields": {
+      "nome": "Santa Rita",
+      "sigla": "SR",
+      "ies": 1,
+      "cidade": 21
+    }
+  },
+  {
+    "model": "cursos.campus",
+    "pk": 17,
+    "fields": {
+      "nome": "Soledade",
+      "sigla": "SO",
+      "ies": 1,
+      "cidade": 22
+    }
+  },
+  {
+    "model": "cursos.campus",
+    "pk": 18,
+    "fields": {
+      "nome": "Cajazeiras",
+      "sigla": "CZ",
+      "ies": 1,
+      "cidade": 11
+    }
+  },
+  {
+    "model": "cursos.campus",
+    "pk": 19,
+    "fields": {
+      "nome": "Guarabira",
+      "sigla": "GB",
+      "ies": 1,
+      "cidade": 24
+    }
+  },
+  {
+    "model": "cursos.campus",
+    "pk": 20,
+    "fields": {
+      "nome": "Patos",
+      "sigla": "PT",
+      "ies": 1,
+      "cidade": 14
+    }
+  },
+  {
+    "model": "cursos.campus",
+    "pk": 21,
+    "fields": {
+      "nome": "Areia",
+      "sigla": "AR",
+      "ies": 1,
+      "cidade": 16
+    }
+  },
+  {
+    "model": "cursos.campus",
+    "pk": 22,
+    "fields": {
+      "nome": "Santa Luzia",
+      "sigla": "SL",
+      "ies": 1,
+      "cidade": 25
+    }
+  },
+
+  {
+    "model": "cursos.docente",
+    "pk": 1,
+    "fields": {
+      "nome": "Cinthya",
+      "titulacao": "MESTRADO",
+      "admissao": "2013-01-01",
+      "lattes": "http://lattes.br/1234",
+      "rt": "DE",
+      "matricula": "1"
+    }
+  },
+  {
+    "model": "cursos.docente",
+    "pk": 2,
+    "fields": {
+      "nome": "Jos\u00e9 Pedro",
+      "titulacao": "DOUTORADO",
+      "admissao": "2015-08-04",
+      "lattes": "http://lattes.br/1235",
+      "rt": "DE",
+      "matricula": "2"
+    }
+  },
+  {
+    "model": "cursos.docente",
+    "pk": 3,
+    "fields": {
+      "nome": "C\u00edcero Aristof\u00e2nio Garcia de Ara\u00fajo",
+      "titulacao": "DOUTORADO",
+      "admissao": "2015-09-25",
+      "lattes": "http://lattes.br/1236",
+      "rt": "DE",
+      "matricula": "3"
+    }
+  },
+  {
+    "model": "cursos.docente",
+    "pk": 4,
+    "fields": {
+      "nome": "Pedro Manuel",
+      "titulacao": "DOUTORADO",
+      "admissao": "2015-07-22",
+      "lattes": "http://lattes.br/1237",
+      "rt": "TP",
+      "matricula": "4"
+    }
+  },
+  {
+    "model": "cursos.docente",
+    "pk": 5,
+    "fields": {
+      "nome": "Jos\u00e9 Wilson Costa de Carvalho",
+      "titulacao": "APERFEICOAMENTO",
+      "admissao": "2015-05-19",
+      "lattes": "http://lattes.br/1238",
+      "rt": "TI",
+      "matricula": "5"
+    }
+  },
+  {
+    "model": "cursos.docente",
+    "pk": 6,
+    "fields": {
+      "nome": "Marieta Severo",
+      "titulacao": "MESTRADO",
+      "admissao": "1990-01-01",
+      "lattes": "http://lattes.br/0123",
+      "rt": "TP",
+      "matricula": "6"
+    }
+  },
+  {
+    "model": "cursos.docente",
+    "pk": 7,
+    "fields": {
+      "nome": "Paola Oliveira",
+      "titulacao": "ESPECIALIZACAO",
+      "admissao": "2000-01-01",
+      "lattes": "http://lattes.br/1234654",
+      "rt": "TI",
+      "matricula": "7"
+    }
+  },
+  {
+    "model": "cursos.docente",
+    "pk": 8,
+    "fields": {
+      "nome": "Thiago Costa",
+      "titulacao": "DOUTORADO",
+      "admissao": "2010-01-01",
+      "lattes": "http://lattes.com/134596",
+      "rt": "DE",
+      "matricula": "8"
+    }
+  },
+  {
+    "model": "cursos.docente",
+    "pk": 9,
+    "fields": {
+      "nome": "Ana Katarina",
+      "titulacao": "DOUTORADO",
+      "admissao": "2000-01-01",
+      "lattes": "http://LATTES.COM/96584",
+      "rt": "TI",
+      "matricula": "9"
+    }
+  },
+  {
+    "model": "cursos.docente",
+    "pk": 10,
+    "fields": {
+      "nome": "Danilo de Medeiros Arcanjo Soares",
+      "titulacao": "MESTRADO",
+      "admissao": "2005-01-01",
+      "lattes": "http://lattes.br/01246545",
+      "rt": "DE",
+      "matricula": "10"
+    }
+  },
+  {
+    "model": "cursos.coordenacao",
+    "pk": 1,
+    "fields": {
+      "telefone": "(83) 33712951",
+      "email": "coagec.picui@ifpb.edu.br",
+      "coordenador": 1,
+      "curso": 1
+    }
+  },
+  {
+    "model": "cursos.coordenacao",
+    "pk": 2,
+    "fields": {
+      "telefone": "(83)3203-3203",
+      "email": "coagec.picui@ifpb.edu.br",
+      "coordenador": 1,
+      "curso": 2
+    }
+  },
+  {
+    "model": "cursos.coordenacao",
+    "pk": 3,
+    "fields": {
+      "telefone": "(83)3423-9679",
+      "email": "coordctsst@ifpb.edu.br",
+      "coordenador": 4,
+      "curso": 4
+    }
+  },
+  {
+    "model": "cursos.curso",
+    "pk": 1,
+    "fields": {
+      "nome": "Computa\u00e7\u00e3o e Inform\u00e1tica",
+      "perfil_unificado": "Professor que planeja, organiza e desenvolve atividades e materiais relativos ao Ensino de Inform\u00e1tica na forma\u00e7\u00e3o b\u00e1sica. Realiza pesquisa e extens\u00e3o em tecnologia e inform\u00e1tica, contemplando as tend\u00eancias cotidianas. Produz e avalia softwares educacionais. Planeja e executa aplica\u00e7\u00f5es da inform\u00e1tica como suporte e apoio educativo. Organiza e administra laborat\u00f3rios de inform\u00e1tica. Estabelece rela\u00e7\u00f5es entre a Inform\u00e1tica e outras \u00e1reas do conhecimento."
+    }
+  },
+  {
+    "model": "cursos.curso",
+    "pk": 2,
+    "fields": {
+      "nome": "Agroecologia",
+      "perfil_unificado": "O tecn\u00f3logo em Agroecologia planeja, analisa, executa e monitora sistemas de produ\u00e7\u00e3o agropecu\u00e1ria, considerando os aspectos de sustentabilidade econ\u00f4mica, ambiental, social e cultural de modo integrado, atuando em propriedades rurais, cooperativas, associa\u00e7\u00f5es, \u00f3rg\u00e3os governamentais e n\u00e3o governamentais. Manejo ecol\u00f3gico de sistemas de produ\u00e7\u00e3o e da agrobiodiversidade, processos de certifica\u00e7\u00e3o de sistemas agroecol\u00f3gicos, gest\u00e3o, processamento e comercializa\u00e7\u00e3o da produ\u00e7\u00e3o agropecu\u00e1ria ecologicamente correta, utiliza\u00e7\u00e3o de metodologias participativas na organiza\u00e7\u00e3o da produ\u00e7\u00e3o e da pesquisa, s\u00e3o algumas das atividades deste profissional. O conhecimento da produ\u00e7\u00e3o agropecu\u00e1ria e de ecossistemas, legisla\u00e7\u00e3o ambiental, a vis\u00e3o cr\u00edtica das rela\u00e7\u00f5es sociais de produ\u00e7\u00e3o, a aplica\u00e7\u00e3o metodol\u00f3gica de princ\u00edpios do desenvolvimento sustent\u00e1vel, trabalho em equipe, sensibilidade e \u00e9tica s\u00e3o requisitos \u00e0 atua\u00e7\u00e3o deste tecn\u00f3logo."
+    }
+  },
+  {
+    "model": "cursos.curso",
+    "pk": 3,
+    "fields": {
+      "nome": "P\u00f3s-Gradua\u00e7\u00e3o em Engenharia El\u00e9trica",
+      "perfil_unificado": "O Programa de P\u00f3s-Gradua\u00e7\u00e3o em Engenharia El\u00e9trica - PPgEE - do IFPB iniciou suas atividades em 2012, com o oferecimento do curso de p\u00f3s-gradua\u00e7\u00e3o stricto sensu de Mestrado. O Programa tem por objetivo formar pesquisadores, para os setores privado e p\u00fablico, docentes e outros profissionais de alto n\u00edvel nas \u00e1reas de atua\u00e7\u00e3o da Engenharia El\u00e9trica, especialmente para o desenvolvimento de atividades ligadas \u00e0 pesquisa, ao desenvolvimento cient\u00edfico e tecnol\u00f3gico, e \u00e0 doc\u00eancia, al\u00e9m de contribuir para a evolu\u00e7\u00e3o humana na ci\u00eancia, tecnologia e cultura, especialmente nas quest\u00f5es de interesse nacional."
+    }
+  },
+  {
+    "model": "cursos.curso",
+    "pk": 4,
+    "fields": {
+      "nome": "Seguran\u00e7a do Trabalho",
+      "perfil_unificado": "Formar profissionais com s\u00f3lida forma\u00e7\u00e3o te\u00f3rica e pr\u00e1tica, para atuar nas a\u00e7\u00f5es preventivas e corretivas atrav\u00e9s da aplica\u00e7\u00e3o de normas e princ\u00edpios cient\u00edficos, objetivando preservar a qualidade de vida dos trabalhadores e demais agentes envolvidos nos processos produtivos. O t\u00e9cnico em Seguran\u00e7a no Trabalho planeja, implanta, controla os sistemas de seguran\u00e7a laboral. Comp\u00f5e equipes multidisciplinares em institui\u00e7\u00f5es, como membro do sistema de sa\u00fade e seguran\u00e7a no trabalho. Desempenha atividades de vistoria, avalia\u00e7\u00e3o e emiss\u00e3o de pareceres sobre a qualidade dos diversos processos e condi\u00e7\u00f5es de trabalho. Sua atua\u00e7\u00e3o visa a qualidade de vida dos trabalhadores e do meio ambiente, por meio da promo\u00e7\u00e3o da sa\u00fade, preven\u00e7\u00e3o de acidentes, doen\u00e7as do trabalho e acidentes industriais, com impacto sobre os ecossistemas."
+    }
+  },
+  {
+    "model": "cursos.cursonocampus",
+    "pk": 1,
+    "fields": {
+      "campus": 1,
+      "curso": 1,
+      "turno": "NOTURNO",
+      "formacao": "LICENCIATURA",
+      "modalidade": "EAD",
+      "codigo": 19,
+      "inicio": "2013-10-03",
+      "termino": null,
+      "conceito": "4",
+      "cpc": "4",
+      "enade": "4",
+      "ch_minima": 3590,
+      "ch_total": 3590,
+      "ch_estagio": 300,
+      "ch_tcc": 300,
+      "ch_rel_estagio": 60,
+      "ch_atividades_comp": 360,
+      "periodo_min_int": 6,
+      "forma_acesso": [
+        1,
+        2
+      ]
+    }
+  },
+  {
+    "model": "cursos.cursonocampus",
+    "pk": 2,
+    "fields": {
+      "campus": 2,
+      "curso": 2,
+      "turno": "VESPERTINO",
+      "formacao": "TECNOLOGICO",
+      "modalidade": "PRESENCIAL",
+      "codigo": 13,
+      "inicio": "2008-12-26",
+      "termino": null,
+      "conceito": "4",
+      "cpc": "4",
+      "enade": "4",
+      "ch_minima": 2400,
+      "ch_total": 2400,
+      "ch_estagio": 200,
+      "ch_tcc": 200,
+      "ch_rel_estagio": 60,
+      "ch_atividades_comp": 180,
+      "periodo_min_int": 5,
+      "forma_acesso": [
+        1
+      ]
+    }
+  },
+  {
+    "model": "cursos.cursonocampus",
+    "pk": 3,
+    "fields": {
+      "campus": 2,
+      "curso": 4,
+      "turno": "INTEGRAL",
+      "formacao": "SUBSEQUENTE",
+      "modalidade": "PRESENCIAL",
+      "codigo": 654,
+      "inicio": "2012-02-02",
+      "termino": null,
+      "conceito": "3",
+      "cpc": "3",
+      "enade": "3",
+      "ch_minima": 1470,
+      "ch_total": 1470,
+      "ch_estagio": 200,
+      "ch_tcc": 200,
+      "ch_rel_estagio": 30,
+      "ch_atividades_comp": 120,
+      "periodo_min_int": 3,
+      "forma_acesso": [
+        2,
+        3
+      ]
+    }
+  },
+  {
+    "model": "cursos.cursonocampus",
+    "pk": 4,
+    "fields": {
+      "campus": 3,
+      "curso": 4,
+      "turno": "INTEGRAL",
+      "formacao": "SUBSEQUENTE",
+      "modalidade": "EAD",
+      "codigo": 655,
+      "inicio": "2010-03-02",
+      "termino": null,
+      "conceito": "4",
+      "cpc": "4",
+      "enade": "4",
+      "ch_minima": 1500,
+      "ch_total": 1500,
+      "ch_estagio": 200,
+      "ch_tcc": 200,
+      "ch_rel_estagio": 60,
+      "ch_atividades_comp": 120,
+      "periodo_min_int": 4,
+      "forma_acesso": [
+        2,
+        3
+      ]
+    }
+  },
+  {
+    "model": "cursos.atoregulatorio",
+    "pk": 1,
+    "fields": {
+      "curso": 1,
+      "tipo": 2,
+      "arquivo": "arquivo.pdf",
+      "descricao": "Resolu\u00e7\u00e3o CS/IFPB n\u00b0 170, de 03/10/2013",
+      "numero": 170,
+      "ano": 2013
+    }
+  },
+  {
+    "model": "cursos.atoregulatorio",
+    "pk": 2,
+    "fields": {
+      "curso": 1,
+      "tipo": 1,
+      "arquivo": "arquivo.pdf",
+      "descricao": "Portaria MEC n\u00ba 13/2014",
+      "numero": 13,
+      "ano": 2014
+    }
+  },
+  {
+    "model": "cursos.atoregulatorio",
+    "pk": 3,
+    "fields": {
+      "curso": 2,
+      "tipo": 1,
+      "arquivo": "arquivo.pdf",
+      "descricao": "Resolu\u00e7\u00e3o CD/CEFET-PB no 032, de 26/12/2008",
+      "numero": 35,
+      "ano": 2008
+    }
+  },
+  {
+    "model": "cursos.atoregulatorio",
+    "pk": 4,
+    "fields": {
+      "curso": 3,
+      "tipo": 1,
+      "arquivo": "arquivo.pdf",
+      "descricao": "Resolu\u00e7\u00e3o CS/IFPB n\u00b0 170, de 03/10/2013",
+      "numero": 32,
+      "ano": 2013
+    }
+  },
+  {
+    "model": "cursos.atoregulatorio",
+    "pk": 5,
+    "fields": {
+      "curso": 4,
+      "tipo": 2,
+      "arquivo": "arquivo.pdf",
+      "descricao": "Resolu\u00e7\u00e3o CD/CEFET-PB",
+      "numero": 32,
+      "ano": 2010
+    }
+  },
+  {
+    "model": "cursos.documento",
+    "pk": 1,
+    "fields": {
+      "curso": 1,
+      "descricao": "Matriz Curricular de 2015",
+      "arquivo": "arquivo.pdf",
+      "tipo": 1
+    }
+  },
+  {
+    "model": "cursos.documento",
+    "pk": 2,
+    "fields": {
+      "curso": 1,
+      "descricao": "Matriz Curricular de 2016",
+      "arquivo": "arquivo.pdf",
+      "tipo": 1
+    }
+  },
+  {
+    "model": "cursos.documento",
+    "pk": 3,
+    "fields": {
+      "curso": 1,
+      "descricao": "Plano de Disciplinas da Matriz Curricular de 2015",
+      "arquivo": "arquivo.pdf",
+      "tipo": 2
+    }
+  },
+  {
+    "model": "cursos.documento",
+    "pk": 4,
+    "fields": {
+      "curso": 1,
+      "descricao": "Plano de Disciplinas da Matriz Curricular de 2016",
+      "arquivo": "arquivo.pdf",
+      "tipo": 2
+    }
+  },
+  {
+    "model": "cursos.documento",
+    "pk": 5,
+    "fields": {
+      "curso": 1,
+      "descricao": "Laborat\u00f3rio de Desenvolvimento Web",
+      "arquivo": "arquivo.pdf",
+      "tipo": 3
+    }
+  },
+  {
+    "model": "cursos.documento",
+    "pk": 6,
+    "fields": {
+      "curso": 1,
+      "descricao": "Laborat\u00f3rio de Redes",
+      "arquivo": "arquivo.pdf",
+      "tipo": 3
+    }
+  },
+  {
+    "model": "cursos.documento",
+    "pk": 7,
+    "fields": {
+      "curso": 1,
+      "descricao": "Colegiado do Curso",
+      "arquivo": "arquivo.pdf",
+      "tipo": 4
+    }
+  },
+  {
+    "model": "cursos.documento",
+    "pk": 8,
+    "fields": {
+      "curso": 1,
+      "descricao": "NDE atual",
+      "arquivo": "arquivo.pdf",
+      "tipo": 5
+    }
+  },
+  {
+    "model": "cursos.documento",
+    "pk": 9,
+    "fields": {
+      "curso": 1,
+      "descricao": "Artigo 01",
+      "arquivo": "arquivo.pdf",
+      "tipo": 6
+    }
+  },
+  {
+    "model": "cursos.documento",
+    "pk": 10,
+    "fields": {
+      "curso": 1,
+      "descricao": "Artigo 2",
+      "arquivo": "arquivo.pdf",
+      "tipo": 6
+    }
+  },
+  {
+    "model": "cursos.documento",
+    "pk": 11,
+    "fields": {
+      "curso": 1,
+      "descricao": "Pesquisa: Ataques em Redes Escolares",
+      "arquivo": "arquivo.pdf",
+      "tipo": 7
+    }
+  },
+  {
+    "model": "cursos.documento",
+    "pk": 12,
+    "fields": {
+      "curso": 1,
+      "descricao": "Monitoria: Algoritmos e Estruturas de Dados",
+      "arquivo": "arquivo.pdf",
+      "tipo": 7
+    }
+  },
+  {
+    "model": "cursos.documento",
+    "pk": 13,
+    "fields": {
+      "curso": 1,
+      "descricao": "PIBID: Redes de Computadores",
+      "arquivo": "arquivo.pdf",
+      "tipo": 8
+    }
+  },
+  {
+    "model": "cursos.documento",
+    "pk": 14,
+    "fields": {
+      "curso": 1,
+      "descricao": "PIBIC: Fortalecimento da Pesquisa no Nordeste",
+      "arquivo": "arquivo.pdf",
+      "tipo": 8
+    }
+  },
+  {
+    "model": "cursos.documento",
+    "pk": 15,
+    "fields": {
+      "curso": 2,
+      "descricao": "Matriz Curricular de 2015",
+      "arquivo": "arquivo.pdf",
+      "tipo": 1
+    }
+  },
+  {
+    "model": "cursos.documento",
+    "pk": 16,
+    "fields": {
+      "curso": 2,
+      "descricao": "Plano de Disciplinas 2015",
+      "arquivo": "arquivo.pdf",
+      "tipo": 2
+    }
+  },
+  {
+    "model": "cursos.documento",
+    "pk": 17,
+    "fields": {
+      "curso": 2,
+      "descricao": "Laborat\u00f3rio de Manejo de Solos",
+      "arquivo": "arquivo.pdf",
+      "tipo": 3
+    }
+  },
+  {
+    "model": "cursos.documento",
+    "pk": 18,
+    "fields": {
+      "curso": 2,
+      "descricao": "Colegiado do Curso de Agroecologia",
+      "arquivo": "arquivo.pdf",
+      "tipo": 4
+    }
+  },
+  {
+    "model": "cursos.documento",
+    "pk": 19,
+    "fields": {
+      "curso": 2,
+      "descricao": "NDE",
+      "arquivo": "arquivo.pdf",
+      "tipo": 5
+    }
+  },
+  {
+    "model": "cursos.documento",
+    "pk": 20,
+    "fields": {
+      "curso": 2,
+      "descricao": "Artigo 01",
+      "arquivo": "arquivo.pdf",
+      "tipo": 6
+    }
+  },
+  {
+    "model": "cursos.documento",
+    "pk": 21,
+    "fields": {
+      "curso": 2,
+      "descricao": "Artigo 03",
+      "arquivo": "arquivo.pdf",
+      "tipo": 6
+    }
+  },
+  {
+    "model": "cursos.documento",
+    "pk": 22,
+    "fields": {
+      "curso": 2,
+      "descricao": "Integra\u00e7\u00e3o do Curso de Agroecologia com a Comunidade Rural do Brejo Paraibano",
+      "arquivo": "arquivo.pdf",
+      "tipo": 7
+    }
+  },
+  {
+    "model": "cursos.documento",
+    "pk": 23,
+    "fields": {
+      "curso": 2,
+      "descricao": "PIBID - Estat\u00edstica",
+      "arquivo": "arquivo.pdf",
+      "tipo": 8
+    }
+  },
+  {
+    "model": "cursos.documento",
+    "pk": 24,
+    "fields": {
+      "curso": 2,
+      "descricao": "PIBIC - Plantas Nativas",
+      "arquivo": "arquivo.pdf",
+      "tipo": 8
+    }
+  },
+  {
+    "model": "cursos.documento",
+    "pk": 25,
+    "fields": {
+      "curso": 2,
+      "descricao": "PIBIC - Apicultura",
+      "arquivo": "arquivo.pdf",
+      "tipo": 8
+    }
+  },
+  {
+    "model": "cursos.documento",
+    "pk": 26,
+    "fields": {
+      "curso": 3,
+      "descricao": "Matriz Curricular de 2015",
+      "arquivo": "arquivo.pdf",
+      "tipo": 1
+    }
+  },
+  {
+    "model": "cursos.documento",
+    "pk": 27,
+    "fields": {
+      "curso": 3,
+      "descricao": "Laborat\u00f3rio de inform\u00e1tica",
+      "arquivo": "arquivo.pdf",
+      "tipo": 3
+    }
+  },
+  {
+    "model": "cursos.documento",
+    "pk": 28,
+    "fields": {
+      "curso": 3,
+      "descricao": "N\u00facleo Docente Estruturante",
+      "arquivo": "arquivo.pdf",
+      "tipo": 5
+    }
+  },
+  {
+    "model": "cursos.documento",
+    "pk": 29,
+    "fields": {
+      "curso": 3,
+      "descricao": "Artigo 06",
+      "arquivo": "arquivo.pdf",
+      "tipo": 6
+    }
+  },
+  {
+    "model": "cursos.documento",
+    "pk": 30,
+    "fields": {
+      "curso": 3,
+      "descricao": "PIBID - Matem\u00e1tica",
+      "arquivo": "arquivo.pdf",
+      "tipo": 8
+    }
+  },
+  {
+    "model": "cursos.documento",
+    "pk": 31,
+    "fields": {
+      "curso": 3,
+      "descricao": "Programa de Est\u00e1gio Institucional",
+      "arquivo": "arquivo.pdf",
+      "tipo": 8
+    }
+  },
+  {
+    "model": "cursos.documento",
+    "pk": 32,
+    "fields": {
+      "curso": 4,
+      "descricao": "Matriz curricular inicial",
+      "arquivo": "arquivo.pdf",
+      "tipo": 2
+    }
+  },
+  {
+    "model": "cursos.polo",
+    "pk": 1,
+    "fields": {
+      "cidade": 1,
+      "horario_funcionamento": "13h \u00e0s 18h"
+    }
+  },
+  {
+    "model": "cursos.polo",
+    "pk": 2,
+    "fields": {
+      "cidade": 2,
+      "horario_funcionamento": "8h \u00e0s 12h; 13h \u00e0s 18h; 19h \u00e0s 22h"
+    }
+  },
+  {
+    "model": "cursos.polo",
+    "pk": 3,
+    "fields": {
+      "cidade": 6,
+      "horario_funcionamento": "13h \u00e0s 18h"
+    }
+  },
+  {
+    "model": "cursos.polo",
+    "pk": 4,
+    "fields": {
+      "cidade": 3,
+      "horario_funcionamento": "13h \u00e0s 18h"
+    }
+  },
+  {
+    "model": "cursos.polo",
+    "pk": 5,
+    "fields": {
+      "cidade": 7,
+      "horario_funcionamento": "8h \u00e0s 12h; 13h \u00e0s 18h; 19h \u00e0s 22h"
+    }
+  },
+  {
+    "model": "cursos.polo",
+    "pk": 6,
+    "fields": {
+      "cidade": 8,
+      "horario_funcionamento": "8h \u00e0s 12h; 13h \u00e0s 18h; 19h \u00e0s 22h"
+    }
+  },
+  {
+    "model": "cursos.disciplinacurso",
+    "pk": 1,
+    "fields": {
+      "curso": 1,
+      "disciplina": 1,
+      "periodo": 1,
+      "ch": 90,
+      "docentes": [
+        2,
+        5
+      ]
+    }
+  },
+  {
+    "model": "cursos.disciplinacurso",
+    "pk": 2,
+    "fields": {
+      "curso": 1,
+      "disciplina": 2,
+      "periodo": 2,
+      "ch": 60,
+      "docentes": [
+        4,
+        5
+      ]
+    }
+  },
+  {
+    "model": "cursos.disciplinacurso",
+    "pk": 3,
+    "fields": {
+      "curso": 1,
+      "disciplina": 3,
+      "periodo": 2,
+      "ch": 90,
+      "docentes": [
+        2,
+        5
+      ]
+    }
+  },
+  {
+    "model": "cursos.disciplinacurso",
+    "pk": 4,
+    "fields": {
+      "curso": 1,
+      "disciplina": 4,
+      "periodo": 1,
+      "ch": 60,
+      "docentes": [
+        1,
+        3
+      ]
+    }
+  },
+  {
+    "model": "cursos.disciplinacurso",
+    "pk": 5,
+    "fields": {
+      "curso": 1,
+      "disciplina": 5,
+      "periodo": 3,
+      "ch": 90,
+      "docentes": [
+        2
+      ]
+    }
+  },
+  {
+    "model": "cursos.disciplinacurso",
+    "pk": 6,
+    "fields": {
+      "curso": 1,
+      "disciplina": 6,
+      "periodo": 4,
+      "ch": 90,
+      "docentes": [
+        5
+      ]
+    }
+  },
+  {
+    "model": "cursos.disciplinacurso",
+    "pk": 7,
+    "fields": {
+      "curso": 1,
+      "disciplina": 7,
+      "periodo": 5,
+      "ch": 60,
+      "docentes": [
+        5
+      ]
+    }
+  },
+  {
+    "model": "cursos.disciplinacurso",
+    "pk": 8,
+    "fields": {
+      "curso": 1,
+      "disciplina": 8,
+      "periodo": 6,
+      "ch": 120,
+      "docentes": [
+        4
+      ]
+    }
+  },
+  {
+    "model": "cursos.disciplinacurso",
+    "pk": 9,
+    "fields": {
+      "curso": 2,
+      "disciplina": 9,
+      "periodo": 1,
+      "ch": 60,
+      "docentes": [
+        6
+      ]
+    }
+  },
+  {
+    "model": "cursos.disciplinacurso",
+    "pk": 10,
+    "fields": {
+      "curso": 2,
+      "disciplina": 4,
+      "periodo": 1,
+      "ch": 60,
+      "docentes": [
+        7
+      ]
+    }
+  },
+  {
+    "model": "cursos.disciplinacurso",
+    "pk": 11,
+    "fields": {
+      "curso": 2,
+      "disciplina": 11,
+      "periodo": 2,
+      "ch": 60,
+      "docentes": [
+        8
+      ]
+    }
+  },
+  {
+    "model": "cursos.disciplinacurso",
+    "pk": 12,
+    "fields": {
+      "curso": 2,
+      "disciplina": 12,
+      "periodo": 2,
+      "ch": 60,
+      "docentes": [
+        9
+      ]
+    }
+  },
+  {
+    "model": "cursos.disciplinacurso",
+    "pk": 13,
+    "fields": {
+      "curso": 2,
+      "disciplina": 13,
+      "periodo": 4,
+      "ch": 60,
+      "docentes": [
+        1,
+        3
+      ]
+    }
+  },
+  {
+    "model": "cursos.disciplinacurso",
+    "pk": 14,
+    "fields": {
+      "curso": 3,
+      "disciplina": 9,
+      "periodo": 1,
+      "ch": 60,
+      "docentes": [
+        6,
+        7
+      ]
+    }
+  },
+  {
+    "model": "cursos.disciplinacurso",
+    "pk": 15,
+    "fields": {
+      "curso": 3,
+      "disciplina": 14,
+      "periodo": 2,
+      "ch": 60,
+      "docentes": [
+        10
+      ]
+    }
+  },
+  {
+    "model": "cursos.disciplinacurso",
+    "pk": 16,
+    "fields": {
+      "curso": 3,
+      "disciplina": 15,
+      "periodo": 3,
+      "ch": 90,
+      "docentes": [
+        10
+      ]
+    }
+  },
+  {
+    "model": "cursos.disciplinacurso",
+    "pk": 17,
+    "fields": {
+      "curso": 4,
+      "disciplina": 4,
+      "periodo": 1,
+      "ch": 30,
+      "docentes": [
+        7
+      ]
+    }
+  }
+]

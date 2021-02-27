@@ -1,0 +1,57 @@
+{% extends "base/baseboot.html" %}
+{% load staticfiles form_utils %}
+
+{% block extrahead %}
+    {{ block.super }}
+    {{ form.media }}
+{% endblock %}
+
+{% block conteudo %}
+    <h2 class="titulo verde-escuro">{{ titulo }}</h2>
+    {% block pre_form %}{% endblock %}
+
+    {% if form %}
+        <div class="row">
+            <div class="col-xs-12">
+                <span class="help-block text-justify">
+                    Todos os campos sinalizados com asterisco (*) devem ser obrigatoriamente preenchidos.
+                </span></div>
+        </div>
+        <form method="post" action="" {% if form_class %}class="{{ form_class }}"{% endif %}>
+            {% csrf_token %}
+            {% if label_width_col and input_width_col %}
+                {% include "reuse/_form_with_fieldset_rows.html" %}
+            {% else %}
+                {% include "reuse/_form_with_fieldset.html" %}
+            {% endif %}
+            <div id="field_{{ form.declara_veracidade.name }}" class="row form-group field-{{ form.declara_veracidade.name }}
+                {% if not form.declara_veracidade|optional %}required{% endif %}
+                {% if form.declara_veracidade.errors %}has-error{% endif %} has-feedback">
+
+                {% for error in form.declara_veracidade.errors %}
+                <div class="col-xs-12"><span class="help-block">{{ error }}</span></div>
+                {% endfor %}
+
+                <label for="{{ form.declara_veracidade.auto_id }}" class="col-xs-12 control-label" style="text-align: justify"
+                    {% if not form.declara_veracidade|optional %}title="Campo obrigatório"{% endif %}>
+                    {{ form.declara_veracidade }}
+                    {{ form.declara_veracidade.label }}
+                </label>
+                {% if form.declara_veracidade.help_text %}
+                <div class="col-xs-12"><span class="help-block small">{{ form.declara_veracidade.help_text|safe }}</span></div>
+                {% endif %}
+            </div>
+            {% if form.instance.atualizado_em %}
+            <p class="help-block pull-left">Última atualização destes dados: {{ form.instance.atualizado_em }}</p>
+            {% endif %}
+            <input type="submit" value="
+                {% if nome_botao %}
+                    {{ nome_botao }}
+                {% else %}
+                    Salvar
+                {% endif %}" class="btn btn-primary pull-right" onclick="this.disabled=true;this.form.submit();">
+        </form>
+    {% endif %}
+
+    {% block pos_form %}{% endblock %}
+{% endblock %}

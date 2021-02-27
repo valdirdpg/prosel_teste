@@ -1,0 +1,30 @@
+{% extends "admin/change_form.html" %}
+{% load admin_static i18n admin_modify admin_urls cursos_tags %}
+
+{% block extrahead %}{{ block.super }}
+<script type="text/javascript">
+$(document).ready(function() {exibir_inline('coordenacao')});
+
+function exibir_inline(inline) {
+    $("div[id$='-group']").addClass('hidden');
+    $("div[id$='"+inline+"-group']").removeClass('hidden');
+}
+</script>
+{% endblock %}
+
+{% block object-tools-items %}
+{% set_var True as redireciona_erro %}
+{% for i in inline_admin_formsets %}
+  {% has_errors_inline i as has_errors_formset %}
+  {% if has_errors_formset %}
+    <li><a href="#" class="link_span link_span_alert" onclick="exibir_inline('{{ i.formset.prefix }}')">{{ i.opts.verbose_name_plural }}</a></li>
+    {% if redireciona_erro %}
+      <script>$(document).ready(function() {exibir_inline('{{ i.formset.prefix }}')});</script>
+      {% set_var False as redireciona_erro %}
+    {% endif %}
+  {% else %}
+    <li><a href="#" class="link_span" onclick="exibir_inline('{{ i.formset.prefix }}')">{{ i.opts.verbose_name_plural }}</a></li>
+  {% endif %}
+{% endfor %}
+    {{block.super}}
+{% endblock %}

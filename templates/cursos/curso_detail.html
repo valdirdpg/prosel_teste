@@ -1,0 +1,461 @@
+{% extends "base/baseboot.html" %}
+{% load filters humanize admin_urls base_tags %}
+
+{% block breadcrumb %}
+    <li><a href="/">Início</a></li>
+    <li><i class="fa fa-angle-right text-muted"></i></li>
+    <li><a href="/cursos/">Cursos</a></li>
+    <li><i class="fa fa-angle-right text-muted"></i></li>
+    <li class="active">{{ curso.curso.nome }}</li>
+{% endblock %}
+
+{% block conteudo %}
+    <h2 class="titulo azul-petroleo">{{ curso.curso.nome }}</h2>
+
+    {% if pode_editar_curso %}
+    <div class="btn-group pull-right">
+      <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Editar
+      </button>
+      <div class="dropdown-menu">
+        <a class="btn dropdown-item" href="{% url 'admin:cursos_cursonocampus_change' curso.pk %}">Informações do curso</a>
+        <a class="btn dropdown-item" href="{% url 'cursonocampus_update' curso.pk %}">Vídeos descritivos</a>
+      </div>
+    </div>
+    {% endif %}
+
+    <div class="row">
+        <div class="col-xs-12">
+            <ul class="list-unstyled list-inline">
+                <li>
+                    {% if curso.is_presencial %}
+                        <i class="fa fa-male text-muted fa-fw"></i>
+                    {% else %}
+                        <i class="fa fa-globe text-muted fa-fw"></i>
+                    {% endif %}
+                    {{ curso.get_modalidade_display }}
+                </li>
+                <li>
+                    <i class="fa fa-suitcase text-muted fa-fw"></i> {{ curso.formacao|label_formacao }}
+                </li>
+                <li>
+                    <i class="fa fa-institution text-muted fa-fw"></i> <a href="{% url 'campus' curso.campus.pk %}">Campus {{ curso.campus.nome }}</a>
+                </li>
+                <li>
+                    <i class="fa fa-clock-o text-muted fa-fw" aria-hidden="true"></i>Turno {{ curso.get_turno_display }}
+                </li>
+                {% if curso.publicado and curso.last_edited_by %}
+                <li>
+                    <i class="fa fa-history fa-fw text-muted"></i>
+                    Última alteração
+                    <a {% if request.user.is_staff %} href="{{ curso.get_admin_history_url }}" {% endif %}  data-toggle="tooltip" data-placement="bottom" title="por {{ curso.last_edited_by.get_full_name|default:curso.last_edited_by.get_username }} no dia {{ curso.last_edited_at }}">{{ curso.last_edited_at|naturaltime }}</a>.
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+
+    <div class="item-curso">
+        <h3 class="titulo azul-claro">Perfil<i class="fa fa-mortar-board fa-fw text-muted pull-right"></i>
+            {% if curso.perfil_libras %}
+            <!-- Trigger the modal with a button -->
+            <button class="btn btn-info btn-xs pull-right" data-toggle="modal" data-target="#modalLibras">
+                <i class="fa fa-sign-language fa-fw" aria-hidden="true"></i>Disponível em LIBRAS
+            </button>
+            <!-- Modal -->
+            <div id="modalLibras" class="modal fade" role="dialog">
+              <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  </div>
+                  <div class="modal-body">
+                      <div class="embed-responsive embed-responsive-16by9" aria-labelledby="dropdownMenu1">
+                        <iframe class="embed-responsive-item"
+                                src="{{ curso.perfil_libras }}" frameborder="0" allowfullscreen></iframe>
+                      </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+            {% endif %}
+            </h3>
+        <div class="corpo">
+            <div class="perfil_curso text-justify">
+                {% if curso.video_catalogo %}
+                    <div class="col-xs-12 col-sm-6 video-descricao pull-right">
+                        <div class="embed-responsive embed-responsive-16by9">
+                            <iframe class="embed-responsive-item"
+                                    src={{ curso.video_catalogo }} frameborder="0" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                {% endif %}
+                {{ curso.get_perfil }}
+            </div>
+            {% if curso.palavras_chave.exists %}
+            <br>
+            <p class="keywords"><i class="fa fa-tags fa-fw text-muted"></i> Palavras-chave:
+            {{ curso.palavras_chave.all|join:", " }}
+            </p>
+            {% endif %}
+            <div class="clearfix"></div>
+        </div>
+    </div>
+
+    {% if curso.forma_acesso.exists %}
+    <div class="item-curso">
+        <h3 class="titulo azul-claro">Formas de Acesso<i class="fa fa-sign-in fa-fw text-muted pull-right"></i></h3>
+        <div class="corpo">
+            <ul class="nav nav-tabs">
+            {% for acesso in curso.forma_acesso.all %}
+                <li role="acesso" class=""><a href="#acesso{{ acesso.pk }}" data-toggle="tab">{{ acesso.sigla }}</a></li>
+            {% endfor %}
+            </ul>
+            <div class="tab-content">
+                {% for acesso in curso.forma_acesso.all %}
+                    <div id="acesso{{ acesso.pk }}" class="tab-pane">
+                        <h4 style="font-size: 14px;">{{ acesso.nome }} <span class="text-muted"> - {{ acesso.sigla }}</span></h4>
+                        <hr>
+                        <p class="text-justify">{{ acesso.descricao|capfirst }}</p>
+                        <p><a class="pull-right" href="{% url 'processoseletivo' acesso.pk %}">Ver editais do {{ acesso.sigla }}</a></p>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        <br>
+    </div>
+    {% endif %}
+
+    {% if curso.publicado %}
+
+        {% with coordenador=curso.coordenacao.coordenador substituto=curso.coordenacao.substituto %}
+        <div class="item-curso">
+            <h3 class="titulo azul-claro">Coordenação<i class="fa fa-user fa-fw text-muted pull-right"></i></h3>
+            <div class="corpo">
+                <h4>{{ coordenador.nome }}
+                  {% if substituto %}
+                    <small> - Coordenador(a)</small>
+                  {% endif %}
+                </h4>
+                <ul>
+                    <ul class="list-inline">
+                    <li style="width: 45%"><i class="fa fa-clock-o fa-fw text-muted" aria-hidden="true"></i>
+                      <i>Tempo de Serviço na Instituição: {{ coordenador.admissao|tsi }}</i></li>
+                    <li><i class="fa fa-suitcase fa-fw text-muted" aria-hidden="true"></i>
+                      <i>Regime de Trabalho: {{ coordenador.rt|default:'TI'|rt }}</i></li>
+                    </ul>
+                    <ul class="list-inline">
+                    <li style="width: 45%"><i class="fa fa-graduation-cap fa-fw text-muted" aria-hidden="true"></i>
+                      <i>Titulação: {{ coordenador.titulacao|titulacao }}</i></li>
+                    <li><i class="fa fa-external-link fa-fw text-muted" aria-hidden="true"></i>
+                      <i>Currículo Lattes:
+                        {% if coordenador.lattes %}
+                        <a href="{{ coordenador.lattes }}" title="Currículo Lattes" target="_blank">
+                          {{ coordenador.lattes }}<span class="sr-only"> (abre em nova janela)</span></a>
+                        {% else %}-{% endif %}
+                      </i>
+                    </li>
+                    </ul>
+                </ul>
+                {% if substituto %}
+                <h4>{{ substituto.nome }}<small> - Coordenador(a) Substituto(a)</small></h4>
+                <ul>
+                    <ul class="list-inline">
+                    <li style="width: 45%"><i class="fa fa-clock-o fa-fw text-muted" aria-hidden="true"></i>
+                      <i>Tempo de Serviço na Instituição: {{ substituto.admissao|tsi }}</i></li>
+                    <li><i class="fa fa-suitcase fa-fw text-muted" aria-hidden="true"></i>
+                      <i>Regime de Trabalho: {{ substituto.rt|default:'TI'|rt }}</i></li>
+                    </ul>
+                    <ul class="list-inline">
+                    <li style="width: 45%"><i class="fa fa-graduation-cap fa-fw text-muted" aria-hidden="true"></i>
+                      <i>Titulação: {{ substituto.titulacao|titulacao }}</i></li>
+                    <li><i class="fa fa-external-link fa-fw text-muted" aria-hidden="true"></i>
+                      <i>Currículo Lattes:
+                        {% if substituto.lattes %}
+                          <a href="{{ substituto.lattes }}" title="Currículo Lattes" target="_blank">
+                            {{ substituto.lattes }}<span class="sr-only"> (abre em nova janela)</span></a>
+                        {% else %}-{% endif %}
+                      </i>
+                    </li>
+                    </ul>
+                </ul>
+                {% endif %}
+                <h5><strong>Contato da Coordenação</strong></h5>
+                <ul class="list-inline">
+                <li style="width: 45%"><i class="fa fa-phone fa-fw text-muted" aria-hidden="true" title="Telefone"></i>
+                  <i>Telefone: {{ curso.coordenacao.telefone }}</i></li>
+                <li><i class="fa fa-envelope fa-fw text-muted" aria-hidden="true" title="E-mail"></i>
+                  <i>E-mail: <a href="mailto:{{ curso.coordenacao.email }}" target="_blank">{{ curso.coordenacao.email }}</a></i></li>
+                </ul>
+            </div>
+        </div>
+        {% endwith %}
+
+        <div class="item-curso">
+            <h3 class="titulo azul-claro">Disciplinas e Corpo Docente<i class="fa fa-users fa-fw text-muted pull-right"></i></h3>
+            <ul class="list-unstyled list-inline">
+                <li>
+                    <i class="fa fa-history fa-fw text-muted"></i>
+                    Última alteração
+                    <a {% if request.user.is_staff %} {% endif %}  data-toggle="tooltip" data-placement="bottom" title="no dia {{ curso.disciplinas_atualizacao }}">{{ curso.disciplinas_atualizacao|naturaltime }}</a>.
+                </li>
+            </ul>
+            <div class="corpo">
+                <ul class="nav nav-tabs" id="maisinfo">
+                    {% for semestre in disciplinas.keys %}
+                        <li class="{% if forloop.first %}active{% endif %}">
+                            <a data-toggle="tab" href="#semestre{{ semestre }}">
+                                {{ semestre }}{% if curso.is_tecnico_integrado %}º Ano{% else %}º Semestre{% endif %}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+                <div class="tab-content">
+                    {% for semestre, disciplina in disciplinas.items %}
+                        <div id="semestre{{ semestre }}" class="tab-pane {% if forloop.first %}active{% endif %}">
+                            <table class="table table-striped table-condensed table-bordered disciplinas">
+                                <thead>
+                                <tr>
+                                    <th> Disciplina</th>
+                                    <th class="text-center"><a data-toggle="tooltip" title="Carga horária">CH</a></th>
+                                    <th>Docente</th>
+                                    <th>Titulação</th>
+                                    <th><a data-toggle="tooltip" title="Tempo de serviço na instituição">TSI</a></th>
+                                    <th><a data-toggle="tooltip" title="Regime de Trabalho">RT</a></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for d in disciplina %}
+                                    <tr>
+                                        <td rowspan="{{ d.docentes.values.count }}">
+                                            {% if d.plano %}
+                                            <a href="{{ d.plano.url }}" data-toggle="tooltip" target="_blank"
+                                               title="Download do plano da disciplina (formato {{ d.plano|file_extension }}
+                                                {% if not DEBUG %}- {{ d.plano.size|filesizeformat }}{% endif %})">
+                                              {{ d.disciplina.nome }}</a>
+                                            {% else %}
+                                                {{ d.disciplina.nome }}
+                                            {% endif %}
+                                        </td>
+                                        <td rowspan="{{ d.docentes.values.count }}" class="text-center">{{ d.ch }}</td>
+                                        {% for docente in d.docentes.values %}
+                                            {% if forloop.counter > 1 %}
+                                            </tr><tr>
+                                            {% endif %}
+                                        <td><a href="{{ docente.lattes }}" data-toggle="tooltip" title="Currículo Lattes" target="_blank">
+                                              {{ docente.nome }}<span class="sr-only"> (abre em nova janela)</span></a>
+                                            {% if docente.externo %}
+                                                <span class="text-muted">(externo)</span>
+                                            {% endif %}
+                                        </td>
+                                        <td>{{ docente.titulacao|titulacao }}</td>
+                                        <td>{{ docente.admissao|tsi }}</td>
+                                        <td>
+                                            {% if docente.rt %}
+                                                <a data-toggle="tooltip" title="{{docente.rt|rt}}">{{ docente.rt }}</a>
+                                            {% else %}
+                                                -
+                                            {% endif %}
+                                        </td>
+                                        {% endfor %}
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+        <div class="item-curso">
+            <h3 class="titulo azul-claro">Informações Básicas<i class="fa fa-info-circle fa-fw text-muted pull-right"></i></h3>
+            <div class="corpo">
+                <table class="table table-striped table-condensed">
+                    <tbody>
+                    {% if curso.curso.is_graduacao %}
+                    <tr>
+                        <td>Código do Curso (e-Mec):</td>
+                        <td>{{ curso.codigo|default:'-' }}</td>
+                    </tr>
+                    {% endif %}
+                    {% if curso.conceito %}
+                    <tr>
+                        <td width="50%">Conceito do Curso (CC):</td>
+                        <td>{{ curso.conceito }}</td>
+                    </tr>
+                    {% endif %}
+                    {% if curso.curso.is_graduacao %}
+                    <tr>
+                        <td>Conceito Preliminar do Curso (CPC):</td>
+                        <td>{{ curso.cpc|default:'-' }}</td>
+                    </tr>
+                    <tr>
+                        <td>Enade:</td>
+                        <td>{{ curso.enade }}</td>
+                    </tr>
+                    <tr>
+                        <td>Índice Geral de Cursos (IGC):</td>
+                        <td>{{ curso.campus.ies.igc|default:'-' }}</td>
+                    </tr>
+                    <tr>
+                        <td>Conceito Institucional (CI):</td>
+                        <td>{{ curso.campus.ies.ci|default:'-' }}</td>
+                    </tr>
+                    {% endif %}
+                    <tr>
+                        <td>Turno:</td>
+                        <td>{{ curso.get_turno_display }}</td>
+                    </tr>
+                    <tr>
+                        <td>Modalidade:</td>
+                        <td>{{ curso.get_modalidade_display }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="item-curso">
+            <h3 class="titulo azul-claro">Atos Regulatórios<i class="fa fa-file-text-o fa-fw text-muted pull-right"></i></h3>
+            <div class="corpo atos_regulatorios">
+                <ul class="list-striped">
+                {% for ato in curso.atoregulatorio_set.all|dictsortreversed:"numero"|dictsort:"tipo.nome"|dictsortreversed:"ano" %}
+                    <li><a href="{{ ato.arquivo.url }}" target="_self">{{ ato.tipo.nome }} {{ ato.numero }}/{{ ato.ano }}
+                        - {{ ato.descricao }}
+                        <span class="acessibilidade download">(formato {{ ato.arquivo|file_extension }}
+                            {% if not DEBUG %}- {{ ato.arquivo.size|filesizeformat }}{% endif %})</span>
+                        </a>
+                    </li>
+                {% endfor %}
+                </ul>
+            </div>
+        </div>
+
+        <div class="item-curso">
+            <h3 class="titulo azul-claro">Estrutura Curricular<i class="fa fa-list fa-fw text-muted pull-right"></i></h3>
+            <div class="corpo">
+                <table class="table table-striped table-condensed">
+                    <tbody>
+                    {% if curso.ch_minima %}
+                    <tr>
+                        <td width="50%">Carga Horária Mínima de Integralização:</td>
+                        <td>{{ curso.ch_minima }} h</td>
+                    </tr>
+                    {% endif %}
+                    {% if curso.ch_estagio %}
+                    <tr>
+                        <td>Estágio:</td>
+                        <td>{{ curso.ch_estagio }} h</td>
+                    </tr>
+                    {% endif %}
+                    {% if curso.ch_tcc %}
+                    <tr>
+                        <td>Trabalho de Conclusão de Curso:</td>
+                        <td>{{ curso.ch_tcc }} h</td>
+                    </tr>
+                    {% endif %}
+                    {% if curso.ch_rel_estagio %}
+                    <tr>
+                        <td>Relatório de Estágio:</td>
+                        <td>{{ curso.ch_rel_estagio }} h</td>
+                    </tr>
+                    {% endif %}
+                    {% if curso.ch_atividades_comp %}
+                    <tr>
+                        <td>Atividades Complementares:</td>
+                        <td>{{ curso.ch_atividades_comp }} h</td>
+                    </tr>
+                    {% endif %}
+                    {% if curso.is_licenciatura %}
+                    <tr>
+                        <td>Prática Docente:</td>
+                        <td>{{ curso.ch_pratica_docente }} h</td>
+                    </tr>
+                    {% endif %}
+                    {% if curso.periodo_min_int %}
+                    <tr>
+                        <td>Período Mínimo de Integralização:</td>
+                        <td>{{ curso.periodo_min_int }}</td>
+                    </tr>
+                    {% endif %}
+                    {% if curso.is_presencial %}
+                    <tr>
+                        <td>Número Total de Vagas:</td>
+                        <td>{{ vagas }}</td>
+                    </tr>
+                    {% if curso.vagacurso_set.exists %}
+                    <tr>
+                        <td>1º Semestre:</td>
+                        <td>{{ curso.vagacurso_set.first.vagas_s1 }} vagas</td>
+                    </tr>
+                    <tr>
+                        <td>2º Semestre:</td>
+                        <td>{{ curso.vagacurso_set.first.vagas_s2 }} vagas</td>
+                    </tr>
+                    {% endif %}
+                    {% endif %}
+
+                    </tbody>
+                </table>
+
+                {% if curso.is_ead and curso.vagacurso_set.exists %}
+                    <table class="table table-striped table-condensed">
+                        <thead>
+                        <tr>
+                            <th> Polo</th>
+                            <th>Vagas no 1º Semestre</th>
+                            <th>Vagas no 2º Semestre</th>
+                            <th>Horário de Funcionamento</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for polo in curso.vagacurso_set.all %}
+                            <tr>
+                                <td class="centered"><a href="{% url 'polo' polo.polo.pk %}">{{ polo.polo.cidade }}</a></td>
+                                <td class="centered">{{ polo.vagas_s1 }}</td>
+                                <td class="centered">{{ polo.vagas_s2 }}</td>
+                                <td>{{ polo.polo.horario_funcionamento }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="item-curso">
+            <h3 class="titulo azul-claro" id="mais-informacoes">Mais Informações<i class="fa fa-plus fa-fw text-muted pull-right"></i></h3>
+            <div class="corpo">
+                <ul class="nav nav-tabs">
+                {% for tipo, documentos in documentos.items %}
+                    <li role="maisinfo" class="{% if forloop.first %}active{% endif %}">
+                        <a data-toggle="tab" href="#{{ tipo|slugify }}">{{ tipo }}</a>
+                    </li>
+                {% endfor %}
+                </ul>
+                <div class="tab-content">
+                    {% for tipo, documentos in documentos.items %}
+                        <div id="{{ tipo|slugify }}" class="tab-pane {% if forloop.first %}active{% endif %}">
+                            <ul class="list-striped">
+                            {% for documento in documentos %}
+                                <li><a href="{{ documento.arquivo.url }}" target="_self"> {{ documento.descricao }}
+                                  <span class="acessibilidade download">(formato {{ documento.arquivo|file_extension }}
+                                      {% if not DEBUG %}{{ documento.arquivo.size|filesizeformat }}{% endif %})</span></a></li>
+                            {% endfor %}
+                            </ul>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    {% else %}
+        <div class="alert alert-info">
+{#            <i class="fa fa-info-circle fa-fw"></i> As informações sobre esse curso ainda não foram publicadas pelo#}
+{#              Coordenador. Para mais informações, entre em contato com o Campus.#}
+            <i class="fa fa-info-circle fa-fw" aria-hidden="true"></i> As informações sobre esse curso ainda não foram publicadas.
+                Para mais informações, entre em contato com a Pró-Reitoria de Ensino.
+        </div>
+    {% endif %}
+{% endblock %}

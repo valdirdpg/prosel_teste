@@ -1,0 +1,28 @@
+<div class="table-responsive">
+    <table class="table table-striped table-condensed">
+        <tbody>
+        <tr>
+            <td>Geral:</td>
+            <td >{{ pontuacao.valor }}</td>
+        </tr>
+        <tr>
+            <td>Português:</td>
+            <td>{{ pontuacao.valor_pt }}</td>
+        </tr>
+        <tr>
+            <td>Matemática:</td>
+            <td>{{ pontuacao.valor_mt }}</td>
+        </tr>
+        {% if inscricao_original.is_integrado %}
+            <tr>
+                <td>História:</td>
+                <td>{{ pontuacao.get_pontuacao_historia_display }}</td>
+            </tr>
+            <tr>
+                <td>Geografia:</td>
+                <td>{{ pontuacao.get_pontuacao_geografia_display }}</td>
+            </tr>
+        {% endif %}
+        </tbody>
+    </table>
+</div>

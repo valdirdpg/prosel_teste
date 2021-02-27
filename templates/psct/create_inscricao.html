@@ -1,0 +1,176 @@
+{% extends "psct/base.html" %}
+{% include '../views/questionario.py' %}
+
+{% block extrahead %}
+    {{ block.super }}
+
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var campus = $("#id_campus");
+            var cotas_nao = $('input[id="id_cotista_1"]');
+            var cotas_sim = $('input[id="id_cotista_0"]');
+            var modalidades = $("#field_modalidade_cota input:radio");
+            var modalidades_div = $("div#field_modalidade_cota");
+            var label_ampla  = $('ul[id="id_modalidade_cota"]').children().first();
+            var ampla_concorrencia = $("#id_modalidade_cota_0");
+            var curso = $("#id_curso");
+            var campus_current = {{ campus_id }};
+            var modalidade_compativel = ampla_concorrencia;
+            var curso_segunda_opcao = $("#id_curso_segunda_opcao")
+            var curso_segunda_opcao_div = $("#field_curso_segunda_opcao");
+            var curso_segunda_opcao_label = $("#field_curso_segunda_opcao label");
+
+            {% autoescape off %}
+                var cursos_json = {{ cursos_json }};
+            {% endautoescape %}
+
+            function update_combobox(campus_id){
+                curso.find('option').remove();
+                var opcao_vazia = '<option value="">---------</option>';
+                curso.append(opcao_vazia);
+                var count = 0;
+                $.each(cursos_json[campus_id], function(key, value)
+                {
+                    curso.append('<option value=' + value.id + '>' + value.name + '</option>');
+                    count = count + 1;
+                });
+                if ( $("#id_curso_segunda_opcao").length ) {
+                    curso_segunda_opcao.find('option').remove();
+                    curso_segunda_opcao.append(opcao_vazia);
+                    $.each(cursos_json[campus_id], function(key, value)
+                    {
+                        curso_segunda_opcao.append('<option value=' + value.id + '>' + value.name + '</option>');
+                    });
+                    if (count > 1) {
+                        curso_segunda_opcao.prop('disabled', false);
+                        curso_segunda_opcao.prop('required', true);
+                        curso_segunda_opcao_div.removeClass('text-muted');
+                        curso_segunda_opcao_label.prop('title', "Este campo é obrigatório");
+                        curso_segunda_opcao_div.addClass('required');
+                    } else {
+                        curso_segunda_opcao.prop('disabled', true);
+                        curso_segunda_opcao.prop('required', false);
+                        curso_segunda_opcao.val("");
+                        curso_segunda_opcao_div.addClass('text-muted');
+                        curso_segunda_opcao_label.prop('title', "");
+                        curso_segunda_opcao_div.removeClass('required');
+                    }
+                }
+            }
+
+            function update_options() {
+                var campus = $("#id_campus");
+                update_combobox(campus.val());
+            }
+
+            if ( curso.val() === "" ){
+                curso.find('option').remove();
+            }
+
+            if (campus_current !== 0){
+                var value = curso.val();
+                var value_segunda = curso_segunda_opcao.val();
+                update_combobox(campus_current);
+                curso.val(value);
+                curso_segunda_opcao.val(value_segunda);
+            }
+
+            function verify_modalidades(){
+                var tem_modalidade_compativel = false;
+                if ({{ is_edit }}) {
+                    modalidades.each(function() {
+                        if ($(this).val() == {{ modalidade_compativel }}) {
+                            $(this).prop('checked', true);
+                            $(this).removeClass('text-muted');
+                            $(this).prop('disabled', false);
+                            modalidade_compativel = $(this);
+                            if ($(this).val() != 3) {
+                                tem_modalidade_compativel = true;
+                            }
+                        } else {
+                            $(this).prop('disabled', true);
+                            $(this).addClass('text-muted');
+                        }
+                    });
+                } else {
+                    modalidades.each(function () {
+                            if ($(this).is(':checked')) {
+                                $(this).prop('disabled', false);
+                                modalidades_div.removeClass('text-muted');
+                                cotas_sim.prop('checked', true);
+                                modalidade_compativel = $(this);
+                                tem_modalidade_compativel = true;
+                            } else {
+                                $(this).prop('disabled', true);
+                                $(this).addClass('text-muted');
+                            }
+                    });
+                }
+                if (!tem_modalidade_compativel) {
+                    label_ampla.prop('disabled', false);
+                    label_ampla.removeClass('text-muted');
+                    ampla_concorrencia.prop('disabled',false)
+                    cotas_nao.prop('checked',true)
+                    ampla_concorrencia.prop('checked',true)
+                    cotas_sim.prop('disabled;', true);
+                    cotas_sim.addClass('text-muted');
+                    {#modalidades_div.hide();#}
+                } else {
+                    cotas_nao.prop('disabled', true);
+                    cotas_nao.addClass('text-muted');
+                }
+            }
+
+            if ({{ hide_modalidades }}) {
+                {#modalidades.prop('disabled', true);#}
+                {#modalidades_div.addClass('text-muted');#}
+            }
+
+            {#label_ampla.hide();#}
+            campus.change(update_options);
+            {#cotas_nao.click(esconder_opcoes_modalidade);#}
+            {#cotas_sim.click(exibir_opcoes_modalidade);#}
+            verify_modalidades();
+            $("#field_cotista").hide();
+        });
+    </script>
+{% endblock %}
+
+{% block breadcrumb %}
+    <li><a href="/">Início</a></li>
+    <li><i class="fa fa-angle-right text-muted"></i></li>
+    <li class="active">Inscrição - Escolha de Curso</li>
+{% endblock %}
+
+{% block conteudo %}
+    <h2 class="titulo verde-escuro">{{ titulo }}</h2>
+    <form method="post" action="" class="form-horizontal">
+        {% csrf_token %}
+        <div class="row form-group">
+            <div class="col-xs-12">
+                <span class="help-block text-justify">
+                    {% block descricao_formulario %}
+                        <p>Conforme edital, toda/o candidata/o concorre, também, às vagas da Ampla Concorrência.</p>
+
+                        <p>Caso a sua modalidade de vaga não esteja prevista no edital para o seu curso, você ainda irá concorrer de acordo com as condições de classificação previstas no edital.</p>
+                    {% endblock %}
+                </span></div>
+            <div class="col-xs-12">
+                <span class="help-block text-justify">
+                    Todos os campos sinalizados com * devem ser obrigatoriamente preenchidos.
+                </span></div>
+            {% comment %}<div class="col-xs-12">
+                <p><strong>
+                    Selecione abaixo o Campus e Curso pra os quais deseja inscrever-se:</strong>
+                </p></div>{% endcomment %}
+        </div>
+
+        {% include 'psct/base/_form.html' %}
+
+        <a class="btn btn-grey" href="{{ back_url }}">Voltar</a>
+        <input type="submit" value="Continuar" class="btn btn-primary pull-right">
+
+    </form>
+
+{% endblock %}

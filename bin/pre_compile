@@ -1,0 +1,1 @@
+echo -e "machine ${GITLAB_HOST}\nlogin ${GITLAB_DEPLOY_USER}\npassword ${GITLAB_DEPLOY_TOKEN}" > ~/.netrc

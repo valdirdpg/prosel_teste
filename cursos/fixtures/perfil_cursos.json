@@ -1,0 +1,298 @@
+[
+  {
+    "model": "cursos.curso",
+    "pk": 3,
+    "fields": {
+      "nome": "P\u00f3s-Gradua\u00e7\u00e3o em Engenharia El\u00e9trica",
+      "perfil_unificado": "O Programa de P\u00f3s-Gradua\u00e7\u00e3o em Engenharia El\u00e9trica - PPgEE - do IFPB iniciou suas atividades em 2012, com o oferecimento do curso de p\u00f3s-gradua\u00e7\u00e3o stricto sensu de Mestrado. O Programa tem por objetivo formar pesquisadores, para os setores privado e p\u00fablico, docentes e outros profissionais de alto n\u00edvel nas \u00e1reas de atua\u00e7\u00e3o da Engenharia El\u00e9trica, especialmente para o desenvolvimento de atividades ligadas \u00e0 pesquisa, ao desenvolvimento cient\u00edfico e tecnol\u00f3gico, e \u00e0 doc\u00eancia, al\u00e9m de contribuir para a evolu\u00e7\u00e3o humana na ci\u00eancia, tecnologia e cultura, especialmente nas quest\u00f5es de interesse nacional."
+    }
+  },
+  {
+    "model": "cursos.curso",
+    "pk": 5,
+    "fields": {
+      "nome": "F\u00edsica",
+      "perfil_unificado": "O Licenciado em F\u00edsica \u00e9 o professor que planeja, organiza e desenvolve atividades e materiais relativos ao Ensino de F\u00edsica. Sua atribui\u00e7\u00e3o central \u00e9 a doc\u00eancia na Educa\u00e7\u00e3o B\u00e1sica, que requer s\u00f3lidos conhecimentos sobre os fundamentos da F\u00edsica, sobre seu desenvolvimento hist\u00f3rico e suas rela\u00e7\u00f5es com diversas \u00e1reas; assim como sobre estrat\u00e9gias para transposi\u00e7\u00e3o do conhecimento da F\u00edsica em saber escolar. Al\u00e9m de trabalhar diretamente na sala de aula, o licenciado elabora e analisa materiais did\u00e1ticos, como livros, textos, v\u00eddeos, programas computacionais, ambientes virtuais de aprendizagem, entre outros. Realiza ainda pesquisas em Ensino de F\u00edsica, coordena e supervisiona equipes de trabalho. Em sua atua\u00e7\u00e3o, prima pelo desenvolvimento do educando, incluindo sua forma\u00e7\u00e3o \u00e9tica, a constru\u00e7\u00e3o de sua autonomia intelectual e de seu pensamento cr\u00edtico."
+    }
+  },
+  {
+    "model": "cursos.curso",
+    "pk": 6,
+    "fields": {
+      "nome": "Matem\u00e1tica",
+      "perfil_unificado": "O Licenciado em Matem\u00e1tica \u00e9 o professor que planeja, organiza e desenvolve atividades e materiais relativos \u00e0 Educa\u00e7\u00e3o Matem\u00e1tica. Sua atribui\u00e7\u00e3o central \u00e9 a doc\u00eancia na Educa\u00e7\u00e3o B\u00e1sica, que requer s\u00f3lidos conhecimentos sobre os fundamentos da Matem\u00e1tica, sobre seu desenvolvimento hist\u00f3rico e suas rela\u00e7\u00f5es com diversas \u00e1reas; assim como sobre estrat\u00e9gias para transposi\u00e7\u00e3o do conhecimento matem\u00e1tico em saber escolar. Al\u00e9m de trabalhar diretamente na sala de aula, o licenciado elabora e analisa materiais did\u00e1ticos, como livros, textos, v\u00eddeos, programas computacionais, ambientes virtuais de aprendizagem, entre outros. Realiza ainda pesquisas em Educa\u00e7\u00e3o Matem\u00e1tica, coordena e supervisiona equipes de trabalho. Em sua atua\u00e7\u00e3o, prima pelo desenvolvimento do educando, incluindo sua forma\u00e7\u00e3o \u00e9tica, a constru\u00e7\u00e3o de sua autonomia intelectual e de seu pensamento cr\u00edtico."
+    }
+  },
+  {
+    "model": "cursos.curso",
+    "pk": 7,
+    "fields": {
+      "nome": "Qu\u00edmica",
+      "perfil_unificado": "O Licenciado em Qu\u00edmica \u00e9 o professor que planeja, organiza e desenvolve atividades e materiais relativos \u00e0 Educa\u00e7\u00e3o Qu\u00edmica. Sua atribui\u00e7\u00e3o central \u00e9 a doc\u00eancia na Educa\u00e7\u00e3o B\u00e1sica, que requer s\u00f3lidos conhecimentos sobre os fundamentos da Qu\u00edmica, sobre seu desenvolvimento hist\u00f3rico e suas rela\u00e7\u00f5es com diversas \u00e1reas; assim como sobre estrat\u00e9gias para transposi\u00e7\u00e3o do conhecimento qu\u00edmico em saber escolar. Al\u00e9m de trabalhar diretamente na sala de aula, o licenciado elabora e analisa materiais did\u00e1ticos, como livros, textos, v\u00eddeos, programas computacionais, ambientes virtuais de aprendizagem, entre outros. Realiza ainda pesquisas em Educa\u00e7\u00e3o Qu\u00edmica, coordena e supervisiona equipes de trabalho. Em sua atua\u00e7\u00e3o, prima pelo desenvolvimento do educando, incluindo sua forma\u00e7\u00e3o \u00e9tica, a constru\u00e7\u00e3o de sua autonomia intelectual e de seu pensamento cr\u00edtico."
+    }
+  },
+  {
+    "model": "cursos.curso",
+    "pk": 8,
+    "fields": {
+      "nome": "Ci\u00eancias Biol\u00f3gicas",
+      "perfil_unificado": "O docente capacitado para exercer a atividade profissional deve ter uma s\u00f3lida base comum cient\u00edfico-tecnol\u00f3gico-human\u00edstica, associada aos campos de saber da biologia, seguida de aprofundamento de conhecimentos espec\u00edficos nas habilita\u00e7\u00f5es oferecidas pelo curso."
+    }
+  },
+  {
+    "model": "cursos.curso",
+    "pk": 9,
+    "fields": {
+      "nome": "Educa\u00e7\u00e3o F\u00edsica",
+      "perfil_unificado": "O Licenciado em Educa\u00e7\u00e3o F\u00edsica \u00e9 o professor que planeja, organiza e desenvolve atividades e materiais relativos \u00e0 Educa\u00e7\u00e3o F\u00edsica. Sua atribui\u00e7\u00e3o central \u00e9 a doc\u00eancia na Educa\u00e7\u00e3o B\u00e1sica, que requer s\u00f3lidos conhecimentos sobre os fundamentos da Educa\u00e7\u00e3o F\u00edsica, sobre seu desenvolvimento hist\u00f3rico e suas rela\u00e7\u00f5es com diversas \u00e1reas; assim como sobre estrat\u00e9gias para transposi\u00e7\u00e3o do conhecimento da Educa\u00e7\u00e3o F\u00edsica em saber escolar. Al\u00e9m de trabalhar diretamente na sala de aula, o licenciado elabora e analisa materiais did\u00e1ticos, como livros, textos, v\u00eddeos, programas computacionais, ambientes virtuais de aprendizagem, entre outros. Realiza ainda pesquisas em Educa\u00e7\u00e3o F\u00edsica, coordena e supervisiona equipes de trabalho. Em sua atua\u00e7\u00e3o, prima pelo desenvolvimento do educando, incluindo sua forma\u00e7\u00e3o \u00e9tica, a constru\u00e7\u00e3o de sua autonomia intelectual e de seu pensamento cr\u00edtico."
+    }
+  },
+  {
+    "model": "cursos.curso",
+    "pk": 10,
+    "fields": {
+      "nome": "Administra\u00e7\u00e3o",
+      "perfil_unificado": "O Bacharel em Administra\u00e7\u00e3o ou Administrador atua no planejamento, organiza\u00e7\u00e3o, dire\u00e7\u00e3o e controle das Institui\u00e7\u00f5es, gerindo as quest\u00f5es financeiras, materiais e de pessoas. Em sua atividade, utiliza as ferramentas cient\u00edficas, t\u00e9cnicas, sociais e econ\u00f4micas da produ\u00e7\u00e3o e do gerenciamento. Nos processos de tomada de decis\u00e3o, proporciona a circula\u00e7\u00e3o de novas informa\u00e7\u00f5es, apresentando solu\u00e7\u00f5es flex\u00edveis e adapt\u00e1veis ao contexto organizacional. Tem ainda como fun\u00e7\u00e3o fixar objetivos, organizar e alocar recursos financeiros e tecnol\u00f3gicos, liderar pessoas e equipes, negociar, controlar e avaliar resultados, compreendendo o contexto sociopol\u00edtico em que atua e exercitando a capacidade de comunica\u00e7\u00e3o e de relacionamento. Em sua atua\u00e7\u00e3o, considera a \u00e9tica, a seguran\u00e7a e as quest\u00f5es s\u00f3cio-ambientais."
+    }
+  },
+  {
+    "model": "cursos.curso",
+    "pk": 11,
+    "fields": {
+      "nome": "Engenharia Civil",
+      "perfil_unificado": "O Bacharel em Engenharia Civil ou Engenheiro Civil atua, de forma generalista, na concep\u00e7\u00e3o, planejamento, projeto, constru\u00e7\u00e3o, opera\u00e7\u00e3o e manuten\u00e7\u00e3o de edifica\u00e7\u00f5es e de infraestruturas (rodovias, pontes, ferrovias, hidrovias, barragens, portos, aeroportos, entre outras). Em sua atividade, acompanha o desenvolvimento obras de edifica\u00e7\u00f5es e infraestruturas, elabora or\u00e7amentos, garante a padroniza\u00e7\u00e3o, realiza a mensura\u00e7\u00e3o e o controle de qualidade. Acompanha equipes de instala\u00e7\u00e3o, montagem, opera\u00e7\u00e3o, reparo e manuten\u00e7\u00e3o de obras. Executa desenho t\u00e9cnico e se responsabiliza por an\u00e1lise, experimenta\u00e7\u00e3o, ensaio, divulga\u00e7\u00e3o e produ\u00e7\u00e3o t\u00e9cnica especializada. Coordena e supervisiona equipes de trabalho, realiza pesquisa cient\u00edfica e tecnol\u00f3gica e estudos de viabilidade t\u00e9cnico-econ\u00f4mica; executa e fiscaliza obras e servi\u00e7os t\u00e9cnicos; efetua vistorias, per\u00edcias e avalia\u00e7\u00f5es, emitindo laudos e pareceres. Em sua atua\u00e7\u00e3o, considera a \u00e9tica, a seguran\u00e7a, a legisla\u00e7\u00e3o e os impactos socioambientais."
+    }
+  },
+  {
+    "model": "cursos.curso",
+    "pk": 12,
+    "fields": {
+      "nome": "Engenharia El\u00e9trica",
+      "perfil_unificado": "O Bacharel em Engenharia El\u00e9trica ou Engenheiro Eletricista atua, de forma generalista, no desenvolvimento e integra\u00e7\u00e3o de sistemas de gera\u00e7\u00e3o, transmiss\u00e3o e distribui\u00e7\u00e3o de energia el\u00e9trica. Em sua atividade, otimiza, projeta, instala, mant\u00e9m e opera sistemas, instala\u00e7\u00f5es, equipamentos e dispositivos eletroeletr\u00f4nicos. Projeta sistemas de medi\u00e7\u00e3o e de instrumenta\u00e7\u00e3o eletroeletr\u00f4nica, de acionamentos de m\u00e1quinas; sistemas de ilumina\u00e7\u00e3o, de prote\u00e7\u00e3o contra descargas atmosf\u00e9ricas e de aterramento. Especifica m\u00e1quinas, equipamentos, materiais, componentes e dispositivos eletromec\u00e2nicos e eletromagn\u00e9ticos. Elabora projetos e estudos de efici\u00eancia energ\u00e9tica e de fontes de energia renov\u00e1vel. Coordena e supervisiona equipes de trabalho; realiza pesquisa cient\u00edfica e tecnol\u00f3gica e estudos de viabilidade t\u00e9cnico-econ\u00f4mica; executa e fiscaliza obras e servi\u00e7os t\u00e9cnicos; efetua vistorias, per\u00edcias e avalia\u00e7\u00f5es, emitindo laudos e pareceres. Em sua atua\u00e7\u00e3o, considera a \u00e9tica, a seguran\u00e7a e os impactos s\u00f3cio-ambientais."
+    }
+  },
+  {
+    "model": "cursos.curso",
+    "pk": 13,
+    "fields": {
+      "nome": "Medicina Veterin\u00e1ria",
+      "perfil_unificado": "O Bacharel em Medicina Veterin\u00e1ria ou M\u00e9dico Veterin\u00e1rio atua na pr\u00e1tica cl\u00ednica aos animais em todas as suas modalidades. Em sua atividade, aplica conhecimentos de cl\u00ednica, cirurgia e fisiopatologia da reprodu\u00e7\u00e3o com \u00eanfase nos aspectos investigativos e laboratoriais, visando \u00e0 determina\u00e7\u00e3o de agentes e de fatores causais, de diagn\u00f3sticos e de tratamentos m\u00e9dicos ou cir\u00fargicos de enfermidades de diferentes naturezas. Atua na aten\u00e7\u00e3o \u00e0 sa\u00fade animal e \u00e0 p\u00fablica, elaborando, executando e gerenciando sistemas de cria\u00e7\u00e3o, manejo, nutri\u00e7\u00e3o, biot\u00e9cnicas da reprodu\u00e7\u00e3o e melhoramento gen\u00e9tico, atentando ao bem-estar animal. Executa a inspe\u00e7\u00e3o sanit\u00e1ria e tecnol\u00f3gica dos produtos de origem animal e de seus derivados. Planeja, executa, gerencia e avalia programas em sa\u00fade, epidemiologia, controle e erradica\u00e7\u00e3o das enfermidades infecto-contagiosas, parasit\u00e1rias e zoonoses, do saneamento ambiental, da produ\u00e7\u00e3o e do controle de produtos biol\u00f3gicos. Coordena e supervisiona equipes de trabalho. Em sua atua\u00e7\u00e3o, considera a \u00e9tica, a seguran\u00e7a e os impactos s\u00f3cio-ambientais."
+    }
+  },
+  {
+    "model": "cursos.curso",
+    "pk": 14,
+    "fields": {
+      "nome": "Gest\u00e3o Ambiental",
+      "perfil_unificado": "O tecn\u00f3logo em Gest\u00e3o Ambiental planeja, gerencia e executa as atividades de diagn\u00f3stico, avalia\u00e7\u00e3o de impacto, proposi\u00e7\u00e3o de medidas mitigadoras \u2013 corretivas e preventivas \u2013, recupera\u00e7\u00e3o de \u00e1reas degradadas, acompanhamento e monitoramento da qualidade ambiental. Regula\u00e7\u00e3o do uso, controle, prote\u00e7\u00e3o e conserva\u00e7\u00e3o do meio ambiente, avalia\u00e7\u00e3o de conformidade legal, an\u00e1lise de impacto ambiental, elabora\u00e7\u00e3o de laudos e pareceres s\u00e3o algumas das atribui\u00e7\u00f5es deste profissional, podendo elaborar e implantar ainda pol\u00edticas e programas de educa\u00e7\u00e3o ambiental, contribuindo assim para a melhoria da qualidade de vida e a preserva\u00e7\u00e3o da natureza."
+    }
+  },
+  {
+    "model": "cursos.curso",
+    "pk": 15,
+    "fields": {
+      "nome": "Automa\u00e7\u00e3o Industrial",
+      "perfil_unificado": "O tecn\u00f3logo em Automa\u00e7\u00e3o Industrial \u00e9 um profissional a servi\u00e7o da moderniza\u00e7\u00e3o das t\u00e9cnicas de produ\u00e7\u00e3o utilizadas no setor industrial, atuando no planejamento, instala\u00e7\u00e3o e supervis\u00e3o de sistemas de integra\u00e7\u00e3o e automa\u00e7\u00e3o. Este profissional atua na automatiza\u00e7\u00e3o dos chamados \u201cprocessos cont\u00ednuos\u201d, que envolvem a transforma\u00e7\u00e3o ininterrupta de materiais, por meio de opera\u00e7\u00f5es biofisicoqu\u00edmicas. Na sua atividade de execu\u00e7\u00e3o de projetos, instala\u00e7\u00e3o e supervis\u00e3o de sistemas de automa\u00e7\u00e3o, s\u00e3o bastante empregadas tecnologias como controladores l\u00f3gicos, sensores, transdutores, redes industriais, controles de temperatura, press\u00e3o, vaz\u00e3o, atuadores eletropneum\u00e1ticos, sistemas supervis\u00f3rios, entre outras."
+    }
+  },
+  {
+    "model": "cursos.curso",
+    "pk": 16,
+    "fields": {
+      "nome": "Gest\u00e3o Comercial",
+      "perfil_unificado": "Focado nas transa\u00e7\u00f5es comerciais, o tecn\u00f3logo em Gest\u00e3o  comercial presta-se \u00e0 organiza\u00e7\u00e3o, atendendo \u00e0s diversas formas de interven\u00e7\u00e3o (varejo, atacado, representa\u00e7\u00e3o, etc.) de qualquer setor.  Como conhecedor das condi\u00e7\u00f5es de viabilidade econ\u00f4mico-financeiro-tribut\u00e1ria, dos instrumentos de relacionamento com o cliente, dos princ\u00edpios da qualidade, atua no planejamento, opera\u00e7\u00e3o, implementa\u00e7\u00e3o e atualiza\u00e7\u00e3o de sistemas de informa\u00e7\u00f5es comerciais que proporcionem maior rentabilidade e flexibilidade ao processo de comercializa\u00e7\u00e3o. Atua no fluxo de informa\u00e7\u00f5es com os clientes, proporcionando maior visibilidade institucional da empresa, definindo estrat\u00e9gias de venda de servi\u00e7os e produtos, gerenciando a rela\u00e7\u00e3o entre custo e pre\u00e7o final."
+    }
+  },
+  {
+    "model": "cursos.curso",
+    "pk": 17,
+    "fields": {
+      "nome": "Neg\u00f3cios Imobili\u00e1rios",
+      "perfil_unificado": "Ind\u00fastria de constru\u00e7\u00e3o civil, empresas imobili\u00e1rias, administradoras de im\u00f3veis, condom\u00ednios, escrit\u00f3rios de corretagem e de advocacia, al\u00e9m de incorporadoras, s\u00e3o algumas das possibilidades profissionais de atua\u00e7\u00e3o do tecn\u00f3logo em Neg\u00f3cios Imobili\u00e1rios. A partir do estudo das condi\u00e7\u00f5es mercadol\u00f3gicas do setor, identifica oportunidades comerciais para o crescimento regional, desenvolve atividades de planejamento, opera\u00e7\u00e3o e controle da comercializa\u00e7\u00e3o de bens im\u00f3veis, podendo desempenhar tamb\u00e9m fun\u00e7\u00f5es de venda e p\u00f3s-venda de im\u00f3veis."
+    }
+  },
+  {
+    "model": "cursos.curso",
+    "pk": 18,
+    "fields": {
+      "nome": "An\u00e1lise e Desenvolvimento de Sistemas",
+      "perfil_unificado": "O tecn\u00f3logo em An\u00e1lise e Desenvolvimento de Sistemas analisa, projeta, documenta, especifica, testa, implanta e mant\u00e9m sistemas computacionais de informa\u00e7\u00e3o. Este profissional trabalha, tamb\u00e9m, com ferramentas computacionais, equipamentos de inform\u00e1tica e metodologia de projetos na produ\u00e7\u00e3o de sistemas. Racioc\u00ednio l\u00f3gico, emprego de linguagens de programa\u00e7\u00e3o e de metodologias de constru\u00e7\u00e3o de projetos, preocupa\u00e7\u00e3o com a qualidade, usabilidade, robustez, integridade e seguran\u00e7a de programas computacionais s\u00e3o fundamentais \u00e0 atua\u00e7\u00e3o deste profissional."
+    }
+  },
+  {
+    "model": "cursos.curso",
+    "pk": 19,
+    "fields": {
+      "nome": "Geoprocessamento",
+      "perfil_unificado": "O tecn\u00f3logo em Geoprocessamento utiliza sistemas computacionais voltados \u00e0 aquisi\u00e7\u00e3o, armazenamento, processamento, an\u00e1lise e apresenta\u00e7\u00e3o de informa\u00e7\u00f5es sobre o meio f\u00edsico referenciadas espacialmente. Dominando fundamentos de inform\u00e1tica, cartografia, sensoriamento remoto e an\u00e1lise espacial, este profissional levanta informa\u00e7\u00f5es cartogr\u00e1ficas de pontos espec\u00edficos de determinado territ\u00f3rio, imprescind\u00edveis \u00e0s atividades de planejamento urbano e ordena\u00e7\u00e3o do uso do solo, levantamento de informa\u00e7\u00f5es socioecon\u00f4micas, gerenciamento ambiental, de sistemas de transporte, de processos agr\u00edcolas, entre outras."
+    }
+  },
+  {
+    "model": "cursos.curso",
+    "pk": 20,
+    "fields": {
+      "nome": "Redes de Computadores",
+      "perfil_unificado": "O tecn\u00f3logo em Redes de Computadores \u00e9 o profissional que elabora, implanta, gerencia e mant\u00e9m projetos l\u00f3gicos e f\u00edsicos de redes de computadores locais e de longa dist\u00e2ncia. Conectividade entre sistemas heterog\u00eaneos, diagn\u00f3stico e solu\u00e7\u00e3o de problemas relacionados \u00e0 comunica\u00e7\u00e3o de dados, seguran\u00e7a de redes, avalia\u00e7\u00e3o de desempenho, configura\u00e7\u00e3o de servi\u00e7os de rede e de sistema de comunica\u00e7\u00e3o de dados s\u00e3o \u00e1reas de desempenho deste profissional. Conhecimentos de instala\u00e7\u00f5es el\u00e9tricas, teste f\u00edsico e l\u00f3gico de redes, normas de instala\u00e7\u00f5es e utiliza\u00e7\u00e3o de instrumentos de medi\u00e7\u00e3o e seguran\u00e7a s\u00e3o requisitos \u00e0 atua\u00e7\u00e3o deste profissional."
+    }
+  },
+  {
+    "model": "cursos.curso",
+    "pk": 21,
+    "fields": {
+      "nome": "Sistemas de Telecomunica\u00e7\u00f5es",
+      "perfil_unificado": "O tecn\u00f3logo em Sistemas de Telecomunica\u00e7\u00f5es atua desde a fonte de informa\u00e7\u00e3o at\u00e9 o destino, passando pelo processamento \u2013 no transmissor e receptor \u2013 \u00e0 transmiss\u00e3o. Assim, este profissional atua planejando, implantando e operando sistemas de telecomunica\u00e7\u00f5es. Processamento da informa\u00e7\u00e3o, elementos constituintes das redes de telecomunica\u00e7\u00f5es e eletr\u00f4nica, s\u00e3o fundamentais para o desempenho deste profissional, cujo campo de atua\u00e7\u00e3o inclui ind\u00fastrias, empresas do setor de telefonia fixa e m\u00f3vel, telem\u00e1tica, televis\u00e3o aberta e por assinatura, internet, radiodifus\u00e3o, radiotransmiss\u00e3o, dentre outros."
+    }
+  },
+  {
+    "model": "cursos.curso",
+    "pk": 22,
+    "fields": {
+      "nome": "Sistemas para Internet",
+      "perfil_unificado": "O tecn\u00f3logo em Sistemas para Internet ocupa-se do desenvolvimento de programas, de interfaces e aplicativos, do com\u00e9rcio e do marketing eletr\u00f4nicos, al\u00e9m de p\u00e1ginas e portais para internet e intranet. Este profissional gerencia projetos de sistemas, inclusive com acesso a banco de dados, desenvolvendo projetos de aplica\u00e7\u00f5es para a rede mundial de computadores e integra m\u00eddias nas p\u00e1ginas da internet. Este profissional atua com tecnologias emergentes como: computa\u00e7\u00e3o m\u00f3vel, redes sem fio e sistemas distribu\u00eddos. Cuidar da implanta\u00e7\u00e3o, atualiza\u00e7\u00e3o, manuten\u00e7\u00e3o e seguran\u00e7a dos sistemas para internet tamb\u00e9m s\u00e3o suas atribui\u00e7\u00f5es."
+    }
+  },
+  {
+    "model": "cursos.curso",
+    "pk": 23,
+    "fields": {
+      "nome": "Telem\u00e1tica",
+      "perfil_unificado": "O tecn\u00f3logo em Telem\u00e1tica atua planejando, desenvolvendo, implantando e gerenciando servi\u00e7os inform\u00e1ticos por meio de redes de telecomunica\u00e7\u00f5es. Projetos f\u00edsicos e l\u00f3gicos de redes convergentes; monitoramento e controle; desenvolvimento de protocolos e aplica\u00e7\u00f5es para comunica\u00e7\u00e3o de dados que associem meios de inform\u00e1tica e de telecomunica\u00e7\u00f5es s\u00e3o possibilidades de atua\u00e7\u00e3o deste profissional, cujo campo de atua\u00e7\u00e3o inclui empresas que utilizam essas tecnologias de modo integrado, a exemplo da TV digital."
+    }
+  },
+  {
+    "model": "cursos.curso",
+    "pk": 24,
+    "fields": {
+      "nome": "Constru\u00e7\u00e3o de Edif\u00edcios",
+      "perfil_unificado": "O tecn\u00f3logo em Constru\u00e7\u00e3o de Edif\u00edcios atua no gerenciamento, planejamento e execu\u00e7\u00e3o de obras de edif\u00edcios. Ele \u00e9 o profissional que orienta, fiscaliza e acompanha o desenvolvimento de todas as etapas deste processo, incluindo desde o planejamento e acompanhamento de cronogramas f\u00edsico-financeiros, at\u00e9 o gerenciamento de res\u00edduos das obras, objetivando, em todas estas etapas, seguran\u00e7a, otimiza\u00e7\u00e3o de recursos e respeito ao meio ambiente. Atua tamb\u00e9m na restaura\u00e7\u00e3o e manuten\u00e7\u00e3o de edifica\u00e7\u00f5es, comercializa\u00e7\u00e3o e log\u00edstica de materiais de constru\u00e7\u00e3o."
+    }
+  },
+  {
+    "model": "cursos.curso",
+    "pk": 25,
+    "fields": {
+      "nome": "Design de Interiores",
+      "perfil_unificado": "O tecn\u00f3logo em Design de Interiores trabalha em empresas de design e decora\u00e7\u00e3o, construtoras, galerias de arte, ou mesmo autonomamente, este profissional elabora projetos de interiores, equacionando fatores est\u00e9ticos, simb\u00f3licos, ergon\u00f4micos e t\u00e9cnicos, considerando tamb\u00e9m quest\u00f5es socioecon\u00f4micas e culturais. A pesquisa de tend\u00eancias de comportamento, cores, formas, texturas e acabamentos; a representa\u00e7\u00e3o gr\u00e1fica em plantas baixas, cortes e perspectivas; a proje\u00e7\u00e3o de ocupa\u00e7\u00e3o, mobili\u00e1rio e fluxos do espa\u00e7o proposto, inclusive jardins, al\u00e9m da an\u00e1lise de viabilidade e funcionalidade do projeto, s\u00e3o algumas das atividades deste profissional."
+    }
+  },
+  {
+    "model": "cursos.curso",
+    "pk": 26,
+    "fields": {
+      "nome": "Design Gr\u00e1fico",
+      "perfil_unificado": "O tecn\u00f3logo em Design Gr\u00e1fico mobiliza compet\u00eancias das artes, comunica\u00e7\u00e3o e design. Planeja e executa a programa\u00e7\u00e3o visual de jornais, revistas, livros e outros materiais impressos, produz imagens, cria e edita infogr\u00e1ficos, p\u00e1ginas e portais da internet e anima\u00e7\u00f5es em meio digital. Desenvolve linguagens eficazes para a usabilidade de suportes digitais, combinando conceitos de navegabilidade e interatividade. Elabora projetos gr\u00e1ficos, equacionando fatores est\u00e9ticos, simb\u00f3licos e t\u00e9cnicos, considerando tamb\u00e9m quest\u00f5es socioecon\u00f4micas, culturais e ambientais. Pode atuar em empresas jornal\u00edsticas, cinematogr\u00e1ficas, escrit\u00f3rios de design e ag\u00eancias de publicidade e propaganda."
+    }
+  },
+  {
+    "model": "cursos.curso",
+    "pk": 27,
+    "fields": {
+      "nome": "Seguran\u00e7a no Trabalho",
+      "perfil_unificado": "O tecn\u00f3logo em Seguran\u00e7a no Trabalho planeja, implanta, gerencia e controla os sistemas de seguran\u00e7a laboral. Comp\u00f5e equipes multidisciplinares em institui\u00e7\u00f5es, como membro do sistema de sa\u00fade e seguran\u00e7a no trabalho. Desempenha atividades de vistoria, per\u00edcia, avalia\u00e7\u00e3o e emiss\u00e3o de pareceres sobre a qualidade dos diversos processos e condi\u00e7\u00f5es de trabalho, bem como, pesquisa e aplica\u00e7\u00e3o tecnol\u00f3gica. Sua atua\u00e7\u00e3o visa \u00e0 qualidade de vida dos trabalhadores e do meio ambiente, por meio da promo\u00e7\u00e3o da sa\u00fade, preven\u00e7\u00e3o de acidentes, doen\u00e7as do trabalho e acidentes industriais com impacto sobre os ecossistemas."
+    }
+  },
+  {
+    "model": "cursos.curso",
+    "pk": 28,
+    "fields": {
+      "nome": "Alimentos",
+      "perfil_unificado": "O tecn\u00f3logo em Alimentos planeja, elabora, gerencia e mant\u00e9m os processos relacionados ao beneficiamento, industrializa\u00e7\u00e3o e conserva\u00e7\u00e3o de alimentos. Seu campo de atua\u00e7\u00e3o abrange desde moinhos, ind\u00fastrias aliment\u00edcias, f\u00e1bricas de conservas at\u00e9 institui\u00e7\u00f5es de pesquisas. Este profissional ainda supervisiona as v\u00e1rias fases dos processos de industrializa\u00e7\u00e3o de alimentos, desenvolve novos produtos, monitora a manuten\u00e7\u00e3o de equipamentos, coordena programas e trabalhos nas \u00e1reas de conserva\u00e7\u00e3o, controle de qualidade e otimiza\u00e7\u00e3o dos processos industriais do setor na perspectiva de viabilidade econ\u00f4mica e preserva\u00e7\u00e3o ambiental."
+    }
+  },
+  {
+    "model": "cursos.curso",
+    "pk": 29,
+    "fields": {
+      "nome": "Meio Ambiente",
+      "perfil_unificado": "Coleta, armazena e interpreta informa\u00e7\u00f5es, dados e documenta\u00e7\u00f5es ambientais. Elabora relat\u00f3rios e estudos ambientais. Prop\u00f5e medidas para a minimiza\u00e7\u00e3o dos impactos e recupera\u00e7\u00e3o de ambientes j\u00e1 degradados. Executa sistemas de gest\u00e3o ambiental. Organiza programas de Educa\u00e7\u00e3o ambiental com base no monitoramento, corre\u00e7\u00e3o e preven\u00e7\u00e3o das atividades autr\u00f3picas, conserva\u00e7\u00e3o dos recursos naturais atrav\u00e9s de an\u00e1lises prevencionista. Organiza redu\u00e7\u00e3o, reuso e reciclagem de res\u00edduos e/ou recursos utilizados em processos. Identifica os padr\u00f5es de produ\u00e7\u00e3o e consumo de energia. Realiza levantamentos ambientais. Opera sistemas de tratamento de poluentes e res\u00edduos s\u00f3lidos. Relaciona os sistemas econ\u00f4micos e suas intera\u00e7\u00f5es com o meio ambiente. Realiza e coordena o sistema de coleta seletiva. Executa plano de a\u00e7\u00e3o e manejo de recursos naturais. Elabora relat\u00f3rio peri\u00f3dico das atividades e modifica\u00e7\u00f5es dos aspectos e impactos ambientais de um processo, indicando as consequ\u00eancias de modifica\u00e7\u00f5es."
+    }
+  },
+  {
+    "model": "cursos.curso",
+    "pk": 30,
+    "fields": {
+      "nome": "Recursos Pesqueiros",
+      "perfil_unificado": "Realiza opera\u00e7\u00f5es do setor pesqueiro com base no manejo e na qualidade dos produtos. Aprimora a sustentabilidade dos recursos naturais e da biodiversidade aqu\u00edcola. Analisa e avalia os aspectos t\u00e9cnicos, sociais e econ\u00f4micos da cadeia produtiva do setor pesqueiro. Monitora o uso da \u00e1gua com vistas \u00e0 explora\u00e7\u00e3o dos recursos pesqueiros. Planeja, organiza, dirige e controla as opera\u00e7\u00f5es de pesca. Monitora instala\u00e7\u00f5es, montagens, opera\u00e7\u00f5es e manuseios de apetrechos, m\u00e1quinas e equipamentos, processamento e refrigera\u00e7\u00e3o dos produtos."
+    }
+  },
+  {
+    "model": "cursos.curso",
+    "pk": 31,
+    "fields": {
+      "nome": "Transporte Aquavi\u00e1rio",
+      "perfil_unificado": "Opera, coordena e fiscaliza o transporte aquavi\u00e1rio de pessoas e de cargas. Opera movimenta\u00e7\u00e3o em terminal, log\u00edstica e navega\u00e7\u00e3o. Coordena e fiscaliza atividades de presta\u00e7\u00e3o de servi\u00e7os de transporte aquavi\u00e1rio."
+    }
+  },
+  {
+    "model": "cursos.curso",
+    "pk": 32,
+    "fields": {
+      "nome": "Experimental em N\u00e1utica",
+      "perfil_unificado": "Atua na prepara\u00e7\u00e3o dos navios para os procedimentos e manobras marinheiras. Distribui aparelhos de for\u00e7a para manobra de peso, carga e descarga do navio. Coordena equipes de trabalho no conv\u00e9s de navios. Navega\u00e7\u00e3o por instrumentos em navios e embarca\u00e7\u00f5es de porte m\u00e9dio, de acordo com as normas de navega\u00e7\u00e3o internacionais. Executa a manuten\u00e7\u00e3o dos equipamentos no conv\u00e9s e servi\u00e7os de pintura e trabalhos em cabos de fibras especiais e de arame. (Experimental)"
+    }
+  },
+  {
+    "model": "cursos.curso",
+    "pk": 33,
+    "fields": {
+      "nome": "Pesca",
+      "perfil_unificado": "Planeja e executa atividades relacionadas \u00e0 pesca extrativa, opera\u00e7\u00f5es de embarque e desembarque. Conduz embarca\u00e7\u00e3o. Utiliza procedimentos de arma\u00e7\u00e3o. Constr\u00f3i e mant\u00e9m apetrechos de pesca (redes, iscas, armadilhas e anz\u00f3is). Realiza procedimentos de beneficiamento e processamento do pescado nas embarca\u00e7\u00f5es. Opera equipamentos como radares, b\u00fassolas, GPS, bar\u00f4metros."
+    }
+  },
+  {
+    "model": "cursos.curso",
+    "pk": 34,
+    "fields": {
+      "nome": "Edifica\u00e7\u00f5es",
+      "perfil_unificado": "Desenvolve e executa projetos de edifica\u00e7\u00f5es. Planeja a execu\u00e7\u00e3o e a elabora\u00e7\u00e3o de or\u00e7amento de obras. Desenvolve projetos e pesquisas tecnol\u00f3gicas na \u00e1rea de edifica\u00e7\u00f5es. Coordena a execu\u00e7\u00e3o de servi\u00e7os de manuten\u00e7\u00e3o de equipamentos e de instala\u00e7\u00f5es em edifica\u00e7\u00f5es."
+    }
+  },
+  {
+    "model": "cursos.curso",
+    "pk": 35,
+    "fields": {
+      "nome": "Eletromec\u00e2nica",
+      "perfil_unificado": "Planeja, projeta, executa, inspeciona e instala m\u00e1quinas e equipamentos eletromec\u00e2nicos. Realiza usinagem e soldagem de pe\u00e7as. Interpreta esquemas de montagem e desenhos t\u00e9cnicos. Realiza montagem, manuten\u00e7\u00e3o e entrega t\u00e9cnica de m\u00e1quinas e equipamentos eletromec\u00e2nicos. Realiza medi\u00e7\u00f5es, testes e calibra\u00e7\u00f5es de equipamentos eletromec\u00e2nicos. Executa procedimentos de controle de qualidade e gest\u00e3o."
+    }
+  },
+  {
+    "model": "cursos.curso",
+    "pk": 36,
+    "fields": {
+      "nome": "Inform\u00e1tica",
+      "perfil_unificado": "Instala sistemas operacionais para desktop e servidores. Desenvolve e documenta aplica\u00e7\u00f5es para desktop com acesso a web e a banco de dados. Realiza manuten\u00e7\u00e3o de computadores de uso geral. Instala e configura redes de computadores locais de pequeno porte."
+    }
+  },
+  {
+    "model": "cursos.curso",
+    "pk": 37,
+    "fields": {
+      "nome": "Manuten\u00e7\u00e3o e Suporte em Inform\u00e1tica",
+      "perfil_unificado": "Executa montagem, instala\u00e7\u00e3o e configura\u00e7\u00e3o de equipamentos de inform\u00e1tica. Instala e configura sistemas operacionais desktop e aplicativos. Realiza manuten\u00e7\u00e3o preventiva e corretiva de equipamentos de inform\u00e1tica, fontes chaveadas e perif\u00e9ricos. Instala dispositivos de acesso \u00e0 rede e realiza testes de conectividade. Realiza atendimento help-desk."
+    }
+  },
+  {
+    "model": "cursos.curso",
+    "pk": 38,
+    "fields": {
+      "nome": "Minera\u00e7\u00e3o",
+      "perfil_unificado": "Realiza atividades de prospec\u00e7\u00e3o, avalia\u00e7\u00e3o t\u00e9cnica e econ\u00f4mica, planejamento e extra\u00e7\u00e3o referente aos recursos naturais. Opera equipamentos de extra\u00e7\u00e3o mineral, sondagem, perfura\u00e7\u00e3o, amostragem e transporte. Caracteriza min\u00e9rios sob os aspectos f\u00edsico-qu\u00edmico, mineral\u00f3gico e granulom\u00e9trico. Executa projetos de desmonte, transporte e carregamento de min\u00e9rios. Monitora a estabilidade de rochas em minas subterr\u00e2neas e a c\u00e9u aberto. Elabora mapeamento geol\u00f3gico e amostragem em superf\u00edcie e subsolo. Opera equipamentos de fragmenta\u00e7\u00e3o, de separa\u00e7\u00e3o mineral, separa\u00e7\u00e3o s\u00f3lido/l\u00edquido, hidrometal\u00fargicos e de secagem."
+    }
+  },
+  {
+    "model": "cursos.curso",
+    "pk": 39,
+    "fields": {
+      "nome": "Petr\u00f3leo e G\u00e1s",
+      "perfil_unificado": "Opera, controla, coordena e monitora processos de produ\u00e7\u00e3o e refino de petr\u00f3leo e g\u00e1s. Programa, coordena e planeja a manuten\u00e7\u00e3o de m\u00e1quinas e equipamentos. Realiza amostragens e caracteriza\u00e7\u00f5es de petr\u00f3leo, g\u00e1s natural e derivados. Realiza procedimento de controle de qualidade de mat\u00e9rias-primas, insumos e produtos. Analisa dados estat\u00edsticos do processo produtivo e interpreta laudos de an\u00e1lises qu\u00edmicas. Compra e estoca mat\u00e9rias-primas, produtos e insumos"
+    }
+  },
+  {
+    "model": "cursos.curso",
+    "pk": 40,
+    "fields": {
+      "nome": "Contabilidade",
+      "perfil_unificado": "Anota informa\u00e7\u00f5es sobre transa\u00e7\u00f5es financeiras. Examina documentos fiscais e parafiscais. Analisa a documenta\u00e7\u00e3o cont\u00e1bil e elabora planos de determina\u00e7\u00e3o das taxas de deprecia\u00e7\u00e3o e exaust\u00e3o dos bens materiais, de amortiza\u00e7\u00e3o dos valores imateriais. Organiza, controla e arquiva os documentos relativos \u00e0 atividade cont\u00e1bil. Controla as movimenta\u00e7\u00f5es. Registra as opera\u00e7\u00f5es cont\u00e1beis da empresa. Ordena os movimentos pelo d\u00e9bito e cr\u00e9dito. Prepara a documenta\u00e7\u00e3o. Apura haveres, direitos e obriga\u00e7\u00f5es legais."
+    }
+  }
+]

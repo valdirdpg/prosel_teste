@@ -1,0 +1,175 @@
+{% extends "psct/base.html" %}
+{% load form_utils %}
+
+{% block extrahead %}
+    {{ block.super }}
+{% endblock %}
+
+{% block breadcrumb %}
+    <li><a href="/">Início</a></li>
+    <li><i class="fa fa-angle-right text-muted"></i></li>
+    <li class="active">Inscrição - Documento de Histórico Escolar</li>
+{% endblock %}
+
+
+{% block conteudo %}
+    <h2 class="titulo verde-escuro">{{ titulo }}</h2>
+    <form method="post" action="" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% if object.is_apagou_notas %}
+        <div class="alert alert-warning alert-dismissible" role="alert">
+            <button type="button" class="close small" data-dismiss="alert" aria-label="close">&times;</button>
+            <span>
+                <i class="fa fa-exclamation-triangle"></i> Atenção, você modificou suas notas, clique no botão Finalizar
+                    para concluir sua inscrição. Não esqueça de verificar se os documentos anexados referem-se às novas
+                    notas.
+            </span>
+        </div>
+        {% endif %}
+        <div class="alert alert-info alert-dismissible" role="alert">
+            <button type="button" class="close small" data-dismiss="alert" aria-label="close">&times;</button>
+            <span>
+                <i class="fa fa-info-circle"></i> O(s) arquivo(s) anexado(s) deve(m) conter, obrigatoriamente, todas as páginas (frente e
+                                                 verso quando for o caso), a identificação da/o candidata/o, as notas devem estar legíveis e
+                                                 a imagem deve ser completa, sem cortes.
+                                                 Os documentos anexados poderão ter no máximo <b>5 MB</b> de tamanho, e ser nos formatos
+                                                 PDF ou JPEG ou JPG ou TIFF ou PNG.
+            </span>
+        </div>
+        <div class="row form-group">
+            <div class="col-xs-12">
+                <span class="help-block text-justify">
+                    {% block descricao_formulario %}
+                        <p>Documentos que podem ser anexados:</p>
+                        <ul>
+                            <li>- Histórico  Escolar (frente e verso, se houver).</li><p>
+                            <li>- “Declaração de Histórico Escolar” (ANEXO VI do edital) preenchida, carimbada e
+                                   assinada pela/o responsável institucional da escola.</li><p>
+								   <li>- Documento de “Atestado escolar”, ou equivalente,
+								   onde constem as notas e o nome completo da/o candidata/o,<p>
+								   em documento de papel timbrado, carimbado e assinado pela/o responsável institucional da escola.</li><p>
+                            <li>- O conjunto dos boletins escolares com as médias finais das disciplinas, em papel
+                                  timbrado, carimbado e assinado pela/o responsável institucional da escola (frente e
+                                  verso, se houver).</li><p>
+                            <li>Para a matrícula das/os candidatas/os aprovados/as, será obrigatória a apresentação do documento                                Histórico Escolar original<p> para conferência. Se for identificada divergência, a/o candidata/o
+                                poderá perder o direito à vaga.</li><p>
+                        </ul>
+                        <!--<p></p>
+                        <p>Os documentos anexados poderão ter no máximo 10 MB de tamanho, e ser nos formatos PDF ou JPEG
+                            ou  JPG ou TIFF ou PNG.</p>-->
+                        <p>Todos os campos sinalizados com * devem ser obrigatoriamente preenchidos.</p>
+                    {% endblock %}
+                </span>
+            </div>
+        </div>
+        {% for formset in inlines %}
+            <div id="form_set">
+                {% if formset.errors %}
+                    <div class="alert alert-danger alert-dismissible" role="alert">
+                        <button type="button" class="close small" data-dismiss="alert" aria-label="close">&times;</button>
+                        <span>
+                            <i class="glyphicon glyphicon-exclamation-sign"></i> Por favor, corrija o(s) erro(s) abaixo para continuar. <br/>
+                            {% for non_form_error in formset.non_form_errors %}
+                                {{ non_form_error }}<br/>
+                            {% endfor %}
+                        </span>
+                    </div>
+                {% endif %}
+                {{ formset.management_form }}
+
+                    {% for form_inline in formset.forms %}
+                        {% with form=form_inline %}
+                            <div id="form-{{ forloop.counter }}">
+
+<h3 class="titulo subtitulo verde-escuro">Anexo #{{ forloop.counter }}</h3>
+{% for field in form.visible_fields %}
+<div id="field_{{ field.name }}" class="row form-group field-{{ field.name }}
+    {% if not field|optional %}required{% endif %}
+    {% if field.errors %}has-error{% endif %} has-feedback">
+        {% for error in field.errors %}
+        <div class="col-md-offset-4 col-md-8"><span class="help-block">{{ error }}</span></div>
+        {% endfor %}
+        <label for="{{ field.auto_id }}" class="col-md-4 control-label"
+            {% if not field|optional %}title="Campo obrigatório"{% endif %}
+        >
+            {{ field.label }}:</label>
+        <div class="col-md-8">{{ field }}</div>
+        {% if field.help_text %}
+        <div class="col-md-offset-4 col-md-8"><span class="help-block small">{{ field.help_text|safe }}</span></div>
+        {% endif %}
+</div>
+{% endfor %}
+{% for hidden in form.hidden_fields %}
+<div id="field_{{ hidden.name }}" class="row form-group field-{{ hidden.name }} hidden">
+    <div class="col-md-12">{{ hidden }}</div>
+</div>
+{% endfor %}
+
+                            </div>
+                        {% endwith %}
+                    {% endfor %}
+
+                <div id="empty_form" style="display:none">
+                        {% with formset.empty_form as form %}
+                            <div>
+
+<h3 class="titulo subtitulo azul-escuro">Novo anexo
+</h3>
+{% for field in form.visible_fields %}
+<div id="field_{{ field.name }}" class="row form-group field-{{ field.name }}
+    {% if not field|optional %}required{% endif %}
+    {% if field.errors %}has-error{% endif %} has-feedback">
+        {% for error in field.errors %}
+        <div class="col-md-offset-4 col-md-8"><span class="help-block">{{ error }}</span></div>
+        {% endfor %}
+        <label for="{{ field.auto_id }}" class="col-md-4 control-label"
+            {% if not field|optional %}title="Campo obrigatório"{% endif %}
+        >
+            {{ field.label }}:</label>
+        <div class="col-md-8">{{ field }}</div>
+        {% if field.help_text %}
+        <div class="col-md-offset-4 col-md-8"><span class="help-block small">{{ field.help_text|safe }}</span></div>
+        {% endif %}
+</div>
+{% endfor %}
+{% for hidden in form.hidden_fields %}
+<div id="field_{{ hidden.name }}" class="row form-group field-{{ hidden.name }} hidden">
+    <div class="col-md-12">{{ hidden }}</div>
+</div>
+{% endfor %}
+
+                            </div>
+                        {% endwith %}
+                </div>
+            </div>
+            <a class="btn btn-info" id="add_more" href="javascript:void(0)">Anexar outro documento</a></p>
+
+        {% endfor %}
+
+        <script>
+            $(document).ready(function () {
+                var add_more = $('#add_more');
+                var max_forms = $('#id_comprovantes-MAX_NUM_FORMS').val();
+                var total_forms = $('#id_comprovantes-TOTAL_FORMS');
+                if (total_forms.val() === max_forms){
+                    add_more.hide();
+                }
+
+                add_more.click(function () {
+                    var form_idx = total_forms.val();
+                    $('#form_set').append($('#empty_form').html().replace(/__prefix__/g, form_idx));
+                    total_forms.val(parseInt(form_idx) + 1);
+
+                    if (parseInt(total_forms.val()) == max_forms){
+                        add_more.hide();
+                    }
+                    return false;
+                });
+            });
+        </script>
+        {% include 'psct/base/_form.html' %}
+        <a class="btn btn-grey" href="{{ back_url }}">Voltar</a>
+        <input type="submit" value="Finalizar" class="btn btn-primary pull-right">
+
+    </form>
+{% endblock %}

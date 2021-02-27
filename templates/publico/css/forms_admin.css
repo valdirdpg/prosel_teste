@@ -1,0 +1,10 @@
+
+label.required::after, th.required::after{
+    content: " *" !important;
+    color: #a94442;
+}
+
+label.required::after{
+    height: inherit !important;
+    display: inline !important;
+}

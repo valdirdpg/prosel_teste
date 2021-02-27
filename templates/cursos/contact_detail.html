@@ -1,0 +1,75 @@
+{% extends "base/index.html" %}
+
+{% block breadcrumb %}
+    <li><a href="/">Início</a></li>
+    <li><i class="fa fa-angle-right text-muted"></i></li>
+    <li><a href="{% url 'contato' %}">Contatos</a></li>
+    <li><i class="fa fa-angle-right text-muted"></i></li>
+    <li class="active">Contato do {{ tipo|capfirst }} {{ lugar.nome }}</li>
+{% endblock %}
+
+{% block conteudo %}
+
+    <h2 class="titulo verde-escuro">
+        {{ tipo|capfirst }} {{ lugar.nome }}
+        {% if tipo == 'polo' %}
+            {{ lugar.cidade.nome }}
+        {% endif %}
+    </h2>
+
+    <div class="row">
+        {% if lugar.mapa %}
+        <div class="col-xs-12">
+            <h4><i class="fa fa-map fa-fw text-muted pull-right"></i>Localização</h4>
+            <iframe width="100%" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="{{ lugar.get_src_mapa }}"></iframe>
+            <br>
+            <br>
+        </div>
+
+        {% endif %}
+        <div class="col-xs-12 col-sm-6">
+            <div class="list-group list-group">
+                <div class="list-group-item">
+                    <h4 class="list-group-item-heading"><i class="fa fa-map-marker fa-fw text-muted pull-right"></i>Endereço</h4>
+                    <address class="list-group-item-text">
+                        <i class="fa fa-location-arrow fa-fw text-muted"></i> {{ lugar.endereco|default:"-" }} - {{ lugar.cidade|default:"-" }}<br>
+                        <i class="fa fa-phone fa-fw text-muted"></i> {{ lugar.telefone|default:"-" }}<br>
+                        {% if lugar.url %}
+                        <i class="fa fa-globe fa-fw text-muted"></i>
+                          <a href="{{ lugar.url }}" title="Link para Página Web do Campus" target="_blank">Página Web
+                            <span class="sr-only"> (abre em nova janela)</span></a>
+                        {% endif %}
+                    </address>
+                </div>
+            </div>
+        </div>
+        {% if tipo == 'polo' %}
+        <div class="col-xs-12 col-sm-6">
+            <div class="list-group list-group">
+                <div class="list-group-item">
+                    <h4 class="list-group-item-heading"><i class="fa fa-clock-o fa-fw text-muted pull-right"></i>Horário de Funcionamento</h4>
+                    <div class="list-group-item-text">
+                        {{ lugar.horario_funcionamento|default:"-" }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        {% if cursos %}
+        <div class="col-xs-12 col-sm-6">
+            <div class="list-group list-group">
+                <div class="list-group-item">
+                    <h4 class="list-group-item-heading"><i class="fa fa-mortar-board text-muted pull-right"></i>Cursos <small> ({{ cursos|length }})</small></h4>
+                    {% for curso in cursos %}
+                    <div class="list-group-item-text">
+                        <a href="{% url 'curso' curso.pk %}">{{ curso.curso.nome }} - {{ curso.get_turno_display }}</a>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+    </div>
+
+{% endblock %}

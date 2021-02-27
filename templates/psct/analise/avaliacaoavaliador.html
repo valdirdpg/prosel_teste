@@ -1,0 +1,15 @@
+{% extends "psct/base/display_form.html" %}
+{% load base_tags %}
+
+{% block pre_form %}
+
+    {% box 'Dados da Inscrição' True %}
+        {% with inscricao=inscricao_original %}
+            {% include "psct/inscricao/dadosinscricao.html" %}
+        {% endwith %}
+    {% endbox %}
+
+    <h3 class="verde-escuro">Avaliação</h3>
+    <p></p>
+
+{% endblock %}

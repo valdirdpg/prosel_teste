@@ -1,0 +1,14 @@
+<div class="row">
+    <div class="col-xs-12">
+        <div class="menu">
+            <p class="menu-title titulo azul-claro {% if not opened %}collapsed{% endif %}"
+                 data-parent="#accordion" data-toggle="collapse"
+                 data-target="#collapse{{ boxid }}">
+                {{ titulo }}
+            </p>
+            <div id="collapse{{ boxid }}" class="collapse {% if opened %}in{% endif %}">
+                {{ conteudo }}
+            </div>
+        </div>
+    </div>
+</div>

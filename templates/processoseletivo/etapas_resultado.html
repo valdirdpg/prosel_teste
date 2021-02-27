@@ -1,0 +1,56 @@
+{% extends "base/baseboot.html" %}
+{% load processoseletivo_tags %}
+
+{% block conteudo %}
+    <div class="content-box">
+        <h2 class="titulo verde-escuro">
+            {{ edicao }} - Resultado</h2>
+        {% if not admin_permission and not etapa_publicada %}
+            <div class="alert alert-warning"  style="text-align: justify; margin-bottom:0 !important">
+                <i class="fa fa-warning fa-fw"></i> Não há vagas cadastradas para a
+                <strong>Etapa de Resultado</strong>
+                deste processo seletivo. Para mais informações, entre em contato com a
+                Coordenação de Editais da Pró-Reitoria de Ensino do IFPB.
+            </div>
+        {% else %}
+            <div class="alert alert-info" style="text-align: justify">
+                <p><i class="fa fa-info-circle fa-fw"></i> <strong>Atenção:</strong><br>
+                    Fique atento às datas de entrega de documentação de cada campus. Os cronogramas de matrícula
+                    dos campi não são necessariamente iguais.
+                </p>
+            </div>
+            <div class="table-responsive">
+                <table class="table table-striped table-condensed">
+                    <thead>
+                        <th>Campus</th>
+                        <th class="text-center">Vagas</th>
+                        <th class="col-md-1 text-center">Lista</th>
+                    </thead>
+                    <tbody>
+                        {% for etapa in etapas|dictsort:'campus.nome' %}
+                            <tr>
+                                <td>{{ etapa.campus }}</td>
+                                <td class="text-center">{% vagas_por_campus etapa etapa.campus %}</td>
+                                <td class="text-center">
+                                    <div class="btn-group btn-group-xs">
+                                        <a class="btn {% if etapa.encerrada %}btn-default{% else %}btn-success{% endif %}"
+                                           href="{% url 'edicao_etapa' edicao_pk=edicao.pk etapa_pk=etapa.pk %}"
+                                           alt="Lista de {% if etapa.encerrada %}matriculados{% else %}convocados{% endif %} do campus {{ etapa.campus }}"
+                                           title="Lista de {% if etapa.encerrada %}matriculados{% else %}convocados{% endif %} do campus {{ etapa.campus }}"
+                                        >
+                                            {% if etapa.encerrada %}
+                                                <i class="fa fa-graduation-cap fa-fw" aria-hidden="true"></i>&nbsp; Matriculados
+                                            {% else %}
+                                                <i class="fa fa-bullhorn fa-fw" aria-hidden="true"></i>&nbsp; Convocados
+                                            {% endif %}
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

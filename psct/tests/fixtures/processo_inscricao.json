@@ -1,0 +1,15 @@
+[
+  {
+    "model": "psct.processoinscricao",
+    "pk": 1,
+    "fields": {
+      "edital": 1,
+      "formacao": "SUBSEQUENTE",
+      "data_inicio": "2016-09-27",
+      "data_encerramento": "2016-10-10",
+      "cursos": [
+        1
+      ]
+    }
+  }
+]

@@ -1,0 +1,301 @@
+{% extends "base/index.html" %}
+{% load staticfiles editais_tags %}
+
+{% block breadcrumb %}
+    <li><a href="/">Início</a></li>
+    <li><i class="fa fa-angle-right text-muted"></i></li>
+    <li><a href="{% url 'indexprocessoseletivo' %}">Processos Seletivos</a></li>
+    <li><i class="fa fa-angle-right text-muted"></i></li>
+    <li><a href="{% url 'processoseletivo' processo.id  %}">{{ processo.sigla }}</a></li>
+    <li><i class="fa fa-angle-right text-muted"></i></li>
+    <li><a href="{% url 'edicoes' processo.id  %}">Edições</a></li>
+    <li><i class="fa fa-angle-right text-muted"></i></li>
+    <li class="active">Edição {{ edicao }}</li>
+{% endblock %}
+
+{% block conteudo %}
+    <div class="row">
+        <div class="col-sm-8">
+            <h2 class="titulo">{{ edicao }} {% if edital %}- Edital Nº {{ edital.numero }}/{{ edital.ano }}{% endif %}</h2>
+            {% if edital %}
+                <div class="row"
+                     {% if edital.processo_inscricao or edital.inscricoes_abertas %}
+                        style="margin-bottom: 15px"
+                     {% endif %}>
+                {% if edital.processo_inscricao %}
+                    {% if edital.processo_inscricao.em_periodo_inscricao %}
+                        <div class="col-md-6">
+                            <a class="btn btn-primary btn-lg btn-block"
+                               href="{% url 'inscricao_edital_psct' edital.id %}">
+                                <i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i>&nbsp; Inscrições
+                            </a>
+                        </div>
+                        <div class="visible-xs-block visible-sm-block col-xs-12"><p></p></div>
+                        <div class="col-md-6">
+                            <a class="btn btn-grey btn-lg btn-block" href="{% url 'index_psct' %}">
+                              <i class="fa fa-check-square-o fa-lghttps://portal.ifba.edu.br/processoseletivo2021/edital" aria-hidden="true"></i>&nbsp; Já tenho cadastro
+                            </a>
+                        </div>
+                    {% elif edital.processo_inscricao.pode_acompanhar_inscricao %}
+                        <div class="col-md-offset-3 col-md-6 col-xs-12">
+                            <a class="btn btn-grey btn-lg btn-block" href="{% url 'index_psct' %}">
+                              <i class="fa fa-check-square-o fa-lg" aria-hidden="true "></i>&nbsp; Acompanhar
+                            </a>
+                        </div>
+                    {% endif %}
+                {% elif edital.inscricoes_abertas %}
+                    {% if edital.link_inscricoes %}
+                        <div class="col-md-offset-3 col-md-6">
+                            <a class="btn btn-primary btn-lg btn-block" href="{{ edital.link_inscricoes }}">
+                              <i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i>&nbsp; Inscrições
+                            </a>
+                        </div>
+                    {% else %}
+                        <div class="col-xs-12">
+                            <p class="alert alert-info">
+                                <strong>Inscrições abertas!</strong>
+                                Acesse o edital para orientações sobre como realizar a sua inscrição.</p>
+                        </div>
+                    {% endif %}
+                {% endif %}
+                </div>
+
+
+            <div class="descricao-edital">
+              {% autoescape off %}
+                {{ edital.descricao }}
+              {% endautoescape %}
+            </div>
+
+            {% if edital.url_video_descricao %}
+                <div class="video-descricao embed-responsive embed-responsive-16by9">
+                    <iframe class="embed-responsive-item"
+                            src={{ edital.url_video_descricao }} frameborder="0" allowfullscreen></iframe>
+                </div>
+            {% endif %}
+
+            {% else %}
+            <div class="alert alert-warning">
+                <i class="fa fa-exclamation-triangle fa-fw"></i> Não há edital cadastrado para esta edição.
+            </div>
+            {% endif %}
+            {% if etapas_resultado_publicadas %}
+                <p class="chapeu">Candidatos Aprovados</p>
+                <div class="table-responsive">
+                    <table class="table table-striped table-condensed">
+                      <tbody>
+                          <tr>
+                            <td>Chamada do Resultado</td>
+                            <td>
+                                <div class="btn-group btn-group-xs pull-right">
+                                    <a class="btn {% if etapa_resultado_andamento %}btn-success{% else %}btn-default{% endif %}"
+                                       href="
+                                            {% if etapa_resultado_unica %}
+                                                {% url 'edicao_etapa' edicao_pk=edicao.pk etapa_pk=etapa_resultado_unica.pk %}
+                                            {% else %}
+                                                {% url 'etapas_resultado' edicao_pk=edicao.pk %}
+                                            {% endif %}"
+                                       alt="Relação de {% if etapa_resultado_andamento %}convocados{% else %}matriculados{% endif %} do resultado deste processo seletivo"
+                                       title="Relação de {% if etapa_resultado_andamento %}convocados{% else %}matriculados{% endif %} do resultado deste processo seletivo"
+                                    >
+                                        {% if etapa_resultado_andamento %}
+                                            <i class="fa fa-bullhorn fa-fw" aria-hidden="true"></i>&nbsp; Convocados
+                                        {% else %}
+                                            <i class="fa fa-graduation-cap fa-fw" aria-hidden="true"></i>&nbsp; Matriculados
+                                        {% endif %}
+                                    </a>
+
+                                </div>
+                            </td>
+                          </tr>
+                      </tbody>
+                    </table>
+                </div>
+            {% endif %}
+          {% if edital %}
+            <!--<p class="chapeu">Resumo</p>-->
+            <div class="table-responsive">
+              <table class="table table-striped table-bordered table-condensed">
+                <tr>
+                 <!-- <th style="vertical-align: middle">Vagas:</th>
+                  <td>
+                  {% for nivel in edital.niveis_selecao.all %}
+                    {% if forloop.first %}
+                      {{ nivel.nome }}: {{ nivel.vagas }}
+                    {% else %}
+                      <br>{{ nivel.nome }}: {{ nivel.vagas }}
+                    {% endif %}
+                  {% endfor %}
+                  </td>
+                </tr>
+                <tr>
+                  <th style="vertical-align: middle">Valor da Inscrição:</th>
+                  <td>
+                  {% for nivel in edital.niveis_selecao.all %}
+                    {% if not forloop.first %}
+                      <br>
+                    {% endif %}
+                    {{ nivel.nome }}:
+                    {% if nivel.valor_inscricao %}
+                        R$ {{ nivel.valor_inscricao }}
+                    {% else %}
+                        Gratuito
+                    {% endif %}
+                  {% endfor %}
+                  </td>-->
+                </tr>
+                {% if exibe_prazo %}
+                    <tr>
+                      <th>Prazo de pagamento:</th>
+                      <td>{{ edital.prazo_pagamento }}</td>
+                    </tr>
+                {% endif %}
+              </table>
+            </div>
+
+{% comment %}
+            <p class="chapeu">Documentos</p>
+{% endcomment %}
+            <div class="row">
+                <div class="col-sm-6" style="margin-bottom: 10px">
+                        <a class="btn btn-grey pull-left" target="_blank" href="{{ edital.get_link_edital }}">
+                            <i class="fa fa-file-pdf-o fa-lg"></i>&nbsp; Editais e Retificações
+                        </a>
+                </div>
+                {% if edital.has_anexo %}
+                  <div class="col-sm-6" style="margin-bottom: 10px">
+                      <a href="{% url 'arquivos_edital' pk_edital=edital.id categoria='ANEXO' %}">
+                          <i class="fa fa-paperclip fa-lg"></i>&nbsp; Anexos
+                      </a>
+                  </div>
+                {% endif %}
+                {% if edital.has_local_prova %}
+                    <div class="col-sm-6" style="margin-bottom: 10px">
+                        <a href="{% url 'arquivos_edital' pk_edital=edital.id categoria='LOCALPROVA' %}">
+                            <i class="fa fa-location-arrow fa-lg"></i>&nbsp; Locais de Prova
+                        </a>
+                    </div>
+                {% endif %}
+                {% if edital.has_prova_gabarito %}
+                    <div class="col-sm-6" style="margin-bottom: 10px">
+                        <a href="{% url 'arquivos_edital' pk_edital=edital.id categoria='PROVA' %}">
+                            <i class="fa fa-check-square-o fa-lg"></i>&nbsp; Provas e Gabaritos
+                        </a>
+                    </div>
+                {% endif %}
+                {% if edital.has_resultado or edital.has_recurso %}
+                    <div class="col-sm-6" style="margin-bottom: 10px">
+                        <a href="{% url 'arquivos_edital' pk_edital=edital.id categoria='RESULTADO' %}">
+                            <i class="fa fa-star fa-lg"></i>&nbsp; Resultados e Recursos
+                        </a>
+                    </div>
+                {% endif %}
+            </div>
+            {% endif %}
+        </div>
+        <div class="col-sm-4">
+        {% if etapa_espera_campus %}
+            <h3 class="titulo laranja">Convocacões da Lista de Espera</h3>
+            <span class="help-block">
+                <i class="fa fw fa-info-circle" aria-hidden="true"></i>
+                Clique no campus para expandir
+            </span>
+            <!-- Painel de Etapas por Campus -->
+            <div class="panel-group" id="accordion_etapas" style="margin-top: 5px;">
+            {% for campus, etapas in etapa_espera_campus.items %}
+                <div class="panel panel-default">
+
+                    <div class="panel-heading">
+                        <p class="panel-title">
+                            {% if campus %}
+                                <a data-toggle="collapse"
+                                   data-parent="#accordion_etapas"
+                                   href="#etapas_{{ campus|slugify }}"
+                                   class="collapsed"
+                                   style="display: block; width: 100%">
+                                    {{ campus }}
+                                </a>
+                            {% else %}
+                                <a data-toggle="collapse"
+                                   data-parent="#accordion_etapas"
+                                   href="#etapas_sistemicas"
+                                   style="display: block; width: 100%">
+                                    Todos os campi
+                                </a>
+                            {% endif %}
+                        </p>
+                    </div>
+                    <div id="etapas_{% if campus %}{{ campus|slugify }}{% else %}sistemicas{% endif %}"
+                         class="panel-collapse collapse {% if not campus %} in{% endif %}">
+                        <div class="panel-body" style="padding: 0px">
+                            <!-- Tabela de Chamadas -->
+                            <div class="table-responsive">
+                                <table class="table table-condensed" style="margin-bottom: 0px;">
+                                    <tbody>
+                                    {% for etapa in etapas %}
+                                        <tr>
+                                            <td>
+                                                <a href="{% url 'edicao_etapa' edicao_pk=edicao.pk etapa_pk=etapa.pk %}">
+                                                    {% if etapa.encerrada %}
+                                                        <i class="fa fw fa-check"></i>
+                                                        {{ etapa.label }}
+                                                    {% else %}
+                                                        <i class="fa fw fa-bullhorn"></i>
+                                                        {{ etapa.label }}
+                                                        <span class="label label-success">Em Andamento</span>
+                                                    {% endif %}</a>
+                                                {% if not etapa.encerrada %}
+                                                    <ul style="margin-top: 5px;
+                                                               margin-bottom: 0px;
+                                                               padding-left: 5px;
+                                                               border: 1px solid #C1C2C2;
+                                                               border-radius: 4px;
+                                                               background-color: snow">
+                                                    <li style="border-bottom: 1px solid #C1C2C2;">
+                                                        <i class="fa fw fa-calendar"></i>
+                                                        Cronograma da chamada
+                                                    </li>
+                                                    {% for cronograma in etapa.cronogramas_convocacao.all %}
+                                                        <li style="border-bottom: 1px dotted #C1C2C2;">
+                                                            <b>{{ cronograma.nome }}</b><br>
+                                                            {% if cronograma.inicio == cronograma.fim %}
+                                                              Em {{ cronograma.inicio|date:"d/m/Y" }}
+                                                            {% else %}
+                                                               De {{ cronograma.inicio|date:"d/m/Y" }} a
+                                                                {{ cronograma.fim|date:"d/m/Y" }}
+                                                            {% endif %}
+                                                        </li>
+                                                    {% endfor %}
+                                                    </ul>
+                                                {% endif %}
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div> <!-- /Tabela de Chamadas -->
+
+                        </div>
+                    </div>
+                </div>
+
+            {% endfor %}
+            </div> <!-- /Painel de Etapas por Campus -->
+        {% elif edital %}
+            <h3 class="titulo laranja">Cronograma</h3>
+            {% for cronograma in edital.cronogramas_selecao.all %}
+                <p style="border-bottom: 1px dotted #C1C2C2;">
+                    <b>{{ cronograma.nome }}</b><br>
+                    <i class="fa fa-calendar text-muted"></i>
+                    {% if cronograma.inicio == cronograma.fim %}
+                      Em {{ cronograma.inicio|date:"d/m/Y" }}
+                    {% else %}
+                       De {{ cronograma.inicio|date:"d/m/Y" }} a {{ cronograma.fim|date:"d/m/Y" }}
+                    {% endif %}
+                </p>
+            {% endfor %}
+        {% endif %}
+        </div>
+    </div>
+
+{% endblock %}

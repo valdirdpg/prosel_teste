@@ -1,0 +1,749 @@
+﻿{% load i18n staticfiles base_tags %}
+
+{% get_processos_seletivos as processos %}
+{% get_campis as campis %}
+{% load staticfiles bootstrap_pagination processoseletivo_tags %}
+<!DOCTYPE html>
+<html lang="pt-br" dir="ltr">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+
+  <base href="https://portal.ifba.edu.br/processoseletivo2021/cursos/cursos/">
+  <!--[if lt IE 7]></base><![endif]-->
+
+
+
+  <meta property="og:title" content="Cursos">
+  <meta property="og:description" content="">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://portal.ifba.edu.br/processoseletivo2021/cursos/cursos">
+  <meta property="og:image" content="https://portal.ifba.edu.br/logo.png">
+
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:site_name"
+    content="IFBA - "{{ onde_estou }}>
+
+
+
+
+
+  <meta property="fb:app_id" content="InstitutoFederaldaBahia">
+  <script>
+    (function () {
+      var po = document.createElement('script');
+      po.async = true;
+      po.src = document.location.protocol + '//connect.facebook.net/pt_BR/all.js#xfbml=1';
+      var head = document.getElementsByTagName('head')[0];
+      head.appendChild(po);
+    }());
+  </script>
+
+
+
+
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@ifbaoficial">
+
+
+
+
+
+  <meta name="DC.format" content="text/plain">
+  <meta name="DC.type" content="Capa">
+  <meta name="DC.date.valid_range" content="2016/06/21 - ">
+  <meta name="DC.creator" content="Gabinete">
+  <meta name="DC.date.created" content="2016-06-21T17:10:10-03:00">
+  <meta name="DC.date.modified" content="2021-02-15T11:20:22-03:00">
+  <meta name="DC.language" content="pt-br">
+  <meta property="creator.productor" content="www.mec.gov.br">
+
+
+
+
+  <style type="text/css" media="all">
+    @import url(https://portal.ifba.edu.br/portal_css/Sunburst%20Theme/resourcejquery-cachekey-c6111a71fbd7e787bbea07381ab7e241.css);
+  </style>
+  <link rel="stylesheet" type="text/css"
+    href="https://portal.ifba.edu.br/portal_css/Sunburst%20Theme/reset-cachekey-93da1752146d893276e4e077cea954cf.css"
+    media="screen">
+  <link rel="stylesheet" type="text/css"
+    href="https://portal.ifba.edu.br/portal_css/Sunburst%20Theme/base-cachekey-117c8deb7f3942302d0039c7895ec5b9.css">
+  <link rel="stylesheet" type="text/css"
+    href="https://portal.ifba.edu.br/portal_css/Sunburst%20Theme/resourceplone.app.jquerytools.overlays-cachekey-b24ec56c51f5c123d35445f622426b62.css"
+    media="screen">
+  <style type="text/css" media="screen">
+    @import url(https://portal.ifba.edu.br/portal_css/Sunburst%20Theme/resourceplone.formwidget.contenttreecontenttree-cachekey-7c9af15f2950bf9fb21c01e454f458ed.css);
+  </style>
+  <link rel="stylesheet" type="text/css"
+    href="https://portal.ifba.edu.br/portal_css/Sunburst%20Theme/resourcecollection-cachekey-f4d424103bb6726f4c03227bada0f05e.css"
+    media="screen">
+  <style type="text/css" media="screen">
+    @import url(https://portal.ifba.edu.br/portal_css/Sunburst%20Theme/resourcecalendar_stylescalendar-cachekey-d911263e8aae74abc86ca31018a4408c.css);
+  </style>
+  <link rel="stylesheet" type="text/css"
+    href="https://portal.ifba.edu.br/portal_css/Sunburst%20Theme/ploneCustom-cachekey-0c96fabf595e1f1ed4eb8bf3b1b27cae.css"
+    media="all">
+  <style type="text/css" media="screen">
+    @import url(https://portal.ifba.edu.br/portal_css/Sunburst%20Theme/jquery.autocomplete-cachekey-3c7eb5537e034181a7af832c4d1e3d43.css);
+  </style>
+  <style type="text/css" media="screen">
+    @import url(https://portal.ifba.edu.br/portal_css/Sunburst%20Theme/resourceProducts.Doormat.stylesheetsdoormat-cachekey-d62ba12e48a738303c0872237da1cde4.css);
+  </style>
+  <!--[if lt IE 8]>    
+    
+    <link rel="stylesheet" type="text/css" href="https://portal.ifba.edu.br/portal_css/Sunburst%20Theme/IEFixes-cachekey-42acc078ed533b769964aeeb32717a49.css" media="screen" />
+        <![endif]-->
+
+  <style type="text/css" media="screen">
+    @import url(https://portal.ifba.edu.br/portal_css/Sunburst%20Theme/resourcecollective.z3cform.datagridfielddatagridfield-cachekey-90af683936f6665f4b71f7b6dd3c3833.css);
+  </style>
+  <link rel="stylesheet" type="text/css"
+    href="https://portal.ifba.edu.br/portal_css/Sunburst%20Theme/resourceselect2select2-cachekey-7729681e6f7e96ef1412c8c8c949a968.css">
+  <style type="text/css" media="screen">
+    @import url(https://portal.ifba.edu.br/portal_css/Sunburst%20Theme/resourcecollective.pollscsscollective.polls-cachekey-37c14fedb1dd18f599f0afbb8e609b75.css);
+  </style>
+  <link rel="stylesheet" type="text/css"
+    href="https://portal.ifba.edu.br/portal_css/Sunburst%20Theme/resourcebrasil.gov.portletscssmain-cachekey-839ff39a0c8e271623d78078663c1a92.css"
+    media="screen">
+  <style type="text/css" media="screen">
+    @import url(https://portal.ifba.edu.br/portal_css/Sunburst%20Theme/resourcecollective.nitfstyles-cachekey-41c7233f6707df181554561a3fb39355.css);
+  </style>
+  <link rel="stylesheet" type="text/css"
+    href="https://portal.ifba.edu.br/portal_css/Sunburst%20Theme/resourceplone.formwidget.datetimestyles-cachekey-2ad441fa7fdcdb9ff4e8e764d24e7c9a.css"
+    media="screen">
+  <link rel="stylesheet" type="text/css"
+    href="https://portal.ifba.edu.br/portal_css/Sunburst%20Theme/resourcecollective.mailchimp.stylesheetsmailchimp-cachekey-8bef5c0e19762d57cd7b316381e754e1.css">
+  <style type="text/css" media="screen">
+    @import url(https://portal.ifba.edu.br/portal_css/Sunburst%20Theme/easynewsletter-cachekey-dff7c3ed42e58633e464cb1765b732f8.css);
+  </style>
+
+
+
+  <script type="text/javascript"
+    src="https://portal.ifba.edu.br/portal_javascripts/Sunburst%20Theme/resourceplone.app.jquery-cachekey-b3d5e9a27d529d212e04b74041a1f920.js">
+  </script>
+  <script type="text/javascript"
+    src="https://portal.ifba.edu.br/portal_javascripts/Sunburst%20Theme/resourceplone.formwidget.querystring.querywidget-cachekey-c308fab99a3ee646afb184577687e4d0.js">
+  </script>
+  <script type="text/javascript"
+    src="https://portal.ifba.edu.br/portal_javascripts/Sunburst%20Theme/resourceplone.formwidget.contenttreecontenttree-cachekey-d88e930e8399a93c357f0151a9ffc27b.js">
+  </script>
+  <script type="text/javascript"
+    src="https://portal.ifba.edu.br/portal_javascripts/Sunburst%20Theme/jquery.autocomplete.min-cachekey-289e74b6ca35e62efb6f14d2414b2171.js">
+  </script>
+  <script type="text/javascript"
+    src="https://portal.ifba.edu.br/portal_javascripts/Sunburst%20Theme/resourcesc.photogalleryphotogallery-cachekey-0467952711a804fd2ec73072340b8bd5.js">
+  </script>
+  <script type="text/javascript"
+    src="https://portal.ifba.edu.br/portal_javascripts/Sunburst%20Theme/faceted_view-cachekey-20f2eb87c753136e772e992fbccb4505.js">
+  </script>
+  <script type="text/javascript"
+    src="https://portal.ifba.edu.br/portal_javascripts/Sunburst%20Theme/resourcebrasil.gov.tilesjquery.cycle2-cachekey-b1318ce60d5e6f2e6e5cbd13a73054ba.js">
+  </script>
+  <script type="text/javascript"
+    src="https://portal.ifba.edu.br/portal_javascripts/Sunburst%20Theme/resourceProducts.EasyNewsletter.iframeResizer.min-cachekey-a19b8052c2472ab90806dea0d58ab3aa.js">
+  </script>
+
+
+
+  <script async src="https://portal.ifba.edu.br/++resource++collective.lazysizes/lazysizes-43c36fc.js"></script>
+
+
+  <title>IFBA - {{ onde_estou }}</title>
+
+  <link rel="http://purl.org/dc/terms/subject http://schema.org/about http://xmlns.com/foaf/0.1/primaryTopic"
+    href="http://vocab.e.gov.br/2011/03/vcge#esquema">
+
+
+  <link rel="author" href="https://portal.ifba.edu.br/author/laisandrade" title="Informações do Autor">
+
+
+  <link rel="canonical" href="{% url 'lista_de_cursos' %}">
+
+
+
+
+
+  <script type="text/javascript">
+    jQuery(function ($) {
+      if (typeof ($.datepicker) != "undefined") {
+        $.datepicker.setDefaults(
+          jQuery.extend($.datepicker.regional['pt-BR'], {
+            dateFormat: 'dd/mm/yy'
+          }));
+      }
+    });
+  </script>
+
+  <link rel="search" href="https://portal.ifba.edu.br/@@search" title="Buscar neste site">
+
+  <meta name="generator" content="Plone - http://plone.org">
+
+
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <link rel="shortcut icon" href="/++theme++verde/img/favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" href="/++theme++verde/img/touch_icon.png">
+
+  <!-- Plone CSS - only for preview, will be removed in rules.xml -->
+
+
+  <!-- Theme CSS - only for preview, will be removed in rules and added in CSS registry -->
+
+  <link media="all" href="/++theme++verde/css/style.css" type="text/css" rel="stylesheet">
+</head>
+
+<body dir="ltr"
+  class="cover-layout-layout-a template-view portaltype-collective-cover-content site-dgcom section-processoseletivo2021 subsection-cursos subsection-cursos-cursos userrole-anonymous">
+  <div id="accessibility-wrapper">
+    <ul id="accessibility">
+      <li>
+        <a accesskey="1" href="#acontent" id="link-conteudo">Ir para o conteúdo <span>1</span></a>
+      </li>
+      <li>
+        <a accesskey="2" href="#anavigation" id="link-navegacao">Ir para o menu <span>2</span></a>
+      </li>
+      <li>
+        <a accesskey="3" href="#SearchableText" id="link-buscar">Ir para a busca <span>3</span></a>
+      </li>
+      <li>
+        <a accesskey="4" href="#afooter" id="link-rodape">Ir para o rodapé <span>4</span></a>
+      </li>
+    </ul>
+
+
+
+    <ul id="portal-siteactions">
+
+      <li id="siteaction-accessibility">
+        <a href="https://portal.ifba.edu.br/acessibilidade" accesskey="5">Acessibilidade</a>
+      </li>
+      <li id="siteaction-contraste">
+        <a href="#" accesskey="6">Alto Contraste</a>
+      </li>
+      <li id="siteaction-mapadosite">
+        <a href="https://portal.ifba.edu.br/mapadosite" accesskey="7">Mapa do site</a>
+      </li>
+    </ul>
+  </div>
+  <div id="barra-identidade">
+    <div id="barra-brasil" style="background:#7F7F7F; height: 20px; padding:0 0 0 10px;display:block;">
+      <ul id="menu-barra-temp" style="list-style:none;">
+        <li style="display:inline; float:left;padding-right:10px; margin-right:10px; border-right:1px solid #EDEDED"><a
+            href="http://brasil.gov.br" style="font-family:sans,sans-serif; text-decoration:none; color:white;">Portal
+            do Governo Brasileiro</a></li>
+        <li><a style="font-family:sans,sans-serif; text-decoration:none; color:white;"
+            href="http://epwg.governoeletronico.gov.br/barra/atualize.html">Atualize sua Barra de Governo</a></li>
+      </ul>
+    </div>
+  </div>
+  <div id="wrapper">
+
+    <!-- HEADER -->
+
+    <div id="header" role="banner">
+
+      <div>
+        <div id="logo">
+          <a id="portal-logo" title="" href="{% url 'processoseletivo' %}">
+            <span id="portal-title-1">IFBA - Instituto Federal de Educação, Ciência e Tecnologia da Bahia</span>
+            <div id="portal-title" class="luongo">Instituto Federal da Bahia</div>
+            <span id="portal-description">Ministério da Educação</span>
+          </a>
+        </div>
+
+        <div id="portal-searchbox">
+
+          <form id="nolivesearchGadget_form" action="">
+            <fieldset class="LSBox">
+              <legend class="hiddenStructure">Buscar no portal</legend>
+              <label class="hiddenStructure" for="nolivesearchGadget">Buscar no portal</label>
+
+              <input name="SearchableText" type="text" size="18" title="Buscar no portal" placeholder="Buscar no portal"
+                class="searchField" id="nolivesearchGadget">
+
+              <input class="searchButton" type="submit" value="Buscar no portal">
+
+            </fieldset>
+          </form>
+
+        </div>
+
+        <div id="social-icons">
+          <ul>
+            <li id="portalredes-twitter" class="portalredes-item">
+              <a href="https://twitter.com/ifbaoficial">Twitter</a>
+            </li>
+            <li id="portalredes-facebook" class="portalredes-item">
+              <a href="http://facebook.com/InstitutoFederaldaBahia">Facebook</a>
+            </li>
+            <li id="portalredes-youtube" class="portalredes-item">
+              <a href="http://youtube.com//channel/UCyCPdBXqatYjrOhqY0k3sMQ">YouTube</a>
+            </li>
+            <li id="portalredes-instagram" class="portalredes-item">
+              <a href="http://instagram.com/ifbaoficial">Instagram</a>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+      <div id="sobre">
+        <ul>
+          <li id="portalservicos-area-de-imprensa" class="portalservicos-item">
+
+            <a href="/dgcom">Área de imprensa</a>
+          </li>
+          <li id="portalservicos-webmail" class="portalservicos-item">
+
+            <a href="https://webmailzimbra.ifba.edu.br">Webmail</a>
+          </li>
+          <li id="portalservicos-contato" class="portalservicos-item">
+
+            <a href="/contatoifba">Contato dos Campi</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- content -->
+
+    <div id="main" role="main">
+      <div id="plone-content">
+
+        <!-- Demo Plone Content -->
+
+        <div id="portal-columns" class="row">
+
+          <div id="viewlet-above-content">
+            <div id="portal-breadcrumbs">
+              <span id="breadcrumbs-you-are-here">Você está aqui:</span>
+              <span id="breadcrumbs-home">
+                <a href="{% url 'processoseletivo' %}">Página Inicial</a>
+                <span class="breadcrumbSeparator">
+                  &gt;
+
+                </span>
+              </span>
+              <span dir="ltr" id="breadcrumbs-1">
+
+                <a href="{% url 'processoseletivo' %}">Processo Seletivo 2021</a>
+                <span class="breadcrumbSeparator">
+                   > {{ onde_estou }}
+                    &gt;
+
+                </span>
+
+
+              </span>
+              <span dir="ltr" id="breadcrumbs-2">
+
+
+
+                <span id="breadcrumbs-current"></span>
+
+              </span>
+
+            </div>
+
+
+          </div>
+
+          <!-- Column 1 -->
+          <div id="navigation">
+            <a name="anavigation" id="anavigation" class="anchor">menu</a>
+            <span class="menuTrigger">Menu</span>
+            <div id="portal-column-one" class="cell width-1:4 position-0">
+
+
+              <div class="portletWrapper"
+                id="portletwrapper-706c6f6e652e6c656674636f6c756d6e0a636f6e746578740a2f6467636f6d2f70726f636573736f73656c657469766f323032310a706f72746c65745f737461746963"
+                data-portlethash="706c6f6e652e6c656674636f6c756d6e0a636f6e746578740a2f6467636f6d2f70726f636573736f73656c657469766f323032310a706f72746c65745f737461746963">
+                <div class="portletStaticText portlet-static">
+                  <p><a class="external-link" href="{% url 'processoseletivo' %}" target="_self" title=""><img
+                        src="https://portal.ifba.edu.br/banner/banner-capa/Logon.jpg" alt="instituto federal da Bahia"
+                        class="image-inline" title=""></a></p>
+                </div>
+
+              </div>
+
+              <div class="portletWrapper"
+                id="portletwrapper-706c6f6e652e6c656674636f6c756d6e0a636f6e746578740a2f6467636f6d2f70726f636573736f73656c657469766f323032310a65646974616c"
+                data-portlethash="706c6f6e652e6c656674636f6c756d6e0a636f6e746578740a2f6467636f6d2f70726f636573736f73656c657469766f323032310a65646974616c">
+                <dl class="portlet portletNavigationTree">
+
+                  <dt class="portletHeader">
+                    <span class="portletTopLeft"></span>
+                    Edital
+                    <span class="portletTopRight"></span>
+                  </dt>
+
+                  <dd class="portletItem lastItem">
+                    <ul class="navTree navTreeLevel0">
+
+
+
+
+
+                      <li class="navTreeItem visualNoMarker section-edital-completo">
+
+
+
+
+                        <a href="{% url 'indexprocessoseletivo' %}" title="" class="state-published">
+                          <span>Edital completo</span>
+                        </a>
+
+
+
+
+                      </li>
+
+                      <li class="navTreeItem visualNoMarker section-cronograma">
+
+
+
+
+                        <a href="{% url 'cronograma' %}" title="" class="state-published">
+                          <span>Cronograma</span>
+                        </a>
+
+
+
+
+                      </li>
+
+                      <li class="navTreeItem visualNoMarker section-documentos-para-inscricao">
+
+
+
+
+                        <a href="{% url 'documentos_inscricao' %}" title="" class="state-published">
+                          <span>Documentos para Inscrição</span>
+                        </a>
+
+
+
+
+                      </li>
+
+                      <li class="navTreeItem visualNoMarker section-codigo-de-reserva">
+
+
+
+
+                        <a href="{% url 'pcd' %}" title="" class="state-published">
+                          <span>Pessoas com deficiência</span>
+                        </a>
+
+
+
+
+                      </li>
+
+                      <li class="navTreeItem visualNoMarker section-sistema-de-reserva-de-vagas">
+
+
+
+
+                        <a href="{% url 'sistema_rv' %}" title="" class="state-published">
+                          <span>Sistema de reserva de vagas</span>
+                        </a>
+
+
+
+
+                      </li>
+
+
+
+
+                    </ul>
+                    <span class="portletBottomLeft"></span>
+                    <span class="portletBottomRight"></span>
+                  </dd>
+                </dl>
+
+              </div>
+
+              <div class="portletWrapper"
+                id="portletwrapper-706c6f6e652e6c656674636f6c756d6e0a636f6e746578740a2f6467636f6d2f70726f636573736f73656c657469766f323032310a637572736f73"
+                data-portlethash="706c6f6e652e6c656674636f6c756d6e0a636f6e746578740a2f6467636f6d2f70726f636573736f73656c657469766f323032310a637572736f73">
+                <dl class="portlet portletNavigationTree">
+
+                  <dt class="portletHeader">
+                    <span class="portletTopLeft"></span>
+                    Cursos
+                    <span class="portletTopRight"></span>
+                  </dt>
+
+                  <dd class="portletItem lastItem">
+                    <ul class="navTree navTreeLevel0">
+
+
+
+
+
+                      <li class="navTreeItem visualNoMarker section-cursos">
+
+
+
+
+                        <a href="{% url 'lista_de_cursos' %}" title="" class="state-published">
+                          <span>Conheça os cursos</span>
+                        </a>
+
+
+
+
+                      </li>
+
+                      <li class="navTreeItem visualNoMarker section-concorrencia">
+
+
+
+
+                        <a href="{% url 'concorrencia_integrado' %}" title="" class="state-published">
+                          <span>Concorrência integrado</span>
+                        </a>
+
+
+
+
+                      </li>
+
+                      <li class="navTreeItem visualNoMarker section-concorrencia-subsequente">
+
+
+
+
+                        <a href="{% url 'concorrencia_subsequente' %}" title="" class="state-published">
+                          <span>Concorrência subsequente</span>
+                        </a>
+
+
+
+
+                      </li>
+
+                      <li class="navTreeItem visualNoMarker section-concorrencia-concomitante">
+
+
+
+
+                        <a href="{% url 'concorrencia_concomitante' %}" title="" class="state-published">
+                          <span>Concorrência concomitante</span>
+                        </a>
+
+
+
+
+                      </li>
+
+
+
+
+                    </ul>
+                    <span class="portletBottomLeft"></span>
+                    <span class="portletBottomRight"></span>
+                  </dd>
+                </dl>
+
+              </div>
+
+              <div class="portletWrapper"
+                id="portletwrapper-706c6f6e652e6c656674636f6c756d6e0a636f6e746578740a2f6467636f6d2f70726f636573736f73656c657469766f323032310a616e746572696f726573"
+                data-portlethash="706c6f6e652e6c656674636f6c756d6e0a636f6e746578740a2f6467636f6d2f70726f636573736f73656c657469766f323032310a616e746572696f726573">
+                <dl class="portlet portletNavigationTree">
+
+                  <dt class="portletHeader">
+                    <span class="portletTopLeft"></span>
+                    Seleções Anteriores
+                    <span class="portletTopRight"></span>
+                  </dt>
+
+                  <dd class="portletItem lastItem">
+                    <ul class="navTree navTreeLevel0">
+
+                      <li class="navTreeItem visualNoMarker section-2020">
+
+
+
+
+                        <a href="https://portal.ifba.edu.br/processoseletivo2020" title="" class="state-published">
+                          <span>2020</span>
+                        </a>
+
+
+
+
+                      </li>
+
+                      <li class="navTreeItem visualNoMarker section-2019">
+
+
+
+
+                        <a href="https://portal.ifba.edu.br/processoseletivo2019/" title="" class="state-published">
+                          <span>2019</span>
+                        </a>
+
+
+
+
+                      </li>
+
+                      <li class="navTreeItem visualNoMarker section-copy_of_2018">
+
+
+
+
+                        <a href="https://portal.ifba.edu.br/processoseletivo2018/" title="" class="state-published">
+                          <span>2018</span>
+                        </a>
+
+
+
+
+                      </li>
+
+                      <li class="navTreeItem visualNoMarker section-copy_of_2017">
+
+
+
+
+                        <a href="https://portal.ifba.edu.br/processoseletivo/" title="" class="state-published">
+                          <span>2017</span>
+                        </a>
+
+
+
+
+                      </li>
+
+                      <li class="navTreeItem visualNoMarker section-copy_of_2016">
+
+
+
+
+                        <a href="https://portal.ifba.edu.br/destaque/prosel-2016/" title="" class="state-published">
+                          <span>2016</span>
+                        </a>
+
+
+
+
+                      </li>
+
+                      <li class="navTreeItem visualNoMarker section-copy_of_2015">
+
+
+
+
+                        <a href="https://portal.ifba.edu.br/menu-de-apoio/processos-seletivos/aluno/prosel-2015/2015-resultado"
+                          title="" class="state-published">
+                          <span>2015</span>
+                        </a>
+
+
+
+
+                      </li>
+
+
+
+
+                    </ul>
+                    <span class="portletBottomLeft"></span>
+                    <span class="portletBottomRight"></span>
+                  </dd>
+                </dl>
+
+              </div>
+
+
+
+
+
+            </div>
+          </div>
+
+          <!-- Conteudo -->
+          <div id="portal-column-content" class="cell width-3:4 position-1:4">
+            <a name="acontent" id="acontent" class="anchor">conteúdo</a>
+
+            <div class="">
+
+
+
+
+
+              <dl class="portalMessage info" id="kssPortalMessage" style="display:none">
+                <dt>Info</dt>
+                <dd></dd>
+              </dl>
+
+
+
+
+
+              <div id="content">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                <div class="row">
+
+
+
+
+
+
+
+
+                  <div class="cell width-16 position-0 " data-panel="">
+
+
+
+
+
+
+
+
+
+
+                    <div class="tile tile-default" id="b1247278-78be-4427-a0d5-24cab18644c3">
+
+
+
+                      <div class="cover-richtext-tile tile-content">
+
+
+                        <p style="text-align: left;" data-mce-style="text-align: left;"><a class="external-link"
+                            href="{% url 'processoseletivo' %}" style="" target="_self" title=""
+                            data-mce-href="http://portal.ifba.edu.br/processoseletivo2021/" data-mce-style=""><img
+                              src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQAQMAAAAlPW0iAAAAA1BMVEXy8vJkA4prAAAAC0lEQVQI12MgEQAAADAAAWV61nwAAAAASUVORK5CYII="
+                              alt="IFBA. Cursos Técnicos Gratuitos. Processo Seletivos 2021."
+                              data-mce-src="resolveuid/554a264c097046c68e0b5636cdbfdac2" class="image-inline lazyload"
+                              title="IFBA. Cursos Técnicos Gratuitos. Processo Seletivo 2021"
+                              data-src="https://portal.ifba.edu.br/processoseletivo2021/imagens/bannersite17.png"><span
+                              class="discreet" style="color: rgb(0, 0, 255);"
+                              data-mce-style="color: #0000ff;"><br></span></a></p>
+
+
+                      </div>
+
+
+                    </div>

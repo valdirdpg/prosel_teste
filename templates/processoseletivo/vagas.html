@@ -1,0 +1,28 @@
+{% extends "base/baseboot.html" %}
+{% load base_tags %}
+{% block conteudo %}
+
+    <h2 class="titulo">Extrato de vagas do {{ edicao }}</h2>
+        <p>Total de vagas: {{ total_vagas }}</p>
+        {% for curso, vagas in cursos %}
+            <h4>{{ curso }}</h4>
+            <div class="table-responsive">
+                <table class="table table-condensed">
+                    <thead>
+                    <tr>
+                        <th>Cota</th>
+                        <th>Vagas</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for v in vagas %}
+                        <tr>
+                            <td> {{ v.0 }}</td>
+                            <td> {{ v.1 }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% endfor %}
+{% endblock %}

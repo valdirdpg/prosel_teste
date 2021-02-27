@@ -1,0 +1,47 @@
+{% extends "psct/base.html" %}
+{% load base_tags %}
+
+{% block extrahead %}
+    {{ block.super }}
+    {{ form.media }}
+{% endblock %}
+
+{% block conteudo %}
+    <h2 class="titulo verde-escuro">{{ titulo }}</h2>
+
+    {% box 'Dados da Inscrição' True %}
+        {% with inscricao=inscricao_original %}
+            {% include "psct/inscricao/dadosinscricao.html" %}
+        {% endwith %}
+    {% endbox %}
+
+    {% block extra_data %}
+    {% endblock %}
+
+    <h3 class="verde-escuro">Pontuação</h3>
+    <p></p>
+
+    {% block pos_titulo_data %}
+    {% endblock %}
+
+    {% if object %}
+        {% with pontuacao=object %}
+            {% include "psct/pontuacao/pontuacao_detail.html" %}
+        {% endwith %}
+    {% endif %}
+
+    {% if form %}
+        <form method="post" action="">
+            {% csrf_token %}
+            {% include 'psct/pontuacao/inline_notas.html' %}
+            {% include 'psct/base/generic_form.html' %}
+            <input type="submit" value="{% block nome_botao_submit %}
+                    {% if nome_botao %}
+                        {{ nome_botao }}
+                    {% else %}
+                        Cadastrar
+                    {% endif %}
+                {% endblock %}" class="btn btn-primary pull-right">
+        </form>
+    {% endif %}
+{% endblock %}

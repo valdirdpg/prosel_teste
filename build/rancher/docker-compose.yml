@@ -1,0 +1,90 @@
+redirect:
+  ports:
+  - 80:80/tcp
+  labels:
+    io.rancher.scheduler.global: 'true'
+    io.rancher.container.pull_image: always
+  tty: true
+  image: jamessharp/docker-nginx-https-redirect:latest
+  stdin_open: true
+web:
+  restart: always
+  labels:
+    io.rancher.container.pull_image: always
+  ports:
+    - "8000"
+  image: docker.ifpb.edu.br:5000/ifpb/portal:latest
+  tty: true
+  stdin_open: true
+  env_file:
+    - web-variables.env
+  volumes:
+  - storage:/app/static/
+  volume_driver: storagepool
+  links:
+    - memcached
+    - redis
+  external_links:
+  - rabbit/rabbitmq
+worker:
+  restart: always
+  labels:
+    io.rancher.container.pull_image: always
+  ports:
+    - "8000"
+  image: docker.ifpb.edu.br:5000/ifpb/portal_worker:latest
+  tty: true
+  stdin_open: true
+  env_file:
+    - web-variables.env
+  volumes:
+  - storage:/app/static/
+  volume_driver: storagepool
+  links:
+    - memcached
+    - redis
+  external_links:
+  - rabbit/rabbitmq
+nginx:
+  restart: always
+  labels:
+    io.rancher.container.pull_image: always
+  ports:
+    - "80"
+  volumes:
+  - storage:/app/:ro
+  volume_driver: storagepool
+  image: docker.ifpb.edu.br:5000/ifpb/nginx:latest
+  tty: true
+  stdin_open: true
+lb:
+  ports:
+  - '443:443'
+  tty: true
+  image: rancher/load-balancer-service
+  labels:
+    io.rancher.loadbalancer.ssl.ports: '443'
+    io.rancher.loadbalancer.target.nginx: estudante.ifpb.edu.br:443/static=80,estudante.ifpb.edu.br:443/media=80
+    io.rancher.loadbalancer.target.web: estudante.ifpb.edu.br:443=8000    
+  links:
+   - web:web
+   - nginx:nginx
+  stdin_open: true
+memcached:
+  labels:
+    io.rancher.container.pull_image: always
+  restart: always
+  ports:
+    - 11211
+  image: memcached:latest
+  tty: true
+  stdin_open: true
+redis:
+  labels:
+    io.rancher.container.pull_image: always
+  restart: always
+  ports:
+    - 6379
+  image: redis:latest
+  tty: true
+  stdin_open: true

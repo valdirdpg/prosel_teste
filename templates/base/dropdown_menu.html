@@ -1,0 +1,13 @@
+<div class="btn-group {% if menu.menu_css %}{{ menu.menu_css }}{% endif %}">
+  <button class="btn btn-{% if not menu.button_css %}default{% else %}{{ menu.button_css }}{% endif %} dropdown-toggle btn-sm" type="button" id="dropdownMenu{{ menu.id }}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    {{ menu.name }}
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenu{{ menu.id }}">
+      {% for item in menu.items %}
+        {{ item.render }}
+      {% empty %}
+          <li class="disabled"><a>Sem opções</a></li>
+      {% endfor %}
+  </ul>
+</div>

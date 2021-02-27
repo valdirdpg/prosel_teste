@@ -1,0 +1,88 @@
+{% extends "base/baseboot.html" %}
+{% load editais_tags base_tags %}
+
+{% block conteudo %}
+    {% if not etapa %}
+        <div class="alert alert-danger"
+             style="text-align: justify; clear: both;
+                    position: relative; margin-bottom:0 !important">
+             <i class="fa fa-danger fa-fw"></i> Chamada não encontrada.
+        </div>
+    {% else %}
+        <div class="content-box">
+            <h2 class="titulo verde-escuro">
+                {{ etapa.edicao }}
+                {% if etapa.encerrada %}
+                    - Matriculados
+                {% else %}
+                    - Convocados
+                {% endif %}</h2>
+            <p class="chapeu"><br>Filtros definidos: </p>
+            <ul>
+                {% if etapa.campus %}
+                    <li>Unidade de Ensino: <strong>Campus {{ etapa.campus }}</strong></li>
+                {% elif campus %}
+                    <li>Unidade de Ensino: <strong>Campus {{ campus }}</strong></li>
+                {% endif %}
+
+                <li>Etapa: <strong>{{ etapa.label }}
+                    {% if not etapa.is_resultado %} da Lista de Espera{% endif %}</strong></li>
+
+                {% if curso %}
+                    <li>Curso: <strong>{{ curso.get_formacao_display }} em
+                                       {{ curso.nome }} -
+                                       {{ curso.get_modalidade_display }} -
+                                       {{ curso.get_turno_display }}</strong></li>
+                {% endif %}
+            </ul>
+            {% if not has_vagas or not admin_permission and not etapa.publica %}
+                <div class="alert alert-warning"  style="text-align: justify; margin-bottom:0 !important">
+                    <i class="fa fa-warning fa-fw"></i> Não há vagas cadastradas para a
+                    <strong>{{ etapa.label }}</strong>
+                    {% if not etapa.is_resultado %} da Lista de Espera{% endif %}
+                    {% if etapa.campus %}
+                        do campus {{ etapa.campus }} para
+                        este processo seletivo. Para mais informações, entre em contato com a
+                        Coordenação de Controle Acadêmico do campus.
+                    {% else %}
+                        deste processo seletivo. Para mais informações, entre em contato com a
+                        Coordenação de Editais da Pró-Reitoria de Ensino do IFPB.
+                    {% endif %}
+                </div>
+            {% else %}
+                {% data_interesse_em_etapa etapa as periodo_interesse %}
+                {% if etapa.encerrada %}
+                    <div class="alert alert-warning"  style="text-align: justify; clear: both; position: relative; margin-bottom:0 !important">
+                      <p><i class="fa fa-warning fa-fw"></i> <strong>Atenção!</strong>
+                         Esta convocação já está encerrada.</p>
+                      {% if periodo_interesse %}
+                          <p> O período de entrega de documentação para a matrícula ocorreu de
+                              {{ periodo_interesse.inicio | date:'d/m/Y' }} a
+                              {{ periodo_interesse.fim | date:'d/m/Y' }}.</p>
+                      {% endif %}
+                    </div>
+                {% else %}
+                    <div class="alert alert-info" style="text-align: justify">
+                        <p><i class="fa fa-info-circle fa-fw"></i> <strong>Atenção:</strong><br>
+                            O período de entrega de documentação para a matrícula ocorrerá de
+                            <strong>
+                            {{ periodo_interesse.inicio | date:'d/m/Y' }} a
+                            {{ periodo_interesse.fim | date:'d/m/Y' }}</strong>.
+                            {% if not etapa.is_resultado %}
+                            Serão matriculados todos os candidatos que comparecerem, seguindo a ordem
+                            de classificação até o limite de vagas.
+                            {% endif %}
+                            Todos os candidatos deverão apresentar no campus a documentação requerida
+                            e atender aos requisitos da vaga.</p>
+                    </div>
+                {% endif %}
+
+                <p class="chapeu"><br>{{ tipo_tabela_dados }}</p>
+
+                {% block tabela_dados %}
+                {% endblock %}
+
+            {% endif %}
+        </div>
+    {% endif %}
+{% endblock %}

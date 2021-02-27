@@ -1,0 +1,445 @@
+{% load i18n admin_static staticfiles %}<!DOCTYPE html>
+{% get_current_language as LANGUAGE_CODE %}{% get_current_language_bidi as LANGUAGE_BIDI %}
+<html lang="{{ LANGUAGE_CODE|default:"pt-br" }}" {% if LANGUAGE_BIDI %}dir="rtl"{% endif %}>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="{{ config.NOME_PORTAL }} - {{ config.DESCRICAO_INSTITUICAO }}">
+<meta name="author" content="{{ config.DESCRICAO_INSTITUICAO }}">
+<meta name="keywords" content="candidato,ingresso,processo,seletivo,cursos,editais">
+<title>Administração do Site | {{ config.NOME_PORTAL }} | {{ config.SIGLA_INSTITUICAO }}</title>
+<link rel="stylesheet" type="text/css" href="{% block stylesheet %}{% static "admin/css/base.css" %}{% endblock %}" />
+{% block extrastyle %}{% endblock %}
+{% if LANGUAGE_BIDI %}<link rel="stylesheet" type="text/css" href="{% block stylesheet_rtl %}{% static "admin/css/rtl.css" %}{% endblock %}" />{% endif %}
+{% block extrahead %}{% endblock %}
+{% block blockbots %}<meta name="robots" content="NONE,NOARCHIVE" />{% endblock %}
+</head>
+{% load i18n %}
+
+<body class="{% if is_popup %}popup {% endif %}
+    {% block bodyclass %}{% endblock %}
+    {{ config.TEMA_COR }}
+    {% if DEBUG %}debug{% endif %}"
+  data-admin-utc-offset="{% now "Z" %}">
+
+<!-- TOP HEADER -->
+<div id="barra-identidade">
+    <div id="barra-brasil">
+        <div id="wrapper-barra-brasil">
+            <div class="brasil-flag">
+                <a href="http://brasil.gov.br" class="link-barra">Brasil</a>
+            </div>
+            <span class="acesso-info">
+                <a href="http://www.servicos.gov.br/?pk_campaign=barrabrasil" class="link-barra"
+                   id="barra-brasil-orgao">Serviços</a>
+            </span>
+            <nav>
+                <ul id="lista-barra-brasil" class="list">
+                    <li><a href="#" id="menu-icon"></a></li>
+                    <li class="list-item first">
+                        <a href="http://www.simplifique.gov.br" class="link-barra">Simplifique!</a></li>
+                    <li class="list-item">
+                        <a href="http://brasil.gov.br/barra#participe" class="link-barra">Participe</a></li>
+                    <li class="list-item">
+                        <a href="http://brasil.gov.br/barra#acesso-informacao" class="link-barra">
+                            Acesso à informação</a></li>
+                    <li class="list-item">
+                        <a href="http://www.planalto.gov.br/legislacao" class="link-barra">Legislação</a></li>
+                    <li class="list-item last last-item">
+                        <a href="http://brasil.gov.br/barra#orgaos-atuacao-canais" class="link-barra">Canais</a></li>
+                </ul>
+            </nav>
+            <span id="brasil-vlibras">
+                <a class="logo-vlibras" href="#"></a>
+                <span class="link-vlibras">
+                    <img src="//barra.brasil.gov.br/imagens/vlibras.gif">&nbsp;
+                    <span>O conteúdo desse portal pode ser acessível em Libras usando o
+                        <a href="http://www.vlibras.gov.br">VLibras</a>
+                    </span>
+                </span>
+            </span>
+        </div>
+    </div>
+    <script src="https://barra.brasil.gov.br/barra.js" type="text/javascript" defer="" async=""></script>
+</div>
+
+<header>
+    <div class="header">
+        <div class="container container-admin">
+            <div class="row">
+                <div class="col-sm-6 hidden-xs">
+                    <ul class="list-unstyled list-inline accessibility">
+                        <li><a href="#conteudo" accesskey="1">Ir para o conteúdo <span class="key">1</span></a></li>
+                        <li><a href="#menu-admin" accesskey="2">Ir para o menu <span class="key">2</span></a></li>
+                        <li><a href="#buscar" accesskey="3">Ir para a busca <span class="key">3</span></a></li>
+                        <li><a href="#rodape" accesskey="4">Ir para o rodapé <span class="key">4</span></a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-6 text-center-xs">
+                    <ul class="list-unstyled list-inline siteactions pull-right">
+                        <li><a href="{% url 'acessibilidade' %}">ACESSIBILIDADE</a></li>
+{#                        <li><a href="" id="alto-contraste">ALTO CONTRASTE</a></li>#}
+{#                        <li><a >MAPA DO SITE</a></li>#}
+                    </ul>
+                </div>
+            </div>
+
+            <div class="row">
+                <!-- LOGO -->
+                <div class="col-sm-8 logo">
+                    <p>{{ config.DESCRICAO_INSTITUICAO }}</p>
+                    <a href="{% url 'processoseletivo' %}"><h1>{{ config.NOME_PORTAL }}</h1></a>
+                    <p class="subordinacao">{{ config.SUBORDINACAO }}</p>
+                </div>
+                <div class="col-sm-4 search-group">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-offset-2 col-sm-10">
+                            <form action="{% url 'busca' %}" method="get">
+                                <div class="form-group">
+                                    <div class="input-group input-group-sm">
+                                        <span class="sr-only"><label for="buscar">Buscar no portal</label></span>
+                                        <input type="search" class="form-control" name="q" value="{{ q }}"
+                                               placeholder="Buscar no portal" id="buscar">
+                                        <span class="input-group-addon">
+                                            <button style="border:0;background:transparent;"><i
+                                                    class="fa fa-search"></i></button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <!-- SOCIAL ICONS -->
+                        <p class="col-sm-12 text-right social-icons">
+                            {% if config.TWITTER %}
+                            <a href="{{ config.TWITTER }}" class="fa-stack fa-1x" target="_blank" title="Página do IFBA no Twitter">
+                                <i class="fa fa-twitter-square fa-2x" aria-hidden="true"></i>
+                                <span class="sr-only">Twitter (abre em nova janela)</span></a>{% endif %}
+                            {% if config.YOUTUBE %}
+                            <a href="{{ config.YOUTUBE }}" class="fa-stack fa-1x" target="_blank" title="Canal do IFBA no YouTube">
+                                <i class="fa fa-youtube-square fa-2x" aria-hidden="true"></i>
+                                <span class="sr-only">Youtube (abre em nova janela)</span></a>{% endif %}
+                            {% if config.FACEBOOK %}
+                            <a href="{{ config.FACEBOOK }}" class="fa-stack fa-1x" target="_blank" title="Página do IFBA no Facebook">
+                                <i class="fa fa-facebook-square fa-2x" aria-hidden="true"></i>
+                                <span class="sr-only">Facebook (abre em nova janela)</span></a>{% endif %}
+                            {% if config.FLICKBR %}
+                            <a href="{{ config.FLICKR }}" class="fa-stack fa-1x" target="_blank" title="Página do IFBA no Flickr">
+                                <i class="fa fa-flickr fa-2x" aria-hidden="true"></i>
+                                <span class="sr-only">Flickr (abre em nova janela)</span></a>{% endif %}
+                            {% if config.GOOGLE_PLUS %}
+                            <a href="{{ config.GOOGLE_PLUS }}" class="fa-stack fa-1x" target="_blank" title="Página do IFBA no Google Plus">
+                                <i class="fa fa-google-plus-square fa-2x" aria-hidden="true"></i>
+                                <span class="sr-only">Google Plus (abre em nova janela)</span></a>{% endif %}
+                            {% if config.INSTAGRAM %}
+                            <a href="{{ config.INSTAGRAM }}" class="fa-stack fa-1x" target="_blank" title="Perfil do IFBA no Instagram">
+                                <i class="fa fa-instagram fa-2x" aria-hidden="true"></i>
+                                <span class="sr-only">Instagram (abre em nova janela)</span></a>{% endif %}
+                            {% if config.RSS %}
+                            <a href="{{ config.RSS }}" class="fa-stack fa-1x">
+                                <i class="fa fa-rss-square fa-2x" aria-hidden="true"></i>
+                                <span class="sr-only">RSS</span></a>{% endif %}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- SOBRE -->
+        <div class="sobre">
+            <div class="container container-admin">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <ul class="list-inline list-unstyled pull-right">
+                            {% block welcome-msg %}
+                                <li>{% trans 'Welcome,' %}
+                                    <strong>{% firstof user.get_short_name user.get_username %}</strong>.
+                                </li>
+                            {% endblock %}
+                            {% if user.is_staff and user.is_active %}
+                                {% url 'django-admindocs-docroot' as docsroot %}
+                                {% if docsroot %}
+                                    <li><a href="{{ docsroot }}">{% trans 'Documentation' %}</a></li>
+                                {% endif %}
+                            {% endif %}
+                            {% block usertools %}{% block userlinks %}{% endblock %}{% endblock %}
+                            <li><a href="/"><i class="fa fa-home fa-fw" aria-hidden="true"></i> Página Inicial</a></li>
+                            <li><a href="{% url 'cursos' %}"><i
+                                    class="fa fa-mortar-board fa-fw" aria-hidden="true"></i> Cursos</a></li>
+                            <li><a href="{{ config.PORTAL_IFPB }}" target="_blank" title="Link para acessar o portal do IFBA">
+                                <i class="fa fa-external-link fa-fw" aria-hidden="true"></i> Portal do IFBA
+                                <span class="sr-only"> (abre em nova janela)</span></a></li>
+                            <li><a href="{{ config.PORTAL_IFPB }}/ead/" target="_blank" title="Link para acessar o portal da EaD do IFBA">
+                                <i class="fa fa-external-link fa-fw" aria-hidden="true"></i> Portal da EaD
+                                <span class="sr-only"> (abre em nova janela)</span></a></li>
+                            <li><a href="{{ config.PORTAL_IFPB }}/transparencia/" target="_blank" title="Link para acessar o portal da transparência do IFBA">
+                                    <i class="fa fa-external-link fa-fw" aria-hidden="true"></i> Portal da Transparência
+                                    <span class="sr-only"> (abre em nova janela)</span></a></li>
+                            <li><a href="{% url 'contato' %}"><i
+                                    class="fa fa-phone fa-fw" aria-hidden="true"></i> Contatos</a></li>
+                            {% if request.user.is_authenticated %}
+                                <li><a href="{% url 'admin:logout' %}?next={% url 'processoseletivo' %}">
+                                    <i class="fa fa-sign-out fa-fw" aria-hidden="true"></i>{% trans 'Log out' %}</a></li>
+                            {% endif %}
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% block menu_admin %}
+    <nav id="menu-admin" class="menu-admin navbar navbar-default">
+        <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#menu-admin-collapse" aria-expanded="false">
+            <span class="sr-only">Menu</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Administração do Site</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="menu-admin-collapse">
+          {% for app in estudante_app_list %}
+            <ul class="nav navbar-nav">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ app.name }} <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                      {% for model in app.models %}
+                        <li><a href="{{ model.admin_url }}">{{ model.name }}</a></li>
+                      {% endfor %}
+                    </ul>
+                </li>
+            </ul>
+          {% endfor %}
+        </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+    {% endblock %}
+
+    <!-- LOCALIZAÇÃO -->
+    <div class="localizacao">
+        <div class="container container-admin">
+            <div class="row">
+                <div class="col-xs-12">
+                    <ul class="list-inline list-unstyled">
+                        <li>Você está aqui:</li>
+                          {% block breadcrumb %}
+                              <li><a href="{{ site_url }}">{% trans 'Home' %}</a></li>
+                          {% endblock %}
+                        {% if title %}
+                        <li><i class="fa fa-angle-right text-muted"></i></li>
+                        <li>{% block titulo_breadcrumb %}{{ title }}{% endblock %}</li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</header>
+
+<!-- Container -->
+<div class="container container-admin">
+<div class="row">
+    <div class="col-md-12 conteudo" id="conteudo">
+        {% block messages %}
+            {% if messages %}
+            <ul class="messagelist">{% for message in messages %}
+              <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message|capfirst }}</li>
+            {% endfor %}</ul>
+            {% endif %}
+        {% endblock messages %}
+
+        <!-- Content -->
+        <div class="{% block coltype %}colM{% endblock %}">
+            {% block pretitle %}{% endblock %}
+            {% block content_title %}{% if title %}<h2 class="titulo azul-petroleo">{{ title }}</h2>{% endif %}{% endblock %}
+            {% block content %}
+            {% block object-tools %}{% endblock %}
+            {{ content }}
+            {% endblock %}
+            {% block sidebar %}{% endblock %}
+            <br class="clear" />
+        </div>
+        <!-- END Content -->
+
+        {% block conteudo %}
+        {% endblock %}
+    </div>
+</div>
+
+<!-- BACK TO TOP -->
+<div class="row">
+    <div class="col-xs-12">
+        <a class="back-top pull-right" href="" onclick="$('html,body').animate({scrollTop:0},'fast');return false;">
+            <i class="fa fa-caret-up fa-fw" aria-hidden="true"></i> Voltar para o topo
+        </a>
+    </div>
+</div>
+
+</div>
+<!-- END Container -->
+
+<!-- FOOTER -->
+{% block footer %}
+<div class="footer" role="contentinfo" id="rodape">
+    <div class="container container-admin">
+        <div class="col-xs-6 col-sm-3 block">
+            <h3 class="titulo-rodape">Institucional</h3>
+            <ul class="list-unstyled">
+                <li><a href="{{ config.PORTAL_IFPB }}/acesso-a-informacao/institucional/" target="_blank">O Instituto
+                      <span class="sr-only"> (abre em nova janela)</span></a></li>
+                <li><a href="{{ config.PORTAL_IFPB }}/institucional/memorial" target="_blank">Memória
+                      <span class="sr-only"> (abre em nova janela)</span></a></li>
+                <li><a href="{{ config.PORTAL_IFPB }}/institucional/organograma/" target="_blank">Organograma
+                      <span class="sr-only"> (abre em nova janela)</span></a></li>
+                <li><a href="{{ config.PORTAL_IFPB }}/institucional/quem-e-quem/" target="_blank">Quem é quem
+                      <span class="sr-only"> (abre em nova janela)</span></a></li>
+                <li><a href="{{ config.PORTAL_IFPB }}/institucional/atribuicoes-cargos/" target="_blank">Atribuições e cargos
+                      <span class="sr-only"> (abre em nova janela)</span></a></li>
+                <li><a href="{{ config.PORTAL_IFPB }}/institucional/eleicoes" target="_blank">Eleições
+                      <span class="sr-only"> (abre em nova janela)</span></a></li>
+                <li><a href="{{ config.PORTAL_IFPB }}/menu-de-apoio/processos-seletivos" target="_blank">Processos Seletivos
+                      <span class="sr-only"> (abre em nova janela)</span></a></li>
+                <li><a href="{{ config.PORTAL_IFPB }}/prodin/assessoria-internacional/arinter" target="_blank">Assessoria Internacional
+                      <span class="sr-only"> (abre em nova janela)</span></a></li>
+                <li><a href="{{ config.PORTAL_IFPB }}/contatoifba" target="_blank">Contatos
+                      <span class="sr-only"> (abre em nova janela)</span></a></li>
+                <li><a href="{{ config.PORTAL_IFPB }}/institucional/fale-conosco/formulario" target="_blank">Fale conosco
+                      <span class="sr-only"> (abre em nova janela)</span></a></li>
+            </ul>
+        </div>
+        <div class="col-xs-6 col-sm-3 block">
+            <h3 class="titulo-rodape">Campi</h3>
+            <ul class="list-unstyled">
+                <li><a href="{{ config.PORTAL_IFPB }}/campi/escolha-o-campus" target="_blank">Escolha o campus
+                      <span class="sr-only"> (abre em nova janela)</span></a></li>
+                <li><a href="{{ config.PORTAL_IFPB }}/campi/contatos-campi" target="_blank">Diretores dos campi
+                      <span class="sr-only"> (abre em nova janela)</span></a></li>
+                <li><a href="{{ config.PORTAL_IFPB }}/contatoifba" target="_blank">Ramais dos campi
+                      <span class="sr-only"> (abre em nova janela)</span></a></li>
+            </ul>
+        </div>
+        <div class="col-xs-6 col-sm-3 block">
+            <h3 class="titulo-rodape">Redes sociais</h3>
+            <ul class="list-unstyled">
+                {% if config.TWITTER %}
+                    <li><a href="{{ config.TWITTER }}" target="_blank" title="Página do IFBA no Twitter">Twitter
+                        <span class="sr-only"> (abre em nova janela)</span></a></li>{% endif %}
+                {% if config.FACEBOOK %}
+                    <li><a href="{{ config.FACEBOOK }}" target="_blank" title="Página do IFBA no Facebook">Facebook
+                        <span class="sr-only"> (abre em nova janela)</span></a></li>{% endif %}
+                {% if config.INSTAGRAM %}
+                    <li><a href="{{ config.INSTAGRAM }}" target="_blank" title="Perfil do IFBA no Instagram">Instagram
+                        <span class="sr-only"> (abre em nova janela)</span></a>{% endif %}
+                {% if config.YOUTUBE %}
+                    <li><a href="{{ config.YOUTUBE }}" target="_blank" title="Canal do IFBA no YouTube">YouTube
+                        <span class="sr-only"> (abre em nova janela)</span></a></li>{% endif %}
+                {% if config.FLICKBR %}
+                    <li><a href="{{ config.FLICKR }}" target="_blank" title="Página do IFBA no Flickr">Flickr
+                        <span class="sr-only"> (abre em nova janela)</span></a></li>{% endif %}
+                {% if config.GOOGLE_PLUS %}
+                    <li><a href="{{ config.GOOGLE_PLUS }}" target="_blank" title="Página do IFBA no Google Plus">Google Plus
+                        <span class="sr-only"> (abre em nova janela)</span></a>{% endif %}
+                {% if config.RSS %}
+                    <li><a href="{{ config.RSS }}">RSS</a></li>{% endif %}
+            </ul>
+        </div>
+        <div class="col-xs-6 col-sm-3 block">
+            <h3 class="titulo-rodape">Acesso à Informação</h3>
+            <ul class="list-unstyled">
+                <li><a href="{{ config.PORTAL_IFPB }}/menu-de-apoio/acesso-a-informacao" target="_blank">Acesso à Informação
+                      <span class="sr-only"> (abre em nova janela)</span></a></li>
+                <li><a href="{{ config.PORTAL_IFPB }}" target="_blank">Carta de serviços ao cidadão
+                      <span class="sr-only"> (abre em nova janela)</span></a></li>
+                <li><a href="{{ config.DADOS_ABERTOS }}" target="_blank">Dados abertos
+                      <span class="sr-only"> (abre em nova janela)</span></a></li>
+                <li><a href="{{ config.PORTAL_IFPB }}/menu-institucional/docs" target="_blank">Documentos
+                      <span class="sr-only"> (abre em nova janela)</span></a></li>
+                <li><a href="{{ config.PORTAL_IFPB }}/acessoinformacao/duvidas-frequentes" target="_blank">Dúvidas frequêntes
+                      <span class="sr-only"> (abre em nova janela)</span></a></li>
+                <li><a href="{{ config.PORTAL_IFPB }}/proap/licitacoes" target="_blank">Licitações e contratos
+                      <span class="sr-only"> (abre em nova janela)</span></a></li>
+                <li><a href="{{ config.PORTAL_ESIC }}" target="_blank">Serviço de Informação ao Cidadão - eSIC
+                      <span class="sr-only"> (abre em nova janela)</span></a></li>
+                <li><a href="{{ config.PORTAL_IFPB }}/institucional/documento/documentos-institucionais/servidores" target="_blank">Servidores
+                      <span class="sr-only"> (abre em nova janela)</span></a></li>
+                <li><a href="{{ config.PORTAL_IFPB }}//menu-de-apoio/paginas-menu-de-apoio/transparencia-ifba" target="_blank">Transparência IFBA
+                      <span class="sr-only"> (abre em nova janela)</span></a></li>
+                <li><a href="{{ config.PORTAL_IFPB }}/menu-de-apoio/ouvidoria" target="_blank">Ouvidoria
+                      <span class="sr-only"> (abre em nova janela)</span></a></li>
+            </ul>
+        </div>
+        <div class="col-xs-6 col-sm-3 block">
+            <h3 class="titulo-rodape">Ensino</h3>
+            <ul class="list-unstyled">
+                <li><a href="{{ config.PORTAL_IFPB }}/ensino/seja-nosso-aluno" target="_blank">Seja nosso aluno
+                      <span class="sr-only"> (abre em nova janela)</span></a></li>
+                <li><a href="{{ config.PORTAL_IFPB }}/ensino/tipos-de-cursos" target="_blank">Tipos de curso
+                      <span class="sr-only"> (abre em nova janela)</span></a></li>
+                <li><a href="{{ config.PORTAL_IFPB }}/ensino/nossos-cursos" target="_blank">Nossos cursos
+                      <span class="sr-only"> (abre em nova janela)</span></a></li>
+                <li><a href="{{ config.PORTAL_IFPB }}/ead" target="_blank">Ensino à distância
+                      <span class="sr-only"> (abre em nova janela)</span></a></li>
+                <li><a href="{{ config.PORTAL_IFPB }}//proen/departamentos/departamento-de-permanencia-e-assistencia-estudantil/dpae" target="_blank">Assistência estudantil
+                      <span class="sr-only"> (abre em nova janela)</span></a></li>
+                <li><a href="{{ config.PORTAL_IFPB }}/processoseletivo2021/" target="_blank">Processo Seletivo 2021
+                      <span class="sr-only"> (abre em nova janela)</span></a></li>
+                <li><a href="{{ config.PORTAL_IFPB }}/proen/certificacao_ensino_medio/enem-encceja" target="_blank">Certificação ENCCEJA/ENEM
+                      <span class="sr-only"> (abre em nova janela)</span></a></li>
+                <li><a href="{{ config.PORTAL_IFPB }}/institucional/documento/sisu/" target="_blank">SISU
+                      <span class="sr-only"> (abre em nova janela)</span></a></li>
+                <li><a href="{{ config.PORTAL_IFPB }}//menu-de-apoio//ensino/perguntas-frequentes" target="_blank">Perguntas frequentes
+                      <span class="sr-only"> (abre em nova janela)</span></a></li>
+            </ul>
+        </div>
+        <div class="col-xs-6 col-sm-3 block">
+            <h3 class="titulo-rodape">Sistemas</h3>
+            <ul class="list-unstyled">
+                <li><a href="{{ config.PORTAL_BIBLIOTECA }}" target="_blank">Biblioteca
+                      <span class="sr-only"> (abre em nova janela)</span></a></li>
+                <li><a href="{{ config.PORTAL_SUAP }}" target="_blank">SUAP
+                      <span class="sr-only"> (abre em nova janela)</span></a></li>
+                <li><a href="{{ config.PORTAL_SEI }}" target="_blank">SEI
+                      <span class="sr-only"> (abre em nova janela)</span></a></li>
+                <li><a href="{{ config.PORTAL_SEI_PESQUISA_PUBLICA }}" target="_blank">SEI - Pesquisa Pública
+                      <span class="sr-only"> (abre em nova janela)</span></a></li>
+                <li><a href="{{ config.PORTAL_WEBMAIL }}" target="_blank">Webmail
+                      <span class="sr-only"> (abre em nova janela)</span></a></li>
+                <li><a href="{{ config.PORTAL_SICAD }}" target="_blank">SICAD
+                      <span class="sr-only"> (abre em nova janela)</span></a></li>
+                <li><a href="{{ config.PORTAL_SIGA }}" target="_blank">SIGA
+                      <span class="sr-only"> (abre em nova janela)</span></a></li>
+                <li><a href="{{ config.PORTAL_SISTEMA_PROCESSOS }}" target="_blank">SISPROC
+                      <span class="sr-only"> (abre em nova janela)</span></a></li>
+                <li><a href="{{ config.PORTAL_SIADS }}" target="_blank">SIADS
+                      <span class="sr-only"> (abre em nova janela)</span></a></li>
+                <li><a href="{{ config.PORTAL_SIAPENET }}/menu-de-apoio/ouvidoria" target="_blank">SIAPENET
+                      <span class="sr-only"> (abre em nova janela)</span></a></li>
+                <li><a href="{{ config.PORTAL_PLANO_METAS }}/menu-de-apoio/ouvidoria" target="_blank">Plano de metas
+                      <span class="sr-only"> (abre em nova janela)</span></a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div id="footer-brasil" class="footer footer-logos">
+    <div id="wrapper-footer-brasil">
+        <a href="http://www.acessoainformacao.gov.br/">
+            <span class="logo-acesso-footer"></span>
+            <span class="sr-only">Logomarca de Acesso à Informação do governo</span>
+        </a>
+        <a href="http://www.brasil.gov.br/">
+            <span class="logo-brasil-footer"></span>
+            <span class="sr-only">Logomarca do Governo Federal</span>
+        </a>
+    </div>
+</div>
+{% endblock %}
+
+</body>
+</html>

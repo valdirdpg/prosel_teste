@@ -1,0 +1,6 @@
+memcached:
+  scale: 1
+redis:
+  scale: 1
+app:
+  scale: 1

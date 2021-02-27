@@ -1,0 +1,19 @@
+{% extends "psct/create_inscricao.html" %}
+
+{% block extrahead %}
+    {{ block.super }}
+        <script type="text/javascript">
+    $(document).ready(function () {
+    let com_segunda_opcao = $("#id_com_segunda_opcao");
+    let curso_segunda_opcao = $("#id_curso_segunda_opcao");
+    let curso_segunda_opcao_div = $("#field_curso_segunda_opcao");
+    let curso_segunda_opcao_label = $("#field_curso_segunda_opcao label");
+    let aceite = $("#id_aceite")
+
+    {#com_segunda_opcao.removeClass('form-control');#}
+    aceite.removeClass('form-control');
+    {#com_segunda_opcao.click(alternar_segunda_opcao);#}
+    {#alternar_segunda_opcao();#}
+    });
+        </script>
+{% endblock %}

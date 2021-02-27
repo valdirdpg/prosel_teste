@@ -1,0 +1,35 @@
+{% extends "psct/base.html" %}
+
+{% block breadcrumb %}
+    <li><a href="/">Início</a></li>
+    <li><i class="fa fa-angle-right text-muted"></i></li>
+    <li class="active">Perfil Socioeconômico e Escolar - Edital {{ edital.numero }}/{{ edital.ano }}</li>
+{% endblock %}
+
+{% block conteudo %}
+
+    <h2 class="titulo verde-escuro">Perfil Socioeconômico e Escolar - {{ edital.nome }}</h2>
+
+    <form method="POST" action="" class="form-horizontal">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-xs-12">
+                <span class="help-block text-justify">
+                    {% block descricao_formulario %}<p>Este questionário tem a finalidade de coletar informações sobre o seu perfil, sua vida
+                        escolar e suas condições socioeconômicas.</p>
+                      <p>Algumas das perguntas deverão ser respondidas marcando apenas 1 opção, outras
+                          permitem que o candidato selecione mais de uma opção.</p>
+                        <p>Se tiver dúvidas ao preencher, consulte o <a href="https://portal.ifba.edu.br/processoseletivo2021/edital/">edital</a> </p>
+                      {% endblock %}
+                </span></div>
+            <div class="col-xs-12">
+                <span class="help-block text-justify">
+                    Todos os campos sinalizados com * devem ser obrigatoriamente preenchidos.
+                </span></div>
+        </div>
+        <p></p>
+        {% include 'psct/base/generic_form.html' %}
+        <a class="btn btn-grey" href="{{ back_url }}">Voltar</a>
+        <input type=submit value="Continuar" class="btn btn-primary pull-right">
+    </form>
+{% endblock %}

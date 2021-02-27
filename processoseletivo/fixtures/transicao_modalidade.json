@@ -1,0 +1,276 @@
+[
+  {
+    "model": "processoseletivo.transicaomodalidade",
+    "fields": {
+      "modalidade_inicial": 1
+    },
+    "pk": 1
+  },
+  {
+    "model": "processoseletivo.transicaomodalidade",
+    "fields": {
+      "modalidade_inicial": 6
+    },
+    "pk": 2
+  },
+  {
+    "model": "processoseletivo.transicaomodalidade",
+    "fields": {
+      "modalidade_inicial": 5
+    },
+    "pk": 3
+  },
+  {
+    "model": "processoseletivo.transicaomodalidade",
+    "fields": {
+      "modalidade_inicial": 3
+    },
+    "pk": 4
+  },
+  {
+    "model": "processoseletivo.transicaomodalidade",
+    "fields": {
+      "modalidade_inicial": 2
+    },
+    "pk": 5
+  },
+  {
+    "model": "processoseletivo.transicaomodalidade",
+    "fields": {
+      "modalidade_inicial": 4
+    },
+    "pk": 6
+  },
+  {
+    "model": "processoseletivo.transicaomodalidade",
+    "fields": {
+      "modalidade_inicial": 7
+    },
+    "pk": 7
+  },
+  {
+    "model": "processoseletivo.transicaomodalidadepossivel",
+    "fields": {
+      "origem": 1,
+      "destino": 1,
+      "modalidade": 1
+    },
+    "pk": 1
+  },
+  {
+    "model": "processoseletivo.transicaomodalidadepossivel",
+    "fields": {
+      "origem": 6,
+      "destino": 1,
+      "modalidade": 2
+    },
+    "pk": 2
+  },
+  {
+    "model": "processoseletivo.transicaomodalidadepossivel",
+    "fields": {
+      "origem": 5,
+      "destino": 1,
+      "modalidade": 3
+    },
+    "pk": 4
+  },
+  {
+    "model": "processoseletivo.transicaomodalidadepossivel",
+    "fields": {
+      "origem": 1,
+      "destino": 1,
+      "modalidade": 3
+    },
+    "pk": 5
+  },
+  {
+    "model": "processoseletivo.transicaomodalidadepossivel",
+    "fields": {
+      "origem": 3,
+      "destino": 2,
+      "modalidade": 4
+    },
+    "pk": 6
+  },
+  {
+    "model": "processoseletivo.transicaomodalidadepossivel",
+    "fields": {
+      "origem": 2,
+      "destino": 4,
+      "modalidade": 4
+    },
+    "pk": 7
+  },
+  {
+    "model": "processoseletivo.transicaomodalidadepossivel",
+    "fields": {
+      "origem": 4,
+      "destino": 7,
+      "modalidade": 4
+    },
+    "pk": 8
+  },
+  {
+    "model": "processoseletivo.transicaomodalidadepossivel",
+    "fields": {
+      "origem": 7,
+      "destino": 1,
+      "modalidade": 4
+    },
+    "pk": 9
+  },
+  {
+    "model": "processoseletivo.transicaomodalidadepossivel",
+    "fields": {
+      "origem": 1,
+      "destino": 1,
+      "modalidade": 4
+    },
+    "pk": 10
+  },
+  {
+    "model": "processoseletivo.transicaomodalidadepossivel",
+    "fields": {
+      "origem": 2,
+      "destino": 3,
+      "modalidade": 5
+    },
+    "pk": 11
+  },
+  {
+    "model": "processoseletivo.transicaomodalidadepossivel",
+    "fields": {
+      "origem": 3,
+      "destino": 4,
+      "modalidade": 5
+    },
+    "pk": 12
+  },
+  {
+    "model": "processoseletivo.transicaomodalidadepossivel",
+    "fields": {
+      "origem": 4,
+      "destino": 7,
+      "modalidade": 5
+    },
+    "pk": 13
+  },
+  {
+    "model": "processoseletivo.transicaomodalidadepossivel",
+    "fields": {
+      "origem": 7,
+      "destino": 1,
+      "modalidade": 5
+    },
+    "pk": 14
+  },
+  {
+    "model": "processoseletivo.transicaomodalidadepossivel",
+    "fields": {
+      "origem": 1,
+      "destino": 1,
+      "modalidade": 5
+    },
+    "pk": 15
+  },
+  {
+    "model": "processoseletivo.transicaomodalidadepossivel",
+    "fields": {
+      "origem": 4,
+      "destino": 7,
+      "modalidade": 6
+    },
+    "pk": 16
+  },
+  {
+    "model": "processoseletivo.transicaomodalidadepossivel",
+    "fields": {
+      "origem": 7,
+      "destino": 3,
+      "modalidade": 6
+    },
+    "pk": 17
+  },
+  {
+    "model": "processoseletivo.transicaomodalidadepossivel",
+    "fields": {
+      "origem": 3,
+      "destino": 2,
+      "modalidade": 6
+    },
+    "pk": 18
+  },
+  {
+    "model": "processoseletivo.transicaomodalidadepossivel",
+    "fields": {
+      "origem": 2,
+      "destino": 1,
+      "modalidade": 6
+    },
+    "pk": 19
+  },
+  {
+    "model": "processoseletivo.transicaomodalidadepossivel",
+    "fields": {
+      "origem": 1,
+      "destino": 1,
+      "modalidade": 6
+    },
+    "pk": 20
+  },
+  {
+    "model": "processoseletivo.transicaomodalidadepossivel",
+    "fields": {
+      "origem": 7,
+      "destino": 4,
+      "modalidade": 7
+    },
+    "pk": 21
+  },
+  {
+    "model": "processoseletivo.transicaomodalidadepossivel",
+    "fields": {
+      "origem": 4,
+      "destino": 3,
+      "modalidade": 7
+    },
+    "pk": 22
+  },
+  {
+    "model": "processoseletivo.transicaomodalidadepossivel",
+    "fields": {
+      "origem": 3,
+      "destino": 2,
+      "modalidade": 7
+    },
+    "pk": 23
+  },
+  {
+    "model": "processoseletivo.transicaomodalidadepossivel",
+    "fields": {
+      "origem": 2,
+      "destino": 1,
+      "modalidade": 7
+    },
+    "pk": 24
+  },
+  {
+    "model": "processoseletivo.transicaomodalidadepossivel",
+    "fields": {
+      "origem": 1,
+      "destino": 1,
+      "modalidade": 7
+    },
+    "pk": 25
+  },
+  {
+    "model": "processoseletivo.transicaomodalidadepossivel",
+    "fields": {
+      "origem": 1,
+      "destino": 1,
+      "modalidade": 2
+    },
+    "pk": 30
+  }
+]

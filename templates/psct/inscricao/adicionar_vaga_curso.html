@@ -1,0 +1,11 @@
+{% extends "psct/base.html" %}
+
+{% block conteudo %}
+    <h2 class="titulo verde-escuro">Adicionar vagas nos cursos</h2>
+    <h4>Deseja realmente criar as vagas dos cursos de {{ processo_inscricao }}?</h4>
+    <form method="post" action="">
+        {% csrf_token %}
+        <input type="submit" value="{% block nome_botao_submit %}Sim{% endblock %}" class="btn btn-primary pull-right">
+    </form>
+    <a href="{% url 'admin:psct_processoinscricao_changelist' %}" class="btn btn-warning pull-left">Não</a>
+{% endblock %}

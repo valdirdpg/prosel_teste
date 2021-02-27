@@ -1,0 +1,79 @@
+{% load inscricao_tags form_utils %}
+{% for formset in inlines %}
+    <div id="form_set">
+        {% if formset.errors|exists or formset.non_form_errors %}
+            <div class="alert alert-danger alert-dismissible" role="alert">
+                <button type="button" class="close small" data-dismiss="alert"
+                        aria-label="close">&times;</button>
+                <span>
+                            <i class="glyphicon glyphicon-exclamation-sign"></i> Por favor, corrija o(s) erro(s) abaixo para continuar.
+                            <div class="visible-md-block visible-lg-block">
+                            <ul class="errorlist">
+                            {% for error in formset.errors|erro_notas %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                            {% for non_form_error in formset.non_form_errors %}
+                                {{ non_form_error }}<br/>
+                            {% endfor %}
+                            </ul>
+                            </div>
+                        </span>
+            </div>
+        {% endif %}
+        {{ formset.management_form }}
+        <div class="row form-group">
+            {% for form_inline in formset.forms %}
+                {% with form=form_inline %}
+                    {% if forloop.first %}
+                        <div class="visible-md-block visible-lg-block">
+                            {% for field in form.visible_fields %}
+                                {% if inscricao.is_integrado %}
+                                    <div class="col-md-{% if 'Ano' in field.label %}4{% else %}2{% endif %}">
+                                        {{ field.label_tag }}
+                                    </div>
+                                {% else %}
+                                    <div class="col-md-2">{{ field.label_tag }}</div>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                {% endwith %}
+            {% endfor %}
+        </div>
+
+        {% for form_inline in formset.forms %}
+            <div class="row form-group">
+                {% with form=form_inline %}
+                    {% for field in form.visible_fields %}
+                        {% if field.errors %}
+                            <div class="visible-xs-block visible-sm-block has-error">
+                                {% for error in field.errors %}
+                                    <div class="col-xs-offset-6 col-xs-6"><span
+                                            class="help-block">{{ error }}</span></div>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                        <div class="visible-xs-block visible-sm-block
+                                        {% if not field|optional %}required{% endif %}
+                                        {% if field.errors %}has-error{% endif %} ">
+                            <label class="col-xs-6 control-label">{{ field.label }}:</label>
+                        </div>
+                        {% if inscricao.is_integrado %}
+                            <div class="col-xs-6 col-md-{% if 'Ano' in field.label %}4{% else %}2{% endif %}
+                                                {% if field.errors %}has-error{% endif %} mask-nota">
+                                {{ field }}
+                            </div>
+                        {% else %}
+                            <div class="col-xs-6 col-md-2{% if field.errors %} has-error{% endif %} mask-nota">{{ field }}</div>
+                        {% endif %}
+                    {% endfor %}
+                    {% for hidden in form.hidden_fields %}
+                        <div class="col-xs-12">
+                            {{ hidden }}
+                        </div>
+                    {% endfor %}
+                {% endwith %}
+            </div>
+        {% endfor %}
+    </div>
+{% endfor %}

@@ -1,0 +1,189 @@
+{% extends "base/index.html" %}
+{% load staticfiles editais_tags %}
+
+{% block breadcrumb %}
+    <li><a href="/">Início</a></li>
+    <li><i class="fa fa-angle-right text-muted"></i></li>
+    <li><a href='{% url 'editais' %}'>Editais</a></li>
+    <li><i class="fa fa-angle-right text-muted"></i></li>
+    <li class="active">Edital Nº {{ edital.numero }}/{{ edital.ano }} - {{ edital.nome }}</li>
+{% endblock %}
+
+
+{% block conteudo %}
+  <h2 class="titulo verde-escuro">Edital Nº {{ edital.numero }}/{{ edital.ano }} - {{ edital.nome }} <small> - Publicado em {{ edital.data_publicacao }}</small></h2>
+
+  {% block documentos %}
+      <div class="row">
+        <div class="col-xs-6">
+
+          <div class="row">
+            <div class="col-xs-12">
+
+                {% autoescape off %}
+                  {{ edital.descricao }}
+                {% endautoescape %}
+
+            </div>
+          </div>
+
+
+    {#      {% if edital.encerrado %}#}
+    {#        <div style="margin-left: auto; margin-right: auto">#}
+    {#            <p style="text-align: center; margin-bottom: 50px; ">#}
+    {#                <a href="{% url 'edicoes' processo_pk=edital.edicao.processo_seletivo.id %}" class="btn btn-success" style=";margin-left: auto; margin-bottom: auto; padding-left: 50px; padding-right: 50px;">Relação de classificados</a>#}
+    {#                <a href="{% url 'edicoes_matriculados' processo_pk=edital.edicao.processo_seletivo.id %}" class="btn btn-success" style=";margin-left: auto; margin-bottom: auto; padding-left: 50px; padding-right: 50px;">Relação de matriculados</a>#}
+    {#            </p>#}
+    {#        </div>#}
+    {#      {% endif %}#}
+
+
+
+          <div class="row">
+            <div class="col-xs-12">
+              <p class="chapeu">Resumo</p>
+              {% if edital.retificado %}
+                <p><b>Retifica o edital <a href="{% url 'edital-detail' edital.retificado.pk %}">{{ edital.retificado }}</a></b><p>
+              {% endif %}
+
+              <div class="table-responsive">
+                <table class="table table-striped table-bordered table-condensed">
+                  <tr>
+                    <th style="vertical-align: middle">Vagas:</th>
+                    <td>
+                    {% for nivel in edital.niveis_selecao.all %}
+                      {% if forloop.first %}
+                        {{ nivel.nome }}: {{ nivel.vagas }}
+                      {% else %}
+                        <br>{{ nivel.nome }}: {{ nivel.vagas }}
+                      {% endif %}
+                    {% endfor %}
+                    </td>
+                  </tr>
+                  <tr>
+                    <th style="vertical-align: middle">Valor da Inscrição:</th>
+                    <td>
+                    {% for nivel in edital.niveis_selecao.all %}
+                      {% if forloop.first %}
+                        {{ nivel.nome }}: {{ nivel.valor_inscricao }}
+                      {% else %}
+                        <br>{{ nivel.nome }}: {{ nivel.valor_inscricao }}
+                      {% endif %}
+                    {% endfor %}
+                    </td>
+                  </tr>
+                  <tr>
+                    <th>Prazo de pagamento:</th>
+                    <td>{{ edital.prazo_pagamento }}</td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="row"  style="margin-bottom: 10px">
+                <div class="col-xs-6">
+                    <i class="fa fa-file-pdf-o fa-lg"></i>
+                  <a href="{% url 'arquivos_edital' pk_edital=edital.id categoria='EDITAL' %}">
+                      Editais
+                  </a>
+                </div>
+                <div class="col-sm-6">
+                    <i class="fa fa-user-plus fa-lg"></i>
+                  <a href="{{ edital.link_inscricoes }}">
+                      Inscriçoes
+                  </a>
+                </div>
+              </div>
+              <div class="row"  style="margin-bottom: 10px">
+                <div class="col-sm-6">
+                    <i class="fa fa-location-arrow fa-lg"></i>
+                  <a href="#">
+                      Locais de Prova
+                  </a>
+                </div>
+                <div class="col-sm-6">
+                    <i class="fa fa-files-o fa-lg"></i>
+                  <a href="#">
+                      Provas
+                  </a>
+                </div>
+              </div>
+              {% has_anexo edital as anexo %}
+              {% if anexo %}
+                <div class="row"  style="margin-bottom: 10px">
+                <div class="col-sm-12">
+                    <i class="fa fa-paperclip fa-lg"></i>
+                  <a href="{% url 'arquivos_edital' pk_edital=edital.id categoria='ANEXO' %}">
+                      Anexos
+                  </a>
+                </div>
+              </div>
+              {% endif %}
+
+
+
+    {#          <h3>Documentos anexados</h3>#}
+    {#          {% for documento in edital.documentos.all %}#}
+    {#            <p>{{ forloop.counter }}. {{ documento.nome }} atualizado em {{ documento.data_upload }}. <a href="{{ MEDIA_URL }}{{ documento.arquivo }}" target="_blank">Download</a></p>#}
+    {#          {% endfor %}#}
+    {##}
+    {#          {% if not edital.retificado and edital.retificacoes.all.exists %}#}
+    {#              <h3>Retificações</h3>#}
+    {#              {% for ret in edital.retificacoes.all %}#}
+    {#                {% if ret.publicado %}#}
+    {#                  <p><strong>{{ forloop.counter }}. Retificação nº {{ ret.numero }} publicada em {{ ret.data_publicacao }}</strong></p>#}
+    {#                  {% for doc in ret.documentos.all %}#}
+    {#                      <p>{{ forloop.parentloop.counter }}.{{ forloop.counter }}. {{ doc.nome }}. <a href="{{ MEDIA_URL }}{{ doc.arquivo }}" target="_blank">Download</a></p>#}
+    {#                  {% endfor %}#}
+    {#                {% endif %}#}
+    {#              {% endfor %}#}
+    {#          {% endif %}#}
+
+
+            </div>
+          </div>
+
+
+        </div>
+
+
+
+
+        <div class="col-xs-6">
+          <div class="box">
+          {% if not edital.retificado %}
+            <p class="chapeu">Cronogramas</p>
+            {% for cronograma in edital.cronogramas_selecao.all %}
+              <p><b>{{ cronograma.nome }}</b></p>
+              <p><b><i>Início</i></b>: {{ cronograma.inicio|date:"d/m/Y" }}. <b><i>Término</i></b>: {{ cronograma.fim|date:"d/m/Y" }}</p><br>
+            {% endfor %}
+          {% endif %}
+          </div>
+        </div>
+      </div>
+
+{% if noticias %}
+  <div id="noticias">
+      <p class="chapeu">Notícias</p>
+      <div class="row">
+          {% for noticia in noticias %}
+          <div class="col-sm-4">
+              <a href="{{noticia.get_absolute_url}}">
+                  <img class="media-object img-rounded img-responsive"
+                  src="{{ noticia.get_absolute_url_img }}"
+                  alt="Imagem da notícia.">
+              </a>
+              <p class="titulo-noticia"><a href="{{noticia.get_absolute_url}}">{{ noticia.titulo|truncatechars:55 }}</a></p>
+              <p>{{ noticia.resumo|truncatechars:100 }}</p>
+          </div>
+          {% endfor %}
+      </div>
+      <p class="text-right rodape-bloco"><a href="{% url 'busca' %}?q={{processo.sigla}}">Veja mais sobre {{ processo.sigla }} <i class="fa fa-chevron-right"></i></a></p>
+  </div>
+{% endif %}
+
+{% endblock %}
+{% endblock %}

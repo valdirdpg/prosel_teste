@@ -1,0 +1,36 @@
+{% extends "psct/base.html" %}
+{% load base_tags pontuacao_tags %}
+{% block conteudo %}
+
+    <h2 class="titulo">Extrato de Desempenho - Resultado {% if inscricao.is_resultado_final %}Final{% else %}Preliminar{% endif %}</h2>
+
+    <h3>Classificação</h3>
+    <p></p>
+
+    <div class="table-responsive">
+        <table class="table table-striped table-condensed">
+            <tbody>
+            {% if not inscricao.is_ampla_concorrencia %}
+                <tr>
+                    <td>Cota:</td>
+                    <td>{{ resultado.classificacao_cota }}º</td>
+                </tr>
+            {% endif %}
+            <tr>
+                <td>Geral:</td>
+                <td>{{ resultado.classificacao }}º</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h3>Pontuação</h3>
+    <p></p>
+    {% include "psct/pontuacao/pontuacao_detail.html" %}
+
+    <h3>Notas</h3>
+    {% with inscricao_original=inscricao %}
+        {% include "psct/pontuacao/notas_embedded.html" %}
+    {% endwith %}
+
+{% endblock %}

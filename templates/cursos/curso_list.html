@@ -1,0 +1,155 @@
+{% extends "base/index.html" %}
+{% load bootstrap3 %}
+{% load staticfiles %}
+
+{% block extrahead %}
+    <link rel="stylesheet" href="{% static 'css/jquery.webui-popover.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/animate.css' %}">
+    <script src="{% static 'js/jquery.webui-popover.min.js' %}"></script>
+{% endblock %}
+
+{% block breadcrumb %}
+<li><a href="/">Início</a></li>
+<li><i class="fa fa-angle-right"></i></li>
+<li class="active">Cursos</li>
+{% endblock %}
+
+{% block conteudo %}
+
+<h2 class="titulo">{{ titulo }}</h2>
+
+<div class="row">
+    <div class="col-xs-12">
+        <form role="form" class="form-inline" method="get" id="search_cursos">
+            {{ form.cidade }}
+            {{ form.modalidade }}
+            {{ form.nome }}
+            <div class="btn-group" role="group" aria-label="...">
+                <a href="" onclick="toggleFiltros('mais_filtros');return false;" id="open-filtros"
+                   class="btn btn-default btn-sm"><i class="fa fa-plus fa-fw"></i> Filtros</a>
+                <a href="{% url 'cursos' %}" id="clean-filtros" class="btn btn-default btn-sm">Limpar</a>
+                {% bootstrap_button 'Pesquisar' button_type='submit' button_class='btn btn-primary' size='sm' %}
+            </div>
+            <div id="mais_filtros" style="display: none;">
+                <br>
+                {{ form.formacao }}
+                {{ form.nivel_formacao }}
+                {{ form.turno }}
+                {{ form.forma_acesso }}
+            </div>
+        </form>
+    </div>
+</div>
+
+<br/>
+
+{% if cursos %}
+<div class="row">
+    <div class="col-xs-12">
+        <span class="text-muted small">
+            <ul>Legendas:
+                <li><i class="fa fa-sign-language fa-fw" aria-hidden="true"></i>
+                    Possui descrição em Libras;</li>
+                <li><i class="fa fa-video-camera fa-fw" aria-hidden="true"></i>
+                    Possui descrição em vídeo (catálogo de cursos);</li>
+            </ul>
+        </span>
+        <p class="text-muted">Mostrando {{ cursos|length }} Curso{% if cursos|length != 1 %}s{% endif %}</p><br>
+    </div>
+</div>
+{% endif %}
+
+<div class="row">
+    {% for obj in cursos %}
+    {% if not forloop.first and forloop.counter0|divisibleby:'2' %}
+      </div><div class="row">
+    {% endif %}
+    <div class="col-xs-12 col-sm-6 animated flipInX">
+        <div class="list-group list-group">
+
+            <a class="list-group-item thumbnail" href="{% url 'curso' obj.pk %}">
+                <div class="pull-right">
+                    {% if obj.perfil_libras %}
+                        <i class="fa fa-sign-language fa-fw" aria-hidden="true"></i>
+                    {% endif %}
+                    {% if obj.video_catalogo %}
+                        <i class="fa fa-video-camera fa-fw" aria-hidden="true"></i>
+                    {% endif %}
+                </div>
+                <p class="h4 list-group-item-heading">
+                    {{ obj.curso.nome }}
+                </p>
+
+                <ul class="list-group-item-text">
+                    <li><i class="fa fa-mortar-board text-muted fa-fw"></i> {{ obj.get_formacao_display }} ({{ obj.get_turno_display }})</li>
+                    {% if obj.is_presencial %}
+                    <li><i class="fa fa-male text-muted fa-fw"></i> {{ obj.get_modalidade_display }} no Campus {{ obj.campus }}</li>
+                    {% else %}
+                    <li><i class="fa fa-globe text-muted fa-fw"></i>
+                                {{ obj.get_modalidade_display }} nos
+                                <span href="" data-toggle="popover" id="curso{{ obj.id }}">Polos
+                                    <i class="fa fa-caret-down"></i>
+                                </span>
+                        <div id="popover-content{{ obj.id }}" style="display:none">
+                            {% for vaga in obj.vagacurso_set.all %}
+                            {{ vaga.polo.cidade }}<br>
+                            {% empty %}
+                            Nenhum polo cadastrado.
+                            {% endfor %}
+                        </div>
+                        <script>
+                            $('#curso{{obj.id}}[data-toggle=popover]').webuiPopover({
+                                url: '#popover-content{{obj.id}}',
+                                placement: 'bottom',
+                                animation: 'pop'
+                            });
+                        </script>
+                    </li>
+                    {% endif %}
+                </ul>
+            </a>
+        </div>
+    </div>
+    {% empty %}
+    <div class="col-xs-12">
+        <div class="alert alert-info">
+            <i class="fa fa-info-circle fa-fw"></i> Nenhum curso encontrado para os parâmetros informados. <a
+                href="{% url 'cursos' %}" class="alert-link">Limpar filtros</a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<script>
+
+/* Verifica se existe algum valor selecionado nos filtros extra */
+function existe_filtro_extra_selecionado(id_form) {
+    var form = $("#" + id_form);
+    var formacao = form.find('select[name="formacao"] option:selected').val();
+    var nivel_formacao = form.find('select[name="nivel_formacao"] option:selected').val();
+    var turno = form.find('select[name="turno"] option:selected').val();
+    var forma_acesso = form.find('select[name="forma_acesso"] option:selected').val();
+    if (formacao != '' || nivel_formacao != '' || turno != '' || forma_acesso != '') {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function toggleFiltros(id_grupo_filtros) {
+    $('#' + id_grupo_filtros).toggle('fast');
+    $("#open-filtros > i").toggleClass("fa-plus fa-minus");
+}
+
+/* Função que exibe ou esconde o conjunto extra de filtros de cursos. */
+function show_filtros_se_selecionados() {
+    if (existe_filtro_extra_selecionado("search_cursos")) {
+        toggleFiltros("mais_filtros");
+    }
+}
+
+show_filtros_se_selecionados();
+
+</script>
+
+{% endblock %}

@@ -1,0 +1,41 @@
+{% load base_tags %}
+
+{% if inscricao.pontuacoes_avaliadores.exists %}
+    {% include 'psct/pontuacao/pontuacaoavaliador_embedded.html' %}
+{% endif %}
+{% if inscricao.pontuacoes_homologadores.exists %}
+    {% include 'psct/pontuacao/pontuacaohomologador_embedded.html' %}
+{% endif %}
+
+{% box 'Dados do Resultado' True %}
+    <div class="table-responsive">
+        <table class="table table-striped table-condensed">
+            <tbody>
+            <tr>
+                <td><b>Status:</b></td>
+                <td>
+                {% with situacao=inscricao.get_situacao %}
+                    {% if situacao %}
+                        <span class="status status-{{ situacao.get_css_class }}">{{ situacao }}</span>
+                    {% else %}
+                        <span class="status status-pendente">Resultado ainda não divulgado</span>
+                    {% endif %}
+                {% endwith %}
+                </td>
+            </tr>
+            {% if not inscricao.is_ampla_concorrencia and inscricao.get_resultado.classificacao_cota %}
+                <tr>
+                    <td><b>Classificação na Cota:</b></td>
+                    <td>{{ inscricao.get_resultado.classificacao_cota }}º</td>
+                </tr>
+            {% endif %}
+            {% if inscricao.get_resultado.classificacao %}
+                <tr>
+                    <td><b>Classificação Geral:</b></td>
+                    <td>{{ inscricao.get_resultado.classificacao }}º</td>
+                </tr>
+            {% endif %}
+            </tbody>
+        </table>
+    </div>
+{% endbox %}

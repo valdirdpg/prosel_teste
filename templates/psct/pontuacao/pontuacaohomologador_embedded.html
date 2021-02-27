@@ -1,0 +1,9 @@
+{% load base_tags %}
+
+{% box 'Pontuação do Homologador' %}
+    {% for pontuacao_homologador in inscricao.pontuacoes_homologadores.all %}
+        {% with pontuacao=pontuacao_homologador %}
+            {% include "psct/pontuacao/pontuacao_embedded.html" %}
+        {% endwith %}
+    {% endfor %}
+{% endbox %}

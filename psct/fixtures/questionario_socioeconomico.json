@@ -1,0 +1,490 @@
+[
+  {
+    "model": "psct.criterioquestionario",
+    "pk": 1,
+    "fields": {
+      "numero": 1,
+      "descricao_questao": "Sexo?",
+      "multipla_escolha": false
+    }
+  },
+  {
+    "model": "psct.criterioquestionario",
+    "pk": 2,
+    "fields": {
+      "numero": 2,
+      "descricao_questao": "Qual a sua faixa et\u00e1ria?",
+      "multipla_escolha": false
+    }
+  },
+  {
+    "model": "psct.criterioquestionario",
+    "pk": 3,
+    "fields": {
+      "numero": 3,
+      "descricao_questao": "Qual seu Estado de origem?",
+      "multipla_escolha": false
+    }
+  },
+  {
+    "model": "psct.criterioquestionario",
+    "pk": 4,
+    "fields": {
+      "numero": 4,
+      "descricao_questao": "Qual seu Munic\u00edpio de origem?",
+      "multipla_escolha": false
+    }
+  },
+  {
+    "model": "psct.criterioquestionario",
+    "pk": 5,
+    "fields": {
+      "numero": 5,
+      "descricao_questao": "Em que Rede de Ensino voc\u00ea cursou o Ensino Fundamental e/ou Ensino M\u00e9dio?",
+      "multipla_escolha": false
+    }
+  },
+  {
+    "model": "psct.criterioquestionario",
+    "pk": 6,
+    "fields": {
+      "numero": 6,
+      "descricao_questao": "Qual o principal motivo de sua escolha pelo ensino do IFPB?",
+      "multipla_escolha": false
+    }
+  },
+  {
+    "model": "psct.criterioquestionario",
+    "pk": 7,
+    "fields": {
+      "numero": 7,
+      "descricao_questao": "Voc\u00ea domina, ainda que parcialmente, outro idioma al\u00e9m da L\u00edngua Portuguesa?",
+      "multipla_escolha": true
+    }
+  },
+  {
+    "model": "psct.criterioquestionario",
+    "pk": 8,
+    "fields": {
+      "numero": 8,
+      "descricao_questao": "Qual a renda mensal de seu grupo familiar?",
+      "multipla_escolha": false
+    }
+  },
+  {
+    "model": "psct.criterioquestionario",
+    "pk": 9,
+    "fields": {
+      "numero": 9,
+      "descricao_questao": "Quantas pessoas dependem da renda familiar?",
+      "multipla_escolha": false
+    }
+  },
+  {
+    "model": "psct.criterioalternativa",
+    "pk": 1,
+    "fields": {
+      "criterio": 1,
+      "posicao": 1,
+      "descricao_alternativa": "Masculino"
+    }
+  },
+  {
+    "model": "psct.criterioalternativa",
+    "pk": 2,
+    "fields": {
+      "criterio": 1,
+      "posicao": 2,
+      "descricao_alternativa": "Feminino"
+    }
+  },
+  {
+    "model": "psct.criterioalternativa",
+    "pk": 3,
+    "fields": {
+      "criterio": 2,
+      "posicao": 1,
+      "descricao_alternativa": "Menor de 16 anos"
+    }
+  },
+  {
+    "model": "psct.criterioalternativa",
+    "pk": 4,
+    "fields": {
+      "criterio": 2,
+      "posicao": 2,
+      "descricao_alternativa": "De 16 a 18 anos"
+    }
+  },
+  {
+    "model": "psct.criterioalternativa",
+    "pk": 5,
+    "fields": {
+      "criterio": 2,
+      "posicao": 3,
+      "descricao_alternativa": "De 19 a 21 anos"
+    }
+  },
+  {
+    "model": "psct.criterioalternativa",
+    "pk": 6,
+    "fields": {
+      "criterio": 2,
+      "posicao": 4,
+      "descricao_alternativa": "De 22 a 25 anos"
+    }
+  },
+  {
+    "model": "psct.criterioalternativa",
+    "pk": 7,
+    "fields": {
+      "criterio": 2,
+      "posicao": 5,
+      "descricao_alternativa": "De 26 a 29 anos"
+    }
+  },
+  {
+    "model": "psct.criterioalternativa",
+    "pk": 8,
+    "fields": {
+      "criterio": 2,
+      "posicao": 6,
+      "descricao_alternativa": "De 30 a 35 anos"
+    }
+  },
+  {
+    "model": "psct.criterioalternativa",
+    "pk": 9,
+    "fields": {
+      "criterio": 2,
+      "posicao": 7,
+      "descricao_alternativa": "De 36 a 39 anos"
+    }
+  },
+  {
+    "model": "psct.criterioalternativa",
+    "pk": 10,
+    "fields": {
+      "criterio": 2,
+      "posicao": 8,
+      "descricao_alternativa": "A partir de 40 anos"
+    }
+  },
+  {
+    "model": "psct.criterioalternativa",
+    "pk": 11,
+    "fields": {
+      "criterio": 3,
+      "posicao": 1,
+      "descricao_alternativa": "Para\u00edba"
+    }
+  },
+  {
+    "model": "psct.criterioalternativa",
+    "pk": 12,
+    "fields": {
+      "criterio": 3,
+      "posicao": 2,
+      "descricao_alternativa": "Outro"
+    }
+  },
+  {
+    "model": "psct.criterioalternativa",
+    "pk": 13,
+    "fields": {
+      "criterio": 4,
+      "posicao": 1,
+      "descricao_alternativa": "Jo\u00e3o Pessoa"
+    }
+  },
+  {
+    "model": "psct.criterioalternativa",
+    "pk": 14,
+    "fields": {
+      "criterio": 4,
+      "posicao": 2,
+      "descricao_alternativa": "Campina Grande"
+    }
+  },
+  {
+    "model": "psct.criterioalternativa",
+    "pk": 15,
+    "fields": {
+      "criterio": 4,
+      "posicao": 3,
+      "descricao_alternativa": "Patos"
+    }
+  },
+  {
+    "model": "psct.criterioalternativa",
+    "pk": 16,
+    "fields": {
+      "criterio": 4,
+      "posicao": 4,
+      "descricao_alternativa": "Souza"
+    }
+  },
+  {
+    "model": "psct.criterioalternativa",
+    "pk": 17,
+    "fields": {
+      "criterio": 4,
+      "posicao": 5,
+      "descricao_alternativa": "Cajazeiras"
+    }
+  },
+  {
+    "model": "psct.criterioalternativa",
+    "pk": 18,
+    "fields": {
+      "criterio": 5,
+      "posicao": 1,
+      "descricao_alternativa": "Somente em rede particular"
+    }
+  },
+  {
+    "model": "psct.criterioalternativa",
+    "pk": 19,
+    "fields": {
+      "criterio": 5,
+      "posicao": 2,
+      "descricao_alternativa": "Somente em rede p\u00fablica"
+    }
+  },
+  {
+    "model": "psct.criterioalternativa",
+    "pk": 20,
+    "fields": {
+      "criterio": 5,
+      "posicao": 3,
+      "descricao_alternativa": "Parte em rede p\u00fablica parte em rede particular"
+    }
+  },
+  {
+    "model": "psct.criterioalternativa",
+    "pk": 21,
+    "fields": {
+      "criterio": 5,
+      "posicao": 4,
+      "descricao_alternativa": "Institui\u00e7\u00e3o Filantr\u00f3pica"
+    }
+  },
+  {
+    "model": "psct.criterioalternativa",
+    "pk": 22,
+    "fields": {
+      "criterio": 6,
+      "posicao": 1,
+      "descricao_alternativa": "Por oferecer ensino gratuito"
+    }
+  },
+  {
+    "model": "psct.criterioalternativa",
+    "pk": 23,
+    "fields": {
+      "criterio": 6,
+      "posicao": 2,
+      "descricao_alternativa": "Influ\u00eancia da fam\u00edlia"
+    }
+  },
+  {
+    "model": "psct.criterioalternativa",
+    "pk": 24,
+    "fields": {
+      "criterio": 6,
+      "posicao": 3,
+      "descricao_alternativa": "Boa qualidade de ensino"
+    }
+  },
+  {
+    "model": "psct.criterioalternativa",
+    "pk": 25,
+    "fields": {
+      "criterio": 6,
+      "posicao": 4,
+      "descricao_alternativa": "Outro motivo"
+    }
+  },
+  {
+    "model": "psct.criterioalternativa",
+    "pk": 26,
+    "fields": {
+      "criterio": 7,
+      "posicao": 1,
+      "descricao_alternativa": "Sim, Ingl\u00eas"
+    }
+  },
+  {
+    "model": "psct.criterioalternativa",
+    "pk": 27,
+    "fields": {
+      "criterio": 7,
+      "posicao": 2,
+      "descricao_alternativa": "Sim, Espanhol"
+    }
+  },
+  {
+    "model": "psct.criterioalternativa",
+    "pk": 28,
+    "fields": {
+      "criterio": 7,
+      "posicao": 3,
+      "descricao_alternativa": "Sim, Franc\u00eas"
+    }
+  },
+  {
+    "model": "psct.criterioalternativa",
+    "pk": 29,
+    "fields": {
+      "criterio": 7,
+      "posicao": 4,
+      "descricao_alternativa": "Sim, Alem\u00e3o"
+    }
+  },
+  {
+    "model": "psct.criterioalternativa",
+    "pk": 30,
+    "fields": {
+      "criterio": 7,
+      "posicao": 5,
+      "descricao_alternativa": "Sim, outro"
+    }
+  },
+  {
+    "model": "psct.criterioalternativa",
+    "pk": 31,
+    "fields": {
+      "criterio": 7,
+      "posicao": 6,
+      "descricao_alternativa": "N\u00e3o"
+    }
+  },
+  {
+    "model": "psct.criterioalternativa",
+    "pk": 32,
+    "fields": {
+      "criterio": 8,
+      "posicao": 1,
+      "descricao_alternativa": "Menos de 1 sal\u00e1rio m\u00ednimo"
+    }
+  },
+  {
+    "model": "psct.criterioalternativa",
+    "pk": 33,
+    "fields": {
+      "criterio": 8,
+      "posicao": 1,
+      "descricao_alternativa": "1 a 2 sal\u00e1rios m\u00ednimos"
+    }
+  },
+  {
+    "model": "psct.criterioalternativa",
+    "pk": 34,
+    "fields": {
+      "criterio": 8,
+      "posicao": 2,
+      "descricao_alternativa": "2 a 5 sal\u00e1rios m\u00ednimos"
+    }
+  },
+  {
+    "model": "psct.criterioalternativa",
+    "pk": 35,
+    "fields": {
+      "criterio": 8,
+      "posicao": 3,
+      "descricao_alternativa": "5 a 10 sal\u00e1rios m\u00ednimos"
+    }
+  },
+  {
+    "model": "psct.criterioalternativa",
+    "pk": 36,
+    "fields": {
+      "criterio": 8,
+      "posicao": 4,
+      "descricao_alternativa": "Acima de 10 sal\u00e1rios m\u00ednimos"
+    }
+  },
+  {
+    "model": "psct.criterioalternativa",
+    "pk": 37,
+    "fields": {
+      "criterio": 9,
+      "posicao": 1,
+      "descricao_alternativa": "At\u00e9 02 pessoas"
+    }
+  },
+  {
+    "model": "psct.criterioalternativa",
+    "pk": 38,
+    "fields": {
+      "criterio": 9,
+      "posicao": 2,
+      "descricao_alternativa": "03 a 04 pessoas"
+    }
+  },
+  {
+    "model": "psct.criterioalternativa",
+    "pk": 39,
+    "fields": {
+      "criterio": 9,
+      "posicao": 3,
+      "descricao_alternativa": "05 a 08 pessoas"
+    }
+  },
+  {
+    "model": "psct.criterioalternativa",
+    "pk": 40,
+    "fields": {
+      "criterio": 9,
+      "posicao": 4,
+      "descricao_alternativa": "Acima de 08 pessoas"
+    }
+  },
+  {
+    "model": "psct.criterioalternativa",
+    "pk": 41,
+    "fields": {
+      "criterio": 4,
+      "posicao": 6,
+      "descricao_alternativa": "Outro"
+    }
+  },
+  {
+    "model": "psct.modeloquestionario",
+    "pk": 1,
+    "fields": {
+      "edital": 2,
+      "nome": "PSCT 2017",
+      "itens_avaliados": [
+        1,
+        2,
+        3,
+        5,
+        6,
+        7,
+        8,
+        9,
+        4
+      ]
+    }
+  },
+  {
+    "model": "psct.modeloquestionario",
+    "pk": 2,
+    "fields": {
+      "edital": 1,
+      "nome": "PSCT 2017 SUB",
+      "itens_avaliados": [
+        1,
+        2,
+        3,
+        5,
+        6,
+        7,
+        8,
+        9,
+        4
+      ]
+    }
+  }
+]

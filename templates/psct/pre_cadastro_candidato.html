@@ -1,0 +1,45 @@
+{% extends "psct/base.html" %}
+
+{% block extrahead %}
+    {{ block.super }}
+    {{ form.media }}
+{% endblock %}
+
+{% block conteudo %}
+    <div></div>
+    <h2 class="titulo verde-escuro">{{ titulo }}</h2>
+    <form method="post" action="" class="form-horizontal">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-xs-12">
+                <p class="help-block text-justify">
+                    Para iniciar o cadastro, é necessário informar o
+                    <abbr title="Cadastro de Pessoas Físicas">CPF</abbr> da/o estudante candidata/o. Não utilize
+                    CPF do pai, mãe ou outra/o responsável.
+                   {% comment %} {% if nome_botao %}
+                        {{ nome_botao }}
+                    {% else %}
+                        Consultar
+                    {% endif %}.{% endcomment %}
+                </p>
+                <p class="help-block text-justify">
+                    Após informar o CPF da/o candidata/o, clique no botão Continuar.</p><p class="help-block text-justify">
+Caso a/o candidata/o já tenha realizado um cadastro no Prosel2021, deverá clicar no botão
+"Já estou cadastrado no sistema". Se não lembra ou não possui a senha de acesso ao
+cadastro, o candidato poderá criar uma nova senha.
+                </p></div>
+        </div><br /><br />
+        {% include "psct/base/_form_with_fieldset.html" %}
+        <input type="submit" value="
+            {% if nome_botao %}
+                {{ nome_botao }}
+            {% else %}
+                Consultar
+            {% endif %}" class="btn btn-primary pull-right">
+    </form>
+    <a class="btn btn-success pull-left"
+        href="{% if request.GET.next %}{{ request.GET.next }}{% else %}{% url 'processoseletivo' %}{% endif %}">
+        Já estou cadastrado no sistema
+    </a>
+{% endblock %}
+

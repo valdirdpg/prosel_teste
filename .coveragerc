@@ -1,0 +1,16 @@
+[run]
+branch = True
+source = .
+omit = */urls*
+       */__init__.py
+       */migrations/*
+       */apps.py
+       */permissions.py
+       */features*
+       */recipes.py
+       portaldocandidato/*
+       manage.py
+       venv/*
+
+[report]
+skip_covered = True

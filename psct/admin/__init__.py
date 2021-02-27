@@ -1,0 +1,10 @@
+import psct.admin.analise
+import psct.admin.candidato
+import psct.admin.consulta
+import psct.admin.emails
+import psct.admin.inscricao
+import psct.admin.pontuacao
+import psct.admin.questionario
+import psct.admin.recurso
+import psct.admin.resultado
+import psct.admin.reversion

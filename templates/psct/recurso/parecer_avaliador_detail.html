@@ -1,0 +1,118 @@
+{% extends "psct/base.html" %}
+{% load base_tags recurso_tags %}
+
+{% block conteudo %}
+    <h2 class="titulo verde-escuro">Parecer #{{ object.id }}</h2>
+
+    {% box 'Dados do Recurso' %}
+        <div class="table-responsive">
+            <table class="table table-striped table-condensed">
+                <tbody>
+                <tr>
+                    <td><b>Fase de Recurso:</b></td>
+                    <td>{{ object.recurso.fase }}</td>
+                </tr>
+                <tr>
+                    <td><b>Edital:</b></td>
+                    <td>{{ object.recurso.fase.edital }}</td>
+                </tr>
+                <tr>
+                    <td><b>Texto do Recurso:</b></td>
+                    <td>{{ object.recurso.texto|linebreaks }}</td>
+                </tr>
+                <tr>
+                    <td class="col-xs-3"><b>Cadastrado por:</b></td>
+                    <td>{{ object.recurso.usuario.get_full_name }} ({{ object.recurso.usuario }})</td>
+                </tr>
+                <tr>
+                    <td><b>Data de criação:</b></td>
+                    <td>{{ object.recurso.data_cadastro }}</td>
+                </tr>
+                <tr>
+                    <td><b>Data da última atualização:</b></td>
+                    <td>{{ object.recurso.data_atualizacao }}</td>
+                </tr>
+
+                </tbody>
+            </table>
+        </div>
+    {% endbox %}
+
+
+    {% box 'Dados da Inscrição' %}
+        <div class="table-responsive">
+            <table class="table table-striped table-condensed">
+                <tbody>
+                <tr>
+                    <td class="col-xs-6 col-sm-4 col-md-3"><b>Campus:</b></td>
+                    <td>{{ object.recurso.inscricao.curso.campus }}</td>
+                </tr>
+                <tr>
+                    <td><b>Modalidade de ensino:</b></td>
+                    <td>{{ object.recurso.inscricao.curso.get_formacao_display }}</td>
+                </tr>
+                <tr>
+                    <td><b>Curso:</b></td>
+                    <td>{{ object.recurso.inscricao.curso.curso.nome }}</td>
+                </tr>
+                <tr>
+                    <td><b>Turno:</b></td>
+                    <td>{{ object.recurso.inscricao.curso.get_turno_display }}</td>
+                </tr>
+                <tr>
+                    <td><b>Concorre por cota:</b></td>
+                    <td>
+                        {% if not object.recurso.inscricao.is_ampla_concorrencia %}
+                            Sim
+                        {% else %}
+                            Não
+                        {% endif %}
+                    </td>
+                </tr>
+                {% if not object.recurso.inscricao.is_ampla_concorrencia %}
+                    <tr>
+                        <td><b>Modalidade de cota:</b></td>
+                        <td>{{ object.recurso.inscricao.modalidade_cota }}</td>
+                    </tr>
+                {% endif %}
+                </tbody>
+            </table>
+        </div>
+    {% endbox %}
+    
+
+    <h4 class="verde-escuro">Parecer #{{ object.id }}</h4>
+    <div>
+        <div class="table-responsive">
+            <table class="table table-striped table-condensed">
+                <tbody>
+                <tr>
+                    <td><b>Texto do Parecer:</b></td>
+                    <td>{{ object.texto|linebreaks }}</td>
+                </tr>
+                <tr>
+                    <td><b>Recurso aceito:</b></td>
+                    <td>{{ object.aceito|aceito_format }}</td>
+                </tr>
+                <tr>
+                    <td class="col-xs-3"><b>Cadastrado por:</b></td>
+                    <td>{{ object.avaliador.get_full_name }} ({{ object.avaliador }})</td>
+                </tr>
+                <tr>
+                    <td><b>Data de criação:</b></td>
+                    <td>{{ object.data_cadastro }}</td>
+                </tr>
+                <tr>
+                    <td><b>Data da última atualização:</b></td>
+                    <td>{{ object.data_atualizacao }}</td>
+                </tr>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+
+
+{% endblock %}

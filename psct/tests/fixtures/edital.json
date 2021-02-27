@@ -1,0 +1,77 @@
+[ {
+    "model": "noticias.palavraschave",
+    "pk": 1,
+    "fields": {
+      "palavra": "PSCT",
+      "slug": "psct"
+    }
+  },
+  {
+    "model": "editais.edital",
+    "pk": 1,
+    "fields": {
+      "nome": "Nome do Edital",
+      "numero": 46,
+      "ano": 2017,
+      "data_publicacao": "2016-06-16",
+      "edicao": 1,
+      "encerrado": false,
+      "publicado": true,
+      "descricao": "Teste.",
+      "prazo_pagamento": "2016-07-15",
+      "link_inscricoes": "http://compec.ifpb.edu.br/concurso/detalheConcurso?id=133",
+      "setor_responsavel": "COMPEC",
+      "tipo": "ABERTURA",
+      "retificado": null,
+      "palavra_chave": 1
+    }
+  },
+  {
+    "model": "editais.edital",
+    "pk": 2,
+    "fields": {
+      "nome": "Nome do Edital",
+      "numero": 2,
+      "ano": 2017,
+      "data_publicacao": "2016-06-16",
+      "edicao": 1,
+      "encerrado": false,
+      "publicado": true,
+      "descricao": "Teste.",
+      "prazo_pagamento": "2016-07-15",
+      "link_inscricoes": "http://compec.ifpb.edu.br/concurso/detalheConcurso?id=133",
+      "setor_responsavel": "COMPEC",
+      "tipo": "ABERTURA",
+      "retificado": null,
+      "palavra_chave": 1
+    }
+  },
+  {
+    "model": "editais.nivelselecao",
+    "pk": 1,
+    "fields": {
+      "nome": "T\u00e9cnico Subsequente",
+      "vagas": 350,
+      "valor_inscricao": "0.00",
+      "edital": 1
+    }
+  },
+    {
+    "model": "editais.cronograma",
+    "pk": 1,
+    "fields": {
+      "nome": "Inscri\u00e7\u00f5es e entrega de documentos",
+      "tipo": "SELECAO",
+      "inicio": "2016-06-20",
+      "fim": "2016-07-20",
+      "inscricao": true
+    }
+  },
+    {
+    "model": "editais.periodoselecao",
+    "pk": 1,
+    "fields": {
+      "edital": 1
+    }
+  }
+]

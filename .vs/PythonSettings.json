@@ -1,0 +1,5 @@
+{
+  "SuppressEnvironmentCreationPrompt": true,
+  "TestFramework": "unittest",
+  "Interpreter": "Global|ContinuumAnalytics|Anaconda38-64"
+}

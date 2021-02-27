@@ -1,0 +1,91 @@
+[
+  {
+    "model": "auth.group",
+    "fields": {
+      "name": "Administradores PSCT",
+      "permissions": [
+        190,
+        191,
+        220,
+        221,
+        223,
+        224,
+        410,
+        283,
+        281,
+        284,
+        344,
+        345,
+        346,
+        331,
+        332,
+        333,
+        334,
+        308,
+        309,
+        305,
+        306,
+        362,
+        350,
+        351,
+        352,
+        356,
+        421,
+        422,
+        394,
+        395,
+        367,
+        368,
+        357,
+        321,
+        320,
+        406,
+        407,
+        408,
+        289,
+        290,
+        364,
+        365,
+        311,
+        312,
+        347,
+        348,
+        349,
+        389,
+        286,
+        287,
+        335,
+        336,
+        337,
+        341,
+        342,
+        343,
+        338,
+        339,
+        340,
+        446
+      ]
+    }
+  },
+  {
+    "model": "auth.group",
+    "fields": {
+      "name": "Avaliador PSCT",
+      "permissions": []
+    }
+  },
+  {
+    "model": "auth.group",
+    "fields": {
+      "name": "Candidatos PSCT",
+      "permissions": []
+    }
+  },
+  {
+    "model": "auth.group",
+    "fields": {
+      "name": "Homologador PSCT",
+      "permissions": []
+    }
+  }
+]

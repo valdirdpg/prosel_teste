@@ -1,0 +1,768 @@
+{% load i18n staticfiles base_tags %}
+
+{% get_processos_seletivos as processos %}
+{% get_campis as campis %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Instituto Federal da Bahia">
+    <meta name="author" content="Instituto Federal da Bahia">
+    <meta name="keywords" content="candidato,ingresso,processo,seletivo,cursos,editais">
+
+    <title>{% if titulo %} {{ titulo }} | {% endif %}Instituto Federal da Bahia | IFBA</title>
+
+    <link rel="stylesheet" href="{% static 'css/fonts.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap-3.3.6.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'ps/css/fotorama.css' %}">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'css/menu_responsivo.css' %}">
+    <link rel="stylesheet" href="{% static 'css/temas.css' %}">
+    <link rel="stylesheet" href="{% static 'css/forms.css' %}">
+    <link rel="icon" href="{% static 'img/favicon.ico' %}">
+    <script src="{% static 'js/jquery-1.11.3.min.js' %}"></script>
+    <!--<script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-80300990-1', 'auto');
+        ga('send', 'pageview');
+    </script>-->
+
+    {% block extrahead %}{% endblock %}
+
+    <script>
+        $(function () {
+            var collapse = $('.menu-title[data-toggle="collapse"]');
+            for (var i = 0; i < collapse.length; i++) {
+                $(collapse[i]).html($(collapse[i]).html() + '<span class="fa collapse-caret"></span>');
+            }
+        })
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+
+<body class="{% block bodyclass %}{% endblock %}
+        {{ config.TEMA_COR }}
+        {% if DEBUG %}debug{% endif %}"
+      data-admin-utc-offset="{% now "Z" %}">
+<!-- TOP HEADER -->
+<div id="barra-identidade">
+    <div id="barra-brasil">
+        <div id="wrapper-barra-brasil">
+            <div class="brasil-flag">
+                <a href="http://brasil.gov.br" class="link-barra">Brasil</a>
+            </div>
+            <span class="acesso-info">
+                <a href="http://www.servicos.gov.br/?pk_campaign=barrabrasil" class="link-barra"
+                   id="barra-brasil-orgao">Serviços</a>
+            </span>
+            <nav>
+                <ul id="lista-barra-brasil" class="list">
+                    <li><a href="#" id="menu-icon"></a></li>
+                    <li class="list-item first">
+                        <a href="http://www.simplifique.gov.br" class="link-barra">Simplifique!</a></li>
+                    <li class="list-item">
+                        <a href="http://brasil.gov.br/barra#participe" class="link-barra">Participe</a></li>
+                    <li class="list-item">
+                        <a href="http://brasil.gov.br/barra#acesso-informacao" class="link-barra">
+                            Acesso à informação</a></li>
+                    <li class="list-item">
+                        <a href="http://www.planalto.gov.br/legislacao" class="link-barra">Legislação</a></li>
+                    <li class="list-item last last-item">
+                        <a href="http://brasil.gov.br/barra#orgaos-atuacao-canais" class="link-barra">Canais</a></li>
+                </ul>
+            </nav>
+            <span id="brasil-vlibras">
+                <a class="logo-vlibras" href="#"></a>
+                <span class="link-vlibras">
+                    <img src="//barra.brasil.gov.br/imagens/vlibras.gif">&nbsp;
+                    <span>
+                    </span>
+                </span>
+            </span>
+        </div>
+    </div>
+    <script src="https://barra.brasil.gov.br/barra.js" type="text/javascript" defer="" async=""></script>
+</div>
+
+
+<header>
+    <div class="header">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 hidden-xs">
+                    <ul class="list-unstyled list-inline accessibility">
+                        <li><a href="#conteudo" accesskey="1">Ir para o conteúdo <span class="key">1</span></a></li>
+                        <li><a href="#menu-navigation" accesskey="2">Ir para o menu <span class="key">2</span></a></li>
+                        <li><a href="#buscar" accesskey="3">Ir para a busca <span class="key">3</span></a></li>
+                        <li><a href="#rodape" accesskey="4">Ir para o rodapé <span class="key">4</span></a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-6 text-center-xs">
+                    <ul class="list-unstyled list-inline siteactions pull-right">
+                        <li><a href="{% url 'acessibilidade' %}">ACESSIBILIDADE</a></li>
+{#                        <li><a href="" id="alto-contraste">ALTO CONTRASTE</a></li>#}
+{#                        <li><a >MAPA DO SITE</a></li>#}
+                    </ul>
+                </div>
+            </div>
+
+            <div class="row">
+                <!-- LOGO -->
+                <div class="col-sm-8 logo">
+                    <p>{{ config.DESCRICAO_INSTITUICAO }}</p>
+                    <a href="{% url 'processoseletivo' %}"><h1>{{ config.NOME_PORTAL }}</h1></a>
+                    <p class="subordinacao">{{ config.SUBORDINACAO }}</p>
+                </div>
+                <div class="col-sm-4 search-group">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-offset-2 col-sm-10">
+                            <form action="{% url 'busca' %}" method="get">
+                                <div class="form-group">
+                                    <div class="input-group input-group-sm">
+                                        <span class="sr-only"><label for="buscar">Buscar no portal</label></span>
+                                        <input type="search" class="form-control" name="q" value="{{ q }}"
+                                               placeholder="Buscar no portal" id="buscar">
+                                        <span class="input-group-addon">
+                                            <button style="border:0;background:transparent;"><i
+                                                    class="fa fa-search"></i></button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <!-- SOCIAL ICONS -->
+                        <p class="col-sm-12 text-right social-icons">
+                            {% if config.TWITTER %}
+                            <a href="{{ config.TWITTER }}" class="fa-stack fa-1x" target="_blank" title="Página do IFBA no Twitter">
+                                <i class="fa fa-twitter-square fa-2x" aria-hidden="true"></i>
+                                <span class="sr-only">Twitter (abre em nova janela)</span></a>{% endif %}
+                            {% if config.YOUTUBE %}
+                            <a href="{{ config.YOUTUBE }}" class="fa-stack fa-1x" target="_blank" title="Canal do IFBA no YouTube">
+                                <i class="fa fa-youtube-square fa-2x" aria-hidden="true"></i>
+                                <span class="sr-only">Youtube (abre em nova janela)</span></a>{% endif %}
+                            {% if config.FACEBOOK %}
+                            <a href="{{ config.FACEBOOK }}" class="fa-stack fa-1x" target="_blank" title="Página do IFBA no Facebook">
+                                <i class="fa fa-facebook-square fa-2x" aria-hidden="true"></i>
+                                <span class="sr-only">Facebook (abre em nova janela)</span></a>{% endif %}
+                            {% if config.FLICKBR %}
+                            <a href="{{ config.FLICKR }}" class="fa-stack fa-1x" target="_blank" title="Página do IFBA no Flickr">
+                                <i class="fa fa-flickr fa-2x" aria-hidden="true"></i>
+                                <span class="sr-only">Flickr (abre em nova janela)</span></a>{% endif %}
+                            {% if config.GOOGLE_PLUS %}
+                            <a href="{{ config.GOOGLE_PLUS }}" class="fa-stack fa-1x" target="_blank" title="Página do IFBA no Google Plus">
+                                <i class="fa fa-google-plus-square fa-2x" aria-hidden="true"></i>
+                                <span class="sr-only">Google Plus (abre em nova janela)</span></a>{% endif %}
+                            {% if config.INSTAGRAM %}
+                            <a href="{{ config.INSTAGRAM }}" class="fa-stack fa-1x" target="_blank" title="Perfil do IFBA no Instagram">
+                                <i class="fa fa-instagram fa-2x" aria-hidden="true"></i>
+                                <span class="sr-only">Instagram (abre em nova janela)</span></a>{% endif %}
+{#                            <a href="" class="fa-stack fa-1x">#}
+{#                                <i class="fa fa-square fa-stack-2x"></i>#}
+{#                                <i class="fa fa-soundcloud text-success fa-stack-1x"></i>#}
+{#                            </a>#}
+{#                            <a href="" class="fa-stack fa-1x">#}
+{#                                <i class="fa fa-square fa-stack-2x"></i>#}
+{#                                <i class="fa fa-slideshare text-success fa-stack-1x"></i>#}
+{#                            </a>#}
+                            {% if config.RSS %}
+                            <a href="{{ config.RSS }}" class="fa-stack fa-1x">
+                                <i class="fa fa-rss-square fa-2x" aria-hidden="true"></i>
+                                <span class="sr-only">RSS</span></a>{% endif %}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- SOBRE -->
+        <div class="sobre">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <ul class="list-inline list-unstyled pull-right">
+                            {% if request.user.is_authenticated %}
+                            <li>{% trans 'Welcome,' %}
+                                <strong>{% firstof request.user.get_short_name request.user.get_username %}</strong>.</li>
+                            {% if request.user.is_staff %}
+                            <li><a href="/admin"><i class="fa fa-cogs fa-fw" aria-hidden="true"></i> Administrar Portal</a></li>
+                            {% endif %}
+                            {% endif %}
+{#                            <li><a href="{% url 'cursos' %}"><i#}
+{#                                    class="fa fa-mortar-board fa-fw" aria-hidden="true"></i> Cursos</a></li>#}
+                            <li><a href="{{ config.PORTAL_IFPB }}" target="_blank" title="Link para acessar o portal do IFBA">
+                                    <i class="fa fa-external-link fa-fw" aria-hidden="true"></i> Portal do IFBA
+                                    <span class="sr-only"> (abre em nova janela)</span></a></li>
+                            <li><a href="{{ config.PORTAL_IFPB }}/ead/" target="_blank" title="Link para acessar o portal da EaD do IFBA">
+                                    <i class="fa fa-external-link fa-fw" aria-hidden="true"></i> Portal da EaD
+                                    <span class="sr-only"> (abre em nova janela)</span></a></li>
+                            {% comment %}<li><a href="{{ config.PORTAL_IFPB }}/transparencia/" target="_blank" title="Link para acessar o portal da transparência do IFBA">
+                                    <i class="fa fa-external-link fa-fw" aria-hidden="true"></i> Portal da Transparência
+                                    <span class="sr-only"> (abre em nova janela)</span></a></li>{% endcomment %}
+                            <li><a href="{% url 'contato' %}"><i
+                                    class="fa fa-phone fa-fw" aria-hidden="true"></i> Contatos</a></li>
+                            {% if request.user.is_authenticated %}
+                            <li><a href="{% url 'candidato_logout' %}?next={% url 'processoseletivo' %}"><i
+                                    class="fa fa-sign-out fa-fw" aria-hidden="true"></i> Sair</a></li>
+                            {% else %}
+                            <li><a href="{% url 'candidato_login' %}"><i class="fa fa-sign-in fa-fw" aria-hidden="true"></i> Acessar</a>
+                            </li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% block menuresponsivo %}
+
+            <div id='cssmenu' class="menu menu-responsivo visible-xs-block visible-sm-block">
+                <ul>
+                    {% block extra_item_responsivo %}
+                    {% for raiz in user_menu %}
+                    <li class="menu-item has-sub">
+                        <a href='#'><i class="fa fa-plus fa-fw" aria-hidden="true"></i> {{ raiz.name }}</a>
+                        <ul>
+                        {% for node_l1 in raiz %}
+                            {% if node_l1.url %}
+                                <li class="menu-item">
+                                    <a href="{{ node_l1.url }}">&nbsp;
+                                        <i class="fa fa-angle-double-right fa-fw" aria-hidden="true"></i>
+                                        {{ node_l1.name }}
+                                    </a>
+                                </li>
+                            {% else %}
+                                <li class="menu-item has-sub">
+                                    <a href="#">&nbsp;
+                                        <i class="fa fa-angle-double-right fa-fw" aria-hidden="true"></i>
+                                        {{ node_l1.name }}
+                                    </a>
+                                    <ul>
+                                        {% for node_l2 in node_l1 %}
+                                            <li class="menu-item">
+                                                <a href="{{ node_l2.url }}">&nbsp;&nbsp;&nbsp;
+                                                    <i class="fa fa-angle-right fa-fw" aria-hidden="true"></i>
+                                                    {{ node_l2.name }}
+                                                </a>
+                                            </li>
+                                        {% endfor %}
+                                    </ul>
+                                </li>
+                            {% endif %}
+                        {% endfor %}
+                        </ul>
+                    </li>
+                    {% endfor %}
+
+                    {% endblock %}
+                    <li class="menu-item has-sub">
+                        <a href='#'><i class="fa fa-mortar-board fa-fw" aria-hidden="true"></i> Cursos</a>
+                        <ul>
+                            <li class="menu-item"><a href="{% url 'cursos' %}?nivel_formacao=TECNICO">
+                              &nbsp; <i class="fa fa-angle-double-right fa-fw" aria-hidden="true"></i> Técnico</a></li>
+                            <li class="menu-item"><a href="{% url 'cursos' %}?nivel_formacao=GRADUACAO">
+                              &nbsp; <i class="fa fa-angle-double-right fa-fw" aria-hidden="true"></i> Graduação</a></li>
+                            <li class="menu-item"><a href="{% url 'cursos' %}?nivel_formacao=POSGRADUACAO">
+                              &nbsp; <i class="fa fa-angle-double-right fa-fw" aria-hidden="true"></i> Pós-Graduação</a></li>
+                        </ul>
+                    </li>
+                    <li class="menu-item has-sub">
+                        <a href='#'><i class="fa fa-check-square-o fa-fw" aria-hidden="true"></i> Processos Seletivos</a>
+                        <ul>
+                            {% for processo in processos %}
+                            <li class="menu-item"><a href="{% url 'processoseletivo' processo.id %}">
+                              &nbsp; <i class="fa fa-angle-double-right fa-fw" aria-hidden="true"></i> {{ processo.sigla }}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </li>
+                    <li class="menu-item has-sub">
+                        <a href='#'><i class="fa fa-archive fa-fw" aria-hidden="true"></i> Documentos</a>
+                        <ul>
+                            <li class="menu-item"><a href="{{ config.PORTAL_IFPB }}/ti/catalogo-de-servicos-de-ti/sistemas-para-o-ensino-pesquisa-e-extensao/portal-do-estudante/tutorial-do-candidato">
+                              &nbsp; <i class="fa fa-angle-double-right fa-fw" aria-hidden="true"></i> Tutorial do Candidato</a></li>
+                            <li class="menu-item"><a href="{% static 'files/cartilha_espectro_autista.pdf' %}">
+                              &nbsp; <i class="fa fa-angle-double-right fa-fw" aria-hidden="true"></i> Cartilha do Espectro Autista</a></li>
+                            <li class="menu-item"><a href="{% static 'files/manual-do-estudante-ifpb.pdf' %}">
+                              &nbsp; <i class="fa fa-angle-double-right fa-fw" aria-hidden="true"></i> Manual do Estudante</a></li>
+                            <li class="menu-item"><a href="{{ config.PORTAL_IFPB }}/pre/assuntos/regulamentos/Arquivos/manual-do-estudante-ifpb.pdf">
+                              &nbsp; <i class="fa fa-angle-double-right fa-fw" aria-hidden="true"></i> Plano de Acessibilidade</a></li>
+                            <li class="menu-item"><a href="{{ config.PORTAL_IFPB }}/pre/assuntos/regulamentos">
+                              &nbsp; <i class="fa fa-angle-double-right fa-fw" aria-hidden="true"></i> Regulamentos Institucionais</a></li>
+                            <li class="menu-item"><a href="{{ config.PORTAL_IFPB }}/cpa/">
+                              &nbsp; <i class="fa fa-angle-double-right fa-fw" aria-hidden="true"></i> Avaliação Institucional</a></li>
+                        </ul>
+                    </li>
+                    <li class="menu-item has-sub">
+                        <a href='#'><i class="fa fa-globe fa-fw" aria-hidden="true"></i> Educação a Distância</a>
+                        <ul>
+                            <li class="menu-item"><a href="{{ config.PORTAL_IFPB }}/ead/">
+                              &nbsp; <i class="fa fa-angle-double-right fa-fw" aria-hidden="true"></i> Portal da EaD</a></li>
+                        </ul>
+                    </li>
+                    <li class="menu-item has-sub">
+                        <a href='#'><i class="fa fa-university fa-fw" aria-hidden="true"></i> Campi</a>
+                        <ul>
+                            {% for campi in campis %}
+                            <li class="menu-item"><a href="{{ campi.url }}" target="_blank">
+                              &nbsp; <i class="fa fa-angle-double-right fa-fw" aria-hidden="true"></i> {{ campi.nome }}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </li>
+                    <li class="menu-item has-sub">
+                        <a href='#'><i class="fa fa-building-o fa-fw" aria-hidden="true"></i> Pró-Reitorias</a>
+                        <ul>
+                            <li class="menu-item"><a href="{{ config.PORTAL_IFPB }}/pre" target="_blank">
+                              &nbsp; <i class="fa fa-angle-double-right fa-fw" aria-hidden="true"></i> Ensino</a></li>
+                            <li class="menu-item"><a href="{{ config.PORTAL_IFPB }}/prpipg" target="_blank">
+                              &nbsp; <i class="fa fa-angle-double-right fa-fw" aria-hidden="true"></i> Pesquisa, Inovação e Pós-Graduação</a></li>
+                            <li class="menu-item"><a href="{{ config.PORTAL_IFPB }}/proext" target="_blank">
+                              &nbsp; <i class="fa fa-angle-double-right fa-fw" aria-hidden="true"></i> Extensão e Cultura</a></li>
+                            <li class="menu-item"><a href="{{ config.PORTAL_IFPB }}/prae" target="_blank">
+                              &nbsp; <i class="fa fa-angle-double-right fa-fw" aria-hidden="true"></i> Assuntos Estudantis</a></li>
+                            <li class="menu-item"><a href="{{ config.PORTAL_IFPB }}/praf" target="_blank">
+                              &nbsp; <i class="fa fa-angle-double-right fa-fw" aria-hidden="true"></i> Administração</a></li>
+                        </ul>
+                    </li>
+                    <li class="menu-item"><a href="{% url 'noticias' %}"><i class="fa fa-newspaper-o fa-fw" aria-hidden="true"></i> Últimas Notícias</a></li>
+                </ul>
+            </div>
+
+    {% endblock %}
+
+    <!-- LOCALIZAÇÃO -->
+    <div class="localizacao">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <ul class="list-inline list-unstyled">
+                        <li>Você está aqui:</li>
+                        {% block breadcrumb %}
+                            <li><a href="/">Início</a></li>
+                            <li><i class="fa fa-angle-right text-muted"></i></li>
+                            {% for item in breadcrumb %}
+                                {% if forloop.last %}
+                                    <li class="active">{{ item.name }}</li>
+                                {% else %}
+                                    <li><a href="{{ item.url }}">{{ item.name }}</a></li>
+                                    <li><i class="fa fa-angle-right text-muted"></i></li>
+                                {% endif %}
+                            {% endfor %}
+                        {% endblock %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</header>
+
+{% block main %}
+<!-- CONTEÚDO -->
+<div class="content">
+    <div class="container">
+        <div class="row">
+            {% block menu %}
+            <div id="menu-navigation" class="col-md-2 menu-vertical hidden-xs hidden-sm">
+                <a href="{% url 'processoseletivo' %}">
+                    <img src="{% static '/img/ifba-vertical.jpg' %}" alt="Logomarca do IFBA" class="img-responsive logo-instituto">
+                </a>
+                <div class="menu-relevancia" id="menu-relevancia" hidden >
+                    <ul id="relevancia-items" >
+                        <li class="menu-item"><a href="/">Prosel 2021</a></li>
+                    </ul>
+                </div>
+
+                {% for raiz in user_menu %}
+                <div class="menu" id="menu-{{ raiz.attrs.id }}">
+                    <p class="menu-title {{ raiz.css }}" data-toggle="collapse" data-target="#{{ raiz.attrs.id }}-items">{{ raiz.name }}</p>
+                    <ul id="{{ raiz.attrs.id }}-items" class="collapse in">
+                        {% for node_l1 in raiz %}
+                            {% if node_l1.url %}
+                                <li class="menu-item"><a href="{{ node_l1.url }}" class="{{ node_l1.attrs.url_class }}">
+                                    {% if node_l1.attrs.icone %}
+                                        <i class="fa {{ node_l1.attrs.icone }} fa-fw" aria-hidden="true"></i>
+                                    {% endif %}
+                                    {{ node_l1.name }}</a></li>
+                            {% else %}
+                                <li class="menu-item has-sub">
+                                    <a class="{{ node_l1.attrs.url_class }} collapsed" data-toggle="collapse"
+                                       data-target="#{{ node_l1.attrs.id }}-{{ raiz.attrs.id }}-items">
+                                        {{ node_l1.name }}</a>
+                                    <ul id="{{ node_l1.attrs.id }}-{{ raiz.attrs.id }}-items" class="collapse">
+                                        {% for node_l2 in node_l1 %}
+                                            <li class="menu-item"><a href="{{ node_l2.url }}" class="{{ node_l2.attrs.url_class }}">
+                                                {% if node_l2.attrs.icone %}
+                                                    <i class="fa {{ node_l2.attrs.icone }} fa-fw" aria-hidden="true"></i>
+                                                {% endif %}
+                                                {{ node_l2.name }}</a>
+                                            </li>
+                                        {% endfor %}
+                                    </ul>
+                                </li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endfor %}
+
+                {% block menu_cursos %}
+                {% if request.user.is_staff or node_l2.name != null %}
+                <div class="menu" id="menu-cursos">
+                    <p class="menu-title" data-toggle="collapse" data-target="#cursos-items">Cursos</p>
+                    <ul id="cursos-items" class="collapse in">
+                        <li class="menu-item"><a href="{% url 'cursos' %}?nivel_formacao=TECNICO">Técnico</a></li>
+                        <li class="menu-item"><a href="{% url 'cursos' %}?nivel_formacao=GRADUACAO">Graduação</a></li>
+                        <li class="menu-item"><a href="{% url 'cursos' %}?nivel_formacao=POSGRADUACAO">Pós-Graduação</a></li>
+                    </ul>
+                </div>
+                {% endif %}
+                {% endblock %}
+                {% block menu_processos %}
+                {% if request.user.is_staff or node_l2.name != null %} 
+                <div class="menu" id="menu-processos">
+                    <p class="menu-title" data-toggle="collapse" data-target="#processos-items">Processos Seletivos</p>
+                    <ul id="processos-items" class="collapse in">
+                      {% for processo in processos %}
+                        <li class="menu-item"><a href="{% url 'processoseletivo' processo.id %}">{{ processo.sigla }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endif %}
+                {% endblock %}
+
+                {% block menu_documentos %}
+                {% if request.user.is_staff %}
+                <div class="menu" id="menu-documentos">
+                    <p class="menu-title" data-toggle="collapse" data-target="#documentos-items">Documentos</p>
+                    <ul id="documentos-items" class="collapse in">
+                        <li class="menu-item">
+                          <a href="{{ config.PORTAL_IFPB }}/ti/catalogo-de-servicos-de-ti/sistemas-para-o-ensino-pesquisa-e-extensao/portal-do-estudante/tutorial-do-candidato">
+                            Tutorial do Candidato
+                          </a>
+                        </li>
+                        <li class="menu-item">
+                          <a href="{% static 'files/cartilha_espectro_autista.pdf' %}">
+                            Cartilha do Espectro Autista
+                          </a>
+                        </li>
+                        <li class="menu-item">
+                          <a href="{{ config.PORTAL_IFPB }}/pre/assuntos/regulamentos/Arquivos/manual-do-estudante-ifpb.pdf">
+                            Manual do Estudante
+                          </a>
+                        </li>
+                        <li class="menu-item">
+                          <a href="{% static 'files/res_240_2015_plano_acessibilidade.pdf' %}">
+                            Plano de Acessibilidade
+                          </a>
+                        </li>
+                        <li class="menu-item">
+                          <a href="{{ config.PORTAL_IFPB }}/pre/assuntos/regulamentos">
+                            Regulamentos Institucionais
+                          </a>
+                        </li>
+                        <li class="menu-item">
+                          <a href="{{ config.PORTAL_IFPB }}/cpa/">
+                            Avaliação Institucional
+                          </a>
+                        </li>
+                    </ul>
+                </div>
+                {% endif %}
+                {% endblock %}
+
+                {% block menu_ead %}
+                {% if request.user.is_staff %}
+                <div class="menu" id="menu-ead">
+                    <p class="menu-title" data-toggle="collapse" data-target="#ead-items">Educação a Distância</p>
+                    <ul id="ead-items" class="collapse in">
+                        <li class="menu-item"><a href="{{ config.PORTAL_IFPB }}/ead/">Portal da EaD</a></li>
+                    </ul>
+                </div>
+                {% endif %}
+                {% endblock %}
+
+                {% block menu_campi %}
+                {% if request.user.is_staff %}
+                <div class="menu" id="menu-campi">
+                    <p class="menu-title collapsed" data-toggle="collapse" data-target="#campi-items">Campi</p>
+                    <ul id="campi-items" class="collapse">
+                        {% for campi in campis %}
+                            {% if campi.aparece_no_menu %}
+                                <li class="menu-item"><a href="{{ campi.url }}" target="_blank">{{ campi.nome }}
+                                    <span class="sr-only"> (abre em nova janela)</span></a></li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endif %}
+                {% endblock %}
+                {% block menu_proreitoria %}
+                {% if request.user.is_staff %}
+                <div class="menu" id="menu-proreitoria">
+                    <p class="menu-title" data-toggle="collapse" data-target="#proreitoria-items">Pró-Reitorias</p>
+                    <ul id="proreitoria-items" class="collapse in">
+                        <li class="menu-item"><a href="{{ config.PORTAL_IFPB }}/pre" target="_blank">Ensino
+                            <span class="sr-only"> (abre em nova janela)</span></a></li>
+                        <li class="menu-item"><a href="{{ config.PORTAL_IFPB }}/prpipg" target="_blank">Pesquisa, Inovação e Pós-Graduação
+                            <span class="sr-only"> (abre em nova janela)</span></a></li>
+                        <li class="menu-item"><a href="{{ config.PORTAL_IFPB }}/proext" target="_blank">Extensão e Cultura
+                            <span class="sr-only"> (abre em nova janela)</span></a></li>
+                        <li class="menu-item"><a href="{{ config.PORTAL_IFPB }}/prae" target="_blank">Assuntos Estudantis
+                            <span class="sr-only"> (abre em nova janela)</span></a></li>
+                        <li class="menu-item"><a href="{{ config.PORTAL_IFPB }}/praf" target="_blank">Administração
+                            <span class="sr-only"> (abre em nova janela)</span></a></li>
+                    </ul>
+                </div>
+                {% endif %}
+                {% endblock %}
+                {% block menu_assuntos %}
+                {% if request.user.is_staff %}
+                <div class="menu" id="menu-assuntos">
+                    <p class="menu-title" data-toggle="collapse" data-target="#assuntos-items">Notícias</p>
+                    <ul id="assuntos-items" class="collapse in">
+
+                        {% for assunto in assuntos %}
+                            <li class="menu-item"><a href="{{ assunto.get_absolute_url }}">{{ assunto.nome }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endif %}
+                {% endblock %}
+            </div>
+            {% endblock %}
+
+            <div class="col-sm-12 col-md-{% if wide %}12{% else %}10{% endif %} conteudo" id="conteudo">
+                    {% block mensagens %}
+                        <div class="messages">
+                            {% for message in messages %}
+                                <div {% if message.tags %}
+                                    class="alert alert-dismissible
+                                        {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}alert-danger
+                                        {% else %}alert-{{ message.tags }}{% endif %}"
+                                {% endif %}>
+                                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                    {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+                                        <i class="glyphicon glyphicon-remove-sign"></i>
+                                    {% endif %}
+
+                                    {% if message.level == DEFAULT_MESSAGE_LEVELS.WARNING %}
+                                        <i class="glyphicon glyphicon-exclamation-sign"></i>
+                                    {% endif %}
+
+                                    {% if message.level == DEFAULT_MESSAGE_LEVELS.INFO %}
+                                        <i class="glyphicon glyphicon-info-sign"></i>
+                                    {% endif %}
+
+                                    {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+                                        <i class="glyphicon glyphicon-ok-sign"></i>
+                                    {% endif %}
+
+                                    <span>{{ message }}</span>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% endblock %}
+                <div >
+                 <img class="media-object"
+                                         src="{% static 'img/prosel2021-bannertopo-site.png' %}"
+                                         alt="Link para os cursos técnicos" width="102%">
+                <br />
+                </div>
+                {% block conteudo %}
+                        sjdfçlsjflçk
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+<!-- BACK TO TOP -->
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            <a class="back-top pull-right" href="" onclick="$('html,body').animate({scrollTop:0},'fast');return false;">
+                <i class="fa fa-caret-up fa -fw" aria-hidden="true"></i> Voltar para o topo
+            </a>
+        </div>
+    </div>
+</div>
+<!-- FOOTER -->
+<div class="footer" role="contentinfo" id="rodape">
+    <div class="container">
+    	<div class="col-xs-6 col-sm-3 block" style="width: 16%">
+            <h3 class="titulo-rodape">Institucional</h3>
+            <ul class="list-unstyled">
+                <li><a href="{{ config.PORTAL_IFPB }}/acesso-a-informacao/institucional/" target="_blank">O Instituto
+                      <span class="sr-only"> (abre em nova janela)</span></a></li>
+                <li><a href="{{ config.PORTAL_IFPB }}/institucional/memorial" target="_blank">Memória
+                      <span class="sr-only"> (abre em nova janela)</span></a></li>
+                <li><a href="{{ config.PORTAL_IFPB }}/institucional/organograma/" target="_blank">Organograma
+                      <span class="sr-only"> (abre em nova janela)</span></a></li>
+                <li><a href="{{ config.PORTAL_IFPB }}/institucional/quem-e-quem/" target="_blank">Quem é quem
+                      <span class="sr-only"> (abre em nova janela)</span></a></li>
+                <li><a href="{{ config.PORTAL_IFPB }}/institucional/atribuicoes-cargos/" target="_blank">Atribuições e cargos
+                      <span class="sr-only"> (abre em nova janela)</span></a></li>
+                <li><a href="{{ config.PORTAL_IFPB }}/institucional/eleicoes" target="_blank">Eleições
+                      <span class="sr-only"> (abre em nova janela)</span></a></li>
+                <li><a href="{{ config.PORTAL_IFPB }}/menu-de-apoio/processos-seletivos" target="_blank">Processos Seletivos
+                      <span class="sr-only"> (abre em nova janela)</span></a></li>
+                <li><a href="{{ config.PORTAL_IFPB }}/prodin/assessoria-internacional/arinter" target="_blank">Assessoria Internacional
+                      <span class="sr-only"> (abre em nova janela)</span></a></li>
+                <li><a href="{{ config.PORTAL_IFPB }}/contatoifba" target="_blank">Contatos
+                      <span class="sr-only"> (abre em nova janela)</span></a></li>
+                <li><a href="{{ config.PORTAL_IFPB }}/institucional/fale-conosco/formulario" target="_blank">Fale conosco
+                      <span class="sr-only"> (abre em nova janela)</span></a></li>
+            </ul>
+        </div>
+        <div class="col-xs-6 col-sm-3 block" style="width: 16%">
+            <h3 class="titulo-rodape">Campi</h3>
+            <ul class="list-unstyled">
+                <li><a href="{{ config.PORTAL_IFPB }}/campi/escolha-o-campus" target="_blank">Escolha o campus
+                      <span class="sr-only"> (abre em nova janela)</span></a></li>
+                <li><a href="{{ config.PORTAL_IFPB }}/campi/contatos-campi" target="_blank">Diretores dos campi
+                      <span class="sr-only"> (abre em nova janela)</span></a></li>
+                <li><a href="{{ config.PORTAL_IFPB }}/contatoifba" target="_blank">Ramais dos campi
+                      <span class="sr-only"> (abre em nova janela)</span></a></li>
+            </ul>
+        </div>
+        <div class="col-xs-6 col-sm-3 block" style="width: 16%">
+            <h3 class="titulo-rodape">Redes sociais</h3>
+            <ul class="list-unstyled">
+                {% if config.TWITTER %}
+                    <li><a href="{{ config.TWITTER }}" target="_blank" title="Página do IFBA no Twitter">Twitter
+                        <span class="sr-only"> (abre em nova janela)</span></a></li>{% endif %}
+                {% if config.FACEBOOK %}
+                    <li><a href="{{ config.FACEBOOK }}" target="_blank" title="Página do IFBA no Facebook">Facebook
+                        <span class="sr-only"> (abre em nova janela)</span></a></li>{% endif %}
+                {% if config.INSTAGRAM %}
+                    <li><a href="{{ config.INSTAGRAM }}" target="_blank" title="Perfil do IFBA no Instagram">Instagram
+                        <span class="sr-only"> (abre em nova janela)</span></a>{% endif %}
+                {% if config.YOUTUBE %}
+                    <li><a href="{{ config.YOUTUBE }}" target="_blank" title="Canal do IFBA no YouTube">YouTube
+                        <span class="sr-only"> (abre em nova janela)</span></a></li>{% endif %}
+                {% if config.FLICKBR %}
+                    <li><a href="{{ config.FLICKR }}" target="_blank" title="Página do IFBA no Flickr">Flickr
+                        <span class="sr-only"> (abre em nova janela)</span></a></li>{% endif %}
+                {% if config.GOOGLE_PLUS %}
+                    <li><a href="{{ config.GOOGLE_PLUS }}" target="_blank" title="Página do IFBA no Google Plus">Google Plus
+                        <span class="sr-only"> (abre em nova janela)</span></a>{% endif %}
+                {% if config.RSS %}
+                    <li><a href="{{ config.RSS }}">RSS</a></li>{% endif %}
+            </ul>
+        </div>
+        <div class="col-xs-6 col-sm-3 block" style="width: 16%">
+            <h3 class="titulo-rodape">Acesso à Informação</h3>
+            <ul class="list-unstyled">
+                <li><a href="{{ config.PORTAL_IFPB }}/menu-de-apoio/acesso-a-informacao" target="_blank">Acesso à Informação
+                      <span class="sr-only"> (abre em nova janela)</span></a></li>
+                <li><a href="{{ config.PORTAL_IFPB }}" target="_blank">Carta de serviços ao cidadão
+                      <span class="sr-only"> (abre em nova janela)</span></a></li>
+                <li><a href="{{ config.DADOS_ABERTOS }}" target="_blank">Dados abertos
+                      <span class="sr-only"> (abre em nova janela)</span></a></li>
+                <li><a href="{{ config.PORTAL_IFPB }}/menu-institucional/docs" target="_blank">Documentos
+                      <span class="sr-only"> (abre em nova janela)</span></a></li>
+                <li><a href="{{ config.PORTAL_IFPB }}/acessoinformacao/duvidas-frequentes" target="_blank">Dúvidas frequêntes
+                      <span class="sr-only"> (abre em nova janela)</span></a></li>
+                <li><a href="{{ config.PORTAL_IFPB }}/proap/licitacoes" target="_blank">Licitações e contratos
+                      <span class="sr-only"> (abre em nova janela)</span></a></li>
+                <li><a href="{{ config.PORTAL_ESIC }}" target="_blank">Serviço de Informação ao Cidadão - eSIC
+                      <span class="sr-only"> (abre em nova janela)</span></a></li>
+                <li><a href="{{ config.PORTAL_IFPB }}/institucional/documento/documentos-institucionais/servidores" target="_blank">Servidores
+                      <span class="sr-only"> (abre em nova janela)</span></a></li>
+                <li><a href="{{ config.PORTAL_IFPB }}//menu-de-apoio/paginas-menu-de-apoio/transparencia-ifba" target="_blank">Transparência IFBA
+                      <span class="sr-only"> (abre em nova janela)</span></a></li>
+                <li><a href="{{ config.PORTAL_IFPB }}/menu-de-apoio/ouvidoria" target="_blank">Ouvidoria
+                      <span class="sr-only"> (abre em nova janela)</span></a></li>
+            </ul>
+        </div>
+        <div class="col-xs-6 col-sm-3 block" style="width: 16%">
+            <h3 class="titulo-rodape">Ensino</h3>
+            <ul class="list-unstyled">
+                <li><a href="{{ config.PORTAL_IFPB }}/ensino/seja-nosso-aluno" target="_blank">Seja nosso aluno
+                      <span class="sr-only"> (abre em nova janela)</span></a></li>
+                <li><a href="{{ config.PORTAL_IFPB }}/ensino/tipos-de-cursos" target="_blank">Tipos de curso
+                      <span class="sr-only"> (abre em nova janela)</span></a></li>
+                <li><a href="{{ config.PORTAL_IFPB }}/ensino/nossos-cursos" target="_blank">Nossos cursos
+                      <span class="sr-only"> (abre em nova janela)</span></a></li>
+                <li><a href="{{ config.PORTAL_IFPB }}/ead" target="_blank">Ensino à distância
+                      <span class="sr-only"> (abre em nova janela)</span></a></li>
+                <li><a href="{{ config.PORTAL_IFPB }}//proen/departamentos/departamento-de-permanencia-e-assistencia-estudantil/dpae" target="_blank">Assistência estudantil
+                      <span class="sr-only"> (abre em nova janela)</span></a></li>
+                <li><a href="{{ config.PORTAL_IFPB }}/processoseletivo2021/" target="_blank">Processo Seletivo 2021
+                      <span class="sr-only"> (abre em nova janela)</span></a></li>
+                <li><a href="{{ config.PORTAL_IFPB }}/proen/certificacao_ensino_medio/enem-encceja" target="_blank">Certificação ENCCEJA/ENEM
+                      <span class="sr-only"> (abre em nova janela)</span></a></li>
+                <li><a href="{{ config.PORTAL_IFPB }}/institucional/documento/sisu/" target="_blank">SISU
+                      <span class="sr-only"> (abre em nova janela)</span></a></li>
+                <li><a href="{{ config.PORTAL_IFPB }}//menu-de-apoio//ensino/perguntas-frequentes" target="_blank">Perguntas frequentes
+                      <span class="sr-only"> (abre em nova janela)</span></a></li>
+            </ul>
+        </div>
+        <div class="col-xs-6 col-sm-3 block" style="width: 16%">
+            <h3 class="titulo-rodape">Sistemas</h3>
+            <ul class="list-unstyled">
+                <li><a href="{{ config.PORTAL_BIBLIOTECA }}" target="_blank">Biblioteca
+                      <span class="sr-only"> (abre em nova janela)</span></a></li>
+                <li><a href="{{ config.PORTAL_SUAP }}" target="_blank">SUAP
+                      <span class="sr-only"> (abre em nova janela)</span></a></li>
+                <li><a href="{{ config.PORTAL_SEI }}" target="_blank">SEI
+                      <span class="sr-only"> (abre em nova janela)</span></a></li>
+                <li><a href="{{ config.PORTAL_SEI_PESQUISA_PUBLICA }}" target="_blank">SEI - Pesquisa Pública
+                      <span class="sr-only"> (abre em nova janela)</span></a></li>
+                <li><a href="{{ config.PORTAL_WEBMAIL }}" target="_blank">Webmail
+                      <span class="sr-only"> (abre em nova janela)</span></a></li>
+                <li><a href="{{ config.PORTAL_SICAD }}" target="_blank">SICAD
+                      <span class="sr-only"> (abre em nova janela)</span></a></li>
+                <li><a href="{{ config.PORTAL_SIGA }}" target="_blank">SIGA
+                      <span class="sr-only"> (abre em nova janela)</span></a></li>
+                <li><a href="{{ config.PORTAL_SISTEMA_PROCESSOS }}" target="_blank">SISPROC
+                      <span class="sr-only"> (abre em nova janela)</span></a></li>
+                <li><a href="{{ config.PORTAL_SIADS }}" target="_blank">SIADS
+                      <span class="sr-only"> (abre em nova janela)</span></a></li>
+                <li><a href="{{ config.PORTAL_SIAPENET }}/menu-de-apoio/ouvidoria" target="_blank">SIAPENET
+                      <span class="sr-only"> (abre em nova janela)</span></a></li>
+                <li><a href="{{ config.PORTAL_PLANO_METAS }}/menu-de-apoio/ouvidoria" target="_blank">Plano de metas
+                      <span class="sr-only"> (abre em nova janela)</span></a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div id="footer-brasil" class="footer footer-logos">
+    <div id="wrapper-footer-brasil">
+        <a href="http://www.acessoainformacao.gov.br/">
+            <span class="logo-acesso-footer"></span>
+            <span class="sr-only">Logomarca de Acesso à Informação do governo</span>
+        </a>
+        <a href="http://www.brasil.gov.br/">
+            <span class="logo-brasil-footer"></span>
+            <span class="sr-only">Logomarca do Governo Federal</span>
+        </a>
+    </div>
+</div>
+<div id="extra-footer" class="extra-footer">
+    <p class="text-center">
+        Processo Seletivo IFBA | Desenvolvimento:
+        <a href="{{ config.PORTAL_IFPB }}/dgti" target="_blank">DGTI IFBA</a>
+    </p>
+</div>
+<script src="{% static 'js/bootstrap-3.3.6.min.js' %}"></script>
+<script src="{% static 'ps/js/fotorama.js' %}"></script>
+<script src="{% static 'ps/js/menu.js' %}"></script>
+<script src="{% static 'js/jquery.mask.min.js' %}"></script>
+<script src="{% static 'js/scripts.js' %}"></script>
+<script src="{% static 'js/menu_responsivo.js' %}"></script>
+
+</body>
+</html>

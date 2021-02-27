@@ -1,0 +1,39 @@
+{% include "reuse/_form_errors.html" %}
+{% for fieldset in form.fieldsets %}
+    <fieldset class="fieldset_{{ fieldset.name }}">
+        {% if fieldset.legend %}
+            <legend>
+                {{ fieldset.legend }}
+                {% if fieldset.description %}
+                    <div class="help-block description">({{ fieldset.description }})</div>
+                {% endif %}
+            </legend>
+        {% endif %}
+        <div class="row">
+        {% for field in fieldset %}
+            {% if "new-row" in field.row_attrs or "col" not in field.row_attrs %}
+                </div><div class="row">
+            {% endif %}
+
+            <div {% if "col" in field.row_attrs %}  {{ field.row_attrs }} {% else %}
+                class="form-group col-md-12" {% endif %}>
+                {% if field.is_hidden %}
+                    {{ field }}
+                {% else %}
+                    <label for="{{ field.auto_id }}" class="control-label">{{ field.label }}</label>
+                    {{ field }}
+                    {% if field.help_text or field.errors %}
+                        <div class="help-block">
+                            {{ field.help_text|safe }}
+                            {% for error in field.errors %}
+                                {{ error }}<br>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                {% endif %}
+            </div>
+        {% endfor %}
+        </div>
+    </fieldset>
+    <br>
+{% endfor %}

@@ -1,0 +1,63 @@
+{% extends "psct/base.html" %}
+
+{% block extrahead %}
+    {{ block.super }}
+
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            {% block extra_js_inscricao %}{% endblock %}
+
+            let cotas_nao = $('input[id="id_cotista_1"]');
+            let cotas_sim = $('input[id="id_cotista_0"]');
+            let modalidades = $("#field_modalidade_cota input:radio");
+            let modalidades_div = $("div#field_modalidade_cota");
+            let label_ampla  = $('ul[id="id_modalidade_cota"]').children().first();
+            let ampla_concorrencia = $("#id_modalidade_cota_0");
+
+            function esconder_opcoes_modalidade() {
+                modalidades.prop('disabled', true);
+                modalidades_div.addClass('text-muted');
+                ampla_concorrencia.prop('checked', true);
+            }
+
+            function exibir_opcoes_modalidade() {
+                modalidades.prop('disabled', false);
+                modalidades_div.removeClass('text-muted');
+                label_ampla.hide();
+                ampla_concorrencia.prop('checked', false);
+            }
+
+            if ({{ hide_modalidades }}){
+                modalidades.prop('disabled', true);
+                modalidades_div.addClass('text-muted');
+            }
+
+            label_ampla.hide();
+            cotas_nao.click(esconder_opcoes_modalidade);
+            cotas_sim.click(exibir_opcoes_modalidade);
+        });
+    </script>
+{% endblock %}
+
+{% block breadcrumb %}
+    <li><a href="/">Início</a></li>
+    <li><i class="fa fa-angle-right text-muted"></i></li>
+    <li class="active">Inscrição - Escolha de Curso</li>
+{% endblock %}
+
+{% block conteudo %}
+    <h2 class="titulo verde-escuro">{{ titulo }}</h2>
+    <form method="post" action="" class="form-horizontal">
+        {% csrf_token %}
+        <div class="row form-group">
+            <div class="col-xs-12">
+                <span class="help-block text-justify">
+                    Todos os campos sinalizados com * devem ser obrigatoriamente preenchidos.
+                </span></div>
+        </div>
+        {% include 'psct/base/generic_form.html' %}
+         <a class="btn btn-grey" href="{{ back_url }}">Voltar</a>
+        <input type="submit" value="Continuar" class="btn btn-primary pull-right">
+    </form>
+{% endblock %}

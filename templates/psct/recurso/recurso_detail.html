@@ -1,0 +1,124 @@
+{% extends "psct/base.html" %}
+{% load base_tags %}
+
+
+
+
+{% block conteudo %}
+    <h2 class="titulo verde-escuro">Recurso #{{ object.id }} {{ menu.render }}</h2>
+
+    {% box 'Dados do Recurso' True %}
+        <div class="table-responsive">
+            <table class="table table-striped table-condensed">
+                <tbody>
+                <tr>
+                    <td><b>Fase de Recurso:</b></td>
+                    <td>{{ object.fase }}</td>
+                </tr>
+                <tr>
+                    <td><b>Edital:</b></td>
+                    <td>{{ object.fase.edital }}</td>
+                </tr>
+                <tr>
+                    <td><b>Texto do Recurso:</b></td>
+                    <td>{{ object.texto|linebreaks }}</td>
+                </tr>
+                <tr>
+                    <td class="col-xs-3"><b>Cadastrado por:</b></td>
+                    <td>{{ object.usuario.get_full_name }} ({{ object.usuario }})</td>
+                </tr>
+                <tr>
+                    <td><b>Data de criação:</b></td>
+                    <td>{{ object.data_cadastro }}</td>
+                </tr>
+                <tr>
+                    <td><b>Data da última atualização:</b></td>
+                    <td>{{ object.data_atualizacao }}</td>
+                </tr>
+
+                </tbody>
+            </table>
+        </div>
+    {% endbox %}
+
+    <ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="#impetrante">Dados do Impetrante</a></li>
+        <li><a data-toggle="tab" href="#inscricao">Dados da Inscrição</a></li>
+    </ul>
+
+    <div class="tab-content">
+        <div id="impetrante" class="tab-pane fade in active">
+            <div class="table-responsive">
+                <table class="table table-striped table-condensed">
+                    <tbody>
+                    <tr>
+                        <td class="col-xs-2"><b>Usuário:</b></td>
+                        <td>{{ object.usuario }}</td>
+                    </tr>
+                    <tr>
+                        <td><b>Nome:</b></td>
+                        <td>{{ object.inscricao.candidato.nome }}</td>
+                    </tr>
+                    <tr>
+                        <td><b>CPF:</b></td>
+                        <td>{{ object.inscricao.candidato.cpf }}</td>
+                    </tr>
+                    <tr>
+                        <td><b>Telefone:</b></td>
+                        <td>{{ object.inscricao.candidato.telefone }}</td>
+                    </tr>
+                    <tr>
+                        <td><b>E-mail:</b></td>
+                        <td>{{ object.inscricao.candidato.email }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div id="inscricao" class="tab-pane fade">
+            <div class="table-responsive">
+                <table class="table table-striped table-condensed">
+                    <tbody>
+                    <tr>
+                        <td class="col-xs-6 col-sm-4 col-md-3"><b>Campus:</b></td>
+                        <td>{{ object.inscricao.curso.campus }}</td>
+                    </tr>
+                    <tr>
+                        <td><b>Modalidade de ensino:</b></td>
+                        <td>{{ object.inscricao.curso.get_formacao_display }}</td>
+                    </tr>
+                    <tr>
+                        <td><b>Curso:</b></td>
+                        <td>{{ object.inscricao.curso.curso.nome }}</td>
+                    </tr>
+                    <tr>
+                        <td><b>Turno:</b></td>
+                        <td>{{ object.inscricao.curso.get_turno_display }}</td>
+                    </tr>
+                    <tr>
+                        <td><b>Concorre por cota:</b></td>
+                        <td>
+                            {% if not object.inscricao.is_ampla_concorrencia %}
+                                Sim
+                            {% else %}
+                                Não
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% if not object.inscricao.is_ampla_concorrencia %}
+                        <tr>
+                            <td><b>Modalidade de cota:</b></td>
+                            <td>{{ object.inscricao.modalidade_cota }}</td>
+                        </tr>
+                    {% endif %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+
+
+{% endblock %}

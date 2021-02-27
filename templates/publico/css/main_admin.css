@@ -1,0 +1,124 @@
+/* Necessários ao template do admin */
+
+/* - css/main.css - */
+@media screen {
+    .item-curso > .titulo a {
+        color: inherit;
+    }
+    .item-curso ul {
+        margin: inherit;
+        padding: inherit;
+    }
+
+}
+
+
+
+ul li {
+    list-style-type: none;
+    padding: 1px 0;
+}
+
+li {
+    font-size: inherit;
+    line-height: inherit;
+}
+
+li.menu-item ul {
+    padding: 0px 5px;
+}
+
+li.menu-item ul.collapse.in {
+    border-top: 2px solid #64946e;
+    border-bottom: 2px solid #64946e;
+}
+
+.menu-item {
+    cursor: default;
+}
+
+.menu-item[data-toggle="collapse"] {
+    cursor: pointer;
+}
+
+.menu-item > a > i {
+    font-size: 1.2em;
+    line-height: inherit;
+    display: inline-block;
+    float: right
+}
+
+.menu-item[data-toggle="collapse"] > a > i::after {
+    content: "\f0d7";
+}
+
+.menu-item[data-toggle="collapse"].collapsed > a > i::after {
+    content: "\f0da";
+}
+
+.object-tools {
+    margin: inherit;
+}
+
+.object-tools li {
+    height: inherit;
+    line-height: 25px;
+}
+
+th[class^="field"], td[class^="field"], td.action-checkbox {
+    padding: 5px;
+    vertical-align: middle;
+}
+
+td img[alt="True"] {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+td img[alt="False"] {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+tr.has_original td {
+    padding-top: inherit !important;
+}
+
+tr.has_original td.original {
+    padding: 0px !important;
+}
+
+tr.has_original td.original p {
+    display: none;
+}
+
+fieldset.module.collapse{
+    display: inherit;
+}
+
+.submit-row a.deletelink {
+    height: inherit;
+}
+
+.container.container-admin {
+    width: inherit;
+}
+
+/* Dropdown menu para os resultados do changelist */
+#changelist .results ul {
+    margin-left: inherit;
+    padding-left: inherit;
+    padding-right: inherit;
+}
+
+/* Barra de menu do admin - Complemento ao bootstrap */
+.menu-admin.navbar {
+    margin-bottom: inherit;
+}
+
+.menu-admin .nav > li > a {
+    padding-top: 15px;
+    padding-bottom: 15px;
+}

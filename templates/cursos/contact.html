@@ -1,0 +1,74 @@
+{% extends "base/index.html" %}
+
+{% block extrahead %}
+<link rel="stylesheet" href="../publico/css/jquery.webui-popover.min.css">
+<script src="../publico/js/jquery.webui-popover.min.js"></script>
+{% endblock %}
+
+{% block breadcrumb %}
+    <li><a href="/">Início</a></li>
+    <li><i class="fa fa-angle-right text-muted"></i></li>
+    <li class="active">Contatos</li>
+{% endblock %}
+
+{% block conteudo %}
+
+    <h2 class="titulo verde-escuro">Contatos</h2>
+
+    {% if campi or polos %}
+
+      {% if campi %}
+    <table class="table table-striped table-condensed">
+        <thead>
+            <tr>
+                <th width="20%">Campus</th>
+                <th width="60%">Endereço</th>
+                <th width="20%">Telefone</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for campus in campi %}
+            <tr>
+                <td><a href="{% url 'campus' campus.pk %}">{{ campus.nome }}</a></td>
+                <td>{{ campus.endereco }}</td>
+                <td>{{ campus.telefone }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+        {% endif %}
+
+      {% if polos %}
+    <table class="table table-striped table-condensed">
+        <thead>
+            <tr>
+                <th width="20%">Polo</th>
+                <th width="60%">Endereço</th>
+                <th width="20%">Telefone</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for polo in polos %}
+            <tr>
+                <td><a href="{% url 'polo' polo.pk %}">{{ polo.cidade.nome }}</a></td>
+                <td>{{ polo.endereco }}</td>
+                <td>{{ polo.telefone }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <p>Polos EAD podem ocorrer em cidades nas quais há campus do IFBA, porém os polos possuem horário de funcionamento diferenciado.</p>
+        {% endif %}
+    {% else %}
+
+        <div class="alert alert-warning">
+            <i class="fa fa-exclamation-triangle fa-fw"></i> Não há contatos cadastrados.
+        </div>
+
+        <p>Acesse a página de
+          <a href="http://portal.ifba.edu.br/reitoria/contato/" title="Link para acessar o portal do IFBA" target="_blank">
+            contatos <span class="sr-only">(abre em nova janela)</span></a> do Portal do IFBA para mais informações. </p>
+
+    {% endif %}
+{% endblock %}

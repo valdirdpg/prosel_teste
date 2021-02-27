@@ -1,0 +1,67 @@
+{% load form_utils %}
+{% for field in form.visible_fields %}
+
+<div id="field_{{ field.name }}" class="row form-group field-{{ field.name }}
+    {% if not field|optional %}required{% endif %}
+    {% if field.errors %}has-error{% endif %} has-feedback">
+
+    {% if field|is_checkbox %}
+        {% for error in field.errors %}
+        <div class="col-xs-12"><span class="help-block">{{ error }}</span></div>
+        {% endfor %}
+        <label for="{{ field.auto_id }}" class="col-xs-12 control-label" style="text-align: justify"
+            {% if not field|optional %}title="Campo obrigatório"{% endif %}>
+          {{ field }}
+          {{ field.label }}
+        </label>
+        {% if field.help_text %}
+        <div class="col-xs-12"><span class="help-block small">{{ field.help_text|safe }}</span></div>
+        {% endif %}
+    {% elif field|is_multiple or field|is_radio %}
+        {% for error in field.errors %}
+        <div class="col-xs-12"><span class="help-block">{{ error }}</span></div>
+        {% endfor %}
+        <label for="{{ field.auto_id }}" class="col-xs-12 control-label" style="text-align: justify"
+            {% if not field|optional %}title="Campo obrigatório"{% endif %}>
+          {{ field.label }}
+        </label>
+        {% if field.label == 'Modalidade da cota:' %}
+            <div class="col-xs-12"><span class="help-block small">Deverão ser comprovadas documentalmente todas as condições informadas pela/ocandidata/o aprovada/o no momento da matrícula. A não comprovação pode causar a perdado direito à vaga. Confirme as informações abaixo e caso deseje corrigir, clique em Voltar.</span></div>
+         {% endif %}
+        {% if field.help_text %}
+        <div class="col-xs-12"><span class="help-block small">{{ field.help_text|safe }}</span></div>
+        {% endif %}
+        <div class="col-xs-12
+                {% if field|is_radio %} radio{% endif %}
+                {% if field|is_multiple %} checkbox{% endif %}
+                ">{{ field }}</div>
+    {% else %}
+        {% if field.help_text %}
+            <div class="col-xs-12">
+                <p><strong>
+                    SELECIONE CAMPUS E CURSO DESEJADOS:
+                </strong>
+                </p>
+                <p class="help-block">Caso o campus tenha disponibilizado mais de um curso para esse edital, você deverá escolher um outro curso para ser a sua 2ª opção.</p>
+                <br />
+            </div>
+        {% endif %}
+        {% for error in field.errors %}
+        <div class="col-md-offset-4 col-md-8"><span class="help-block">{{ error }}</span></div>
+        {% endfor %}
+        <label for="{{ field.auto_id }}" class="col-md-4 control-label"
+            {% if not field|optional %}title="Campo obrigatório"{% endif %}>
+            {{ field.label }}:</label>
+        <div class="col-md-8">{{ field }}</div>
+        {% comment %}{% if field.help_text %}
+        <div class="col-md-offset-4 col-md-8"><span class="help-block small">{{ field.help_text|safe }}</span></div>
+        {% endif %}{% endcomment %}
+    {% endif %}
+</div>
+{% endfor %}
+{% for hidden in form.hidden_fields %}
+<div id="field_{{ hidden.name }}" class="row form-group field-{{ hidden.name }} hidden">
+    <div class="col-md-12">{{ hidden }}</div>
+</div>
+{% endfor %}
+

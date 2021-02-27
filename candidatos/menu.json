@@ -1,0 +1,27 @@
+[
+    {
+        "path": "Área do Candidato::Convocações",
+        "url": "candidato_convocacoes",
+        "order": 3,
+        "groups_required": ["Candidatos", "Candidatos PSCT"]
+    },
+    {
+        "path": "Área do Candidato::Pré-Matrícula",
+        "id": "prematricula_candidato",
+        "url": "",
+        "order": 4,
+        "validators": ["candidatos.utils.is_candidato_prematricula_menu"]
+    },
+    {
+        "path": "Área do Candidato::Pré-Matrícula::Dados Básicos",
+        "url": "dados_basicos_prematricula",
+        "order": 1,
+        "validators": ["candidatos.utils.is_candidato_prematricula_menu"]
+    },
+    {
+        "path": "Área do Candidato::Pré-Matrícula::Imprimir Formulário",
+        "url": "chamadas_prematricula",
+        "order": 3,
+        "validators": ["candidatos.utils.is_candidato_prematricula_menu"]
+    }
+]

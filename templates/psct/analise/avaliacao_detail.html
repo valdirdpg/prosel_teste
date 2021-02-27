@@ -1,0 +1,63 @@
+{% extends "psct/base.html" %}
+{% load base_tags %}
+{% block conteudo %}
+    <h3 class="titulo verde-escuro">Detalhes da Inscrição</h3>
+    <p></p>
+
+    {% box 'Dados da Inscrição' True %}
+        {% with inscricao=inscricao_original %}
+            {% include "psct/inscricao/dadosinscricao.html" %}
+        {% endwith %}
+    {% endbox %}
+
+    {% box 'Dados da Distribuição' True %}
+        <div class="table-responsive">
+            <table class="table table-striped table-condensed">
+                <tbody>
+                {% for avaliador in inscricao.get_avaliadores %}
+                    <tr>
+                        <td class="col-xs-2"><b>Avaliador #{{ forloop.counter }}:</b></td>
+                        <td>{{ avaliador.get_full_name }} ({{ avaliador.username }})</td>
+                    </tr>
+                {% endfor %}
+                {% with homologador=inscricao.get_homologador %}
+                    {% if homologador %}
+                        <tr>
+                            <td><b>Homologador:</b></td>
+                            <td>{{ homologador.get_full_name }} ({{ homologador.username }}) </td>
+                        </tr>
+                    {% endif %}
+                {% endwith %}
+                </tbody>
+            </table>
+        </div>
+    {% endbox %}
+
+    {% if inscricao.avaliacao %}
+        {% box 'Avaliação do Homologador' %}
+            {% with avaliacao=inscricao.avaliacao %}
+                <p></p>
+                {% include "psct/analise/avaliacaohomologador_embedded.html" %}
+            {% endwith %}
+
+            {% if inscricao.avaliacoes_avaliador.exists %}
+                {% box 'Demais Avaliações' %}
+                    {% for avaliacao in inscricao.avaliacoes_avaliador.all %}
+                        <h4 class="verde-escuro">Avaliação #{{ avaliacao.id }}</h4>
+                        <p></p>
+                        {% include 'psct/analise/avaliacaoavaliador_embedded.html' %}
+                    {% endfor %}
+                {% endbox %}
+            {% endif %}
+        {% endbox %}
+    {% else %}
+        {% box 'Avaliações' %}
+            {% for avaliacao in inscricao.avaliacoes_avaliador.all %}
+                <h5 class="verde-escuro">Avaliação #{{ avaliacao.id }}</h5>
+                <p></p>
+                {% include 'psct/analise/avaliacaoavaliador_embedded.html' %}
+            {% endfor %}
+        {% endbox %}
+    {% endif %}
+
+{% endblock %}

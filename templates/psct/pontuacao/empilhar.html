@@ -1,0 +1,16 @@
+{% extends "psct/base/confirmacao.html" %}
+{% load base_tags %}
+
+{% block pre_form %}
+
+    <p><b>MOTIVO DO INDEFERIMENTO</b>: {{ inscricao.motivo_indeferimento }}</p>
+
+    {% box 'Dados da Inscrição' True %}
+        {% with inscricao=inscricao.inscricao %}
+            {% include "psct/inscricao/dadosinscricao.html" %}
+        {% endwith %}
+    {% endbox %}
+
+    <p><b>Deseja realmente enviar a inscrição para correção?</b></p>
+
+{% endblock %}

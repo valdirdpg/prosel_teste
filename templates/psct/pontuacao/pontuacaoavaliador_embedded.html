@@ -1,0 +1,10 @@
+{% load base_tags %}
+
+{% box 'Pontuação dos Avaliadores' %}
+
+    {% for pontuacao_avaliador in inscricao.pontuacoes_avaliadores.all %}
+        {% with pontuacao=pontuacao_avaliador %}
+            {% include "psct/pontuacao/pontuacao_embedded.html" %}
+        {% endwith %}
+    {% endfor %}
+{% endbox %}

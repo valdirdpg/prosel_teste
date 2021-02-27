@@ -1,0 +1,21 @@
+rabbitmq:
+  restart: always
+  ports:
+  - 5672:5672
+  image: rabbitmq:latest
+  tty: true
+  stdin_open: true
+memcached:
+  restart: always
+  ports:
+    - 11211:11211
+  image: memcached:latest
+  tty: true
+  stdin_open: true
+redis:
+  restart: always
+  ports:
+    - 6379:6379
+  image: redis:latest
+  tty: true
+  stdin_open: true

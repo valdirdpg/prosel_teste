@@ -1,0 +1,33 @@
+[
+    {
+        "path": "Área Restrita",
+        "id": "area_admin",
+        "url": "",
+        "css": "dourado",
+        "order": 1,
+        "groups_required": [
+            "Administradores Sistêmicos de Cursos",
+            "Diretores de Ensino"
+        ]
+    },
+    {
+        "path": "Área Restrita::Cadastros",
+        "id": "cadastros_admin",
+        "url": "",
+        "order": 1,
+        "groups_required": [
+            "Administradores Sistêmicos de Cursos",
+            "Diretores de Ensino"
+        ]
+    },
+    {
+        "path": "Área Restrita::Cadastros::Servidores",
+        "id": "servidores_admin",
+        "url": "servidor_changelist",
+        "order": 1,
+        "groups_required": [
+            "Administradores Sistêmicos de Cursos",
+            "Diretores de Ensino"
+        ]
+    }
+]

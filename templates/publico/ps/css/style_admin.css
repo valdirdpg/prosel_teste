@@ -1,0 +1,275 @@
+.input_admin > input {
+    margin: 0;
+    padding: 3px 12px;
+    background: #79aec8;
+    font-weight: 400;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #fff;
+    border-radius: 15px;
+    line-height: 25px;
+}
+.input_admin > input:hover {
+    background: #417690;
+    text-decoration: underline;
+}
+
+a.link_span {
+    background-color: #79aec8 !important;
+}
+a.link_span:hover, a.link_span:focus {
+    background-color: #417690 !important;
+}
+a.link_span_alert {
+    background-color: red !important;
+}
+a.link_span_alert:hover {
+    background-color: darkred !important;
+}
+
+/* Action Bar (extraído do Suap) */
+.action-bar {
+    background: transparent none repeat scroll 0px 0px;
+    border: 0px none;
+    float: right;
+    padding: 0px;
+    width: auto;
+}
+
+.action-bar li {
+    float: left;
+    list-style: outside none none;
+    margin: 0px 0px 5px 5px;
+}
+
+.action-bar ul li {
+    float: none;
+    margin: 0px;
+}
+
+.action-bar a {
+    /*background: #222 none repeat scroll 0% 0%;*/
+    border: 0px none;
+    /*border-radius: 2px;*/
+    color: #FFF;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 100%;
+    white-space: nowrap;
+    padding: 6px 12px;
+}
+.has-child > ul > li > a {
+    /*border: 0px none;*/
+    /*border-radius: 7px;*/
+    width: 100%;
+
+}
+
+.action-bar > li > ul {
+    /*background: #FFF none repeat scroll 0px 0px;*/
+    /*border: 1px solid rgba(0, 0, 0, 0.3);*/
+    border-radius: 3px;
+    /*box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);*/
+    display: none;
+    /*min-width: 120px;*/
+    padding: 5px 0px;
+    position: relative;
+    margin: 23px 0px;
+    z-index: 5;
+}
+
+/* Status (extraído do Suap) */
+span.status {
+    display: block;
+    font-size: 95%;
+    font-weight: 400;
+    padding: 4px 8px 4px 6px;
+    white-space: nowrap;
+}
+
+
+span.status-aguardando-avaliacao,
+span.status-aguardando-validacao,
+span.status-aguardando-validacao-da-chefia,
+span.status-alert,
+span.status-bom,
+span.status-em-atendimento,
+span.status-em-progresso,
+span.status-em-tramite,
+span.status-iniciado,
+span.status-inscricao-em-analise,
+span.status-medio,
+span.status-nao-aplicado,
+span.status-pendente { /* Amarelo */
+    background: #fcf8e3;
+    border-left: 2px solid #8a6d3b;
+    color: #8a6d3b;
+}
+span.status-estornado,
+span.status-alto,
+span.status-baixado,
+span.status-error,
+span.status-expirada,
+span.status-impedido,
+span.status-inativa,
+span.status-indeferida,
+span.status-indeferido,
+span.status-invalidado,
+span.status-invalidado-pela-chefia,
+span.status-irrelevante,
+span.status-nao,
+span.status-nao-iniciado,
+span.status-negativo,
+span.status-regular,
+span.status-rejeitada,
+span.status-rejeitado,
+span.status-ruim,
+span.status-suspenso { /* Vermelho */
+    background: #f2dede;
+    border-left: 2px solid #a94442;
+    color: #a94442;
+}
+span.status-aberto,
+span.status-baixo,
+span.status-info,
+span.status-neutro,
+span.status-novo,
+span.status-reaberto { /* Azul */
+    background: #d9edf7;
+    border-left: 2px solid #31708f;
+    color: #31708f;
+}
+span.status-aberta,
+span.status-aceito,
+span.status-ativa,
+span.status-ativo,
+span.status-cadastrado,
+span.status-cadastrado-no-siape,
+span.status-concluido,
+span.status-parcialmente-deferida,
+span.status-deferida,
+span.status-deferido,
+span.status-de-interesse,
+span.status-entregue,
+span.status-excelente,
+span.status-finalizado,
+span.status-homologada,
+span.status-otimo,
+span.status-participante,
+span.status-positivo,
+span.status-recebido,
+span.status-resolvido,
+span.status-sim,
+span.status-success,
+span.status-validada,
+span.status-validado,
+span.status-validado-pela-chefia { /* Verde */
+    background: #dff0d8;
+    border-left: 2px solid #3c763d;
+    color: #3c763d;
+}
+span.status-feito-pull-request { /* Cinza */
+    background: #999;
+    border-left: 2px solid #FAFAFA;
+    color: #FAFAFA;
+}
+span.status-merged,
+span.status-fechado { /* Preto */
+    background: #888;
+    border-left: 2px solid #000;
+    color: #FAFAFA;
+}
+span.disabled { /* Cinza Claro */
+    background: #eee;
+    border-left: 2px solid #666;
+    color: #666;
+    opacity: 0.6;
+}
+td.status-error {
+    background: rgba(242, 222, 222, 0.6) !important;
+}
+td.status-error:hover {
+    background: rgba(242, 222, 222, 0.6) !important;
+}
+td.status-info {
+    background: #D9EDF7 !important;
+}
+td.status-info:hover {
+    background: #D9EDF7 !important;
+}
+td.disabled {
+    background: #eee !important;
+    opacity: 0.6;
+}
+td.status-success {
+    background: rgba(223, 240, 216, 0.6) !important;
+}
+td.status-success:hover {
+    background: rgba(223, 240, 216, 0.6) !important;
+}
+tr.status-error,
+tr.status-error td {
+    background: rgba(242, 222, 222, 0.6) !important;
+}
+tr.status-error:hover {
+    background: rgba(242, 222, 222, 0.6) !important;
+}
+tr.status-info {
+    background: #D9EDF7 !important;
+}
+tr.status-info:hover {
+    background: #D9EDF7 !important;
+}
+tr.disabled {
+    background: #EEE !important;
+    opacity: 0.6;
+}
+tr.disabled:hover {
+    background: #FFF !important;
+    opacity: 0.6;
+}
+tr.status-success {
+    background: rgba(223, 240, 216, 0.6) !important;
+}
+tr.status-success:hover {
+    background: rgba(223, 240, 216, 0.6) !important;
+}
+
+
+/* Complemento ao bootstrap: ajusta botões do admin (object-tools) */
+.object-tools .dropdown-menu {
+    background-color: #999;
+}
+
+.object-tools .link_span + .dropdown-menu {
+    background-color: #79aec8;
+}
+
+.object-tools .dropdown-menu a {
+    width: 100%;
+}
+
+.object-tools .dropdown-menu a:focus, .object-tools .dropdown-menu a:hover {
+    background-color: #417690;
+    color: #FFF;
+    width: 100%;
+}
+
+.object-tools .dropdown-menu li {
+    margin-left: 0px;
+    margin-right: 0px;
+    width: 100%;
+}
+
+.dropdown-menu a {
+    border-radius: 0;
+}
+
+.link_span + .dropdown-menu a:link, .link_span + .dropdown-menu a:visited  {
+    background-color: #79aec8
+}
+
+.link_span + .dropdown-menu a:focus, .link_span + .dropdown-menu a:hover {
+    background-color: #417690;
+}

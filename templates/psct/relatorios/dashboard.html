@@ -1,0 +1,33 @@
+{% extends "psct/base.html" %}
+
+{% block breadcrumb %}
+    <li><a href="/">Início</a></li>
+{% endblock %}
+
+{% block conteudo %}
+    <div class="row">
+        <h2 class="titulo">{{ titulo }}</h2>
+
+        <h3 class="titulo subtitulo verde-claro">Estatísticas</h3>
+        <div class="row">
+            <div class="col-xs-12">
+                <ul>
+                    <li><i class="fa fa-user text-muted fa-fw"></i><a href="{% url 'demanda' %}">Demanda de
+                        Inscrições</a></li>
+                </ul>
+                <ul>
+                    <li><i class="fa fa-user text-muted fa-fw"></i><a href="{% url 'avaliacoes' %}">Validações
+                        Realizadas</a></li>
+                </ul>
+                <ul>
+                    <li><i class="fa fa-user text-muted fa-fw"></i><a href="{% url 'avaliadores' %}">Quantidade de
+                        Análises por Validador</a></li>
+                </ul>
+                <ul>
+                    <li><i class="fa fa-user text-muted fa-fw"></i><a href="{% url 'status_avaliacoes' %}">Validações
+                        Concluídas</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'reuse/display_form.html' %}
+
+{% block pre_form %}
+    {% if object %}
+        {% with edicao=object.analise_documental.confirmacao_interesse.inscricao.edicao candidato=object.analise_documental.confirmacao_interesse.inscricao.candidato.pessoa avaliador=object.servidor_setor %}
+            {% include 'processoseletivo/avaliacaodocumental_header.html' %}
+        {% endwith %}
+    {% elif inscricao %}
+        {% with edicao=inscricao.edicao candidato=inscricao.candidato.pessoa %}
+            {% include 'processoseletivo/avaliacaodocumental_header.html' %}
+        {% endwith %}
+    {% endif %}
+{% endblock %}
+
+{% block pos_form %}
+    <a class="btn btn-warning pull-left" href="{{ back_url }}">Voltar</a>
+{% endblock %}

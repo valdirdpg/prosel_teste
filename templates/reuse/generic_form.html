@@ -1,0 +1,20 @@
+{% include 'reuse/_form_errors.html' %}
+{% for field in form.visible_fields %}
+    {% csrf_token %}
+    <div id="field_{{ field.name }}"
+         class="field{% if form.field_class %} form-group{% endif %}{% if field.errors %} has-error{% endif %}
+                {% if field.field.required %} required{% endif %}">
+        <label{% if form.field_class %} class="control-label"{% endif %}>{{ field.label_tag }}</label>
+        {% if field.errors %}
+            {% for error in field.errors %}
+                <span class="help-block">{{ error }}</span>
+            {% endfor %}
+        {% endif %}
+        {{ field }}
+        {% if field.field.help_text %}<span class="help-block text-justify">{{ field.field.help_text }}</span>{% endif %}
+    </div>
+{% endfor %}
+{% for hidden in form.hidden_fields %}
+    {{ hidden }}
+{% endfor %}
+

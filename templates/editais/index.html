@@ -1,0 +1,89 @@
+{% extends "base/index.html" %}
+{% load bootstrap_pagination %}
+
+{% block breadcrumb %}
+    <li><a href="/">Início</a></li>
+    {% if processo %}
+      <li><i class="fa fa-angle-right text-muted"></i></li>
+      <li><a href="{% url 'indexprocessoseletivo' %}">Processos Seletivos</a></li>
+      <li><i class="fa fa-angle-right text-muted"></i></li>
+      <li><a href="{% url 'processoseletivo' processo_pk=processo.id  %}">{{ processo.sigla }}</a></li>
+    {% endif %}
+    {% if encerrados %}
+      <li><i class="fa fa-angle-right text-muted"></i></li>
+      <li class="active">Editais Encerrados</li>
+    {% else %}
+      <li><i class="fa fa-angle-right text-muted"></i></li>
+      <li class="active">Editais</li>
+    {% endif %}
+{% endblock %}
+
+{% block conteudo %}
+<h2 class="titulo verde-escuro">Editais{% if processo %} do {{ processo.nome }}{% endif %}</h2>
+<div class="row">
+  {% if not encerrados %}
+    {% if editais_abertos %}
+        <div class="col-sm-12">
+            <div class="table-responsive">
+                <table class="table table-condensed">
+                    <tr><th>Editais em Andamento</th></tr>
+                    {% for edital in editais_abertos %}
+                      <tr><td><a href="{% url 'edital-detail' edital.pk %}">{{ edital }}</a></td></tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+
+        {% if paginado %}
+          <div class="col-sm-12">
+            <div class="paginas">
+              {% bootstrap_paginate editais_abertos range=10 show_prev_next="true" show_first_last="true" first_label="Início" last_label="Fim" %}
+            </div>
+          </div>
+        {% endif %}
+    {% else %}
+      <div class="col-sm-12">
+        <div class="alert alert-warning" style="text-align: justify">
+            <p><strong>Atenção: </strong>Não há editais em andamento</p>
+        </div>
+      </div>
+    {% endif %}
+
+    <div class="col-sm-12">
+      {% if processo %}
+        <p><a class="btn btn-info" href="{% url 'editais_encerrados' %}?processo={{ processo.id }}">Editais Encerrados</a></p>
+      {% else %}
+        <p><a class="btn btn-info" href="{% url 'editais_encerrados' %}">Editais Encerrados</a></p>
+      {% endif %}
+    </div>
+
+  {% else %}
+    {% if editais_encerrados %}
+      <div class="col-sm-12">
+          <div class="table-responsive">
+              <table class="table table-condensed">
+                  <tr><th>Editais Encerrados</th></tr>
+                  {% for edital in editais_encerrados %}
+                    <tr><td><a href="{% url 'edital-detail' edital.pk %}">{{ edital }}</a></td></tr>
+                  {% endfor %}
+              </table>
+          </div>
+       </div>
+        {% if paginado %}
+          <div class="col-sm-12">
+              <div class="paginas">
+                  {% bootstrap_paginate editais_encerrados range=10 show_prev_next="true" show_first_last="true" first_label="Início" last_label="Fim" %}
+              </div>
+          </div>
+        {% endif %}
+    {% else %}
+      <div class="col-sm-12">
+        <div class="alert alert-warning" style="text-align: justify">
+            <p><strong>Atenção: </strong>Não há editais encerrados</p>
+        </div>
+      </div>
+    {% endif %}
+  {% endif %}
+
+</div>
+{% endblock %}

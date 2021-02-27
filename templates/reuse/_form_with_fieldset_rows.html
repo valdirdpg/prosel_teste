@@ -1,0 +1,39 @@
+{% load form_utils %}
+{% include "reuse/_form_errors.html" %}
+{% for fieldset in form.fieldsets %}
+    <fieldset class="fieldset_{{ fieldset.name }}">
+        {% if fieldset.legend %}
+            <legend>{{ fieldset.legend }}</legend>
+        {% endif %}
+        {% if fieldset.description %}
+            <p class="description">{{ fieldset.description }}</p>
+        {% endif %}
+
+        {% for field in fieldset %}
+            <div class="row form-group field-{{ field.name }}
+                {% if not field|optional %}required{% endif %}
+                {% if field.is_hidden %}hidden{% endif %}
+                {% if field.errors %}has-error{% endif %} has-feedback">
+            {% if field.is_hidden %}
+                <div class="col-md-12">{{ field }}</div>
+            {% else %}
+                {% for error in field.errors %}
+                <div class="col-md-offset-{{ label_width_col }} col-md-{{ input_width_col }}">
+                    <span class="help-block">{{ error }}</span>
+                </div>
+                {% endfor %}
+                <label for="{{ field.auto_id }}" class="col-md-{{ label_width_col }} control-label"
+                    {% if not field|optional %}title="Campo obrigatório"{% endif %}>
+                    {{ field.label }}:</label>
+                <div class="col-md-{{ input_width_col }}"><div {{ field.row_attrs }}>{{ field }}</div></div>
+                {% if field.help_text %}
+                <div class="col-md-offset-{{ label_width_col }} col-md-{{ input_width_col }}">
+                    <span class="help-block small">{{ field.help_text|safe }}</span>
+                </div>
+                {% endif %}
+            {% endif %}
+            </div>
+        {% endfor %}
+    </fieldset>
+    <br>
+{% endfor %}

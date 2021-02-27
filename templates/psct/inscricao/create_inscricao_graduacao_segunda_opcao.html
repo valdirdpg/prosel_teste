@@ -1,0 +1,28 @@
+{% extends "psct/inscricao/create_inscricao_graduacao.html" %}
+
+{% block extra_js_inscricao %}
+    let com_segunda_opcao = $("#id_com_segunda_opcao");
+    let curso_segunda_opcao = $("#id_curso_segunda_opcao");
+    let curso_segunda_opcao_div = $("#field_curso_segunda_opcao");
+    let curso_segunda_opcao_label = $("#field_curso_segunda_opcao label");
+
+    function alternar_segunda_opcao() {
+        if (com_segunda_opcao.prop("checked") === true) {
+            curso_segunda_opcao.prop('disabled', false);
+            curso_segunda_opcao.prop('required', true);
+            curso_segunda_opcao_div.removeClass('text-muted');
+            curso_segunda_opcao_label.prop('title', "Este campo é obrigatório");
+            curso_segunda_opcao_div.addClass('required');
+        }
+        if (com_segunda_opcao.prop("checked") === false) {
+            curso_segunda_opcao.prop('disabled', true);
+            curso_segunda_opcao.prop('required', false);
+            curso_segunda_opcao.val("");
+            curso_segunda_opcao_div.addClass('text-muted');
+            curso_segunda_opcao_label.prop('title', "");
+            curso_segunda_opcao_div.removeClass('required');
+        }
+    }
+    com_segunda_opcao.click(alternar_segunda_opcao);
+    alternar_segunda_opcao();
+{% endblock %}

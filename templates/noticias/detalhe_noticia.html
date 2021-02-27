@@ -1,0 +1,56 @@
+{% extends "base/index.html" %}
+{% load filters base_tags admin_urls staticfiles %}
+<script type="text/javascript" src="{% static "ckeditor/ckeditor/ckeditor.js" %}"></script>
+<script type="text/javascript" src="{% static "ckeditor/ckeditor-init.js" %}"></script>
+{% block breadcrumb %}
+    <li><a href="/">Início</a></li>
+    <li><i class="fa fa-angle-right text-muted"></i></li>
+    <li><a href="/noticias/">Notícias</a></li>
+    <li><i class="fa fa-angle-right text-muted"></i></li>
+    <li class="active">{{ noticia.titulo }}</li>
+{% endblock %}
+
+{% block conteudo %}
+<div class="noticia">
+    <div class="row">
+        <p class="editoria col-xs-12">Notícia</p>
+        <div class="cabecalho col-md-8">
+
+            <h1>{{ noticia.titulo }}</h1>
+            <p class="chapeu">{{ noticia.assunto }}</p>
+            <div class="descricao">{{ noticia.resumo }}</div>
+            <hr>
+        </div>
+
+        <div class="img-container col-md-4">
+            <img class="img-responsive img-thumbnail" src="{{ noticia.get_absolute_url_img }}">
+        </div>
+    </div>
+
+    <div class="sobre-noticia">
+        <div class="autor">Por {{ noticia.responsavel|format_name }}</div>
+{#        <div class="dados">#}
+            Publicado: {{noticia.criacao}} <!--  DATA CRIACAO --><br>
+            Última modificação: {{noticia.atualizacao}} <!--  DATA ULTIMA MODIFICACAO -->
+{#        </div>#}
+    </div>
+{#    <div class="conteudo">#}
+        {% autoescape on %}
+            {{ noticia.corpo|safe }}
+        {% endautoescape %}
+{#    </div>#}
+
+    <div class="rodape">
+        {% if noticia.palavras_chave.values  %}
+            Registrado em:
+            {% for p in noticia.palavras_chave.values %}
+                <a href="{% url 'busca' %}?q={{p.palavra}}" class="btn btn-default btn-xs">{{ p.palavra }}</a>
+            {% endfor %}
+        {% endif %}
+        <hr></hr>
+        Assunto: <a href="{% url 'busca' %}?q={{noticia.assunto.nome}}">{{noticia.assunto}}</a>
+        <hr></hr>
+    </div>
+</div>
+
+{% endblock %}

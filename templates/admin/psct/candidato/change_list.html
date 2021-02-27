@@ -1,0 +1,8 @@
+{% extends "reversion/change_list.html" %}
+{% load admin_static i18n admin_list %}
+
+
+{% block object-tools-items %}
+    <li><a class="link_span" href="{% url 'importar_candidato_sisu_psct' %}">Importar candidato SISU</a></li>
+    {{ block.super }}
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends "base/index.html" %}
+
+{% block breadcrumb %}
+    <li><a href="/">Início</a></li>
+    <li><i class="fa fa-angle-right text-muted"></i></li>
+    <li class="active">Candidato - Recursos</li>
+{% endblock %}
+
+{% block conteudo %}
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="content-box">
+                <div class="header-box">Resultados de Recursos</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="panel-group" id="accordion">
+            {% for recurso in recursos %}
+              <div class="panel panel-default">
+                  <div class="panel-heading">
+                      <div class="panel-title">
+                          <p>
+                              Convocação:<br>
+                              {{ recurso.analise_documental.confirmacao_interesse.etapa.edicao }} -
+                              {{ recurso.analise_documental.confirmacao_interesse.inscricao.curso.nome }} -
+                              Turno {{ recurso.analise_documental.confirmacao_interesse.inscricao.curso.turno }} -
+                              Modalidade {{ recurso.analise_documental.confirmacao_interesse.inscricao.modalidade }}<br>
+                              {{ recurso.analise_documental.confirmacao_interesse.inscricao.curso.campus }}
+                          </p>
+                      </div>
+                  </div>
+                  <div class="panel-body">
+                      <p style="text-align: justify">
+                        Este recurso foi <b>{{ recurso.status_recurso }}</b>.<br><br>
+                        {% if recurso.status_recurso == 'INDEFERIDO' %}
+                          <b>Justificativa:</b><br>
+                          <i>{{ recurso.justificativa }}</i>
+                        {% endif %}
+                      </p>
+                  </div>
+              </div>
+            {% endfor %}
+        </div>
+      </div>
+    </div>
+{% endblock %}

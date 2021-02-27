@@ -1,0 +1,90 @@
+[
+  {
+    "model": "psct.modalidade",
+    "pk": 1,
+    "fields": {
+      "equivalente": 1,
+      "texto": ""
+    }
+  },
+  {
+    "model": "psct.modalidade",
+    "pk": 2,
+    "fields": {
+      "equivalente": 2,
+      "texto": "Candidatos n\u00e3o declarados pretos, pardos ou ind\u00edgenas com renda familiar bruta per capita igual ou inferior a 1,5 sal\u00e1rio m\u00ednimo que TENHAM CURSADO INTEGRALMENTE O ENSINO FUNDAMENTAL EM ESCOLAS P\u00daBLICAS (Lei n\u00ba 12.711/2012)."
+    }
+  },
+  {
+    "model": "psct.modalidade",
+    "pk": 3,
+    "fields": {
+      "equivalente": 3,
+      "texto": "Candidatos autodeclarados pretos, pardos ou ind\u00edgenas, com renda familiar bruta per capita igual ou inferior a 1,5 sal\u00e1rio m\u00ednimo e que TENHAM CURSADO INTEGRALMENTE O ENSINO FUNDAMENTAL EM ESCOLAS P\u00daBLICAS (Lei n\u00ba 12.711/2012)."
+    }
+  },
+  {
+    "model": "psct.modalidade",
+    "pk": 4,
+    "fields": {
+      "equivalente": 4,
+      "texto": "Candidatos autodeclarados pretos, pardos ou ind\u00edgenas que, independentemente da renda (art. 14, II, Portaria Normativa n\u00ba 18/2012 TENHAM CURSADO INTEGRALMENTE O ENSINO FUNDAMENTAL EM ESCOLAS P\u00daBLICAS (Lei n\u00ba 12.711/2012)."
+    }
+  },
+  {
+    "model": "psct.modalidade",
+    "pk": 5,
+    "fields": {
+      "equivalente": 5,
+      "texto": "Candidatos que comprovem ser oriundos de \u00e1reas de assentamento da Reforma Agr\u00e1ria. (PARA CANDIDATOS QUE FIZEREM OP\u00c7\u00c3O PARA OS CURSOS OFERTADOS PELO IFPB - CAMPUS SOUSA)"
+    }
+  },
+  {
+    "model": "psct.modalidade",
+    "pk": 6,
+    "fields": {
+      "equivalente": 6,
+      "texto": ""
+    }
+  },
+  {
+    "model": "psct.modalidade",
+    "pk": 7,
+    "fields": {
+      "equivalente": 7,
+      "texto": "Candidatos n\u00e3o declarados pretos, pardos ou ind\u00edgenas que, independentemente da renda (art. 14, II, Portaria Normativa n\u00ba 18/2012), TENHAM CURSADO INTEGRALMENTE O ENSINO FUNDAMENTAL EM ESCOLAS P\u00daBLICAS (Lei n\u00ba 12.711/2012)."
+    }
+  },
+  {
+    "model": "psct.modalidade",
+    "pk": 8,
+    "fields": {
+      "equivalente": 9,
+      "texto": "Candidatos com defici\u00eancia (PcD) n\u00e3o declarados pretos, pardos ou ind\u00edgenas com renda familiar bruta per capita igual ou inferior a 1,5 sal\u00e1rio m\u00ednimo que TENHAM CURSADO INTEGRALMENTE O ENSINO FUNDAMENTAL EM ESCOLAS P\u00daBLICAS (Lei n\u00ba 12.711/2012)."
+    }
+  },
+  {
+    "model": "psct.modalidade",
+    "pk": 9,
+    "fields": {
+      "equivalente": 8,
+      "texto": "Candidatos com defici\u00eancia (PcD) autodeclarados pretos, pardos ou ind\u00edgenas, com renda familiar bruta per capita igual ou inferior a 1,5 sal\u00e1rio m\u00ednimo e que TENHAM CURSADO INTEGRALMENTE O ENSINO FUNDAMENTAL EM ESCOLAS P\u00daBLICAS (Lei n\u00ba 12.711/2012)."
+    }
+  },
+  {
+    "model": "psct.modalidade",
+    "pk": 10,
+    "fields": {
+      "equivalente": 11,
+      "texto": "Candidatos com defici\u00eancia (PcD) n\u00e3o declarados pretos, pardos ou ind\u00edgenas que, independentemente da renda (art. 14, II, Portaria Normativa n\u00ba 18/2012), TENHAM CURSADO INTEGRALMENTE O ENSINO FUNDAMENTAL EM ESCOLAS P\u00daBLICAS (Lei n\u00ba 12.711/2012)."
+    }
+  },
+  {
+    "model": "psct.modalidade",
+    "pk": 11,
+    "fields": {
+      "equivalente": 10,
+      "texto": "Candidatos com defici\u00eancia (PcD) autodeclarados pretos, pardos ou ind\u00edgenas que, independentemente da renda (art. 14, II, Portaria Normativa n\u00ba 18/2012), TENHAM CURSADO INTEGRALMENTE O ENSINO FUNDAMENTAL EM ESCOLAS P\u00daBLICAS (Lei n\u00ba 12.711/2012)."
+    }
+  }
+]

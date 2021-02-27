@@ -1,0 +1,28 @@
+{% extends "psct/base.html" %}
+
+{% block extrahead %}
+    {{ block.super }}
+    {{ form.media }}
+{% endblock %}
+
+{% block conteudo %}
+    <h2 class="titulo verde-escuro">{{ titulo }}</h2>
+
+    {% block pre_form %}{% endblock %}
+
+    {% if form %}
+            <form method="post" action="">
+                {% csrf_token %}
+                {% include 'psct/base/generic_form.html' %}
+                <input type="submit" value="{% block nome_botao_submit %}
+                    {% if nome_botao %}
+                        {{ nome_botao }}
+                    {% else %}
+                        Cadastrar
+                    {% endif %}
+                {% endblock %}" class="btn btn-primary pull-right">
+            </form>
+    {% endif %}
+
+    {% block pos_form %}{% endblock %}
+{% endblock %}

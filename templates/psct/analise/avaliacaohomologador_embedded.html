@@ -1,0 +1,33 @@
+{% load analise_tags %}
+
+<div>
+    <div class="table-responsive">
+        <table class="table table-striped table-condensed">
+            <tbody>
+            <tr>
+                <td><b>Situação:</b></td>
+                <td>{{ avaliacao.get_situacao_display|situacao_format }}</td>
+            </tr>
+            {% if avaliacao.texto_indeferimento %}
+                <tr>
+                    <td class="col-xs-4"><b>Justificativa do Indeferimento:</b></td>
+                    <td>{{ avaliacao.texto_indeferimento|linebreaks }}</td>
+                </tr>
+            {% endif %}
+            <tr>
+                <td class="col-xs-3"><b>Cadastrado por:</b></td>
+                <td>{{ avaliacao.homologador.get_full_name }} ({{ avaliacao.homologador }})</td>
+            </tr>
+            <tr>
+                <td><b>Data de criação:</b></td>
+                <td>{{ avaliacao.data_cadastro }}</td>
+            </tr>
+            <tr>
+                <td><b>Data da última atualização:</b></td>
+                <td>{{ avaliacao.data_atualizacao }}</td>
+            </tr>
+
+            </tbody>
+        </table>
+    </div>
+</div>

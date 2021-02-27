@@ -1,0 +1,50 @@
+{% extends "psct/base_change_form.html" %}
+{% load i18n admin_urls admin_static admin_modify %}
+
+{% block extrahead %}{{ block.super }}
+
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var campus = $("#id_campus");
+            var cotas = $("#id_cotista");
+            var modalidades = $(".field-modalidade_cota");
+            var label_ampla  = $('label[for="id_modalidade_cota_0"]').not('.required');
+            var ampla_concorrencia = $("#id_modalidade_cota_0");
+            var primeira_cota = $("#id_modalidade_cota_1");
+
+            {% autoescape off %}
+                var cursos_json = {{ cursos_json }};
+            {% endautoescape %}
+
+            function update_options() {
+                var campus = $("#id_campus");
+                var curso = $("#id_curso");
+                curso.find('option').remove();
+                $.each(cursos_json[campus.val()], function(key, value)
+                {
+                    curso.append('<option value=' + value.id + '>' + value.name + '</option>');
+                });
+
+                }
+
+            function change_cotas_view() {
+                if (cotas.is(':checked')){
+                    modalidades.show();
+                    primeira_cota.prop('checked', true);
+                }else{
+                    modalidades.hide();
+                    ampla_concorrencia.prop('checked', true);
+                }
+
+            }
+
+            if ({{ hide_modalidades }}){
+                modalidades.hide();
+            }
+            label_ampla.hide();
+            campus.change(update_options);
+            cotas.change(change_cotas_view);
+        });
+    </script>
+{% endblock %}

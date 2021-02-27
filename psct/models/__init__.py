@@ -1,0 +1,10 @@
+from .analise import *  # pylint: disable=wildcard-import
+from .candidato import *  # pylint: disable=wildcard-import
+from .consulta import *  # pylint: disable=wildcard-import
+from .emails import *  # pylint: disable=wildcard-import
+from .indeferimento import *  # pylint: disable=wildcard-import
+from .inscricao import *  # pylint: disable=wildcard-import
+from .pontuacao import *  # pylint: disable=wildcard-import
+from .questionario import *  # pylint: disable=wildcard-import
+from .recurso import *  # pylint: disable=wildcard-import
+from .resultado import *  # pylint: disable=wildcard-import

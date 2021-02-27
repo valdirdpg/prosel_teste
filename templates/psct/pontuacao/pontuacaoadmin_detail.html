@@ -1,0 +1,39 @@
+{% extends "psct/base.html" %}
+{% load base_tags pontuacao_tags %}
+{% block conteudo %}
+
+    {% box 'Dados da Inscrição' True %}
+        {% with inscricao=inscricao_original %}
+            {% include "psct/inscricao/dadosinscricao.html" %}
+        {% endwith %}
+    {% endbox %}
+    <p><b>MOTIVO DO INDEFERIMENTO</b>:
+        <a href="{% url 'view_avaliacao_inscricao_psct' pk=inscricao.pk %}">{{ inscricao.motivo_indeferimento }}</a></p>
+
+    {% box 'Dados da Distribuição' True %}
+        <div class="table-responsive">
+            <table class="table table-striped table-condensed">
+                <tbody>
+                {% get_avaliadores_pontuacao inscricao as avaliadores %}
+                {% for avaliador in avaliadores %}
+                    <tr>
+                        <td class="col-xs-2"><b>Avaliador #{{ forloop.counter }}:</b></td>
+                        <td>{{ avaliador.get_full_name }} ({{ avaliador.username }})</td>
+                    </tr>
+                {% endfor %}
+                {% get_homologadores_pontuacao inscricao as homologadores %}
+                    {% for homologador in homologadores %}
+                        <tr>
+                            <td><b>Homologador #{{ forloop.counter }}:</b></td>
+                            <td>{{ homologador.get_full_name }} ({{ homologador.username }}) </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% endbox %}
+
+    {% include 'psct/pontuacao/pontuacaoavaliador_embedded.html' %}
+    {% include 'psct/pontuacao/pontuacaohomologador_embedded.html' %}
+
+{% endblock %}

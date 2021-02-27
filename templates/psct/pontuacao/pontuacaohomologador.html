@@ -1,0 +1,16 @@
+{% extends 'psct/pontuacao/pontuacaoavaliador.html' %}
+{% load base_tags %}
+
+{% block extra_data %}
+    {% include 'psct/pontuacao/pontuacaoavaliador_embedded.html' %}
+{% endblock %}
+
+{% block pos_titulo_data %}
+    {% if not object %}
+        {% for pontuacao_avaliador in inscricao.pontuacoes_avaliadores.all %}
+            {% with pontuacao=pontuacao_avaliador %}
+                {% include 'psct/pontuacao/pontuacao_detail.html' %}
+            {% endwith %}
+        {% endfor %}
+    {% endif %}
+{% endblock %}

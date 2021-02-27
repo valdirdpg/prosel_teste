@@ -1,0 +1,16 @@
+{% extends "admin/change_list.html" %}
+
+{% block breadcrumb %}
+  {{ block.super }}
+  <li><i class="fa fa-angle-right text-muted"></i></li>
+  <li><a href="{% url 'admin:index' %}">Admin</a></li>
+  <li><i class="fa fa-angle-right text-muted"></i></li>
+  <li><a href="{% url 'admin:app_list' app_label=cl.opts.app_label %}">{{ cl.opts.app_config.verbose_name }}</a></li>
+{% endblock %}
+
+{% block titulo_breadcrumb %}{{ module_name }}{% endblock %}
+
+{% block object-tools %}
+{{ block.super }}
+<br style="clear: right;">
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends "admin/change_form.html" %}
+{% load i18n admin_urls %}
+
+{% block breadcrumb %}
+  {{ block.super }}
+  <li><i class="fa fa-angle-right text-muted"></i></li>
+  <li><a href="{% url 'admin:index' %}">Admin</a></li>
+  <li><i class="fa fa-angle-right text-muted"></i></li>
+  <li><a href="{% url 'admin:app_list' app_label=opts.app_label %}">{{ opts.app_config.verbose_name }}</a></li>
+  <li><i class="fa fa-angle-right text-muted"></i></li>
+  <li>{% if has_change_permission %}<a href="{% url opts|admin_urlname:'changelist' %}">{{ opts.verbose_name_plural|capfirst }}</a>{% else %}{{ opts.verbose_name_plural|capfirst }}{% endif %}</li>
+{% endblock %}
+
+{% block titulo_breadcrumb %}
+{% if add %}{% trans 'Add' %} {{ opts.verbose_name }}{% else %}{{ original|truncatewords:"18" }}{% endif %}
+{% endblock %}
+
+{% if change %}
+    {% block object-tools %}
+    {{ block.super }}
+    <br class="clear" />
+    <p class="help">Os campos marcados com * são de preenchimento obrigatório.</p>
+    {% endblock %}
+{% endif %}

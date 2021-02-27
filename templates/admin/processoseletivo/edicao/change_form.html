@@ -1,0 +1,22 @@
+{% extends "admin/change_form.html" %}
+{% load admin_static i18n admin_modify admin_urls %}
+
+{% block object-tools-items %}
+    {% if not original.importado %}
+        {% if original.pode_importar %}
+            <li>
+                <a href="{% url 'importacao' object_id %}">Importar dados</a>
+            </li>
+        {% endif %}
+    {% else %}
+        <li>
+            <a href="{% url 'vagas_ps' object_id %}">Extrato de vagas</a>
+        </li>
+        <li>
+            <a href="{% url 'relatorio_resultado_ps' object_id %}">Resultado consolidado em XLS</a>
+        </li>
+    {% endif %}
+
+    {{ block.super }}
+{% endblock %}
+

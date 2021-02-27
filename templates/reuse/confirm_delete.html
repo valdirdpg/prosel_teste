@@ -1,0 +1,23 @@
+{% extends "base/baseboot.html" %}
+
+{% block extrahead %}
+    {{ block.super }}
+    {{ form.media }}
+{% endblock %}
+
+{% block conteudo %}
+    <h2 class="titulo verde-escuro">{{ titulo }}</h2>
+    {% block pre_form %}{% endblock %}
+        <form method="post" action="" {% if form.field_class %} class="form-horizontal"{% endif %}>
+            {% csrf_token %}
+            {% include 'reuse/generic_form.html' %}
+            <input type="submit" value="{% block nome_botao_submit %}
+                {% if nome_botao %}
+                    {{ nome_botao }}
+                {% else %}
+                    Continuar
+                {% endif %}
+            {% endblock %}" class="btn btn-primary pull-right">
+        </form>
+    {% block pos_form %}{% endblock %}
+{% endblock %}

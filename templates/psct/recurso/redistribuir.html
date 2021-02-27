@@ -1,0 +1,96 @@
+{% extends "psct/base.html" %}
+{% load base_tags recurso_tags %}
+
+
+{% block conteudo %}
+    <h2 class="titulo verde-escuro">Recurso #{{ recurso.id }}</h2>
+
+    {% box 'Dados do Recurso' True %}
+        <div class="table-responsive">
+            <table class="table table-striped table-condensed">
+                <tbody>
+                <tr>
+                    <td><b>Fase de Recurso:</b></td>
+                    <td>{{ object.fase }}</td>
+                </tr>
+                <tr>
+                    <td><b>Edital:</b></td>
+                    <td>{{ object.fase.edital }}</td>
+                </tr>
+                <tr>
+                    <td><b>Texto do Recurso:</b></td>
+                    <td>{{ object.texto|linebreaks }}</td>
+                </tr>
+                <tr>
+                    <td class="col-xs-3"><b>Cadastrado por:</b></td>
+                    <td>{{ object.usuario.get_full_name }} ({{ object.usuario }})</td>
+                </tr>
+                <tr>
+                    <td><b>Data de criação:</b></td>
+                    <td>{{ object.data_cadastro }}</td>
+                </tr>
+                <tr>
+                    <td><b>Data da última atualização:</b></td>
+                    <td>{{ object.data_atualizacao }}</td>
+                </tr>
+
+                </tbody>
+            </table>
+        </div>
+    {% endbox %}
+
+    {% box 'Distribuição do Recurso' True %}
+        <div class="table-responsive">
+            <table class="table table-striped table-condensed">
+                <tbody>
+                {% with object.get_grupo_avaliadores as g_avaliadores %}
+                    {% if g_avaliadores %}
+                        <tr>
+                            <td><b>Grupo de Avaliadores:</b></td>
+                            <td>{{ g_avaliadores.grupo }}</td>
+                        </tr>
+                        {% with object.get_avaliadores as avaliadores %}
+
+                            {% for avaliador in avaliadores %}
+                                <tr>
+
+                                    <td><b>Avaliador #{{ forloop.counter }}:</b></td>
+                                        <td>{% servidor_display suap avaliador.username %}
+                                            {% pode_substituir_avaliador object avaliador as substituir %}
+                                            {% if substituir %}[<a href="{% url 'substituir_avaliador_psct' recurso_pk=object.pk grupo_pk=g_avaliadores.grupo.pk avaliador_pk=avaliador.pk %}">modificar</a>]{% endif %}
+                                        </td>
+                                </tr>
+                            {% endfor %}
+                        {% endwith %}
+                    {% endif %}
+                {% endwith %}
+
+                {% with object.get_grupo_homologadores as g_homologadores %}
+                    {% if g_homologadores %}
+                        <tr>
+                            <td><b>Grupo de Homologadores:</b></td>
+                            <td>{{ g_homologadores.grupo }}</td>
+                        </tr>
+                        {% with object.get_homologador as homologador %}
+                                <tr>
+                                    <td><b>Homologador:</b></td>
+                                    {% if homologador %}
+                                        <td>{% servidor_display suap homologador.username %}
+                                            {% pode_substituir_homologador object homologador as substituir %}
+                                            {% if substituir %}[<a href="{% url 'substituir_homologador_psct' recurso_pk=object.pk grupo_pk=g_homologadores.grupo.pk homologador_pk=homologador.pk %}">modificar</a>]{% endif %}
+                                        </td>
+                                    {% else %}
+                                        <td><span class="status status-pendente">Ausente</span></td>
+                                    {% endif %}
+                                </tr>
+                        {% endwith %}
+                    {% endif %}
+                {% endwith %}
+
+                </tbody>
+            </table>
+        </div>
+    {% endbox %}
+
+
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends 'processoseletivo/base_convocacao.html' %}
+{% block tabela_dados %}
+
+    <div class="table-responsive">
+        <table class="table table-striped table-condensed">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th >Formação</th>
+                    <th >Turno</th>
+                    <th style="text-align: center">Vagas</th>
+                    {% if etapa.encerrada %}
+                        <th style="text-align: center">Matriculados</th>
+                    {% endif %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for curso in cursos_etapa %}
+                    {% if curso.vagas > 0 %}
+                        <tr>
+                            <td><a href="{% url 'chamadas' etapa.id campus.id curso.id %}">
+                                {{ curso.nome }}</a></td>
+                            <td>{{ curso.get_formacao_display }}</td>
+                            <td>{{ curso.get_turno_display }}</td>
+                            <td style="text-align: center; width: 80px;">{{ curso.vagas }}</td>
+                            {% if etapa.encerrada %}
+                                <td style="text-align: center; width: 80px;">{{ curso.matriculados }}</td>
+                            {% endif %}
+                        </tr>
+                    {% endif %}
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

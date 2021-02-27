@@ -1,0 +1,44 @@
+memcached:
+  restart: always
+  ports:
+    - 11211
+  image: memcached:latest
+  tty: true
+  stdin_open: true
+redis:
+  restart: always
+  ports:
+    - 6379
+  image: redis:latest
+  tty: true
+  stdin_open: true
+postgres:
+  tty: true
+  ports:
+    - 5432
+  image: postgres:latest
+  stdin_open: true
+app:
+  labels:
+    io.rancher.container.pull_image: always
+  external_links:
+  - rabbitmq-3/rabbitmq:rabbitmq
+  tty: true
+  image: docker.ifpb.edu.br:5000/ifpb/portal:dev
+  links:
+  - memcached:memcached
+  - redis:redis
+  - postgres:postgres
+  stdin_open: true
+worker:
+  labels:
+    io.rancher.container.pull_image: always
+  external_links:
+  - rabbitmq-3/rabbitmq:rabbitmq
+  tty: true
+  image: docker.ifpb.edu.br:5000/ifpb/portal_worker:dev
+  links:
+  - memcached:memcached
+  - redis:redis
+  - postgres:postgres
+  stdin_open: true

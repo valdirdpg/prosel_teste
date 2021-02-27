@@ -1,0 +1,67 @@
+{% extends "base/index.html" %}
+{% load bootstrap_pagination %}
+
+{% block breadcrumb %}
+    <li><a href="/">Início</a></li>
+    <li><i class="fa fa-angle-right text-muted"></i></li>
+    <li class="active">Pré-Matrícula</li>
+    <li><i class="fa fa-angle-right text-muted"></i></li>
+    <li class="active">Convocações de {{request.user.pessoa}}</li>
+{% endblock %}
+
+{% block conteudo %}
+    <h2 class="titulo verde-escuro">Convocações de {{request.user.pessoa}}</h2>
+    {% if chamadas %}
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="alert alert-info" style="text-align: justify">
+            <p><strong>Atenção:</strong><br>
+              Você foi convocado para preencher a(s) vaga(s) abaixo relacionada(s). Você poderá gerar o formulário de Pré-matricula
+              com seus dados, que deverá ser entregue no campus do curso selecionado no dia da apresentação dos documentos
+              necessários para a matrícula.</p>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+            <table class="table table-striped table-condensed">
+                <thead>
+                  <tr>
+                    <th style="text-align: left; width: 20%;">Processo Seletivo</th>
+                    <th style="text-align: left; width: 20%;">Curso</th>
+                    <th style="text-align: left">Modalidade</th>
+                    <th style="width: 90px;">Formulário</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for chamada in chamadas %}
+                    {% if not chamada.etapa.encerrada %}
+                      <tr>
+                        <td>{{ chamada.etapa.edicao }}</td>
+                        <td>
+                          {{ chamada.curso.nome }}<br>
+                          <span class="text-muted">Turno {{ chamada.curso.get_turno_display }}<br>
+                          {{ chamada.curso.campus }}</span>
+                        </td>
+                        <td>{{ chamada.modalidade }}</td>
+                        <td style="text-align: center">
+                          <a href="{% url 'imprimir_prematricula' candidato.id chamada.id %}">
+                            <span class="glyphicon glyphicon-print" aria-hidden="true"></span> Imprimir</a>
+                        </td>
+                      </tr>
+                    {% endif %}
+                  {% endfor %}
+                </tbody>
+            </table>
+      </div>
+    </div>
+    {% else %}
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="alert alert-info">
+            Não há chamadas abertas para o(a) candidato(a) {{ candidato }}.
+        </div>
+      </div>
+    </div>
+    {% endif %}
+{% endblock %}

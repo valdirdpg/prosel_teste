@@ -1,0 +1,87 @@
+{% extends "base/baseboot.html" %}
+{% load i18n admin_static %}
+
+{% block extrahead %}
+    {{ block.super }}
+    <link rel="stylesheet" type="text/css" href="{% static "admin/css/login.css" %}" />
+    {{ form.media }}
+{% endblock %}
+
+{% block bodyclass %}{{ block.super }} login{% endblock %}
+
+{% block breadcrumb %}
+    <li><a href="{{ site_url }}">{% trans 'Home' %}</a></li>
+    <li><i class="fa fa-angle-right text-muted"></i></li>
+    <li><a href="{% url 'admin:index' %}">Admin</a></li>
+    {% if title %}
+    <li><i class="fa fa-angle-right text-muted"></i></li>
+    <li>{% block titulo_breadcrumb %}{{ title }}{% endblock %}</li>
+    {% endif %}
+{% endblock %}
+
+
+
+{% block main %}
+<div class="content">
+<div class="container">
+{% if form.errors and not form.non_field_errors %}
+<div class="alert alert-danger" style="text-align: justify; clear: both; position: relative; margin-bottom:0 !important">
+<p class="errornote"><i class="fa fa-times-circle fa-fw"></i>
+{% if form.errors.items|length == 1 %}{% trans "Please correct the error below." %}{% else %}{% trans "Please correct the errors below." %}{% endif %}
+</p>
+</div>
+<p>&nbsp;</p>
+{% endif %}
+
+{% if form.non_field_errors %}
+{% for error in form.non_field_errors %}
+<div class="alert alert-danger" style="text-align: justify; clear: both; position: relative; margin-bottom:0 !important">
+    <p class="errornote"><i class="fa fa-times-circle fa-fw"></i>{{ error }}</p>
+</div>
+{% endfor %}
+<p>&nbsp;</p>
+{% endif %}
+
+{% if user.is_authenticated %}
+<div class="alert alert-danger" style="text-align: justify; clear: both; position: relative; margin-bottom:0 !important">
+    <p class="errornote"><i class="fa fa-times-circle fa-fw"></i>
+{% blocktrans trimmed %}
+    You are authenticated as {{ username }}, but are not authorized to
+    access this page. Would you like to login to a different account?
+{% endblocktrans %}
+</p>
+</div>
+<p>&nbsp;</p>
+{% endif %}
+
+ <div class="col-xs-8 col-xs-offset-2 col-sm-4 col-sm-offset-4">
+    <div class="login-panel panel panel-default">
+        <div class="panel-heading">
+            <h2 class="panel-title">Acesso para Administradores</h2>
+        </div>
+        <div class="panel-body">
+            <form action="{{ app_path }}" method="post" id="login-form">{% csrf_token %}
+              <div class="form-row">
+                {{ form.username.errors }}
+                {{ form.username.label_tag }} {{ form.username }}
+              </div>
+              <div class="form-row">
+                {{ form.password.errors }}
+                {{ form.password.label_tag }} {{ form.password }}
+                <input type="hidden" name="next" value="{{ next }}" />
+              </div>
+              <div class="submit-row">
+                <label>&nbsp;</label><input class="btn btn-primary" type="submit" value="{% trans 'Log in' %}" />
+              </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+document.getElementById('id_username').focus()
+</script>
+</div>
+</div>
+{% endblock %}
+

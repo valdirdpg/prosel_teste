@@ -1,0 +1,12 @@
+{% extends "admin/change_form.html" %}
+
+{% block object-tools-items %}
+
+    <li>
+        <a id="btn_gerar_resultado_recursos" class="link_span" href="{% url 'resultado_recursos_pdf' original.pk %}">
+            Gerar Resultado de Recursos
+        </a>
+    </li>
+    {{block.super}}
+
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends "psct/base.html" %}
+{% load base_tags %}
+{% block conteudo %}
+
+    {% with avaliacao=object %}
+        <h3 class="verde-escuro">Avaliação #{{ avaliacao.id }}</h3>
+        <p></p>
+        {% include "psct/analise/avaliacaohomologador_embedded.html" %}
+    {% endwith %}
+
+    {% box 'Dados da Inscrição' True %}
+        {% with inscricao=inscricao_original %}
+            {% include "psct/inscricao/dadosinscricao.html" %}
+        {% endwith %}
+    {% endbox %}
+
+    {% box 'Avaliações' %}
+        {% for avaliacao in inscricao.avaliacoes_avaliador.all %}
+            <h4 class="verde-escuro">Avaliação #{{ avaliacao.id }}</h4>
+            <p></p>
+            {% include 'psct/analise/avaliacaoavaliador_embedded.html' %}
+        {% endfor %}
+    {% endbox %}
+
+{% endblock %}

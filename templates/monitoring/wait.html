@@ -1,0 +1,59 @@
+{% extends 'base/baseboot.html' %}
+{% load monitoring_tags %}
+
+{% block extrahead %}
+    {{ block.super }}
+
+    <script>
+        $(document).ready(function () {
+            var url = "{% url 'ajax_check_job' pk=object.id %}";
+            var link = $('#link-ajax');
+            var message = $('#message-ajax');
+            var animation = $('#animation-ajax');
+            var still_working = true;
+            link.hide();
+            (function worker() {
+                $.ajax({
+                    url: url,
+                    success: function (data) {
+                        if (data.result){
+                            message.html(data.result.message);
+                            link.show();
+                            link.attr('href', data.result.url);
+                            animation.removeClass('fa-spin');
+                            still_working = false;
+                            if (data.state == 'FAILURE'){
+                                link.removeClass('btn-success');
+                                link.addClass('btn-default');
+                            }
+                        }
+                        else{
+                            message.html(data.verbose_state);
+                        }
+                    },
+                    complete: function () {
+                        if (still_working){
+                            setTimeout(worker, 10000);
+                        }
+                    }
+                });
+            })();
+        });
+
+    </script>
+{% endblock %}
+
+{% block conteudo %}
+    <h3 class="titulo">Execução de tarefa</h3>
+    <div class="text-center">
+        <i class="fa fa-cog fa-spin fa-5x fa-fw" id="animation-ajax"></i>
+        <span class="sr-only">Loading...</span>
+        {% if job.end_time %}
+            <p id="message-ajax">{{ job.get_state }}</p>
+        {% else %}
+            <p id="message-ajax">message</p>
+        {% endif %}
+        <a id="link-ajax" class="btn btn-success" href="">Continuar</a>
+    </div>
+
+{% endblock %}

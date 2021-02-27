@@ -1,0 +1,17 @@
+[
+  {
+    "group_name": [
+      "noticias.Publicadores de Not\u00edcias"
+    ],
+    "models": [
+      "noticias.assunto",
+      "noticias.noticia"
+    ],
+    "permissions": [
+      {
+        "mode": "ac",
+        "model_name": "noticias.palavraschave"
+      }
+    ]
+  }
+]

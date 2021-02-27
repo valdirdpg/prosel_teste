@@ -1,0 +1,87 @@
+from django.conf.urls import url
+from django.urls import path
+
+from psct.views import inscricao as views
+
+urlpatterns = [
+    url(
+        "^inscricao/edital/(?P<edital_pk>[0-9]+)/$",
+        views.InscricaoEditalView.as_view(),
+        name="inscricao_edital_psct",
+    ),
+    url(
+        "^inscricao/(?P<pk>[0-9]+)/$",
+        views.ViewInscricao.as_view(),
+        name="visualizar_inscricao_psct",
+    ),
+    url(
+        "^inscricao/selecionar_ensino/(?P<pk>[0-9]+)/$",
+        views.selecionar_ensino,
+        name="selecionar_ensino_psct",
+    ),
+    url(
+        "^inscricao/add/(?P<edital_pk>[0-9]+)/$",
+        views.CreateInscricao.as_view(),
+        name="create_inscricao_psct",
+    ),
+    url(
+        "^inscricao/(?P<pk>[0-9]+)/change/$",
+        views.UpdateInscricao.as_view(),
+        name="update_inscricao_psct",
+    ),
+    url(
+        "^inscricao/comprovantes/(?P<pk>[0-9]+)/change/$",
+        views.ComprovantesUpdateView.as_view(),
+        name="comprovantes_inscricao_psct",
+    ),
+    url(
+        "^inscricao/notas/(?P<pk>[0-9]+)/change/$",
+        views.NotasUpdateView.as_view(),
+        name="notas_inscricao_psct",
+    ),
+    url(
+        "^inscricao/(?P<pk>[0-9]+)/cancelar/$",
+        views.CancelarInscricaoView.as_view(),
+        name="cancelar_inscricao_psct",
+    ),
+    url(
+        "^inscricao/(?P<pk>[0-9]+)/remover_cancelar/$",
+        views.RemoverCancelamentoView.as_view(),
+        name="remover_cancelar_inscricao_psct",
+    ),
+    url(
+        "^inscricao/(?P<pk>[0-9]+)/curso_edital/add/$",
+        views.AdicionarCursoEditalView.as_view(),
+        name="adicionar_curso_edital_psct",
+    ),
+    url(
+        "^comprovante_inscricao/(?P<pk>[0-9]+)/$",
+        views.ComprovanteInscricaoView.as_view(),
+        name="pdf_comprovante_psct",
+    ),
+    url(
+        "^inscricao/lista_inscritos_pdf/(?P<pk>[0-9]+)/$",
+        views.ListaInscritosPdf.as_view(),
+        name="lista_inscritos_pdf",
+    ),
+    url(
+        "^inscricao/comprovantes/$",
+        views.ListComprovanteView.as_view(),
+        name="list_comprovante_psct",
+    ),
+    url(
+        "^inscricao/validador/$",
+        views.ListValidadorView.as_view(),
+        name="list_validador_psct",
+    ),
+    url(
+        "^autocomplete-candidato/$",
+        views.AutoCompleteCandidato.as_view(),
+        name="autocomplete-candidato-psct",
+    ),
+    path(
+        "inscricao/notas-enem/importar/",
+        views.ImportarNotasEnemView.as_view(),
+        name="inscricao_importar_notas_enem",
+    ),
+]

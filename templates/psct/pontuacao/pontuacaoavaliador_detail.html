@@ -1,0 +1,20 @@
+{% extends "psct/base.html" %}
+{% load base_tags %}
+{% block conteudo %}
+
+    {% with pontuacao=object %}
+        <h3 class="verde-escuro">Pontuação #{{ pontuacao.id }}</h3>
+        <p></p>
+        {% include "psct/pontuacao/pontuacao_embedded.html" %}
+    {% endwith %}
+
+    {% box 'Dados da Inscrição' True %}
+        {% with inscricao=inscricao_original %}
+            {% include "psct/inscricao/dadosinscricao.html" %}
+        {% endwith %}
+    {% endbox %}
+
+    {% block extra_data %}
+    {% endblock %}
+
+{% endblock %}

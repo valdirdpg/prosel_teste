@@ -1,0 +1,740 @@
+[
+  {
+    "model": "cursos.ies",
+    "pk": 1,
+    "fields": {
+      "codigo": 1,
+      "uf": "BA",
+      "nome": "Instituto Federal de Educa\u00e7\u00e3o, Ci\u00eancia e Tecnologia da Bahia",
+      "sigla": "IFBA",
+      "ci": "4"
+    }
+  },
+  {
+    "model": "cursos.cidade",
+    "pk": 1,
+    "fields": {
+      "nome": "Araruna",
+      "uf": "PB"
+    }
+  },
+  {
+    "model": "cursos.cidade",
+    "pk": 2,
+    "fields": {
+      "nome": "Jo\u00e3o Pessoa",
+      "uf": "PB"
+    }
+  },
+  {
+    "model": "cursos.cidade",
+    "pk": 3,
+    "fields": {
+      "nome": "Picu\u00ed",
+      "uf": "PB"
+    }
+  },
+  {
+    "model": "cursos.cidade",
+    "pk": 4,
+    "fields": {
+      "nome": "Sousa",
+      "uf": "PB"
+    }
+  },
+  {
+    "model": "cursos.cidade",
+    "pk": 6,
+    "fields": {
+      "nome": "Mari",
+      "uf": "PB"
+    }
+  },
+  {
+    "model": "cursos.cidade",
+    "pk": 7,
+    "fields": {
+      "nome": "Itaporanga",
+      "uf": "PB"
+    }
+  },
+  {
+    "model": "cursos.cidade",
+    "pk": 8,
+    "fields": {
+      "nome": "Campina Grande",
+      "uf": "PB"
+    }
+  },
+  {
+    "model": "cursos.cidade",
+    "pk": 9,
+    "fields": {
+      "nome": "Cabedelo",
+      "uf": "PB"
+    }
+  },
+  {
+    "model": "cursos.cidade",
+    "pk": 10,
+    "fields": {
+      "nome": "Itabaiana",
+      "uf": "PB"
+    }
+  },
+  {
+    "model": "cursos.cidade",
+    "pk": 11,
+    "fields": {
+      "nome": "Cajazeiras",
+      "uf": "PB"
+    }
+  },
+  {
+    "model": "cursos.cidade",
+    "pk": 12,
+    "fields": {
+      "nome": "Monteiro",
+      "uf": "PB"
+    }
+  },
+  {
+    "model": "cursos.cidade",
+    "pk": 13,
+    "fields": {
+      "nome": "Princesa Isabel",
+      "uf": "PB"
+    }
+  },
+  {
+    "model": "cursos.cidade",
+    "pk": 14,
+    "fields": {
+      "nome": "Patos",
+      "uf": "PB"
+    }
+  },
+  {
+    "model": "cursos.cidade",
+    "pk": 15,
+    "fields": {
+      "nome": "Catol\u00e9 do Rocha",
+      "uf": "PB"
+    }
+  },
+  {
+    "model": "cursos.cidade",
+    "pk": 16,
+    "fields": {
+      "nome": "Areia",
+      "uf": "PB"
+    }
+  },
+  {
+    "model": "cursos.cidade",
+    "pk": 17,
+    "fields": {
+      "nome": "Alagoa Grande",
+      "uf": "PB"
+    }
+  },
+  {
+    "model": "cursos.cidade",
+    "pk": 18,
+    "fields": {
+      "nome": "Esperan\u00e7a",
+      "uf": "PB"
+    }
+  },
+  {
+    "model": "cursos.cidade",
+    "pk": 19,
+    "fields": {
+      "nome": "Pedras de Fogo",
+      "uf": "PB"
+    }
+  },
+  {
+    "model": "cursos.cidade",
+    "pk": 21,
+    "fields": {
+      "nome": "Santa Rita",
+      "uf": "PB"
+    }
+  },
+  {
+    "model": "cursos.cidade",
+    "pk": 22,
+    "fields": {
+      "nome": "Soledade",
+      "uf": "PB"
+    }
+  },
+  {
+    "model": "cursos.cidade",
+    "pk": 24,
+    "fields": {
+      "nome": "Guarabira",
+      "uf": "PB"
+    }
+  },
+  {
+    "model": "cursos.cidade",
+    "pk": 25,
+    "fields": {
+      "nome": "Santa Luzia",
+      "uf": "PB"
+    }
+  },
+  {
+    "model": "cursos.cidade",
+    "pk": 26,
+    "fields": {
+      "nome": "Duas Estradas",
+      "uf": "PB"
+    }
+  },
+  {
+    "model": "cursos.cidade",
+    "pk": 27,
+    "fields": {
+      "nome": "Lucena",
+      "uf": "PB"
+    }
+  },
+  {
+    "model": "cursos.cidade",
+    "pk": 28,
+    "fields": {
+      "nome": "Pombal",
+      "uf": "PB"
+    }
+  },
+  {
+    "model": "cursos.cidade",
+    "pk": 29,
+    "fields": {
+      "nome": "Tapero\u00e1",
+      "uf": "PB"
+    }
+  },
+  {
+    "model": "cursos.tipoatoregulatorio",
+    "pk": 1,
+    "fields": {
+      "nome": "Portaria"
+    }
+  },
+  {
+    "model": "cursos.tipoatoregulatorio",
+    "pk": 2,
+    "fields": {
+      "nome": "Resolu\u00e7\u00e3o"
+    }
+  },
+  {
+    "model": "cursos.tipodocumento",
+    "pk": 1,
+    "fields": {
+      "nome": "Matriz Curricular"
+    }
+  },
+  {
+    "model": "cursos.tipodocumento",
+    "pk": 2,
+    "fields": {
+      "nome": "Plano de Disciplinas"
+    }
+  },
+  {
+    "model": "cursos.tipodocumento",
+    "pk": 3,
+    "fields": {
+      "nome": "Infraestrutura"
+    }
+  },
+  {
+    "model": "cursos.tipodocumento",
+    "pk": 4,
+    "fields": {
+      "nome": "Colegiado"
+    }
+  },
+  {
+    "model": "cursos.tipodocumento",
+    "pk": 5,
+    "fields": {
+      "nome": "NDE"
+    }
+  },
+  {
+    "model": "cursos.tipodocumento",
+    "pk": 6,
+    "fields": {
+      "nome": "Publica\u00e7\u00f5es"
+    }
+  },
+  {
+    "model": "cursos.tipodocumento",
+    "pk": 7,
+    "fields": {
+      "nome": "Projetos"
+    }
+  },
+  {
+    "model": "cursos.tipodocumento",
+    "pk": 8,
+    "fields": {
+      "nome": "Programas"
+    }
+  },
+  {
+    "model": "cursos.campus",
+    "pk": 1,
+    "fields": {
+      "nome": "Jo\u00e3o Pessoa",
+      "sigla": "JP",
+      "ies": 1,
+      "cidade": 2,
+      "endereco": "Av. Primeiro de Maio, 720 - Jaguaribe",
+      "telefone": "(83) 3612-1200",
+      "mapa": "<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3958.923355018488!2d-34.875867949093305!3d-7.13486187193862!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x7ace810852ae4f1%3A0xaf5445223401f2bb!2sIFPB+-+Campus+Jo%C3%A3o+Pessoa!5e0!3m2!1spt-BR!2sbr!4v1453917078679\" width=\"600\" height=\"450\" frameborder=\"0\" style=\"border:0\" allowfullscreen></iframe>"
+    }
+  },
+  {
+    "model": "cursos.campus",
+    "pk": 2,
+    "fields": {
+      "nome": "Picu\u00ed",
+      "sigla": "PC",
+      "ies": 1,
+      "cidade": 3,
+      "endereco": "Rua Fausto Herminio de Ara\u00fajo, s/n\u00ba, Centro",
+      "telefone": "(83) 3522-6655",
+      "mapa": ""
+    }
+  },
+  {
+    "model": "cursos.campus",
+    "pk": 3,
+    "fields": {
+      "nome": "Sousa",
+      "sigla": "SS",
+      "ies": 1,
+      "cidade": 4,
+      "endereco": "Rua Presidente Tancredo Neves, s/n,  Jardim Sorril\u00e2ndia",
+      "telefone": "(83) 3522-2727",
+      "mapa": "<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4127.181400789358!2d-38.234614772479546!3d-6.779137811252422!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0000000000000000%3A0x52b84e871806379d!2sIFPB+-+Instituto+Federal+da+Para%C3%ADba!5e1!3m2!1spt-BR!2sbr!4v1454598752233\" width=\"600\" height=\"450\" frameborder=\"0\" style=\"border:0\" allowfullscreen></iframe>"
+    }
+  },
+  {
+    "model": "cursos.campus",
+    "pk": 4,
+    "fields": {
+      "nome": "Cabedelo",
+      "sigla": "CB",
+      "ies": 1,
+      "cidade": 9,
+      "endereco": "Rua Santa Rita de C\u00e1ssia, 1900,Jardim Camboinha",
+      "telefone": "(83) 3248-5400",
+      "mapa": "<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.0366629417395!2d-34.83449007950963!3d-7.0049657861960295!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x7acdfbb8c5bd4f3%3A0x21a6c73c5e1f107b!2sIFPB+Campus+Cabedelo!5e0!3m2!1spt-BR!2sbr!4v1454593474721\" width=\"600\" height=\"450\" frameborder=\"0\" style=\"border:0\" allowfullscreen></iframe>"
+    }
+  },
+  {
+    "model": "cursos.campus",
+    "pk": 5,
+    "fields": {
+      "nome": "Cabedelo Centro",
+      "sigla": "CC",
+      "ies": 1,
+      "cidade": 9,
+      "endereco": "Rua Duque de Caxias, Centro",
+      "telefone": "(83) 3248-5400",
+      "mapa": "<iframe src=\"https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3960.310429976325!2d-34.832988!3d-6.972655!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xceebce0550d3375f!2sIFPB%2FCentro+de+Forma%C3%A7%C3%A3o+em+Pesca+e+Cultura+Mar%C3%ADtima!5e0!3m2!1spt-BR!2sbr!4v1464880595968\" width=\"600\" height=\"450\" frameborder=\"0\" style=\"border:0\" allowfullscreen></iframe>"
+    }
+  },
+  {
+    "model": "cursos.campus",
+    "pk": 6,
+    "fields": {
+      "nome": "Itaporanga",
+      "sigla": "IP",
+      "ies": 1,
+      "cidade": 7,
+      "endereco": "-",
+      "telefone": "(83) 00000-0000",
+      "mapa": ""
+    }
+  },
+  {
+    "model": "cursos.campus",
+    "pk": 7,
+    "fields": {
+      "nome": "Itabaiana",
+      "sigla": "IB",
+      "ies": 1,
+      "cidade": 10,
+      "endereco": "-",
+      "telefone": "(83) 00000-0000",
+      "mapa": ""
+    }
+  },
+  {
+    "model": "cursos.campus",
+    "pk": 8,
+    "fields": {
+      "nome": "Catol\u00e9 do Rocha",
+      "sigla": "CR",
+      "ies": 1,
+      "cidade": 15,
+      "endereco": "PB-325, Corrente",
+      "telefone": "(83) 00000-0000",
+      "mapa": "<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4140.499323404598!2d-37.74550357128596!3d-6.33716950096146!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x7a53a37baccbb5b%3A0xa3ca36784af097fd!2sPB-325%2C+301%2C+Catol%C3%A9+do+Rocha+-+PB%2C+58884-000!5e1!3m2!1spt-BR!2sbr!4v1454594235902\" width=\"600\" height=\"450\" frameborder=\"0\" style=\"border:0\" allowfullscreen></iframe>"
+    }
+  },
+  {
+    "model": "cursos.campus",
+    "pk": 9,
+    "fields": {
+      "nome": "Princesa Isabel",
+      "sigla": "PR",
+      "ies": 1,
+      "cidade": 13,
+      "endereco": "AC Rodovia PB 426, S/N,  Zona Rural - S\u00edtio Barro Vermelho",
+      "telefone": "(83) 9192-0331",
+      "mapa": ""
+    }
+  },
+  {
+    "model": "cursos.campus",
+    "pk": 10,
+    "fields": {
+      "nome": "Monteiro",
+      "sigla": "MT",
+      "ies": 1,
+      "cidade": 12,
+      "endereco": "PB-264, s/n - Vila Santa Maria",
+      "telefone": "(83) 3351-3712",
+      "mapa": "<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3951.90591077089!2d-37.12240044909149!3d-7.904897880828575!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x7a88874a7c0ff71%3A0xa21051c1a7e97391!2sInstituto+Federal+de+Educa%C3%A7%C3%A3o%2C+Ci%C3%AAncia+e+Tecnologia+da+Para%C3%ADba+-+Campus+Monteiro!5e0!3m2!1spt-BR!2sbr!4v1454594888013\" width=\"600\" height=\"450\" frameborder=\"0\" style=\"border:0\" allowfullscreen></iframe>"
+    }
+  },
+  {
+    "model": "cursos.campus",
+    "pk": 11,
+    "fields": {
+      "nome": "Campina Grande",
+      "sigla": "CG",
+      "ies": 1,
+      "cidade": 8,
+      "endereco": "Rua Tranq\u00fcilino Coelho Lemos, 671 - Dinam\u00e9rica",
+      "telefone": "(83) 2102-6200",
+      "mapa": "<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3958.0127075144082!2d-35.91799734909699!3d-7.2393884730887565!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x7aea0a6fab8137d%3A0x24f6e08262999405!2sInstituto+Federal+de+Educa%C3%A7%C3%A3o%2C+Ci%C3%AAncia+e+Tecnologia+da+Para%C3%ADba!5e0!3m2!1spt-BR!2sbr!4v1454593856902\" width=\"600\" height=\"450\" frameborder=\"0\" style=\"border:0\" allowfullscreen></iframe>"
+    }
+  },
+  {
+    "model": "cursos.campus",
+    "pk": 12,
+    "fields": {
+      "nome": "Esperan\u00e7a",
+      "sigla": "ES",
+      "ies": 1,
+      "cidade": 18,
+      "endereco": "-",
+      "telefone": "(83) 00000-0000",
+      "mapa": ""
+    }
+  },
+  {
+    "model": "cursos.campus",
+    "pk": 13,
+    "fields": {
+      "nome": "Pedras de Fogo",
+      "sigla": "PF",
+      "ies": 1,
+      "cidade": 19,
+      "endereco": "Rua 1\u00ba de Maio, 51, Centro",
+      "telefone": "(83) 00000-0000",
+      "mapa": ""
+    }
+  },
+  {
+    "model": "cursos.campus",
+    "pk": 15,
+    "fields": {
+      "nome": "Mangabeira",
+      "sigla": "MG",
+      "ies": 1,
+      "cidade": 2,
+      "endereco": "R. Desportista Jo\u00e3o Ap\u00f3stolo de Souza",
+      "telefone": "(83) 00000-0000",
+      "mapa": "<iframe src=\"https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15834.705262348858!2d-34.8254934!3d-7.1633677!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x66065c88b20e1c8d!2sEscola+T%C3%A9cnica+Estadual+de+Mangabeira!5e0!3m2!1spt-BR!2sbr!4v1454594840172\" width=\"600\" height=\"450\" frameborder=\"0\" style=\"border:0\" allowfullscreen></iframe>"
+    }
+  },
+  {
+    "model": "cursos.campus",
+    "pk": 16,
+    "fields": {
+      "nome": "Santa Rita",
+      "sigla": "SR",
+      "ies": 1,
+      "cidade": 21,
+      "endereco": "-",
+      "telefone": "(83) 00000-0000",
+      "mapa": ""
+    }
+  },
+  {
+    "model": "cursos.campus",
+    "pk": 17,
+    "fields": {
+      "nome": "Soledade",
+      "sigla": "SO",
+      "ies": 1,
+      "cidade": 22,
+      "endereco": "-",
+      "telefone": "(83) 00000-0000",
+      "mapa": ""
+    }
+  },
+  {
+    "model": "cursos.campus",
+    "pk": 18,
+    "fields": {
+      "nome": "Cajazeiras",
+      "sigla": "CZ",
+      "ies": 1,
+      "cidade": 11,
+      "endereco": "R. Ant\u00f4nio Fernandes da Silva, 300 - Jardim O\u00e1sis",
+      "telefone": "(83) 3532-4100",
+      "mapa": "<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3961.0059538454257!2d-38.54698074909993!3d-6.889889169312736!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x7a473a326fca383%3A0xfb7129bbe35e98d3!2sInstituto+Federal+de+Educa%C3%A7%C3%A3o+Ci%C3%AAncia+e+Tecnologia+da+Para%C3%ADba+-+IFPB+Campus+Cajazeiras!5e0!3m2!1spt-BR!2sbr!4v1454593813046\" width=\"600\" height=\"450\" frameborder=\"0\" style=\"border:0\" allowfullscreen></iframe>"
+    }
+  },
+  {
+    "model": "cursos.campus",
+    "pk": 19,
+    "fields": {
+      "nome": "Guarabira",
+      "sigla": "GB",
+      "ies": 1,
+      "cidade": 24,
+      "endereco": "Rua Jos\u00e9 Am\u00e9rico de Almeida, 707 - Nordeste I",
+      "telefone": "(83) 3271-3081",
+      "mapa": "<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4905.220612223216!2d-35.48068764910015!3d-6.852923768924958!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x7adb6aab5fa03e1%3A0xd6397f96c694acca!2sIFPB+Guarabira!5e1!3m2!1spt-BR!2sbr!4v1454594471121\" width=\"600\" height=\"450\" frameborder=\"0\" style=\"border:0\" allowfullscreen></iframe>"
+    }
+  },
+  {
+    "model": "cursos.campus",
+    "pk": 20,
+    "fields": {
+      "nome": "Patos",
+      "sigla": "PT",
+      "ies": 1,
+      "cidade": 14,
+      "endereco": "Rodovia PB 110, S/N, Alto da Tubiba",
+      "telefone": "(83) 3423-9676",
+      "mapa": "<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3959.4263212261444!2d-37.28881804909847!3d-7.076471671303908!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x7af5f8fe2267b31%3A0x254fffef5addc423!2sINSTITUTO+FEDERAL+DA+PARA%C3%8DBA+-+IFPB+-+CAMPUS+PATOS!5e0!3m2!1spt-BR!2sbr!4v1454595015299\" width=\"600\" height=\"450\" frameborder=\"0\" style=\"border:0\" allowfullscreen></iframe>"
+    }
+  },
+  {
+    "model": "cursos.campus",
+    "pk": 21,
+    "fields": {
+      "nome": "Areia",
+      "sigla": "AR",
+      "ies": 1,
+      "cidade": 16,
+      "endereco": "Rua Manoel da Silva, 6, Centro",
+      "telefone": "(83) 00000-0000",
+      "mapa": "<iframe src=\"https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d1511.325975583158!2d-35.70277091553516!3d-6.9684861446069535!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e1!3m2!1spt-BR!2sbr!4v1453906500231\" width=\"600\" height=\"450\" frameborder=\"0\" style=\"border:0\" allowfullscreen></iframe>"
+    }
+  },
+  {
+    "model": "cursos.campus",
+    "pk": 22,
+    "fields": {
+      "nome": "Santa Luzia",
+      "sigla": "SL",
+      "ies": 1,
+      "cidade": 25,
+      "endereco": "-",
+      "telefone": "(83) 00000-0000",
+      "mapa": ""
+    }
+  },
+  {
+    "model": "cursos.polo",
+    "pk": 2,
+    "fields": {
+      "cidade": 2,
+      "horario_funcionamento": "8h \u00e0s 12h; 13h \u00e0s 18h; 19h \u00e0s 22h",
+      "endereco": "Campus IFPB - Jo\u00e3o Pessoa Av. Primeiro de Maio, 720 \u2013 Jaguaribe",
+      "telefone": "(83) 3612-1200",
+      "mapa": ""
+    }
+  },
+  {
+    "model": "cursos.polo",
+    "pk": 3,
+    "fields": {
+      "cidade": 6,
+      "horario_funcionamento": "13h \u00e0s 18h",
+      "endereco": "Rua Tereza Sales, SN \u2013 Jos\u00e9 Am\u00e9rico (CAIC)",
+      "telefone": "(83) 9805-8104",
+      "mapa": ""
+    }
+  },
+  {
+    "model": "cursos.polo",
+    "pk": 4,
+    "fields": {
+      "cidade": 3,
+      "horario_funcionamento": "13h \u00e0s 18h",
+      "endereco": "Campus IFPB \u2013 Picu\u00ed Acesso \u00e0 Rodovia PB 151, s/n  \u2013 Bairro Cenecista",
+      "telefone": "(83) 3371-2555",
+      "mapa": ""
+    }
+  },
+  {
+    "model": "cursos.polo",
+    "pk": 5,
+    "fields": {
+      "cidade": 7,
+      "horario_funcionamento": "8h \u00e0s 12h; 13h \u00e0s 18h; 19h \u00e0s 22h",
+      "endereco": "Av. Padre Louren\u00e7o, 328 \u2013 Centro",
+      "telefone": "(83) 3451-3558",
+      "mapa": ""
+    }
+  },
+  {
+    "model": "cursos.polo",
+    "pk": 6,
+    "fields": {
+      "cidade": 8,
+      "horario_funcionamento": "8h \u00e0s 12h; 13h \u00e0s 18h; 19h \u00e0s 22h",
+      "endereco": "Campus IFPB - Campina Grande Rua Tranquilino Coelho Lemos, 671 \u2013 Jardim Dinam\u00e9rica I",
+      "telefone": "(83) 2102-6200",
+      "mapa": ""
+    }
+  },
+  {
+    "model": "cursos.polo",
+    "pk": 7,
+    "fields": {
+      "cidade": 17,
+      "horario_funcionamento": "07 \u00e0s 22h.",
+      "endereco": "Rua Francisco Carlos da Silva, s/n\u00ba \u2013 Conjunto CEHAP I (CAIC)",
+      "telefone": "(83) 3273-1299",
+      "mapa": ""
+    }
+  },
+  {
+    "model": "cursos.polo",
+    "pk": 8,
+    "fields": {
+      "cidade": 1,
+      "horario_funcionamento": "07 \u00e0s 22h.",
+      "endereco": "Rua Fausto Herminio de Ara\u00fajo, s/n\u00ba \u2013 Centro",
+      "telefone": "(83) 3373-1118",
+      "mapa": ""
+    }
+  },
+  {
+    "model": "cursos.polo",
+    "pk": 9,
+    "fields": {
+      "cidade": 11,
+      "horario_funcionamento": "07 \u00e0s 22h.",
+      "endereco": "Campus IFPB - Cajazeiras Rua Jos\u00e9 Antonio da Silva, 300 \u2013 Jardim O\u00e1sis",
+      "telefone": "(83) 3531-4560",
+      "mapa": ""
+    }
+  },
+  {
+    "model": "cursos.polo",
+    "pk": 10,
+    "fields": {
+      "cidade": 26,
+      "horario_funcionamento": "07 \u00e0s 22h.",
+      "endereco": "Rua Presidente M\u00e9dici, 154, Centro",
+      "telefone": "(83) 00000-0000",
+      "mapa": ""
+    }
+  },
+  {
+    "model": "cursos.polo",
+    "pk": 11,
+    "fields": {
+      "cidade": 24,
+      "horario_funcionamento": "07 \u00e0s 22h.",
+      "endereco": "N\u00facleo Avan\u00e7ado IFPB \u2013 Guarabira Rua Jos\u00e9 Epaminondas, 573 \u2013 Bairro Novo (Antigo Col\u00e9gio Paulo VI, vizinho \u00e0 Par\u00f3quia Santo Antonio)",
+      "telefone": "(83) 3271-7854",
+      "mapa": ""
+    }
+  },
+  {
+    "model": "cursos.polo",
+    "pk": 12,
+    "fields": {
+      "cidade": 27,
+      "horario_funcionamento": "07 \u00e0s 22h.",
+      "endereco": "Rua S\u00e3o Jos\u00e9, s/n\u00ba \u2013 Fagundes (CAIC)",
+      "telefone": "(83) 3293-1981",
+      "mapa": ""
+    }
+  },
+  {
+    "model": "cursos.polo",
+    "pk": 13,
+    "fields": {
+      "cidade": 12,
+      "horario_funcionamento": "07 \u00e0s 22h.",
+      "endereco": "Campus IFPB \u2013 Monteiro Acesso \u00e0 Rodovia PB 264, s/n \u2013 Bairro Vila Santa Maria",
+      "telefone": "(83) 3351-2354",
+      "mapa": ""
+    }
+  },
+  {
+    "model": "cursos.polo",
+    "pk": 14,
+    "fields": {
+      "cidade": 14,
+      "horario_funcionamento": "07 \u00e0s 22h.",
+      "endereco": "Campus IFPB \u2013 Patos \u2013 Escola Agr\u00edcola Acesso \u00e0 Rodovia PB 110, s/n \u2013 Bairro Alto da Tubiba",
+      "telefone": "(83) 3423-9534",
+      "mapa": ""
+    }
+  },
+  {
+    "model": "cursos.polo",
+    "pk": 15,
+    "fields": {
+      "cidade": 28,
+      "horario_funcionamento": "07 \u00e0s 22h.",
+      "endereco": "Rua Manoel Pires de Sousa, S/N, Centro",
+      "telefone": "(83) 00000-0000",
+      "mapa": ""
+    }
+  },
+  {
+    "model": "cursos.polo",
+    "pk": 16,
+    "fields": {
+      "cidade": 4,
+      "horario_funcionamento": "07 \u00e0s 22h.",
+      "endereco": "Rua Presidente Tancredo Neves, s/n \u2013 Bairro Jardim Sorril\u00e2ndia",
+      "telefone": "(83) 3522-2727",
+      "mapa": ""
+    }
+  },
+  {
+    "model": "cursos.polo",
+    "pk": 17,
+    "fields": {
+      "cidade": 29,
+      "horario_funcionamento": "07 \u00e0s 22h.",
+      "endereco": "Rua Cel. Dorgival Vilar Filho, 187 \u2013 Alto da Concei\u00e7\u00e3o",
+      "telefone": "(83) 3463-2924",
+      "mapa": ""
+    }
+  }
+]

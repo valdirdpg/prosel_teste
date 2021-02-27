@@ -1,0 +1,40 @@
+{% extends "base/index.html" %}
+{% load staticfiles %}
+
+{% block breadcrumb %}
+    <li><a href="/">Início</a></li>
+    <li><i class="fa fa-angle-right text-muted"></i></li>
+    <li><a href="{% url 'indexprocessoseletivo' %}">Processos Seletivos</a></li>
+    <li><i class="fa fa-angle-right text-muted"></i></li>
+    <li><a href="{% url 'processoseletivo' edital.edicao.processo_seletivo.id  %}">{{ edital.edicao.processo_seletivo.sigla }}</a></li>
+    <li><i class="fa fa-angle-right text-muted"></i></li>
+    <li><a href="{% url 'edicoes' edital.edicao.processo_seletivo.id  %}">Edições</a></li>
+    <li><i class="fa fa-angle-right text-muted"></i></li>
+    <li><a href="{% url 'edicao' edital.edicao.processo_seletivo.id edital.edicao.id  %}">{{ edital.edicao }}</a></li>
+    <li><i class="fa fa-angle-right text-muted"></i></li>
+    <li class="active">Edital {{ edital.numero }}/{{ edital.ano }} (Arquivos)</li>
+{% endblock %}
+
+
+{% block conteudo %}
+    <h2 class="titulo verde-escuro">{{ edital.edicao }} - Edital Nº {{ edital.numero }}/{{ edital.ano }}</h2>
+    <p class="chapeu">Arquivos ({{ categoria_label }})</p>
+        {% for documento in arquivos|dictsort:'atualizado_em' %}
+            <p>{{ forloop.counter }}.{% if documento.edital.retificado %} [Retificação]{% endif %}
+                {{ documento.nome }}
+                {% if documento.arquivo %}
+                    (atualizado em {{ documento.atualizado_em }}).
+                    <a href="{{ documento.arquivo.url }}" target="_blank">
+                        Download <span class="sr-only"> (abre em nova janela)</span></a>
+                {% else %}
+                    (<a href="{{ documento.link_arquivo_externo }}" target="_blank">
+                        link externo <span class="sr-only"> - abre em nova janela</span>
+                     </a>).
+                {% endif %}
+            </p>
+        {% empty %}
+          <div class="alert alert-warning">
+            <i class="fa fa-warning fa-fw"></i> Não há arquivos do tipo '{{ categoria_label }}' cadastrados.
+          </div>
+        {% endfor %}
+{% endblock %}

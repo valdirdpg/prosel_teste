@@ -1,0 +1,149 @@
+{% extends "psct/base.html" %}
+{% load staticfiles %}
+
+{% block breadcrumb %}
+    <li><a href="/">Início</a></li>
+    <li><i class="fa fa-angle-right text-muted"></i></li>
+    <li class="active">{{ titulo }}</li>
+{% endblock %}
+
+{% block conteudo %}
+<div class="row">
+    <div class="col-sm-8">
+        <h2 class="titulo azul-petroleo">{{ titulo }}</h2>
+        <div class="row">
+            {% for inscricao in inscricoes %}
+            <div class="col-xs-12">
+                <div class="list-group list-group">
+                    <div class="list-group-item">
+                        <p class="h4 list-group-item-heading">{{ inscricao.edital.edicao }} -
+                            Edital nº {{ inscricao.edital.numero }}/{{ inscricao.edital.ano }}
+                            {% if inscricao.em_periodo_inscricao %}
+                                {% if not inscricao.is_cancelada  %}
+                                    <a href="{% url 'cancelar_inscricao_psct' pk=inscricao.pk %}" class="btn btn-warning pull-right btn-xs">Cancelar Inscrição</a>
+                                {% elif inscricao.pode_desfazer_cancelamento or inscricao.candidato.has_todas_insc_canceladas %}
+                                    <a href="{% url 'remover_cancelar_inscricao_psct' pk=inscricao.pk %}" class="btn btn-success pull-right btn-xs">Desfazer Cancelamento</a>
+                                {% endif %}
+                            {% endif %}
+                        </p>
+
+                        {% with situacao=inscricao.get_situacao %}
+                            {% if inscricao.is_concluida and inscricao.has_resultado %}
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">Resultado {% if inscricao.is_resultado_final %}
+                                        Final{% else %}Preliminar{% endif %}</div>
+                                    <div class="panel-body">
+                                        <span class="status status-{{ situacao.get_css_class }}">{{ situacao }}</span>
+                                    </div>
+                                </div>
+                            {% elif situacao %}
+                                <span class="status status-{{ situacao.get_css_class }}">{{ situacao }}</span>
+                            {% endif %}
+                        {% endwith %}
+
+                        <ul class="list-group-item-text">
+                            {% if inscricao.em_periodo_inscricao %}
+                                {% if not inscricao.is_cancelada %}
+                                    <li><i class="fa fa-pencil-square-o fa-fw"></i>
+                                        <a href="/psct/questionario_socioeconomico/{{ inscricao.edital.pk }}/?active=OK">
+                                            Perfil Socioeconômico e Escolar</a></li>
+                                    <li><i class="fa fa-pencil-square-o fa-fw"></i>
+                                        <a href="{% url 'create_inscricao_psct' inscricao.edital.pk %}">
+                                            {% if inscricao.processo_inscricao.possui_segunda_opcao %}Escolher opções de cursos{% else %}Escolher curso{% endif %}</a></li>
+                                    {% if inscricao.processo_inscricao.is_curso_tecnico %}
+                                        <li><i class="fa fa-pencil-square-o fa-fw"></i>
+                                            <a href="{% url 'selecionar_ensino_psct' inscricao.pontuacao.pk %}">
+                                                Informar o tipo da nota</a></li>
+                                    {% endif %}
+                                {% else %}
+                                    <li class="text-muted"><i class="fa fa-pencil-square-o fa-fw"></i>
+                                            Perfil Socioeconômico e Escolar</li>
+                                    <li class="text-muted"><i class="fa fa-pencil-square-o fa-fw"></i>
+                                            {% if inscricao.processo_inscricao.possui_segunda_opcao %}Escolher opções de cursos{% else %}Escolher curso{% endif %}</li>
+                                    {% if inscricao.processo_inscricao.is_curso_tecnico %}
+                                        <li class="text-muted"><i
+                                                class="fa fa-pencil-square-o fa-fw"></i>
+                                            Informar o tipo da nota
+                                        </li>
+                                    {% endif %}
+                                {% endif %}
+                                {% if inscricao.processo_inscricao.is_curso_tecnico %}
+                                    {% if inscricao.pode_inserir_notas %}
+                                        <li><i class="fa fa-pencil-square-o fa-fw"></i>
+                                            <a href="{% url 'notas_inscricao_psct' inscricao.pontuacao.pk %}">
+                                                Inserir as notas</a></li>
+                                    {% else %}
+                                        <li class="text-muted"><i class="fa fa-pencil-square-o fa-fw"></i>
+                                            Inserir as notas</li>
+                                    {% endif %}
+
+                                    {% if inscricao.pode_inserir_comprovantes %}
+                                        <li><i class="fa fa-upload fa-fw"></i>
+                                            <a href="{% url 'comprovantes_inscricao_psct' inscricao.pk %}">
+                                                Anexar documentos comprobatórios</a></li>
+                                    {% else %}
+                                        <li class="text-muted"><i class="fa fa-upload fa-fw"></i>
+                                            Anexar documentos comprobatórios</li>
+                                    {% endif %}
+                                {% endif %}
+                            {% endif %}
+
+                            {% if inscricao.pode_visualizar_inscricao %}
+                                <li><i class="fa fa-eye fa-fw"></i>
+                                    <a href="{% url 'visualizar_inscricao_psct' inscricao.pk %}">
+                                        Visualizar inscrição</a></li>
+                            {% elif inscricao.em_periodo_inscricao  %}
+                                <li class="text-muted"><i class="fa fa-eye fa-fw"></i>
+                                    Visualizar inscrição</li>
+                            {% endif %}
+                            {% if inscricao.pode_visualizar_inscricao and inscricao.edital.processo_inscricao.pode_emitir_comprovante %}
+                                <li><i class="fa fa-print fa-fw"></i>
+                                    <a id="imprimir_comprovante_{{ inscricao.pk }}" href="{% url 'pdf_comprovante_psct' inscricao.pk %}">
+                                        Imprimir Comprovante</a></li>
+                            {% endif %}
+                            {% if inscricao.pode_ver_resultado_preliminar and inscricao.get_resultado %}
+                                <li><i class="fa fa-eye fa-fw"></i>
+                                    <a id="extrato_desempenho_{{ inscricao.pk }}" href="{% url 'view_resultado_inscricao_psct' inscricao.pk %}">
+                                        Visualizar extrato de desempenho</a></li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-xs-12">
+                <div class="alert alert-info">
+                    <i class="fa fa-info-circle fa-fw"></i> Nenhuma inscrição encontrada.
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="col-sm-4">
+        <h2 class="titulo verde-escuro">Recursos</h2>
+        <ul>
+            <li>
+                <i class="fa fa-puzzle-piece"></i>
+                <a href="{% url 'list_recurso_psct' %}">Meus Recursos</a>
+            </li>
+        </ul>
+        <h2 class="titulo laranja">Inscrições Abertas</h2>
+        {% if edicoes %}
+            <ul>
+                {% for edicao in edicoes %}
+                    <li><a href="{% url 'edicao' edicao.processo_seletivo.pk edicao.pk %}">{{ edicao }}</a></li>
+                {% endfor %}
+            </ul>
+        {% else %}
+             <div class="row">
+                 <div class="col-xs-12">
+                        <div class="alert alert-info">
+                            <i class="fa fa-info-circle fa-fw"></i> Não há outras inscrições abertas.
+                        </div>
+                 </div>
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

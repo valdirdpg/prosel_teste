@@ -1,0 +1,31 @@
+{% extends 'reuse/confirm_delete.html' %}
+
+{% block pre_form %}
+    {% with edicao=object.analise_documental.confirmacao_interesse.inscricao.edicao candidato=object.analise_documental.confirmacao_interesse.inscricao.candidato.pessoa avaliador=object.servidor_setor %}
+        {% include 'processoseletivo/avaliacaodocumental_header.html' %}
+    {% endwith %}
+    <div class="table-responsive">
+        <table class="table table-striped table-condensed">
+            <tbody>
+                <tr>
+                    <td class="col-xs-6 col-sm-4 col-md-3"><b>Situação:</b></td>
+                    <td><span class="status status-{% if object.situacao %}deferido{% else %}indeferido{% endif %}">
+                      {{ object.get_situacao_display }}</span></td>
+                </tr>
+                <tr>
+                    <td><b>Observação:</b></td>
+                    <td>{{ object.observacao|default:'-' }}</td>
+                </tr>
+                <tr>
+                    <td><b>Alterado em: </b></td>
+                    <td>{{ object.data }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+  <p><strong>Tem certeza que deseja excluir esta avaliação?</strong></p>
+{% endblock %}
+
+{% block pos_form %}
+    <a class="btn btn-warning pull-left" href="{{ back_url }}">Cancelar</a>
+{% endblock %}

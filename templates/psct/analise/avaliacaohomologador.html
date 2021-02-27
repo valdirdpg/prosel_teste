@@ -1,0 +1,23 @@
+{% extends "psct/base/display_form.html" %}
+{% load base_tags %}
+
+{% block pre_form %}
+
+    {% box 'Dados da Inscrição' True %}
+        {% with inscricao=inscricao_original %}
+            {% include "psct/inscricao/dadosinscricao.html" %}
+        {% endwith %}
+    {% endbox %}
+
+    {% box 'Avaliações' True %}
+        {% for avaliacao in inscricao.avaliacoes_avaliador.all %}
+            <h4 class="verde-escuro">Avaliação #{{ avaliacao.id }}</h4>
+            <p></p>
+            {% include 'psct/analise/avaliacaoavaliador_embedded.html' %}
+        {% endfor %}
+    {% endbox %}
+
+    <h3 class="verde-escuro">Avaliação</h3>
+    <p></p>
+
+{% endblock %}

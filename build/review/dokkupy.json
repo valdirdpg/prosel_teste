@@ -1,0 +1,47 @@
+{
+  "current_branch": true,
+  "services": [
+    {
+      "name": "postgres",
+      "destroy_on_remove": true,
+      "suffix": "-db",
+      "clone": "portaldaily-db"
+    },
+    {
+      "name": "redis",
+      "destroy_on_remove": true,
+      "suffix": "-rd"
+    },
+    {
+      "name": "rabbitmq",
+      "destroy_on_remove": true,
+      "suffix": "-mq"
+    },
+    {
+      "name": "memcached",
+      "destroy_on_remove": true,
+      "suffix": "-mem"
+    }
+  ],
+  "environ": {
+    "DJANGO_SETTINGS_MODULE": "portaldocandidato.settings_dokku",
+    "SUAP_AUTH_TOKEN": "",
+    "RECAPTCHA_PRIVATE_KEY": "",
+    "RECAPTCHA_PUBLIC_KEY": "",
+    "MINIO_URL": "",
+    "MINIO_SERVER": "",
+    "MINIO_ACCESS_KEY": "",
+    "MINIO_SECRET_KEY": "",
+    "STATIC_BUCKET_NAME": "",
+    "MEDIA_BUCKET_NAME": "",
+    "GITLAB_HOST": "",
+    "GITLAB_DEPLOY_USER": "",
+    "GITLAB_DEPLOY_TOKEN": ""
+  },
+  "scale": {
+    "worker": 1
+  },
+  "commands": [
+    "python3 manage.py migrate --noinput"
+  ]
+}

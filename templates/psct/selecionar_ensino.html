@@ -1,0 +1,24 @@
+{% extends "psct/base.html" %}
+{% load staticfiles %}
+
+{% block breadcrumb %}
+    <li><a href="/">Início</a></li>
+    <li><i class="fa fa-angle-right text-muted"></i></li>
+    <li class="active">Inscricao - Tipo de nota</li>
+{% endblock %}
+
+{% block conteudo %}
+    <h2 class="titulo verde-escuro">Selecione com quais notas você irá concorrer</h2>
+    <p class="text-justify"><i>
+    
+        Assinale com quais notas você irá concorrer. Em seguida, você deverá inserir todas as
+        médias finais das disciplinas que serão solicitadas pelo sistema.
+    
+    </i></p>
+    <form method="post" action="" class="form-horizontal">
+        {% csrf_token %}
+        {% include 'psct/base/generic_form.html' %}
+        <a class="btn btn-grey" href="{{ back_url }}">Voltar</a>
+        <input type="submit" value="Continuar" class="btn btn-primary pull-right">
+    </form>
+{% endblock %}

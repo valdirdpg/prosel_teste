@@ -1,0 +1,65 @@
+{% extends "base/index.html" %}
+{% load bootstrap_pagination admin_urls cropping %}
+
+{% block breadcrumb %}
+    <li><a href="/">Início</a></li>
+    <li><i class="fa fa-angle-right text-muted"></i></li>
+    <li><a href="{% url 'noticias' %}">Notícias</a></li>
+    {% if assunto %}
+        <li><i class="fa fa-angle-right text-muted"></i></li>
+        <li class="active">{{ assunto }}</li>
+    {% endif %}
+{% endblock %}
+
+{% block conteudo %}
+<h2 class="titulo {% if assunto %}{{assunto.cor_to_css}}{% endif %}">Notícias
+    {% if assunto %} sobre {{ assunto }}{% endif %}
+    {% if palavra %} relacionadas a "{{ palavra }}"{% endif %}</h2>
+
+    {% if object_list %}
+            {% for noticia in object_list %}
+                <div class="row linha-noticia-list">
+                    <div class="col-xs-2">
+                        <div class="sobre-noticia-lista">
+                            <span class="fa fa-calendar fa-fw {% if assunto %}{{assunto.cor_to_css}}{% else %}verde-escuro{% endif %}"></span> {{ noticia.atualizacao|date:"d/m/Y" }}<br/>
+                            <span class="fa fa-clock-o fa-fw {% if assunto %}{{assunto.cor_to_css}}{% else %}verde-escuro{% endif %}"></span> {{ noticia.atualizacao|time:"H\hi" }}<br/>
+                            <span class="fa fa-align-left fa-fw {% if assunto %}{{assunto.cor_to_css}}{% else %}verde-escuro{% endif %}"></span> Notícia<br/>
+                        </div>
+                    </div>
+                    <div class="col-xs-3">
+                        <div class="img-container">
+                            <a href="{{noticia.get_absolute_url}}">
+                                <img src="{% cropped_thumbnail noticia "cropping" %}" alt="{{ noticia.alternative_text }}" class="img-rounded img-thumbnail">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-xs-7">
+                        <div class="noticia resumo-noticia">
+
+                                <div class="conteudo-container">
+                                    {% if not assunto %}
+                                    <span class="chapeu">{{ noticia.assunto }}</span>
+                                    {% endif %}
+                                    <a href="{{noticia.get_absolute_url}}"><p class="titulo-noticia">{{ noticia.titulo }}</p></a>
+                                    <p style="color: #172938;">{{ noticia.resumo|truncatechars:130 }}</p>
+                                </div>
+
+                            <small>Tags: {% for tag in noticia.palavras_chave.all %}<a href="{% url 'busca' %}?q={{tag}}">{{tag}}</a>{% if not forloop.last %}, {% endif %}{% endfor %}</small>
+                        </div>
+                    </div>
+                </div>
+                <hr></hr>
+            {% endfor %}
+        </ul>
+
+        {% if is_paginated %}
+            <div class="paginas">
+                {% bootstrap_paginate page_obj range=5 show_prev_next="true" show_first_last="true" first_label="Início" last_label="Fim" %}
+            </div>
+        {% endif %}
+
+    {% else %}
+    <p>Não há notícias cadastradas.</p>
+    {% endif %}
+
+{% endblock %}

@@ -1,0 +1,193 @@
+[
+    {
+        "path": "Área do Candidato",
+        "id": "area_candidato",
+        "url": "",
+        "css": "dourado",
+        "order": 1,
+        "groups_required": ["Candidatos", "Candidatos PSCT"]
+    },
+    {
+        "path": "Área do Candidato::Meus Dados",
+        "url": "dados_basicos_redirect",
+        "order": 1,
+        "groups_required": ["Candidatos", "Candidatos PSCT"]
+    },
+    {
+        "path": "Área do Candidato::Minhas Inscrições",
+        "url": "index_psct",
+        "order": 2,
+        "groups_required": ["Candidatos", "Candidatos PSCT"]
+    },
+    {
+        "path": "Área do Candidato::Recursos",
+        "url": "list_recurso_psct",
+        "order": 3,
+        "groups_required": ["Candidatos PSCT"]
+    },
+    {
+        "path": "Área do Candidato::Sair",
+        "url": "/logout/",
+        "url_class": "red",
+        "icone": "fa-sign-out red",
+        "order": 5,
+        "groups_required": ["Candidatos", "Candidatos PSCT"]
+    },
+    {
+        "path": "Área do PSCT",
+        "id": "administrador_psct",
+        "url": "",
+        "css": "azul-petroleo",
+        "order": 2,
+        "groups_required": ["Administradores PSCT", "Homologador PSCT", "Avaliador PSCT"]
+    },
+    {
+        "path": "Área do PSCT::Dashboard",
+        "url": "dashboard-psct",
+        "order": 1,
+        "groups_required": ["Administradores PSCT"]
+    },
+    {
+        "path": "Área do PSCT::Avaliadores",
+        "url": "list_avaliador_psct",
+        "order": 2,
+        "groups_required": [
+            "Administradores PSCT"
+        ]
+    },
+    {
+        "path": "Área do PSCT::Homologadores",
+        "url": "list_homologador_psct",
+        "order": 3,
+        "groups_required": ["Administradores PSCT"]
+    },
+    {
+        "path": "Área do PSCT::Grupos",
+        "url": "list_grupo_psct",
+        "order": 4,
+        "groups_required": ["Administradores PSCT"]
+    },
+    {
+        "path": "Área do PSCT::Recursos",
+        "url": "list_recurso_psct",
+        "order": 5,
+        "groups_required": ["Administradores PSCT", "Homologador PSCT", "Avaliador PSCT"]
+    },
+    {
+        "path": "Área do PSCT::Inscrições",
+        "id": "inscricoes",
+        "url": "",
+        "order": 6,
+        "groups_required": ["Administradores PSCT", "Homologador PSCT", "Avaliador PSCT"]
+    },
+        {
+        "path": "Área do PSCT::Inscrições::Análise",
+        "url": "list_inscricao_psct",
+        "order": 1,
+        "groups_required": ["Administradores PSCT", "Homologador PSCT", "Avaliador PSCT"]
+    },
+    {
+        "path": "Área do PSCT::Inscrições::Ajuste de Pontuação",
+        "url": "list_pontuacao_inscricao_psct",
+        "order": 2,
+        "groups_required": ["Administradores PSCT", "Homologador PSCT", "Avaliador PSCT"]
+    },
+    {
+        "path": "Área do PSCT::Arquivos ENEM",
+        "id": "arquivos_enem",
+        "url": "",
+        "order": 7,
+        "groups_required": ["Administradores PSCT"]
+    },
+    {
+        "path": "Área do PSCT::Arquivos ENEM::Importação de notas",
+        "url": "inscricao_importar_notas_enem",
+        "order": 1,
+        "groups_required": ["Administradores PSCT"]
+    },
+    {
+        "path": "Área do PSCT::Comprovantes",
+        "id": "comprovantes",
+        "url": "",
+        "order": 8,
+        "groups_required": ["Administradores PSCT", "Validador de Comprovantes PSCT"]
+    },
+    {
+        "path": "Área do PSCT::Comprovantes::Validar",
+        "url": "list_comprovante_psct",
+        "order": 1,
+        "groups_required": ["Administradores PSCT", "Validador de Comprovantes PSCT"]
+    },
+    {
+        "path": "Área do PSCT::Comprovantes::Validadores",
+        "url": "list_validador_psct",
+        "order": 2,
+        "groups_required": [
+            "Administradores PSCT"
+        ]
+    },
+    {
+        "path": "Área do PSCT::Relatórios",
+        "id": "relatorios",
+        "url": "",
+        "order": 10,
+        "groups_required": ["Administradores PSCT"]
+    },
+    {
+        "path": "Área do PSCT::Relatórios::Índice",
+        "url": "dashboard",
+        "order": 1,
+        "groups_required": ["Administradores PSCT"]
+    },
+    {
+        "path": "Área do PSCT::Relatórios::Demanda de Inscritos",
+        "url": "demanda",
+        "order": 2,
+        "groups_required": ["Administradores PSCT"]
+    },
+    {
+        "path": "Área do PSCT::Relatórios::Validações Realizadas",
+        "url": "avaliacoes",
+        "order": 3,
+        "groups_required": ["Administradores PSCT"]
+    },
+    {
+        "path": "Área do PSCT::Relatórios::Quantidade por Validador",
+        "url": "avaliadores",
+        "order": 4,
+        "groups_required": ["Administradores PSCT"]
+    },
+    {
+        "path": "Área do PSCT::Relatórios::Validações Concluídas",
+        "url": "status_avaliacoes",
+        "order": 5,
+        "groups_required": ["Administradores PSCT"]
+    },
+    {
+        "path": "Área do PSCT::Relatórios::Ajustes de Pontuação",
+        "url": "ajustes_pontuacao",
+        "order": 6,
+        "groups_required": ["Administradores PSCT"]
+    },
+    {
+        "path": "Área do PSCT::Pré-Matrícula",
+        "id": "prematricula",
+        "url": "",
+        "order": 9,
+        "groups_required": ["Administradores PSCT", "CCA PSCT"]
+    },
+    {
+        "path": "Área do PSCT::Pré-Matrícula::Inscrições",
+        "url": "list_prematricula_psct",
+        "order": 1,
+        "groups_required": ["Administradores PSCT", "CCA PSCT"]
+    },
+    {
+        "path": "Área do PSCT::Pré-Matrícula::Secretários CCA",
+        "url": "list_ccas_psct",
+        "order": 2,
+        "groups_required": [
+            "Administradores PSCT"
+        ]
+    }
+]

@@ -1,0 +1,66 @@
+{% extends "base/index.html" %}
+{% load staticfiles bootstrap_pagination processoseletivo_tags %}
+
+
+{% block breadcrumb %}
+<li><a href="/">Início</a></li>
+<li><i class="fa fa-angle-right text-muted"></i></li>
+<li><a href="{% url 'indexprocessoseletivo' %}">Processos Seletivos</a></li>
+<li><i class="fa fa-angle-right text-muted"></i></li>
+<li class="active">{{ processo.sigla }}</li>
+{% endblock %}
+
+{% block conteudo %}
+<div class="row">
+    <div class="col-sm-8">
+        <h2 class="titulo">{{ processo.sigla }}</h2>
+        <p style="text-align: justify">{{ processo.descricao|safe }}</p>
+
+        {% if ultimas_edicoes %}
+        <h3 class="titulo azul-petroleo">{{ processo.sigla }} - Edições</h3>
+        <div class="table-responsive ">
+          <table class="table table-condensed">
+            <tbody>
+              {% for edicao in ultimas_edicoes %}
+                  <tr>
+                    <td><a href="{% url 'edicao' processo.pk edicao.pk %}">{{ edicao }}</a></td>
+                    <td style="text-align: right">{% if not edicao.is_encerrada %}
+                        {% if edicao.edital_set.first.processo_inscricao.em_periodo_inscricao %}
+                            <span class="label label-info">Inscrições abertas</span>
+                        {% elif edicao.edital_set.first.inscricoes_abertas and not edicao.edital_set.first.processo_inscricao%}
+                            <span class="label label-info">Inscrições abertas</span>
+                        {% else %}
+                            <span class="label label-success">Em Andamento</span>
+                        {% endif %}
+                    {% endif %}</td>
+                  </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+        <p class="text-right rodape-bloco azul-petroleo"><a href="{% url 'edicoes' processo.id %}">Todas as Edições <i class="fa fa-chevron-right"></i></a></p>
+        {% endif %}
+    </div>
+    <div class="col-sm-4">
+        {% if noticias %}
+            <div class="tile lista-vertical">
+                <div class="cover-collection-tile">
+                    <div class="tile-header"><span><strong>Notícias</strong></span></div>
+                    {% for noticia in noticias %}
+                        <div class="collection-item">
+                            <h2><a href="{{noticia.get_absolute_url}}">{{ noticia.titulo }}</a></h2>
+                        </div>
+                    {% endfor %}
+                    <div class="tile-footer">
+                        <a href="{% url 'palavra_chave' processo.palavra_chave.slug %}">Acesse a lista completa</a>
+                    </div>
+                    <div class="visualClear"><!-- --></div>
+                </div>
+            </div>
+        {% else %}
+            <div class="alert alert-info">Sem notícias.</div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
+

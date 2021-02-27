@@ -1,0 +1,18 @@
+lb:
+  scale: 6
+  default_cert: estudante.ifpb.edu.br
+  load_balancer_config:
+    name: auth-lb config
+nginx:
+  scale: 6
+web:
+  scale: 6
+redirect:
+  scale: 6
+worker:
+  scale: 6
+memcached:
+  scale: 1
+redis:
+  scale: 1
+

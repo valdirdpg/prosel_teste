@@ -1,0 +1,239 @@
+image: python:3.7.4
+
+services:
+  - postgres:12.1
+
+cache:
+  key: ${CI_COMMIT_REF_SLUG}
+  paths:
+    - ~/.cache/pip/
+    - venv
+
+before_script:
+  - echo -e "machine ${GITLAB_HOST}\nlogin gitlab-ci-token\npassword ${CI_JOB_TOKEN}" > ~/.netrc
+
+stages:
+  - venv
+  - lint
+  - validations
+  - tests
+  - behave
+  - review
+  - staging
+  - production
+  - coverage
+
+build_venv:
+  stage: venv
+  script:
+    - python -V               # Print out python version for debugging
+    - pip install virtualenv==16.7.9
+    - virtualenv venv
+    - source venv/bin/activate
+    - pip install --upgrade pip
+    - pip install -r requirements.txt
+    - pip install astroid==2.4.2 pylint==2.5.3 pylint_django==2.0.15
+
+pylint:
+  stage: lint
+  script:
+    - source venv/bin/activate
+    - cp portaldocandidato/settings_tests.py portaldocandidato/settings.py
+    - FILES=$(find . -path ./venv -prune -o -name "*.py" | grep -v "migration*")
+    - pylint --output-format=text ${FILES}
+
+coverage:
+  stage: coverage
+  only:
+    - master
+  script:
+    - source venv/bin/activate
+    - cp portaldocandidato/settings_tests.py portaldocandidato/settings.py
+    - pip install coverage
+    - coverage run manage.py test -v3
+    - coverage report -m
+  coverage: '/TOTAL.+ ([0-9]{1,3}%)/'
+
+
+django_check:
+  stage: validations
+  script:
+    - source venv/bin/activate
+    - cp portaldocandidato/settings_tests.py portaldocandidato/settings.py
+    - python manage.py check
+
+permissions:
+  stage: validations
+  script:
+    - source venv/bin/activate
+    - cp portaldocandidato/settings_tests.py portaldocandidato/settings.py
+    - python manage.py migrate
+    - python manage.py sync_permissions
+
+migrations:
+  stage: validations
+  script:
+    - source venv/bin/activate
+    - cp portaldocandidato/settings_tests.py portaldocandidato/settings.py
+    - result="$(python manage.py makemigrations --dry-run)"
+    - echo $result
+    - test "$result" == "No changes detected"
+
+merge:
+  stage: validations
+  script:
+    - git branch -D master||echo
+    - git checkout -b master origin/master
+    - git config --global user.email "ci@ifpb.edu.br"
+    - git config --global user.name "ci"
+    - echo $CI_BUILD_REF
+    - git merge --no-ff $CI_BUILD_REF
+
+safety:
+  stage: validations
+  allow_failure: true
+  script:
+    - safety check
+
+bandit:
+  stage: validations
+  allow_failure: true
+  script:
+    - bandit -r .
+
+prospector:
+  stage: validations
+  allow_failure: true
+  script:
+    - prospector
+
+testes_funcionais:
+  stage: tests
+  script:
+    - source venv/bin/activate
+    - cp portaldocandidato/settings_tests.py portaldocandidato/settings.py
+    - python manage.py test --parallel
+
+
+aceitacao:
+  stage: behave
+  services:
+    - selenium/standalone-chrome
+    - postgres:12.1
+  script:
+    - source venv/bin/activate
+    - cp portaldocandidato/settings_tests.py portaldocandidato/settings.py
+    - python manage.py behave_ifpb --host $(hostname -I | awk '{print $1}')
+
+
+production:
+  stage: production
+  when: manual
+  tags:
+    - sshrunner
+  environment:
+    name: production
+    url: https://estudante.ifpb.edu.br
+  only:
+    - master
+  script:
+    - cp build/Dockerfile .
+    - echo -e "machine ${GITLAB_HOST}\nlogin ${GITLAB_DEPLOY_USER}\npassword ${GITLAB_DEPLOY_TOKEN}" > .netrc
+    - docker build -t ifpb/portal:${CI_BUILD_ID} .
+    - docker tag ifpb/portal:${CI_BUILD_ID} docker.ifpb.edu.br:5000/ifpb/portal:${CI_BUILD_ID}
+    - docker tag ifpb/portal:${CI_BUILD_ID} docker.ifpb.edu.br:5000/ifpb/portal:latest
+    - docker login -u $DOCKER_USER -p $DOCKER_PASS docker.ifpb.edu.br:5000
+    - docker push docker.ifpb.edu.br:5000/ifpb/portal:${CI_BUILD_ID}
+    - docker push docker.ifpb.edu.br:5000/ifpb/portal:latest
+    - rm Dockerfile
+    - cp build/Dockerfile.worker Dockerfile
+    - docker build -t ifpb/portal_worker:${CI_BUILD_ID} .
+    - docker tag ifpb/portal_worker:${CI_BUILD_ID} docker.ifpb.edu.br:5000/ifpb/portal_worker:${CI_BUILD_ID}
+    - docker tag ifpb/portal_worker:${CI_BUILD_ID} docker.ifpb.edu.br:5000/ifpb/portal_worker:latest
+    - docker push docker.ifpb.edu.br:5000/ifpb/portal_worker:${CI_BUILD_ID}
+    - docker push docker.ifpb.edu.br:5000/ifpb/portal_worker:latest
+    - cd build/rancher
+    - rm web-variables.env
+    - echo DB_NAME=${DB_NAME} > web-variables.env
+    - echo DB_USER=${DB_USER} >> web-variables.env
+    - echo DB_PASS=${DB_PASS} >> web-variables.env
+    - echo DB_HOST=${DB_HOST} >> web-variables.env
+    - echo EMAIL_HOST_PASSWORD=${EMAIL_HOST_PASSWORD} >> web-variables.env
+    - echo EMAIL_HOST=${EMAIL_HOST} >> web-variables.env
+    - echo EMAIL_HOST_USER=${EMAIL_HOST_USER} >> web-variables.env
+    - echo EMAIL_HOST_PORT=${EMAIL_HOST_PORT} >> web-variables.env
+    - echo EMAIL_FROM=${EMAIL_FROM} >> web-variables.env
+    - echo RECAPTCHA_PRIVATE_KEY=${RECAPTCHA_PRIVATE_KEY} >> web-variables.env
+    - echo RECAPTCHA_PUBLIC_KEY=${RECAPTCHA_PUBLIC_KEY} >> web-variables.env
+    - echo SUAP_AUTH_TOKEN=${SUAP_AUTH_TOKEN} >> web-variables.env
+    - echo RAVEN_DSN=${RAVEN_DSN} >> web-variables.env
+    - echo BROKER_URL=${BROKER_URL} >> web-variables.env
+    - echo CELERY_RESULT_BACKEND=${CELERY_RESULT_BACKEND} >> web-variables.env
+    - echo EMAIL_BACKEND=${EMAIL_BACKEND} >> web-variables.env
+    - echo JAIMINHO_URL=${JAIMINHO_URL} >> web-variables.env
+    - echo JAIMINHO_TOKEN=${JAIMINHO_TOKEN} >> web-variables.env
+    - echo JAIMINHO_APP_ID=${JAIMINHO_APP_ID} >> web-variables.env
+    - echo MEMCACHED_LOCATION=${MEMCACHED_LOCATION} >> web-variables.env
+    - wget https://github.com/rancher/rancher-compose/releases/download/v${COMPOSE_VERSION}/rancher-compose-linux-amd64-v${COMPOSE_VERSION}.tar.gz -O - | tar -zx
+    - mv rancher-compose-v${COMPOSE_VERSION}/rancher-compose .
+    - rm -rf rancher-compose-v${COMPOSE_VERSION}
+    - ./rancher-compose --project-name portal --url http://rancher.ifpb.edu.br:8080/v1/ --access-key $API_KEY --secret-key $SECRET_KEY --verbose up -d --force-upgrade --pull --confirm-upgrade web worker
+    - cd ../../
+    - /usr/local/bin/sentry-release
+    - /usr/local/bin/deploybin /home/runner/.deploy-portal.ini
+
+review:
+  stage: review
+  script:
+    - export DOKKUPY_DEBUG=1
+    - export MEDIA_BUCKET_NAME=${CI_BUILD_REF_SLUG}-media
+    - export STATIC_BUCKET_NAME=${CI_BUILD_REF_SLUG}-static
+    - dokkupycli --project-name $CI_BUILD_REF_SLUG-portal --config build/review/dokkupy.json --address $DOKKU_ADDR deploy
+    - mc policy download s3/${STATIC_BUCKET_NAME}/
+  environment:
+    name: review/$CI_BUILD_REF_NAME
+    url: http://$CI_BUILD_REF_SLUG-portal.$REVIEW_DOMAIN
+    on_stop: stop_review
+  when: manual
+  only:
+    - branches
+  except:
+    - master
+  tags:
+    - sshrunner
+
+stop_review:
+  stage: review
+  script:
+    - export DOKKUPY_DEBUG=1
+    - dokkupycli --project-name $CI_BUILD_REF_SLUG-portal --config build/review/dokkupy.json --address $DOKKU_ADDR remove
+    - mc rm s3/${CI_BUILD_REF_SLUG}-media/ --force -r
+    - mc rm s3/${CI_BUILD_REF_SLUG}-static/ --force -r
+  when: manual
+  environment:
+    name: review/$CI_BUILD_REF_NAME
+    action: stop
+  tags:
+    - sshrunner
+  only:
+    - branches
+  except:
+    - master
+
+
+staging:
+  stage: staging
+  script:
+    - export DOKKUPY_DEBUG=1
+    - export MEDIA_BUCKET_NAME=staging-portal-media
+    - export STATIC_BUCKET_NAME=staging-portal-static
+    - dokkupycli --project-name staging-portal --config build/review/dokkupy.json --address $DOKKU_ADDR deploy
+    - mc policy download s3/staging-portal-static/
+  environment:
+    name: staging
+    url: http://staging-portal.$REVIEW_DOMAIN
+  tags:
+    - sshrunner
+  when: manual
+  only:
+    - master

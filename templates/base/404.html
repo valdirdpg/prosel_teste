@@ -1,0 +1,19 @@
+{% extends "base/index.html" %}
+{% load staticfiles %}
+
+{% block breadcrumb %}
+    <li class="active">Início</li>
+{% endblock %}
+
+{% block conteudo %}
+
+  <h2>Página não encontrada</h2>
+
+	<p>
+		O endereço <i class="false">{{ request.get_full_path }}</i> é inválido ou a página que você procura
+		não existe mais.
+	</p>
+
+	<p>Você pode ir para a <a href="/">página inicial</a> e tentar um outro endereço.</p>
+
+{% endblock %}

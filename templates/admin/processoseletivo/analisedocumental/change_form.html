@@ -1,0 +1,12 @@
+{% extends "admin/change_form.html" %}
+
+{% block object-tools-items %}
+    {% if inscricao_ampla_concomitante %}
+    <li>
+        <a href="{% url 'replicar_analise_documental' original.pk %}" class="link_span">
+            Criar Análise de Ampla Concorrência
+        </a>
+    </li>
+    {% endif %}
+    {{ block.super }}
+{% endblock %}

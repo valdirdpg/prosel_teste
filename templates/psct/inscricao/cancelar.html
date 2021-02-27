@@ -1,0 +1,11 @@
+{% extends "psct/base.html" %}
+
+{% block conteudo %}
+    <h2 class="titulo verde-escuro">Cancelamento de Inscrição</h2>
+    <h4>Deseja realmente cancelar sua Inscrição em {{ inscricao.edital }}?</h4>
+    <form method="post" action="">
+        {% csrf_token %}
+        <input type="submit" value="{% block nome_botao_submit %}Sim{% endblock %}" class="btn btn-primary pull-right">
+    </form>
+    <a href="{% url 'index_psct' %}" class="btn btn-warning pull-left">Não</a>
+{% endblock %}

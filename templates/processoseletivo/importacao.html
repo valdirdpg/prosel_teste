@@ -1,0 +1,13 @@
+{% extends "psct/base/confirmacao.html" %}
+
+{% block pre_form %}
+    {% if modalidades %}
+        <p><b>Detectamos que os arquivos inseridos possuem modalidades de cota diferente das presentes no sistema.
+        Para continuar você deve fazer o mapeamento entre essas modalidades encontradas e as que já possuímos:</b></p>
+        <p><b>Essa operação demora aproximadamente 15 minutos.
+            Você receberá um email quando ela for concluída. Deseja continuar?</b></p>
+    {% else %}
+        <p><b>Essa operação demora aproximadamente 15 minutos.
+            Você receberá um email quando ela for concluída. Deseja continuar?</b></p>
+    {% endif %}
+{% endblock %}

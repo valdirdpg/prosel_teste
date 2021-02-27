@@ -1,0 +1,46 @@
+{% load inscricao_tags %}
+<div class="table-responsive">
+  <table class="table table-striped table-condensed">
+    <tbody>
+    <tr>
+      <td class="col-xs-6 col-sm-4 col-md-3"><b>Campus:</b></td>
+      <td>{{ curso.campus }}</td>
+    </tr>
+    {% if curso.polo %}
+      <tr>
+        <td><b>Polo:</b></td>
+        <td>{{ curso.polo }}</td>
+      </tr>
+    {% endif %}
+    <tr>
+      <td><b>Tipo de formação:</b></td>
+      <td>{{ curso.get_formacao_display }}</td>
+    </tr>
+    <tr>
+      <td><b>Curso:</b></td>
+      <td>{{ curso.curso.nome }}</td>
+    </tr>
+    <tr>
+      <td><b>Turno:</b></td>
+      <td>{{ curso.get_turno_display }}</td>
+    </tr>
+    <tr>
+      <td><b>Concorre por cota:</b></td>
+      <td>
+        {% if not inscricao.modalidade_cota.is_ampla %}
+        Sim
+        {% else %}
+        Não
+        {% endif %}
+      </td>
+    </tr>
+    {% if not inscricao.modalidade_cota.is_ampla %}
+      {% modalidade_por_nivel_formacao inscricao.modalidade_cota inscricao.processo_inscricao as modalidade_formacao %}
+      <tr>
+        <td><b>Concorre às vagas:</b></td>
+          <td>{{ modalidade_formacao }} <p class="help-block text-justify">Toda/o candidata/o, mesmo cotista, concorre também pela Ampla Concorrência</p></td>
+      </tr>
+    {% endif %}
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,64 @@
+{% extends "base/baseboot.html" %}
+{% load bootstrap3 recaptcha2 %}
+
+{% block extrahead %}
+    {{ block.super }}
+    {% recaptcha_init %}
+{% endblock %}
+
+{% block breadcrumb %}
+    <li><a href="/">Início</a></li>
+    <li><i class="fa fa-angle-right text-muted"></i></li>
+    <li class="active">Login</li>
+{% endblock %}
+
+{% block main %}
+<div class="container">
+    <div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3">
+        <div class="messages">
+            {% for message in messages %}
+                <div {% if message.tags %}
+                    class="alert alert-dismissible
+                        {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}alert-danger
+                        {% else %}alert-{{ message.tags }}{% endif %}"
+                {% endif %}>
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+                        <i class="glyphicon glyphicon-remove-sign"></i>
+                    {% endif %}
+
+                    {% if message.level == DEFAULT_MESSAGE_LEVELS.WARNING %}
+                        <i class="glyphicon glyphicon-exclamation-sign"></i>
+                    {% endif %}
+
+                    {% if message.level == DEFAULT_MESSAGE_LEVELS.INFO %}
+                        <i class="glyphicon glyphicon-info-sign"></i>
+                    {% endif %}
+
+                    {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+                        <i class="glyphicon glyphicon-ok-sign"></i>
+                    {% endif %}
+
+                    <span>{{ message }}</span>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="login-panel panel panel-default">
+            <div class="panel-heading">
+                <h2 class="panel-title">Acesso para candidatos</h2>
+            </div>
+            <div class="panel-body">
+                <form action="" method="post" class="form">
+                    {% csrf_token %}
+                    {% bootstrap_form form %}
+                    {% buttons %}
+                        <button type="submit" class="btn btn-primary">Acessar</button>
+                    {% endbuttons %}
+                    <input type="hidden" name="next" value="{{ next|escape }}"/>
+                </form>
+            </div>
+        </div>
+        <a href="/admin">Acesso para administradores</a>
+    </div>
+</div>
+{% endblock %}

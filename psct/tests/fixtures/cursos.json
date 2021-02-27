@@ -1,0 +1,230 @@
+[ {
+    "model": "noticias.palavraschave",
+    "pk": 1,
+    "fields": {
+      "palavra": "PSCT",
+      "slug": "psct"
+    }
+  },
+  {
+    "model": "cursos.ies",
+    "pk": 1,
+    "fields": {
+      "codigo": 1,
+      "uf": "PB",
+      "nome": "Instituto Federal de Educa\u00e7\u00e3o, Ci\u00eancia e Tecnologia da Para\u00edba",
+      "sigla": "IFPB",
+      "ci": "4"
+    }
+  },
+  {
+    "model": "cursos.cidade",
+    "pk": 1,
+    "fields": {
+      "nome": "Araruna",
+      "uf": "PB"
+    }
+  },
+  {
+    "model": "cursos.cidade",
+    "pk": 2,
+    "fields": {
+      "nome": "Jo\u00e3o Pessoa",
+      "uf": "PB"
+    }
+  },
+  {
+    "model": "cursos.cidade",
+    "pk": 3,
+    "fields": {
+      "nome": "Sousa",
+      "uf": "PB"
+    }
+  },
+  {
+    "model": "cursos.campus",
+    "pk": 1,
+    "fields": {
+      "nome": "Jo\u00e3o Pessoa",
+      "sigla": "JP",
+      "ies": 1,
+      "cidade": 2,
+      "endereco": "Avenida Primeiro de Maio, n\u00ba 720, Jaguaribe - CEP: 58.015-435.",
+      "telefone": "(83) 3612-1270",
+      "url": "http://portal.ifba.edu.br/joaopessoa"
+    }
+  },
+  {
+    "model": "cursos.campus",
+    "pk": 2,
+    "fields": {
+      "nome": "Picu\u00ed",
+      "sigla": "PC",
+      "ies": 1,
+      "cidade": 3,
+      "endereco": "Acesso \u00e0 Rodovia PB 151, s/n\u00ba, Cenecista - CEP: 58.187-000.",
+      "telefone": "(83) 3371-2555",
+      "url": "http://ifpb.edu.br/picui"
+    }
+  },
+  {
+    "model": "cursos.campus",
+    "pk": 3,
+    "fields": {
+      "nome": "Sousa",
+      "sigla": "SS",
+      "ies": 1,
+      "cidade": 3,
+      "endereco": "Rua Presidente Tancredo Neves, s/n\u00ba,  Jardim Sorril\u00e2ndia - CEP: 58.800-970 (unidade sede).",
+      "telefone": "(83) 3522-2727",
+      "url": "http://ifpb.edu.br/sousa"
+    }
+  },
+  {
+    "model": "cursos.curso",
+    "pk": 1,
+    "fields": {
+      "nome": "F\u00edsica",
+      "perfil_unificado": "Perfil.",
+      "nivel_formacao": "GRADUACAO"
+    }
+  },
+  {
+    "model": "cursos.curso",
+    "pk": 2,
+    "fields": {
+      "nome": "Meio Ambiente",
+      "perfil_unificado": "Perfil.",
+      "nivel_formacao": "TECNICO"
+    }
+  },
+  {
+    "model": "cursos.curso",
+    "pk": 3,
+    "fields": {
+      "nome": "Engenharia El\u00e9trica",
+      "perfil_unificado": "Perfil.",
+      "nivel_formacao": "POSGRADUACAO"
+    }
+  },
+  {
+    "model": "cursos.cursonocampus",
+    "pk": 1,
+    "fields": {
+      "campus": 1,
+      "curso": 2,
+      "turno": "NOTURNO",
+      "formacao": "SUBSEQUENTE",
+      "modalidade": "PRESENCIAL",
+      "perfil": null,
+      "codigo": 0,
+      "codigo_suap": 167,
+      "inicio": "2016-08-15",
+      "termino": "2017-12-22",
+      "conceito": "0",
+      "cpc": "0",
+      "enade": "0",
+      "ch_minima": 1000,
+      "ch_total": 1288,
+      "ch_estagio": 288,
+      "ch_tcc": 1,
+      "ch_rel_estagio": 1,
+      "ch_pratica_docente": 0,
+      "ch_atividades_comp": 0,
+      "periodo_min_int": 3,
+      "publicado": false,
+      "disciplinas_atualizacao": "2016-08-08T15:15:32.106",
+      "forma_acesso": [1],
+      "palavras_chave": [1]
+    }
+  },
+  {
+    "model": "cursos.cursonocampus",
+    "pk": 2,
+    "fields": {
+      "campus": 2,
+      "curso": 2,
+      "turno": "INTEGRAL",
+      "formacao": "TECNOLOGICO",
+      "modalidade": "PRESENCIAL",
+      "perfil": "Teste.",
+      "codigo": 95104,
+      "codigo_suap": 201,
+      "inicio": "2006-04-24",
+      "termino": null,
+      "conceito": "4",
+      "cpc": "3",
+      "enade": "4",
+      "ch_minima": 1,
+      "ch_total": 2800,
+      "ch_estagio": null,
+      "ch_tcc": 66,
+      "ch_rel_estagio": null,
+      "ch_pratica_docente": null,
+      "ch_atividades_comp": 1,
+      "periodo_min_int": 6,
+      "publicado": true,
+      "disciplinas_atualizacao": "2016-09-21T14:42:18.091",
+      "forma_acesso": [
+        1
+      ],
+      "palavras_chave": [
+        1
+      ]
+    }
+  },
+  {
+    "model": "cursos.cursonocampus",
+    "pk": 3,
+    "fields": {
+      "campus": 3,
+      "curso": 3,
+      "turno": "NOTURNO",
+      "formacao": "ESPECIALIZACAO",
+      "modalidade": "PRESENCIAL",
+      "perfil": null,
+      "codigo": 99999,
+      "codigo_suap": null,
+      "inicio": null,
+      "termino": null,
+      "conceito": "",
+      "cpc": "",
+      "enade": "",
+      "ch_minima": null,
+      "ch_total": 420,
+      "ch_estagio": null,
+      "ch_tcc": null,
+      "ch_rel_estagio": null,
+      "ch_pratica_docente": null,
+      "ch_atividades_comp": null,
+      "periodo_min_int": null,
+      "publicado": false,
+      "disciplinas_atualizacao": null,
+      "forma_acesso": [],
+      "palavras_chave": [
+        1
+      ]
+    }
+  },
+  {
+    "model": "cursos.cursoselecao",
+    "pk": 1,
+    "fields": {
+      "polo": null
+    }
+  },
+  {
+    "model": "cursos.cursoselecao",
+    "pk": 2,
+    "fields": {
+      "polo": null
+    }
+  },
+  {
+    "model": "cursos.cursoselecao",
+    "pk": 3,
+    "fields": {
+      "polo": null
+    }
+  }
+]

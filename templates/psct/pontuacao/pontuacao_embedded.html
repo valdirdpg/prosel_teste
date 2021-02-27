@@ -1,0 +1,28 @@
+{% load pontuacao_tags %}
+<div>
+
+    <div class="table-responsive">
+        <table class="table table-striped table-condensed">
+            <tbody>
+            <tr>
+                <td>{{ pontuacao.user_profile_name }}:</td>
+                <td>{{ pontuacao.user.get_full_name }} ({{ pontuacao.user }})</td>
+            </tr>
+            <tr>
+                <td>Cadastrado em:</td>
+                <td>{{ pontuacao.data_cadastro }} </td>
+            </tr>
+            <tr>
+                <td>Atualizado em:</td>
+                <td>{{ pontuacao.data_atualizacao }} </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    {% include "psct/pontuacao/pontuacao_detail.html" %}
+
+    <p></p>
+
+    {% include "psct/pontuacao/notas_embedded.html" %}
+</div>

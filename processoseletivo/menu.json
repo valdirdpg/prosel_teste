@@ -1,0 +1,78 @@
+[
+    {
+        "path": "Área Restrita",
+        "id": "area_admin",
+        "url": "",
+        "css": "dourado",
+        "order": 1,
+        "groups_required": [
+            "Administradores de Chamadas por Campi",
+            "Administradores Sistêmicos de Chamadas",
+            "Médicos",
+            "Operador CAEST"
+        ]
+    },
+    {
+        "path": "Área Restrita::Pré-Matrícula",
+        "id": "prematricula_admin",
+        "url": "",
+        "order": 1,
+        "groups_required": [
+            "Administradores de Chamadas por Campi",
+            "Administradores Sistêmicos de Chamadas",
+            "Médicos",
+            "Operador CAEST"
+        ]
+    },
+    {
+        "path": "Área Restrita::Pré-Matrícula::Cadastro Operador CAEST",
+        "url": "caest_changelist",
+        "order": 1,
+        "groups_required": [
+            "Administradores de Chamadas por Campi",
+            "Administradores Sistêmicos de Chamadas"
+        ]
+    },
+    {
+        "path": "Área Restrita::Pré-Matrícula::Cadastro de Médicos",
+        "url": "medico_changelist",
+        "order": 2,
+        "groups_required": [
+            "Administradores de Chamadas por Campi",
+            "Administradores Sistêmicos de Chamadas"
+        ]
+    },
+    {
+        "path": "Área Restrita::Pré-Matrícula::Avaliação Médica",
+        "url": "avaliacao_medica_changelist",
+        "order": 3,
+        "groups_required": [
+            "Administradores de Chamadas por Campi",
+            "Administradores Sistêmicos de Chamadas",
+            "Médicos"
+        ]
+    },
+    {
+        "path": "Área Restrita::Pré-Matrícula::Avaliação Socioeconômica",
+        "url": "avaliacao_socioeconomica_changelist",
+        "order": 4,
+        "groups_required": [
+            "Administradores de Chamadas por Campi",
+            "Administradores Sistêmicos de Chamadas",
+            "Operador CAEST"
+        ]
+    },
+    {
+        "path": "Área Restrita::Sair",
+        "url": "/logout/",
+        "url_class": "red",
+        "icone": "fa-sign-out red",
+        "order": 5,
+        "groups_required": [
+            "Administradores de Chamadas por Campi",
+            "Administradores Sistêmicos de Chamadas",
+            "Médicos",
+            "Operador CAEST"
+        ]
+    }
+]

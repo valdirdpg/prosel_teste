@@ -1,0 +1,329 @@
+{% extends "psct/base.html" %}
+{% load inscricao_tags %}
+
+{% block breadcrumb %}
+    <li><a href="/">Início</a></li>
+    <li><i class="fa fa-angle-right text-muted"></i></li>
+    <li><a href="{% url 'index_psct' %}">Minhas Inscrições</a></li>
+    <li><i class="fa fa-angle-right text-muted"></i></li>
+    <li class="active">Inscrição - Resumo</li>
+{% endblock %}
+
+
+{% block conteudo %}
+
+    {% if inscricao.em_periodo_inscricao %}
+    <div class="alert alert-info alert-dismissible" role="alert">
+        <button type="button" class="close small" data-dismiss="alert" aria-label="close">&times;</button>
+        <span>
+            <p class="text-justify">Prezado(a) Candidato(a),</p>
+
+            <p class="text-justify">1. Certifique-se que você se inscreveu no curso da forma correta: </p>
+			<p class="text-justify">   INTEGRADA para quem concluiu o ensino fundamental e pretende cursar o ensino médio e
+									   a formação profissional (técnica) ao mesmo tempo no IFBA; </p>
+			<p class="text-justify">						   SUBSEQUENTE para quem já concluiu o ensino médio e pretende cursar no IFBA somente
+                a educação profissional de nível técnico; </p>
+									   <p class="text-justify">CONCOMITANTE para quem irá cursar o ensino médio em outra instituição de ensino e
+									   pretende cursar a educação profissional de nível técnico no IFBA.</p>
+
+            <p class="text-justify">2. Certifique-se que você anexou o documento de Histórico Escolar ou um dos documentos
+                                       equivalentes permitidos pelo edital. <br><br>
+                                       Revise abaixo o resumo da sua inscrição e, caso encontre algum erro, acesse novamente a
+                                       Área do Candidato para corrigir. As alterações poderão ser feitas durante todo o período de
+                                       inscrição do edital..</p>
+
+           <!-- <p class="text-justify">Caso você encontre algum erro, poderá corrigi-lo na Área do Candidato, disponível
+                no menu. As alterações poderão ser feitas durante todo o período de inscrição do edital.</p>-->
+        </span>
+    </div>
+    {% endif %}
+
+    <h2 class="titulo verde-escuro">Resumo da Inscrição - {{ inscricao.edital }}</h2>
+    {% if inscricao.is_cancelada %}
+        <span class="status status-pendente">Atenção! A inscrição está cancelada.</span>
+    {% endif %}
+
+    {% if pode_emitir_comprovante %}
+    <div class="clearfix">
+        <a id="imprimir_comprovante_{{ inscricao.pk }}"
+           href="{% url 'pdf_comprovante_psct' inscricao.pk %}" class="pull-right btn btn-default btn-sm">
+            <i class="fa fa-print fa-fw"></i> Imprimir Comprovante de Inscrição</a>
+    </div>
+    {% endif %}
+
+    {% if object.pontuacao %}
+        <h3 class="verde-escuro">Pontuação da Inscrição</h3>
+        <div class="table-responsive">
+            <table class="table table-striped table-condensed">
+                <tbody>
+                <tr>
+                    <td class="col-xs-6"><b>Pontuação Total:</b></td>
+                    <td>{{ object.pontuacao.valor }}</td>
+                </tr>
+                <tr>
+                    <td><b>Pontuação em
+                        {% if object.is_selecao_graduacao %}Linguagens e suas Tecnologias
+                        {% else %}Português{% endif %}:</b>
+                    </td>
+                    <td>{{ object.pontuacao.valor_pt }}</td>
+                </tr>
+                <tr>
+                    <td><b>Pontuação em Matemática
+                        {% if object.is_selecao_graduacao %} e suas Tecnologias{% endif %}:</b>
+                    </td>
+                    <td>{{ object.pontuacao.valor_mt }}</td>
+                </tr>
+                {% if object.is_integrado %}
+                    <tr>
+                        <td><b>Pontuação em História:</b></td>
+                        <td>{{ object.pontuacao.get_pontuacao_historia_display }}</td>
+                    </tr>
+                    <tr>
+                        <td><b>Pontuação em Geografia:</b></td>
+                        <td>{{ object.pontuacao.get_pontuacao_geografia_display }}</td>
+                    </tr>
+                {% endif %}
+                {% if object.is_selecao_graduacao %}
+                    <tr>
+                        <td><b>Pontuação em Redação:</b></td>
+                        <td>{{ object.pontuacao.valor_redacao }}</td>
+                    </tr>
+                {% endif %}
+                </tbody>
+            </table>
+        </div>
+    {% endif %}
+
+    <h3 class="verde-escuro">Dados Gerais</h3>
+    <div class="table-responsive">
+        <table class="table table-striped table-condensed">
+            <tbody>
+            <tr>
+                <td class="col-xs-6 col-sm-4 col-md-3"><b>Candidato:</b></td>
+                <td>{{ object.candidato.nome }}</td>
+            </tr>
+            <tr>
+                <td><b>CPF:</b></td>
+                <td>{{ object.candidato.cpf }}</td>
+            </tr>
+            <tr>
+                <td><b>E-mail:</b></td>
+                <td>{{ object.candidato.email }}</td>
+            </tr>
+            <tr>
+                <td><b>Data de Nascimento:</b></td>
+                <td>{{ object.candidato.nascimento.date }}</td>
+            </tr>
+            <tr>
+                <td><b>Nome da Mãe ou do(a) Responsável:</b></td>
+                <td>{{ object.candidato.nome_responsavel }}</td>
+            </tr>
+            <tr>
+                <td><b>Sexo:</b></td>
+                <td>{{ object.candidato.get_sexo_display }}</td>
+            </tr>
+            <tr>
+                <td><b>Logradouro:</b></td>
+                <td>{{ object.candidato.logradouro }}</td>
+            </tr>
+            <tr>
+                <td><b>Número:</b></td>
+                <td>{{ object.candidato.numero_endereco }}</td>
+            </tr>
+            <tr>
+                <td><b>Complemento:</b></td>
+                <td>{{ object.candidato.complemento_endereco|default:"-" }}</td>
+            </tr>
+            <tr>
+                <td><b>Município:</b></td>
+                <td>{{ object.candidato.municipio }}</td>
+            </tr>
+            <tr>
+                <td><b>Bairro:</b></td>
+                <td>{{ object.candidato.bairro }}</td>
+            </tr>
+            <tr>
+                <td><b>UF:</b></td>
+                <td>{{ object.candidato.uf }}</td>
+            </tr>
+            <tr>
+                <td><b>CEP:</b></td>
+                <td>{{ object.candidato.cep }}</td>
+            </tr>
+            <tr>
+                <td><b>Telefone:</b></td>
+                <td>{{ object.candidato.telefone }}</td>
+            </tr>
+            <tr>
+                <td><b>Nacionalidade:</b></td>
+                <td>{{ object.candidato.nacionalidade }}</td>
+            </tr>
+			
+            <tr>
+                <td><b>Município de nascimento:</b></td>
+                <td>{{ object.candidato.naturalidade }}</td>
+            </tr>
+            <tr>
+                <td><b>Estado de nascimento:</b></td>
+                <td>{{ object.candidato.naturalidade_uf }}</td>
+            </tr>
+			
+            </tbody>
+        </table>
+    </div>
+
+    {% title_dados_vagas inscricao as title_dados_vagas %}
+    <h3 class="verde-escuro">{{ title_dados_vagas }}</h3>
+    {% include 'psct/inscricao/dados_vagas.html' with curso=object.curso inscricao=object %}
+    {% if object.edital.processo_inscricao.possui_segunda_opcao %}
+        {% if not object.curso_segunda_opcao %}
+            * Candidato não selecionou segunda opção de curso.
+        {% else %}
+            <h3 class="verde-escuro">Dados da vaga (2ª opção)</h3>
+            {% include 'psct/inscricao/dados_vagas.html' with curso=object.curso_segunda_opcao inscricao=object %}
+        {% endif %}
+    {% endif %}
+
+    {% if object.processo_inscricao.is_curso_tecnico %}
+        {% if inscricao.pontuacao.ensino_regular %}
+            {% for ano in inscricao.get_anos_requeridos %}
+                <h3 class="verde-escuro">Notas Informadas do {{ ano }}º ano</h3>
+                <div class="table-responsive">
+                    <table class="table table-striped table-condensed">
+                        <thead>
+                        <tr>
+                            <th class="col-xs-6">Disciplina</th>
+                            <th>Valor</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% get_notas_por_ano object ano as nota %}
+
+                        <tr>
+                            <td>Português</td>
+                            <td>{{ nota.portugues }}</td>
+                        </tr>
+                        <tr>
+                            <td>Matemática</td>
+                            <td>{{ nota.matematica }}</td>
+                        </tr>
+
+                        {% if inscricao.is_integrado %}
+                            <tr>
+                                <td>História</td>
+                                <td>{{ nota.historia }}</td>
+                            </tr>
+                            <tr>
+                                <td>Geografia</td>
+                                <td>{{ nota.geografia }}</td>
+                            </tr>
+                        {% endif %}
+
+                        </tbody>
+                    </table>
+                </div>
+            {% endfor %}
+        {% else %}
+            <h3 class="verde-escuro">Notas Informadas</h3>
+                <div class="table-responsive">
+                    <table class="table table-striped table-condensed">
+                        <thead>
+                        <tr>
+                            <th class="col-xs-6">Disciplina</th>
+                            <th>Valor</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        <tr>
+                            <td>Português</td>
+                            <td>{{ inscricao.pontuacao.notas.first.portugues }}</td>
+                        </tr>
+                        <tr>
+                            <td>Matemática</td>
+                            <td>{{ inscricao.pontuacao.notas.first.matematica }}</td>
+                        </tr>
+                        {% if inscricao.is_integrado %}
+                            <tr>
+                                <td>História</td>
+                                <td>{{ inscricao.pontuacao.notas.first.historia }}</td>
+                            </tr>
+                            <tr>
+                                <td>Geografia</td>
+                                <td>{{ inscricao.pontuacao.notas.first.geografia }}</td>
+                            </tr>
+                        {% endif %}
+
+                        </tbody>
+                    </table>
+                </div>
+        {% endif %}
+    {% elif object.pontuacao and object.is_selecao_graduacao %}
+        {% for nota_anual in inscricao.pontuacao.notas.all|dictsort:"ano" %}
+            <h3 class="verde-escuro">Notas do ENEM na edição do ano {{ nota_anual.ano }}</h3>
+            <div class="table-responsive">
+                <table class="table table-striped table-condensed">
+                    <thead>
+                        <tr>
+                            <th class="col-xs-6">Área temática</th>
+                            <th>Valor</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Redação</td>
+                            <td>{{ nota_anual.redacao }}</td>
+                        </tr>
+                        <tr>
+                            <td>Linguagens, Códigos e suas Tecnologias</td>
+                            <td>{{ nota_anual.portugues }}</td>
+                        </tr>
+                        <tr>
+                            <td>Matemática e suas Tecnologias</td>
+                            <td>{{ nota_anual.matematica }}</td>
+                        </tr>
+                        <tr>
+                            <td>Ciências da Natureza e suas Tecnologias</td>
+                            <td>{{ nota_anual.ciencias_natureza }}</td>
+                        </tr>
+                        <tr>
+                            <td>Ciências Humanas e suas Tecnologias</td>
+                            <td>{{ nota_anual.ciencias_humanas }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    {% if object.processo_inscricao.is_curso_tecnico %}
+        <h3 class="verde-escuro">Documento de Histórico Escolar Anexados</h3>
+        <div class="table-responsive">
+            <table class="table table-striped table-condensed">
+                <thead>
+                <tr>
+                    <th class="col-xs-6">Nome</th>
+                    <th>Visualizar</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for comprovante in object.comprovantes.all %}
+                    <tr>
+                        <td>{{ comprovante.nome }}</td>
+                        <td><a href="{{ comprovante.arquivo.url }}" target="framename">Clique Aqui</a></td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% endif %}
+
+    {% if pode_emitir_comprovante %}
+    <div class="clearfix">
+        <a id="imprimir_comprovante_{{ inscricao.pk }}"
+           href="{% url 'pdf_comprovante_psct' inscricao.pk %}" class="pull-right btn btn-default btn-sm">
+            <i class="fa fa-print fa-fw"></i> Imprimir Comprovante de Inscrição</a>
+    </div>
+    {% endif %}
+
+{% endblock %}

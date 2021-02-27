@@ -1,0 +1,17 @@
+{% if form.errors or form.non_field_errors %}
+    <div class="alert alert-danger alert-dismissible" role="alert">
+        <button type="button" class="close small" data-dismiss="alert" aria-label="close">&times;</button>
+        <span>
+            {% if form.non_field_errors %}
+                <i class="glyphicon glyphicon-exclamation-sign"></i>
+                <ul>
+                {% for errors in form.non_field_errors %}
+                    <li>{{ errors }}</li>
+                {% endfor %}
+                </ul>
+            {% elif form.errors %}
+                <i class="glyphicon glyphicon-exclamation-sign"></i> Por favor, corrija os erros abaixo para continuar.
+            {% endif %}
+        </span>
+    </div>
+{% endif %}

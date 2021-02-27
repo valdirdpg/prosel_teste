@@ -1,0 +1,232 @@
+{% extends "base/baseboot.html" %}
+
+{% load django_google_charts %}
+{% load humanize base_tags %}
+
+{% block extrahead %}
+    {{ block.super }}
+    {% django_google_chart_js %}
+    <style>
+        .progress {
+            margin-bottom: 10px;
+        }
+    </style>
+{% endblock %}
+
+{% block breadcrumb %}
+    <li><a href="/">Início</a></li>
+    <li><i class="fa fa-angle-right text-muted"></i></li>
+    <li class="active">Dashboard</li>
+{% endblock %}
+
+{% block menu %}{% endblock %}
+
+{% block conteudo %}
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="btn-group pull-right btn-group-xs" role="group" aria-label="...">
+                <div class="btn-group btn-group-xs" role="group">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+                            aria-haspopup="true"
+                            aria-expanded="false">
+                        <i class="fa fa-filter fa-fw"></i>
+                        {% if edital %}
+                            <small class="text-muted">Edital</small> {{ edital.numero }}/{{ edital.ano }}
+                        {% else %}
+                            Todos os editais
+                        {% endif %}
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-right">
+                        <li><a href="{% url 'dashboard-psct' %}?{% url_replace request 'edital' '' %}">Todos os
+                            editais</a></li>
+                        {% for edital in editais %}
+                            <li>
+                                <a href="{% url 'dashboard-psct' %}?{% url_replace request 'edital' edital.id %}">{{ edital.numero }}/{{ edital.ano }}
+                                    <small class="text-muted">{{ edital.edicao }}</small>
+                                </a></li>
+                        {% empty %}
+                            <li><a href="#">Nenhum edital cadastrado</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="btn-group btn-group-xs" role="group">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+                            aria-haspopup="true"
+                            aria-expanded="false">
+                        <i class="fa fa-filter"></i>
+                        {% if campus %}
+                            <small class="text-muted">Campus</small> {{ campus }}
+                        {% else %}
+                            Todos os Campi
+                        {% endif %}
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-right">
+                        <li><a href="{% url 'dashboard-psct' %}?{% url_replace request 'campus' '' 'curso' %}">Todos os
+                            campi</a></li>
+                        {% for campus in campi %}
+                            <li>
+                                <a href="{% url 'dashboard-psct' %}?{% url_replace request 'campus' campus.id 'curso' %}">{{ campus }}</a>
+                            </li>
+                        {% empty %}
+                            <li><a href="#">Nenhum campus cadastrado</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="btn-group btn-group-xs" role="group">
+                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false" {% if not campus %}disabled {% endif %}>
+                        <i class="fa fa-filter"></i>
+                        {% if curso %}
+                            <small class="text-muted">Curso</small> {{ curso.curso.nome }}
+                            <small class="text-muted">{{ curso.formacao|lower|capfirst }}
+                                - {{ curso.turno|lower|capfirst }}
+                                - {{ curso.modalidade|lower|capfirst }}</small>
+                        {% else %}
+                            Todos os Cursos
+                        {% endif %}
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-right">
+                        {% if cursos %}
+                            <li><a href="{% url 'dashboard-psct' %}?{% url_replace request 'curso' '' %}">Todos os
+                                cursos</a>
+                            </li>
+                        {% endif %}
+                        {% for item in cursos %}
+                            <li><a href="{% url 'dashboard-psct' %}?{% url_replace request 'curso' item.id %}">
+                                {{ item.curso.nome }}
+                                <small class="text-muted">{{ item.formacao|lower|capfirst }}
+                                    - {{ item.turno|lower|capfirst }} - {{ item.modalidade|lower|capfirst }}</small>
+                            </a>
+                            </li>
+                        {% empty %}
+                            <li><a href="#">Nenhum curso cadastrado</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="btn-group btn-group-xs" role="group">
+                    <a href="{% url 'dashboard-psct' %}" class="btn btn-default"
+                       {% if not request.GET %}disabled {% endif %}>
+                        <i class="fa fa-eraser"></i> Limpar Filtros
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <h5 class="h5"><i class="fa fa-sliders fa-fw"></i> Indicadores das Inscrições</h5>
+
+    <div class="row text-center">
+        <div class="col-xs-4 col-md-2">
+            <small class="text-muted"><i class="fa fa-pencil fa-fw text-danger"></i> Inscrições</small>
+            <h2>{{ total_inscricoes_concluidas|intcomma }}</h2>
+        </div>
+        <div class="col-xs-4 col-md-2">
+            <small class="text-muted"><i class="fa fa-search fa-fw text-warning"></i> Analisadas
+                ({% widthratio total_inscricoes_analisadas total_inscricoes_concluidas 100 %}%)
+            </small>
+            <h2>{{ total_inscricoes_analisadas|intcomma }}</h2>
+        </div>
+        <div class="col-xs-4 col-md-2">
+            <small class="text-muted"><i class="fa fa-thumbs-o-up fa-fw text-success"></i> Deferidas
+                ({% widthratio total_inscricoes_deferidas total_inscricoes_analisadas 100 %}%)
+            </small>
+            <h2>{{ total_inscricoes_deferidas|intcomma }}</h2>
+        </div>
+        <div class="col-xs-4 col-md-2">
+            <small class="text-muted"><i class="fa fa-times fa-fw text-danger"></i> Indeferidas
+                ({% widthratio total_inscricoes_indeferidas total_inscricoes_analisadas 100 %}%)
+            </small>
+            <h2>{{ total_inscricoes_indeferidas|intcomma }}</h2>
+        </div>
+        <div class="col-xs-4 col-md-2">
+            <small class="text-muted"><i class="fa fa-check fa-fw text-info"></i> Homologações</small>
+            <h2>{{ total_inscricoes_homologadas|intcomma }}</h2>
+        </div>
+        <div class="col-xs-4 col-md-2">
+            <small class="text-muted"><i class="fa fa-question fa-fw text-info"></i> Não distribuídas</small>
+            <h2>{{ total_inscricoes_sem_avaliadores|intcomma }}</h2>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
+            <h5><i class="fa fa-flag-checkered fa-fw"></i> Percentual de Conclusão</h5>
+            <div class="progress">
+                <div class="progress-bar" role="progressbar" aria-valuenow="{{ conclusao_analise }}" aria-valuemin="0"
+                     aria-valuemax="100" style="width: {{ conclusao_analise }}%;">
+                    {{ conclusao_analise }}%
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
+            <h5><i class="fa fa-search fa-fw"></i> Total de Avaliações Diárias</h5>
+            {% if chart_avaliacoes_homologacoes_diarias.get_data.0.0 %}
+                {{ chart_avaliacoes_homologacoes_diarias }}
+            {% else %}
+                <p class="text-info"><i class="fa fa-warning"></i> <em>Nenhuma avaliação encontrada.</em></p>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-4">
+            <h5><i class="fa fa-pencil fa-fw"></i>Aproveitamento das Inscrições</h5>
+            {% if chart_aproveitamento_inscricoes.get_data.0.1 and chart_aproveitamento_inscricoes.get_data.1.1 %}
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        {{ chart_aproveitamento_inscricoes }}
+                    </div>
+                </div>
+            {% else %}
+                <p class="text-info"><i class="fa fa-warning"></i> <em>Nenhuma inscrição encontrada.</em></p>
+            {% endif %}
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-4">
+            <h5><i class="fa fa-thumbs-up fa-fw"></i> Avaliadores que mais contribuem</h5>
+            <table class="table">
+                {% for item, valor in melhores_avaliadores %}
+                    <tr>
+                        <td>{{ item }} <span class="pull-right"
+                                             title="{{ valor|intcomma }} Avaliações Realizadas">{{ valor|intcomma }}</span>
+                        </td>
+                    </tr>
+                {% empty %}
+                    <tr class="text-info">
+                        <td><i class="fa fa-warning"></i> <em>Nenhuma avaliação encontrada.</em></td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-4">
+            <h5><i class="fa fa-thumbs-down fa-fw"></i> Avaliadores com pendências</h5>
+            <table class="table">
+                {% for pessoa, valor, data  in piores_avaliadores %}
+                    <tr>
+                        <td>{{ pessoa }}</td>
+                        <td><span class="pull-right" data-toggle="tooltip" data-placement="auto"
+                                  title="{{ valor|intcomma }} Pendência(s)">{{ valor|intcomma }}</span></td>
+                        <td><span class="pull-right" data-toggle="tooltip" data-placement="auto"
+                                  title="Pendência mais antiga: {{ data|date:'d/M \à\s H:i' }}">{{ data|naturaltime }}</span>
+                        </td>
+                    </tr>
+                {% empty %}
+                    <tr class="text-info">
+                        <td><i class="fa fa-smile-o"></i> <em>Nenhuma avaliação pendente.</em></td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function () {
+            $('svg').each(function () {
+                $(this).attr('width', '100%');
+            });
+        });
+    </script>
+{% endblock %}

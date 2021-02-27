@@ -1,0 +1,189 @@
+{% extends "base/baseboot.html" %}
+{% load staticfiles base_tags cropping %}
+
+{% block breadcrumb %}
+    <li class="active">Início</li>
+{% endblock %}
+
+{% block extrahead %}
+    <style>
+        .img-responsive,
+        .thumbnail > img,
+        .thumbnail a > img,
+        .carousel-inner > .item > img,
+        .carousel-inner > .item > a > img {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+        .carousel-caption {
+            background-color: rgba(0,0,0,.5);
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 10;
+            padding: 10px;
+            color: #fff;
+            text-align: left;
+        }
+        .carousel-caption p {
+            padding: 0px;
+            margin: 0px;
+        }
+        .carousel-indicators {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            width: 100%;
+            z-index: 15;
+            margin: 0;
+            padding: 10px;
+            padding-bottom: 10px;
+            text-align: right;
+        }
+        .carousel-control {
+            width: 10%;
+        }
+        .carousel-control.left,
+        .carousel-control.right {
+            background-image: none;
+        }
+        .carousel-inner img {
+            max-height: 300px;
+            min-height: 300px;
+        }
+        .carousel-inner {
+            margin-bottom: 20px;
+        }
+    </style>
+{% endblock %}
+
+{% block conteudo %}
+
+    <div class="row">
+        <div class="col-sm-12" style="margin-bottom: 10px">
+
+            <svg xmlns="http://www.w3.org/2000/svg"
+                 xmlns:xlink="http://www.w3.org/1999/xlink"
+                 viewBox="0 0  795 151"
+                 preserveAspectRatio="xMidYMid meet" >
+                <image x="0" y="0" width="795" height="151" id="banner-manual-tutorial"
+                       preserveAspectRatio="xMidYMid meet" xlink:href="{% static 'img/banner-guia-de-cursos.jpg' %}"
+                       stroke="black" style="stroke-width: 1px;" fill="khaki"/>
+                    <a xmlns="http://www.w3.org/2000/svg" id="banner-catalogo-video"
+                       xlink:title="Catálogo de cursos em vídeo"
+                       xlink:href="{{ config.PORTAL_IFPB }}/pre/catalogo-em-video"
+                       xmlns:xlink="http://www.w3.org/1999/xlink" target="_blank">
+                        <rect x="0" y="0" width="100%" height="100%" fill-opacity="0"/>
+                    </a>
+                    <a xmlns="http://www.w3.org/2000/svg" id="banner-guia" xlink:title="Guia de cursos"
+                       xlink:href="{{ config.PORTAL_IFPB }}/pre/guia-de-cursos"
+                       xmlns:xlink="http://www.w3.org/1999/xlink" target="_blank">
+                        <rect x="0" y="0" width="50%" height="100%" fill-opacity="0"/>
+                    </a>
+            </svg>
+        </div>
+    </div>
+
+    {% block area_candidato %}{% endblock %}
+    <h2 class="titulo">Destaques</h2>
+
+    {% if destaques or ultimas %}
+        <div class="row">
+            <div class="col-xs-12 col-sm-8">
+                {% if destaques %}
+                    <div id="carousel-noticias" class="carousel slide" data-ride="carousel">
+                        <!-- Indicators -->
+                        <ol class="carousel-indicators">
+                            {% for noticia in destaques %}
+                                <li data-target="carousel-noticias" data-slide-to="{{ noticia.pk }}" {% if forloop.first %} class="active" {% endif %}></li>
+                            {% endfor %}
+                        </ol>
+                        <div class="carousel-inner" role="listbox">
+                            {% for noticia in destaques %}
+                                <div class="item {% if forloop.first %}active{% endif %} img-thumbnail">
+                                    <a href="{{ noticia.get_absolute_url }}"><img src="{% cropped_thumbnail noticia "cropping" %}" alt="{{ noticia.texto_alternativo }}"></a>
+                                    <div class="container">
+                                        <div class="carousel-caption">
+                                            <p>{{ noticia.titulo|truncatechars:70 }}</p>
+                                        </div> 
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                        <a class="left carousel-control" href="#carousel-noticias" role="button" data-slide="prev">
+                            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                            <span class="sr-only">Anterior</span>
+                        </a>
+                        <a class="right carousel-control" href="#carousel-noticias" role="button" data-slide="next">
+                            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                            <span class="sr-only">Próximo</span>
+                        </a>
+                    </div>
+                {% else %}
+                    <div class="col-xs-6 col-sm-4">
+                        <div class="alert alert-dismissible alert-info">Não há notícias em destaque.</div>
+                    </div>
+                {% endif %}
+            </div>
+
+            {% if ultimas %}
+                {% for noticia in ultimas %}
+                    <div class="col-xs-12 col-sm-4 noticias-lista-simples">
+                        <p class="chapeu">{{ noticia.assunto }}</p>
+                        <p><a href="{{noticia.get_absolute_url}}">{{ noticia.titulo|truncatechars:80 }}</a></p>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+
+        <div class="row">
+            <div class="col-xs-4" style="margin-bottom: 10px">
+                <a href="{% url 'cursos' %}?nivel_formacao=TECNICO">
+                            <img class="media-object img-rounded img-responsive"
+                                 src="{% static 'img/btn_curso_tecnico.png' %}"
+                                 alt="Link para os cursos técnicos"></a>
+            </div>
+            <div class="col-xs-4" style="margin-bottom: 10px">
+                <a href="{% url 'cursos' %}?nivel_formacao=GRADUACAO">
+                            <img class="media-object img-rounded img-responsive"
+                                 src="{% static 'img/btn_curso_superior.png' %}"
+                                 alt="Link para os cursos superiores"></a>
+            </div>
+            <div class="col-xs-4" style="margin-bottom: 10px">
+                <a href="{% url 'cursos' %}?nivel_formacao=POSGRADUACAO">
+                            <img class="media-object img-rounded img-responsive"
+                                 src="{% static 'img/btn_curso_pos.png' %}"
+                                 sizes="(max-height: 135px) 80vw, 100vw"
+                                 alt="Link para os cursos de pós-graduação"></a>
+            </div>
+        </div>
+
+        {% for grupo, noticias in grupos %}
+            <h2 class="titulo {{grupo.cor_to_css}}">{{ grupo }}</h2>
+            <div class="row">
+                {% for noticia in noticias %}
+                    {% if forloop.counter0 != 0 and forloop.counter0|divisibleby:'3' %}
+                        </div><div class="row">
+                    {% endif %}
+
+                    <div class="col-sm-4">
+                        <a href="{{noticia.get_absolute_url}}">
+                        <div class="img-thumbnail">
+                            <img class="media-object img-rounded img-responsive"
+                                 src="{% cropped_thumbnail noticia "cropping" %}"
+                                 alt="{{ noticia.texto_alternativo }}"></div>
+                        <p class="titulo-noticia">{{ noticia.titulo|truncatechars:75 }}</p>
+                        </a>
+                        <p>{{ noticia.resumo|truncatechars:100 }}</p>
+                    </div>
+                {% endfor %}
+            </div>
+            <p class="text-right chapeu {{grupo.cor_to_css}}"><a href="{{ grupo.get_absolute_url }}">Todas as Notícias <i class="fa fa-chevron-right" aria-hidden="true"></i></a></p>
+            <hr/>
+        {% endfor %}
+    {% endif %}
+
+{% endblock %}
